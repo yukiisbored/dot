@@ -50,7 +50,6 @@ if [ ! -d $HOME/.pyenv ]; then
 fi
 
 export PYENV_ROOT=$HOME/.pyenv
-eval "$(pyenv init -)"
 
 if [ ! -d $HOME/.rvm ]; then
     msg "Installing rvm ..."
@@ -61,6 +60,7 @@ fi
 touch ~/.perepared-env
 
 export PATH="$HOME/bin:$PYENV_ROOT/bin:$HOME/.rvm/bin:$PATH"
+eval "$(pyenv -init -)"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
