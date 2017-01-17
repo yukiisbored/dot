@@ -60,7 +60,7 @@ fi
 touch ~/.perepared-env
 
 export PATH="$HOME/bin:$PYENV_ROOT/bin:$HOME/.rvm/bin:$PATH"
-eval "$(pyenv -init -)"
+eval "$(pyenv init -)"
 source /home/yuki/.rvm/scripts/rvm
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
