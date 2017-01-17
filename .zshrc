@@ -63,3 +63,5 @@ touch ~/.perepared-env
 export PATH="$HOME/bin:$PYENV_ROOT/bin:$HOME/.rvm/bin:$PATH"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+
+export EDITOR=vim
