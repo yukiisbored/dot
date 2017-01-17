@@ -50,7 +50,6 @@ if [ ! -d $HOME/.pyenv ]; then
 fi
 
 export PYENV_ROOT=$HOME/.pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
 eval "$(pyenv init -)"
 
 if [ ! -d $HOME/.rvm ]; then
@@ -59,8 +58,8 @@ if [ ! -d $HOME/.rvm ]; then
     \curl -sSL https://get.rvm.io | bash -s stable
 fi
 
-export PATH="$PATH:$HOME/.rvm/bin"
+touch ~/.perepared-env
+
+export PATH="$HOME/bin:$PYENV_ROOT/bin:$HOME/.rvm/bin:$PATH"
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-
-touch ~/.prepared-env
