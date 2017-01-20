@@ -148,10 +148,10 @@
 (use-package adoc-mode
   :ensure t)
 
-(use-package material-theme
+(use-package monokai-theme
   :ensure t
   :config
-  (load-theme 'material t))
+  (load-theme 'monokai t))
 
 (use-package mode-icons
   :ensure t
