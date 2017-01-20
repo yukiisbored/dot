@@ -16,7 +16,7 @@ fi
 
 if [ ! -f $HOME/.prepared-env ]; then
     msg "Hello $(whoami) o/"
-    msg "We'll prepare the setup for you ;) (oh-my-zsh, gvm, pyenv, rvm) ..."
+    touch ~/.prepared-env
 fi
 
 export ZSH=$HOME/.oh-my-zsh
@@ -33,35 +33,6 @@ plugins=(git)
 
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
-
-# Install gvm, if it doesn't exist
-if [ ! -d $HOME/.gvm ]; then
-    msg "Installing gvm ..."
-    bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
-fi
-
-# Load gvm
-source $HOME/.gvm/scripts/gvm
-
-# Install pyenv
-if [ ! -d $HOME/.pyenv ]; then
-    msg "Installing pyenv ..."
-    git clone https://github.com/yyuu/pyenv.git ~/.pyenv
-fi
-
-export PYENV_ROOT=$HOME/.pyenv
-
-if [ ! -d $HOME/.rvm ]; then
-    msg "Installing rvm ..."
-    curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-    \curl -sSL https://get.rvm.io | bash -s stable
-fi
-
-touch ~/.perepared-env
-
-export PATH="$HOME/bin:$PYENV_ROOT/bin:$HOME/.rvm/bin:$PATH"
-eval "$(pyenv init -)"
-source /home/yuki/.rvm/scripts/rvm
 
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
