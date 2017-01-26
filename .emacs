@@ -20,6 +20,7 @@
 (global-set-key (kbd "C-c <down>")  'windmove-down)
 
 (global-linum-mode 1)
+(global-hl-line-mode 1)
 
 (add-to-list 'default-frame-alist '(font . "Hack-10"))
 (set-face-attribute 'default t :font "Hack-10")
