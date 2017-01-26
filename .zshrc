@@ -34,6 +34,12 @@ plugins=(git)
 # load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# load google cloud sdk
+if [ -d "$HOME/.google-cloud-sdk" ]; then
+   source "$HOME/.google-cloud-sdk/path.zsh.inc"
+   source "$HOME/.google-cloud-sdk/completion.zsh.inc"
+fi
+
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export EDITOR=vim
