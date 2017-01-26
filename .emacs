@@ -187,6 +187,11 @@
   :config
   (powerline-default-theme))
 
+(use-package wttrin
+  :ensure t
+  :config
+  (setq wttrin-default-cities '("Jakarta")))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
