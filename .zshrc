@@ -44,5 +44,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export EDITOR=vim
 
-export PATH="$HOME/.local/bin:$PATH"
+export GEMDIR=$(gem environment gemdir)
+export PATH="$GEMDIR/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME/go"
