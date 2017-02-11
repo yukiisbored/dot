@@ -27,6 +27,8 @@
 
 (column-number-mode 1)
 
+(define-key key-translation-map (kbd "<f13>") (kbd "<menu>"))
+
 (setq make-backup-files nil)
 
 (setq-default indent-tabs-mode nil)
@@ -207,6 +209,12 @@
 (use-package groovy-mode
   :ensure t)
 
+(use-package ergoemacs-mode
+  :ensure t
+  :config
+  (setq ergoemacs-theme nil)
+  (ergoemacs-mode 1))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -214,7 +222,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (gradle-mode whitespace-cleanup-mode which-key web-mode use-package undo-tree tabbar smex rubocop robe rainbow-mode projectile project-explorer mode-icons material-theme markdown-mode magit indent-guide flycheck-irony find-file-in-project fill-column-indicator dockerfile-mode company-quickhelp company-irony company-go aggressive-indent adoc-mode))))
+    (persistent-soft gradle-mode whitespace-cleanup-mode which-key web-mode use-package undo-tree tabbar smex rubocop robe rainbow-mode projectile project-explorer mode-icons material-theme markdown-mode magit indent-guide flycheck-irony find-file-in-project fill-column-indicator dockerfile-mode company-quickhelp company-irony company-go aggressive-indent adoc-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
