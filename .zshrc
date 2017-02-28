@@ -40,7 +40,7 @@ if [ -d "$HOME/.google-cloud-sdk" ]; then
    source "$HOME/.google-cloud-sdk/completion.zsh.inc"
 fi
 
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias config='/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export EDITOR=vim
 
