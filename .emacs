@@ -22,8 +22,8 @@
 (global-linum-mode 1)
 (global-hl-line-mode 1)
 
-(add-to-list 'default-frame-alist '(font . "Hack-10"))
-(set-face-attribute 'default t :font "Hack-10")
+(add-to-list 'default-frame-alist '(font . "Go Mono-10"))
+(set-face-attribute 'default t :font "Go Mono-10")
 
 (column-number-mode 1)
 
