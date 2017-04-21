@@ -212,6 +212,15 @@
 (use-package geiser
   :ensure t)
 
+(use-package haskell-mode
+  :ensure t)
+
+(use-package intero
+  :ensure t
+  :config
+  (add-hook 'haskell-mode-hook 'intero-mode))
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
