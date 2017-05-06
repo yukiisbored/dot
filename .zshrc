@@ -1,3 +1,4 @@
+
 # Yuki's .zshrc
 
 function msg {
@@ -19,20 +20,18 @@ if [ ! -f $HOME/.prepared-env ]; then
     touch ~/.prepared-env
 fi
 
-export ZSH=$HOME/.oh-my-zsh
+export ZIM=${HOME}/.zim
 
-# Install oh-my-zsh, if doesn't exist
-if [ ! -d $ZSH ]; then
-    msg "Installing oh-my-zsh ..."
-    git clone https://github.com/robbyrussell/oh-my-zsh $ZSH
+if [ ! -d $ZIM ]; then
+    msg "Installing zim ..."
+    git clone --recursive https://github.com/Eriner/zim.git $ZIM
 fi
 
-# oh-my-zsh configuration
-ZSH_THEME="gentoo"
-plugins=(git)
+source $ZIM/init.zsh
 
-# load oh-my-zsh
-source $ZSH/oh-my-zsh.sh
+autoload -Uz promptinit
+promptinit
+prompt suse
 
 # load google cloud sdk
 if [ -d "$HOME/.google-cloud-sdk" ]; then
