@@ -31,7 +31,7 @@ source $ZIM/init.zsh
 
 autoload -Uz promptinit
 promptinit
-prompt suse
+prompt liquidprompt
 
 # load google cloud sdk
 if [ -d "$HOME/.google-cloud-sdk" ]; then
