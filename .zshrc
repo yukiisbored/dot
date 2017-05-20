@@ -40,8 +40,9 @@ if [ -d "$HOME/.google-cloud-sdk" ]; then
 fi
 
 alias config='/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias vim='nvim'
 
-export EDITOR=vim
+export EDITOR=nvim
 
 export GEM_HOME="$HOME/.gem"
 export GOPATH="$HOME/go"
