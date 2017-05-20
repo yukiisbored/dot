@@ -1,4 +1,3 @@
-
 # Yuki's .zshrc
 
 function msg {
