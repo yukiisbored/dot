@@ -21,6 +21,7 @@ if [ ! -f $HOME/.prepared-env ]; then
 fi
 
 export ZIM=${HOME}/.zim
+export ZDOTDIR=$HOME
 
 if [ ! -d $ZIM ]; then
     msg "Installing zim ..."
