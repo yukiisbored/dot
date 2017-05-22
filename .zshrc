@@ -1,3 +1,4 @@
+
 # Yuki's .zshrc
 
 function msg {
@@ -40,9 +41,11 @@ if [ -d "$HOME/.google-cloud-sdk" ]; then
 fi
 
 alias config='/usr/bin/env git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
-alias vim='nvim'
 
-export EDITOR=nvim
+if which nvim > /dev/null 2>&1; then 
+   alias vim='nvim'
+   export EDITOR='nvim'
+fi
 
 export GEM_HOME="$HOME/.gem"
 export GOPATH="$HOME/go"
