@@ -1,4 +1,3 @@
-
 # Yuki's .zshrc
 
 function msg {
@@ -29,12 +28,6 @@ if [ ! -d $ZIM ]; then
 fi
 
 source $ZIM/init.zsh
-
-autoload -Uz promptinit
-promptinit
-prompt liquidprompt
-
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # load google cloud sdk
 if [ -d "$HOME/.google-cloud-sdk" ]; then
