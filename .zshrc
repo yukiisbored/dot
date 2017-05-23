@@ -1,4 +1,13 @@
 
+
+#
+# User configuration sourced by interactive shells
+#
+
+# Source zim
+if [[ -s ${ZDOTDIR:-${HOME}}/.zim/init.zsh ]]; then
+  source ${ZDOTDIR:-${HOME}}/.zim/init.zsh
+fi
 # Yuki's .zshrc
 
 function msg {
@@ -29,12 +38,6 @@ if [ ! -d $ZIM ]; then
 fi
 
 source $ZIM/init.zsh
-
-autoload -Uz promptinit
-promptinit
-prompt liquidprompt
-
-export ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 
 # load google cloud sdk
 if [ -d "$HOME/.google-cloud-sdk" ]; then
