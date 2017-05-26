@@ -1,5 +1,6 @@
 #!/bin/sh
 
+stalonetray &
 compton --config ~/.config/compton/compton.conf -b &
 xfce4-power-manager &
 xscreensaver -no-splash &
