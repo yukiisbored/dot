@@ -1,0 +1,9 @@
+background "#111618"
+dockapp_mode none
+decorations none
+grow_gravity NW
+icon_gravity NW
+window_type dock
+icon_size 16
+scrollbars none
+transparent true
