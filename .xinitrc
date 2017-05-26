@@ -5,6 +5,6 @@ xfce4-power-manager &
 xscreensaver -no-splash &
 nitrogen --restore &
 $HOME/.screenlayout/muh_screens.sh &
-dunst 
+dunst &
 
 exec ck-launch-session dbus-launch cwm
