@@ -1,0 +1,6 @@
+#!/bin/sh
+
+exec dmenu_run -fn "Roboto" \
+               -nb "#111618" -nf "#ffffff" \
+               -sb "#263238" -sf "#ffffff" \
+               -p "$(whoami)@$(hostname)"
