@@ -2,6 +2,8 @@ fontname "Roboto:pixelsize=14"
 
 gap 16 16 16 16
 
+snapdist 4
+
 command term mate-terminal
 command lock xscreensaver-command -lock
 
