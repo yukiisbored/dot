@@ -1,6 +1,7 @@
 #!/bin/sh
 
-exec dmenu_run -fn "Roboto" \
-               -nb "#111618" -nf "#ffffff" \
-               -sb "#263238" -sf "#ffffff" \
-               -p "$(whoami)@$(hostname)"
+exec dmenu_run -fn "Noto Sans" \
+               -nb "#323232" -nf "#ffffff" \
+               -sb "#cd3535" -sf "#ffffff" \
+               -p "$(whoami)@$(hostname)" \
+               -i

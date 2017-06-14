@@ -57,3 +57,5 @@
   
 
 ) &!
+
+source $HOME/.xprofile
