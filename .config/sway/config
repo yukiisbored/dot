@@ -179,9 +179,9 @@ bindsym $mod+r mode "resize"
 
 bar {
     position top
-    status_command i3blocks
+    status_command yukistatus
 
-    font pango: Noto Sans, FontAwesome 10
+    font pango: Noto Sans CJK JP Regular, FontAwesome 10
 
     colors {
         statusline #ffffff

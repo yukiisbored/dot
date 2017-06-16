@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+
+from i3pystatus import Status
+
+status = Status()
+
+common_hints = {"separator": "false"}
+
+status.register("clock",
+                format="%Y年%m月%d日 %H:%M",
+                hints=common_hints)
+
+status.register("battery",
+                format=" {percentage:.0f}%",
+                hints=common_hints)
+
+status.register("disk",
+                format=" {avail} GB",
+                hints=common_hints,
+                path="/home")
+
+status.register("mem",
+                format=" {used_mem} GB",
+                hints=common_hints,
+                divisor=1024**3)
+
+status.register("cpu_usage",
+                format=" {usage}%",
+                hints=common_hints)
+
+status.register("network",
+                format_up=" {v4}",
+                format_down="",
+                hints=common_hints,
+                interface="eth0")
+
+status.register("network",
+                format_up=" {essid} {quality}% {v4}",
+                format_down="",
+                hints=common_hints,
+                interface="wlan1")
+
+status.register("alsa",
+                format="{muted} {volume}%",
+                hints=common_hints,
+                unmuted="",
+                muted="",
+                on_leftclick = "switch_mute",
+                on_upscroll="decrease_volume",
+                on_downscroll="increase_volume")
+
+status.run()
