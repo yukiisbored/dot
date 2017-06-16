@@ -8,8 +8,15 @@ set $mod Mod4
 
 # MATE's Terminal is best terminal
 set $term mate-terminal
+
 # Use dmenu
 set $menu dmenu_yuki
+
+# Web browser new window command
+set $www palemoon -new-window
+
+# text editor
+set $editor emacsclient -nc
 
 # Use Noto Sans
 font pango:Noto Sans Bold 8
@@ -60,6 +67,12 @@ bindsym $mod+Shift+q kill
 
 # start your launcher
 bindsym $mod+d exec $menu
+
+# start the web browser
+bindsym $mod+q exec $www
+
+# start the text editor
+bindsym $mod+c exec $editor
 
 # General
 # -------
