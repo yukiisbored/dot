@@ -41,7 +41,8 @@ output eDP-1 resolution 1366x768 position 1920,312
 output * bg /home/yuki/.wallpaper.png fill
 
 # Set gaps
-gaps 4
+gaps inner 8
+gaps outer 16
 
 client.focused #da6c6c #cd3535 #ffffff #932525 #cd3535
 
