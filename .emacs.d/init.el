@@ -27,7 +27,7 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 (setq custom-file my-custom-file)
-(setq x-select-enable-clipboard nil)
+;(setq select-enable-clipboard nil)
 (setq-default indent-tabs-mode nil)
 (load custom-file 'noerr)
 
