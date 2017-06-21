@@ -29,6 +29,8 @@ fi
 
 source $ZIM/init.zsh
 
+[ -f "$HOME/.zvendor" ] && source $HOME/.zvendor
+
 # load google cloud sdk
 if [ -d "$HOME/.google-cloud-sdk" ]; then
    source "$HOME/.google-cloud-sdk/path.zsh.inc"
