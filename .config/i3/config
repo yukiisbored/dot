@@ -6,8 +6,8 @@
 # Use Super as the mod key
 set $mod Mod4
 
-# MATE's Terminal is best terminal
-set $term mate-terminal
+# LXTerminal-kun is moe
+set $term lxterminal
 
 # Use dmenu
 set $menu dmenu_yuki
