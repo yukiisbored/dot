@@ -54,8 +54,8 @@ exec --no-startup-id dunst
 # Start xscreensaver
 exec --no-startup-id xscreensaver -no-splash
 
-# Start nitrogen
-exec_always --no-startup-id nitrogen --replace
+# Set wallpaper
+exec_always --no-startup-id feh --bg-fill ~/.wallpaper.png
 
 # Key bindings
 # ============
