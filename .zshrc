@@ -44,6 +44,14 @@ if which nvim > /dev/null 2>&1; then
    export EDITOR='nvim'
 fi
 
+virtualenvwrapper_location=$(which virtualenvwrapper.sh)
+
+if [ ! -z "$virtualenvwrapper_location" ]; then
+    export WORKHON_HOME=$HOME/.virtualenvs
+    export PROJECT_HOME=$HOME/git
+    source "$virtualenvwrapper_location"
+fi
+
 export GEM_HOME="$HOME/.gem"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$GEM_HOME/bin:$HOME/.local/bin:$PATH"
