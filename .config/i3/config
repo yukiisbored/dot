@@ -13,7 +13,7 @@ set $term lxterminal
 set $menu dmenu_yuki
 
 # Web browser new window command
-set $www palemoon -new-window
+set $www chromium-browser
 
 # text editor
 set $editor emacsclient -nc
