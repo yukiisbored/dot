@@ -11,10 +11,6 @@
   :config
   (global-whitespace-cleanup-mode 1))
 
-(req-package fill-column-indicator
-  :init
-  (setq fci-rule-column 80))
-
 (req-package undo-tree
   :config
   (global-undo-tree-mode 1))

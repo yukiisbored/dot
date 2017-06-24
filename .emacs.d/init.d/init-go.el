@@ -10,9 +10,8 @@
 (req-package go-mode
   :ensure t)
 
-(req-package company-go
-  :require company
-  :ensure t)
+(req-package go=autocomplete
+  :require auto-complete)
 
 (provide 'init-go)
 

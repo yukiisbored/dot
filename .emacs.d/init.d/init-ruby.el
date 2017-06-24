@@ -11,6 +11,8 @@
   :require company
   :config
   (add-hook 'ruby-mode-hook 'robe-mode)
+  (add-hook 'robe-mode-hook 'ac-robe-setup)
+  :init
   (push 'company-robe company-backends))
 
 (req-package rubocop

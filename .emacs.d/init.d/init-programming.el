@@ -11,18 +11,9 @@
   :config
   (projectile-mode 1))
 
-(req-package indent-guide
+(req-package auto-complete
   :config
-  (indent-guide-global-mode 1))
-
-(req-package company
-  :config
-  (global-company-mode 1))
-
-(req-package company-quickhelp
-  :require company
-  :config
-  (company-quickhelp-mode 1))
+  (ac-config-default))
 
 (req-package flycheck
   :config
@@ -36,9 +27,17 @@
 
 (req-package origami
   :bind
-  ("C-`" . origami-toggle-node)
+  ("C-." . origami-toggle-node)
   :config
   (global-origami-mode 1))
+
+(req-package smartparens
+  :config
+  (smartparens-global-mode 1))
+
+(req-package highlight-parentheses
+  :config
+  (global-highlight-parentheses-mode 1))
 
 (provide 'init-programming)
 
