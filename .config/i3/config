@@ -33,13 +33,6 @@ set $workspace_8 八
 set $workspace_9 九
 set $workspace_10 十
 
-# No title bars :(
-new_window none
-
-# Set gaps
-gaps inner 8
-gaps outer 16
-
 client.focused #da6c6c #cd3535 #ffffff #932525 #cd3535
 
 # Autoexec
