@@ -44,11 +44,12 @@ if which nvim > /dev/null 2>&1; then
    export EDITOR='nvim'
 fi
 
-virtualenvwrapper_location=$(which virtualenvwrapper.sh)
+virtualenvwrapper_location=$(which virtualenvwrapper.sh 2>/dev/null)
 
 if [ ! -z "$virtualenvwrapper_location" ]; then
     export WORKHON_HOME=$HOME/.virtualenvs
     export PROJECT_HOME=$HOME/git
+    export VIRTUALENVWRAPPER_PYTHON=$(which python3 2>/dev/null)
     source "$virtualenvwrapper_location"
 fi
 
