@@ -22,7 +22,7 @@ zmodules=(directory environment git git-info history input utility meta custom \
 #
 
 # Set your desired prompt here
-zprompt_theme='eriner'
+zprompt_theme='liquidprompt'
 
 #
 # Completion
