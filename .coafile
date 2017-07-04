@@ -1,0 +1,4 @@
+[all]
+bears = SpaceConsistencyBear
+use_spaces = True
+files = **.md
