@@ -1,0 +1,47 @@
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+*font: xft:Go Mono:size=9
+
+Emacs.font: Go Mono:size=12
+
+XTerm*background: #000000
+XTerm*foreground: #D3D3D3
+XTerm*cursorColor: #ffff00
+XTerm*colorUL: #ffa500
+XTerm*borderColor: #2b2b2b
+XTerm*color0: #000000
+XTerm*color1: #8b0000
+XTerm*color2: #00ff00
+XTerm*color3: #ffa500
+XTerm*color4: #4c83ff
+XTerm*color5: #dc8cc3
+XTerm*color6: #93e0e3
+XTerm*color7: #dcdccc
+XTerm*color8: #2b2b2b
+XTerm*color9: #8c5353
+XTerm*color10: #61CE3C
+XTerm*color11: #ffff00
+XTerm*color12: #b2dfee
+XTerm*color13: #ff0000
+XTerm*color14: #0000ff
+XTerm*color15: #2b2b2b
+
+XTerm*borderWidth: 0
+XTerm*internalBorder: 2
+XTerm*termName: xterm-256color
+XTerm*vt100.metaSendsEscape: true
+XTerm*v100.saveLines: 10240
+XTerm*vt100.scrollBar: false
+XTerm*vt100.bellIsUrgent: true
+XTerm*allowBoldFonts: false
+XTerm*scrollKey: true
+XTerm*fullscreen: never
+XTerm*cutToBeginningOfLine: false
+XTerm*cutNewLine: false
+XTerm*charClass: 3:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on2Clicks: word
+XTerm*on3Clicks: line

@@ -1,0 +1,125 @@
+<?xml version="1.0"?>
+<JWM>
+  <RootMenu onroot="12">
+    <Program label="Terminal">xterm</Program>
+    <Program label="Emacs">emacs</Program>
+    <Program label="Chrome">chrome</Program>
+    <Separator/>
+    <Program label="Lock">xlock</Program>
+    <Restart label="Restart"/>
+    <Exit label="Exit" confirm="true"/>
+  </RootMenu>
+
+  <Tray x="0" y="-1" autohide="off">
+    <Pager labeled="true"/>
+    <TaskList maxwidth="0" labeled="false"/>
+    <Dock/>
+    <Clock format="%Y-%m-%d %H:%M"><Button mask="123">exec:xclock</Button></Clock>
+  </Tray>
+
+  <WindowStyle>
+    <Font>Noto Sans CJK:size=9:style=Light</Font>
+    <Width>1</Width>
+    <Height>18</Height>
+    <Corner>2</Corner>
+    <Foreground>#FFFFFF</Foreground>
+    <Background>#555555</Background>
+    <Outline>#000000</Outline>
+    <Opacity>0.5</Opacity>
+    <Active>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#0077CC</Background>
+      <Outline>#000000</Outline>
+      <Opacity>1.0</Opacity>
+    </Active>
+  </WindowStyle>
+  <TrayStyle group="true" list="all">
+    <Font>Noto Sans CJK:size=9:style=Thin</Font>
+    <Background>#333333</Background>
+    <Foreground>#FFFFFF</Foreground>
+    <Outline>#000000</Outline>
+    <Opacity>0.75</Opacity>
+  </TrayStyle>
+  <TaskListStyle>
+    <Font>Noto Sans CJK:size=9:style=Thin</Font>
+    <Active>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#555555</Background>
+    </Active>
+    <Foreground>#FFFFFF</Foreground>
+    <Background>#333333</Background>
+  </TaskListStyle>
+  <PagerStyle>
+    <Outline>#000000</Outline>
+    <Foreground>#555555</Foreground>
+    <Background>#333333</Background>
+    <Text>#FFFFFF</Text>
+    <Active>
+      <Foreground>#0077CC</Foreground>
+      <Background>#004488</Background>
+    </Active>
+  </PagerStyle>
+  <MenuStyle>
+    <Font>Noto Sans CJK:size=9:style=Thin</Font>
+    <Foreground>#FFFFFF</Foreground>
+    <Background>#333333</Background>
+    <Outline>#000000</Outline>
+    <Active>
+      <Foreground>#FFFFFF</Foreground>
+      <Background>#0077CC</Background>
+    </Active>
+    <Opacity>0.85</Opacity>
+  </MenuStyle>
+  <PopupStyle>
+    <Font>Noto Sans CJK:size=9:style=Thin</Font>
+    <Foreground>#000000</Foreground>
+    <Background>#999999</Background>
+  </PopupStyle>
+
+  <Group>
+    <Option>aerosnap</Option>
+    <Option>tiled</Option>
+  </Group>
+
+  <Desktops width="9" height="1">
+    <Background type="solid">#111111</Background>
+  </Desktops>
+
+  <DoubleClickSpeed>400</DoubleClickSpeed>
+  <DoubleClickDelta>2</DoubleClickDelta>
+  <FocusModel>sloppytitle</FocusModel>
+  <SnapMode distance="10">border</SnapMode>
+  <MoveMode>opaque</MoveMode>
+  <ResizeMode>opaque</ResizeMode>
+
+  <Key key="Up">up</Key>
+  <Key key="Down">down</Key>
+  <Key key="Right">right</Key>
+  <Key key="Left">left</Key>
+  <Key key="h">left</Key>
+  <Key key="j">down</Key>
+  <Key key="k">up</Key>
+  <Key key="l">right</Key>
+  <Key key="Return">select</Key>
+  <Key key="Escape">escape</Key>
+
+  <Key mask="4" key="Tab">nextstacked</Key>
+
+  <Key mask="4" key="#">desktop#</Key>
+  <Key mask="4" key="F1">root:1</Key>
+  <Key mask="4" key="F2">window</Key>
+  <Key mask="4" key="Right">maxright</Key>
+  <Key mask="4" key="Left">maxleft</Key>
+  <Key mask="4" key="Up">maximize</Key>
+  <Key mask="4" key="Down">minimize</Key>
+
+  <Key mask="A" key="F2">exec:dmenu_run -fn "xft:Noto Sans CJK:size=9:style=Light" -sb "#0077CC"</Key>
+  <Key mask="4" key="D">exec:dmenu_run -fn "xft:Noto Sans CJK:size=9:style=Light" -sb "#0077CC"</Key>
+
+  <Key mask="4" key="Return">exec:xterm</Key>
+
+  <Key mask="4" key="L">exec:xlock -mode random</Key>
+
+  <Key mask="4" key="W">close</Key>
+  <Key mask="4" key="F">maximize</Key>
+</JWM>
