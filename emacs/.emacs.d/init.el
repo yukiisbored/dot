@@ -6,7 +6,8 @@
 (require 'package)
 (setq package-enable-at-startup nil
       package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")))
+			 ("melpa" . "https://melpa.org/packages/")
+			 ("org" . "https://orgmode.org/elpa/")))
 (package-initialize)
 
 ;; Bootstrap use-package
@@ -232,15 +233,16 @@
   :init
   (setq markdown-command "multimarkdown"))
 
-;; Org babel languages
-(org-babel-do-load-languages
- 'org-babel-load-languages
- '((python . t)))
-
-;; Do indentation natively in Org documents
-(setq org-src-tab-acts-natively t)
-
-;; Use xelatex
-(setq org-latex-to-pdf-process
-      '("xelatex -interaction nonstopmode %f"
-	"xelatex -interaction nonstopmode %f"))
+;; Org-mode
+(use-package org
+  :ensure org-plus-contrib
+  :init
+  (setq org-src-tab-acts-natively t)
+  (setq org-latex-to-pdf-process
+	'("xelatex -interaction nonstopmode %f"
+	  "xelatex -interaction nonstopmode %f"))
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((python . t)))
+  (eval-after-load 'ox '(require 'ox-koma-letter)))
