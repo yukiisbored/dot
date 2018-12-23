@@ -2,6 +2,7 @@
 
 sxhkd -c /home/yuki/.config/sxhkd/sxhkdrc &
 tint2 &
+xidle -program /usr/X11R6/bin/xlock -timeout 15 &
 compton --config /home/yuki/.config/compton/compton.conf -b
 nitrogen --restore
 
