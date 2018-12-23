@@ -4,10 +4,10 @@ Xft.hintstyle: hintslight
 Xft.hinting: 1
 Xft.antialias: 1
 Xft.rgba: rgb
-*font: xft:Go Mono:size=9
 
 Emacs.font: Go Mono:size=12
 
+XTerm*font: xft:Go Mono:size=9
 XTerm*background: #000000
 XTerm*foreground: #D3D3D3
 XTerm*cursorColor: #ffff00
@@ -45,3 +45,6 @@ XTerm*cutNewLine: false
 XTerm*charClass: 3:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 XTerm*on2Clicks: word
 XTerm*on3Clicks: line
+
+rofi.theme: yuki
+rofi.font: Noto 12
