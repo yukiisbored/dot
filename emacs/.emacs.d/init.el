@@ -80,10 +80,10 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; Cyberpunk theme
-(use-package cyberpunk-theme
+;; Dracula theme
+(use-package dracula-theme
   :config
-  (load-theme 'cyberpunk t))
+  (load-theme 'dracula t))
 
 ;; The superior completion front-end
 (use-package ivy
@@ -193,6 +193,11 @@
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
+;; Show colors for rgb(rr,gg,bb) and #rrggbb
+(use-package rainbow-mode
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-mode))
+
 ;; IMenu Anywhere
 (use-package imenu-anywhere
   :bind
@@ -226,6 +231,19 @@
 
 ;; Major mode for Protocol Buffers
 (use-package protobuf-mode)
+
+;; Major mode for Dockerfiles
+(use-package dockerfile-mode)
+
+;; Major mode for HTML
+(use-package web-mode
+  :mode (("\\.phtml\\'" . web-mode)
+  	 ("\\.tpl\\.php\\'" . web-mode)
+	 ("\\.[agj]sp\\'" . web-mode)
+	 ("\\.as[cp]x\\'" . web-mode)
+	 ("\\.erb\\'" . web-mode)
+	 ("\\.mustache\\'" . web-mode)
+	 ("\\.djhtml\\'" . web-mode)))
 
 ;; Major mode for Markdown
 (use-package markdown-mode

@@ -6,34 +6,30 @@ Xft.antialias: 1
 Xft.rgba: rgb
 
 Emacs.font: Go Mono:size=12
-
 XTerm*font: xft:Go Mono:size=9
-XTerm*background: #000000
-XTerm*foreground: #D3D3D3
-XTerm*cursorColor: #ffff00
-XTerm*colorUL: #ffa500
-XTerm*borderColor: #2b2b2b
-XTerm*color0: #000000
-XTerm*color1: #8b0000
-XTerm*color2: #00ff00
-XTerm*color3: #ffa500
-XTerm*color4: #4c83ff
-XTerm*color5: #dc8cc3
-XTerm*color6: #93e0e3
-XTerm*color7: #dcdccc
-XTerm*color8: #2b2b2b
-XTerm*color9: #8c5353
-XTerm*color10: #61CE3C
-XTerm*color11: #ffff00
-XTerm*color12: #b2dfee
-XTerm*color13: #ff0000
-XTerm*color14: #0000ff
-XTerm*color15: #2b2b2b
+
+*.foreground: #F8F8F2
+*.background: #282A36
+*.color0:     #000000
+*.color8:     #4D4D4D
+*.color1:     #FF5555
+*.color9:     #FF6E67
+*.color2:     #50FA7B
+*.color10:    #5AF78E
+*.color3:     #F1FA8C
+*.color11:    #F4F99D
+*.color4:     #BD93F9
+*.color12:    #CAA9FA
+*.color5:     #FF79C6
+*.color13:    #FF92D0
+*.color6:     #8BE9FD
+*.color14:    #9AEDFE
+*.color7:     #BFBFBF
+*.color15:    #E6E6E6
 
 XTerm*borderWidth: 0
 XTerm*internalBorder: 2
 XTerm*termName: xterm-256color
-XTerm*vt100.metaSendsEscape: true
 XTerm*v100.saveLines: 10240
 XTerm*vt100.scrollBar: false
 XTerm*vt100.bellIsUrgent: true
