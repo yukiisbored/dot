@@ -12,5 +12,6 @@ XDG_DATA_HOME="$HOME/.local/share";	export XDG_DATA_HOME
 
 xrdb -m ~/.Xresources
 setxkbmap -layout us -variant altgr-intl
+xsetroot -cursor_name left_ptr
 
 exec bspwm
