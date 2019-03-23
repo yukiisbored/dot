@@ -13,7 +13,7 @@ management.
 * Shell: zsh
 * Text editor: Emacs / exvi
 * Terminal emulator: xterm
-* Screen locker: xlock
+* Screen locker: xscreensaver
 * Web Browser: Chromium
   * Extensions: uBlock Origin, Decentraleyes, HTTPS Everywhere, Thin scrollbar,
 	Iridium for YouTube
