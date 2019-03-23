@@ -1,7 +1,6 @@
 #!/bin/sh
 
 # Locales
-
 LC_CTYPE="fr_FR.UTF-8";	export LC_CTYPE
 LC_ALL="fr_FR.UTF-8";	export LC_ALL
 LANG="fr_FR.UTF-8";	export LANG
