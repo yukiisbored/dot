@@ -35,8 +35,8 @@
       scroll-conservatively 100000
       scroll-preserve-screen-position 1)
 
-(setq tab-always-indent nil
-      indent-tabs-mode nil)
+(setq-default tab-always-indent nil
+	      indent-tabs-mode nil)
 
 ;; Sensible defaults
 (load-file "~/.emacs.d/sensible-defaults.el/sensible-defaults.el")
