@@ -14,4 +14,8 @@ xrdb -m ~/.Xresources
 setxkbmap -layout us -variant altgr-intl
 xsetroot -cursor_name left_ptr
 
+xrandr | grep "DP2 connected" && \
+  xrandr --output LVDS1 --off \
+         --output DP2 --auto
+
 exec bspwm
