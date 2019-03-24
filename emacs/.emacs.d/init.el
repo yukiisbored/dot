@@ -65,6 +65,10 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 
+;; Whoami
+(setq user-full-name "Muhammad Kaisar Arkhan"
+      user-mail-address "hi@yukiisbo.red")
+
 ;; Automatically update packages
 (use-package auto-package-update
   :config
@@ -257,10 +261,51 @@
   :init
   (setq org-src-tab-acts-natively t)
   (setq org-latex-to-pdf-process
-	'("xelatex -interaction nonstopmode %f"
-	  "xelatex -interaction nonstopmode %f"))
+        '("xelatex -interaction nonstopmode %f"
+          "xelatex -interaction nonstopmode %f"))
   :config
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((python . t)))
   (eval-after-load 'ox '(require 'ox-koma-letter)))
+
+;; mu4e
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+(require 'mu4e)
+
+(setq mail-user-agent 'mu4e-user-agent
+      mu4e-maildir "~/Maildir"
+      mu4e-sent-folder "/Personal/Sent"
+      mu4e-drafts-folder "/Personal/Drafts"
+      mu4e-trash-folder "/Personal/Trash"
+      mu4e-get-mail-command "offlineimap"
+      mu4e-compose-signature "yukiisbo.red"
+      message-kill-buffer-on-exit t
+      message-send-mail-function 'sendmail-send-it)
+
+(defvar my-mu4e-account-alist
+  '(("Personal"
+     (mu4e-sent-folder "/Personal/Sent")
+     (mu4e-drafts-folder "/Personal/Drafts")
+     (mu4e-trash-folder "/Personal/Trash")
+     (user-mail-adress "hi@yukiisbo.red"))))
+
+(defun yuki/mu4e-set-account ()
+  (let* ((account
+          (if mu4e-compose-parent-message
+              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                (string-match "/\\(.*?\\)/" maildir)
+                (match-string 1 maildir))
+            (completing-read (format "Compose with account: (%s) "
+                                     (mapconcat #'(lambda (var) (car var))
+                                                my-mu4e-account-alist "/"))
+                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                             nil t nil nil (caar my-mu4e-account-alist))))
+         (account-vars (cdr (assoc account my-mu4e-account-alist))))
+    (if account-vars
+        (mapc #'(lambda (var)
+                  (set (car var) (cadr var)))
+              account-vars)
+      (error "No email account found"))))
+
+(add-hook 'mu4e-compose-pre-hook 'yuki/mu4e-set-account)
