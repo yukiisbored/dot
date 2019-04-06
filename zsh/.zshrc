@@ -69,6 +69,7 @@ PS1='$_PS1_HOST$(shrink_path -f) %% '
 
 source "$ZPLUG_HOME/init.zsh"
 
+zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 zplug "plugins/python", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/virtualenvwrapper", from:oh-my-zsh
