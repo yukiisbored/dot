@@ -3,61 +3,57 @@
 # ID 1
 rounded = 5
 border_width = 0
-background_color = #21242c 0
-border_color = #90a4ae 30
+background_color = #fdfde7 0
+border_color = #5f5f5f 30
 
 # ID 2 - task active
 rounded = 5
 border_width = 1
-background_color = #90a4ae 35
-border_color = #90a4ae 35
+background_color = #5f5f5f 35
+border_color = #5f5f5f 35
 
 # ID 3 - task
 rounded = 5
 border_width = 1
-background_color = #21242c 0
-border_color = #90a4ae 0
+background_color = #fdfde7 0
+border_color = #5f5f5f 0
 
 # ID 4
 rounded = 5
 border_width = 1
-background_color = #21242c 20
-border_color = #90a4ae 60
+background_color = #fdfde7 20
+border_color = #5f5f5f 60
 
 # ID 5 - taskbar
 rounded = 5
 border_width = 1
-background_color = #21242c 90
-border_color = #90a4ae 30
+background_color = #fdfde7 90
+border_color = #5f5f5f 30
 
 # ID 6 - active taskbar
 rounded = 5
-border_width = 1.5
-background_color = #21242c 90
-border_color = #03a9f4 100
-#blue= #03a9f4
-#grey= #c1baba
-#orange= #ea7a0c
-#red= #9b1717
+border_width = 2
+background_color = #fdfde7 90
+border_color = #afd7ff 100
 
 # ID 7 - tooltip
 rounded = 5
 border_width = 1
-background_color = #21242c 0
-border_color = #90a4ae 30
+background_color = #fdfde7 0
+border_color = #5f5f5f 30
 
 # ID 8
 rounded = 5
 border_width = 3
-background_color = #21242c 00
-border_color = #90a4ae 30
+background_color = #fdfde7 00
+border_color = #5f5f5f 30
 
 # ID 9 - Launcher
 rounded = 5
 border_width = 1
 border_padding = 4
-background_color = #21242c 90
-border_color = #90a4ae 30
+background_color = #fdfde7 90
+border_color = #5f5f5f 30
 
 #---------------------------------------------
 
@@ -103,8 +99,8 @@ taskbar_name = 1
 taskbar_name_background_id = 0
 taskbar_name_active_background_id = 0
 taskbar_name_font = Noto 11
-taskbar_name_font_color = #828282 100
-taskbar_name_active_font_color = #828282 100
+taskbar_name_font_color = #5f5f5f 100
+taskbar_name_active_font_color = #5f5f5f 100
 taskbar_distribute_size = 0
 
 #---------------------------------------------
@@ -127,10 +123,10 @@ task_iconified_background_id = 3
 
 # Task Icons
 #---------------------------------------------
-task_icon_asb = 80 0 0
+task_icon_asb = 100 0 0
 task_active_icon_asb = 100 0 0
 task_urgent_icon_asb = 100 0 0
-task_iconified_icon_asb = 80 0 0
+task_iconified_icon_asb = 100 0 0
 #---------------------------------------------
 
 # Battery
@@ -142,7 +138,7 @@ battery_low_cmd = notify-send 'Battery low'
 bat1_format = %p
 bat1_font = Noto 11
 battery_background_id = 9
-battery_font_color = #d8d8d8 100
+battery_font_color = #5f5f5f 100
 battery_padding = 4 4
 #---------------------------------------------
 
@@ -150,7 +146,7 @@ battery_padding = 4 4
 #---------------------------------------------
 time1_format = %a %d %b, %H:%M
 time1_font = Noto 11
-clock_font_color = #d8d8d8 100
+clock_font_color = #5f5f5f 100
 clock_padding = 4 4
 clock_background_id = 9
 #---------------------------------------------
@@ -162,6 +158,6 @@ tooltip_padding = 2 2
 tooltip_show_timeout = 0.0
 tooltip_hide_timeout = 0.0
 tooltip_background_id = 9
-tooltip_font_color = #d8d8d8 100
+tooltip_font_color = #5f5f5f 100
 tooltip_font = Noto 11
 #---------------------------------------------

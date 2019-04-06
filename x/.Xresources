@@ -10,24 +10,24 @@ Xft.rgba: rgb
 Emacs.font: Go Mono:size=12
 XTerm*font: xft:Go Mono:size=9
 
-*.foreground: #F8F8F2
-*.background: #282A36
-*.color0:     #000000
-*.color8:     #4D4D4D
-*.color1:     #FF5555
-*.color9:     #FF6E67
-*.color2:     #50FA7B
-*.color10:    #5AF78E
-*.color3:     #F1FA8C
-*.color11:    #F4F99D
-*.color4:     #BD93F9
-*.color12:    #CAA9FA
-*.color5:     #FF79C6
-*.color13:    #FF92D0
-*.color6:     #8BE9FD
-*.color14:    #9AEDFE
-*.color7:     #BFBFBF
-*.color15:    #E6E6E6
+*.foreground: #5f5f5f
+*.background: #fdfde7
+*.color0:     #3a3a3a
+*.color8:     #8a8a8a
+*.color1:     #cc0000
+*.color9:     #ef2929
+*.color2:     #5fd700
+*.color10:    #d7ff87
+*.color3:     #ffaf5f
+*.color11:    #ff8700
+*.color4:     #b218b2
+*.color12:    #d18aff
+*.color5:     #ff7bbb
+*.color13:    #ff3ea3
+*.color6:     #00d7af
+*.color14:    #87ffff
+*.color7:     #dadada
+*.color15:    #eeeeee
 
 XTerm*borderWidth: 0
 XTerm*internalBorder: 2
@@ -43,6 +43,8 @@ XTerm*cutNewLine: false
 XTerm*charClass: 3:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
 XTerm*on2Clicks: word
 XTerm*on3Clicks: line
+XTerm*eightBitInput: false
+XTerm*eightBitOutput: true
 
 rofi.theme: yuki
 rofi.font: Noto 12

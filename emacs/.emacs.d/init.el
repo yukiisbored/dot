@@ -24,7 +24,7 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
-;; UTF-8 Forever
+;; UTF-8 forever <3
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
@@ -65,6 +65,10 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 
+;; Show parentheses
+(setq show-paren-style 'expression)
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
 ;; Whoami
 (setq user-full-name "Muhammad Kaisar Arkhan"
       user-mail-address "hi@yukiisbo.red")
@@ -84,10 +88,12 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; Dracula theme
-(use-package dracula-theme
+;; Moe, moe, kyun~
+(use-package moe-theme
+  :init
+  (setq moe-theme-highlight-buffer-id nil)
   :config
-  (load-theme 'dracula t))
+  (moe-light))
 
 ;; The superior completion front-end
 (use-package ivy
@@ -207,7 +213,7 @@
   :bind
   ("C-c ." . imenu-anywhere))
 
-;; Generic Lisp Environment
+;; Lisp
 (use-package parinfer
   :bind ("C-," . parinfer-toggle-mode)
   :hook
@@ -220,26 +226,25 @@
   (setq parinfer-extensions '(default pretty-parents paredit
 			       smart-tab smart-yank)))
 
-;; Major mode for YAML
+;; YAML
 (use-package yaml-mode
   :mode "\\.ya?ml")
 
-;; Major mode for Go
+;; Go
 (use-package go-mode
   :mode "\\.go\\'"
   :config
   (add-hook 'before-save-hook 'gofmt-before-save))
 
-;; Auto completion for Go
 (use-package go-autocomplete)
 
-;; Major mode for Protocol Buffers
+;; Protocol Buffers
 (use-package protobuf-mode)
 
-;; Major mode for Dockerfiles
+;; Dockerfile
 (use-package dockerfile-mode)
 
-;; Major mode for HTML
+;; HTML
 (use-package web-mode
   :mode (("\\.phtml\\'" . web-mode)
   	 ("\\.tpl\\.php\\'" . web-mode)
@@ -247,15 +252,16 @@
 	 ("\\.as[cp]x\\'" . web-mode)
 	 ("\\.erb\\'" . web-mode)
 	 ("\\.mustache\\'" . web-mode)
-	 ("\\.djhtml\\'" . web-mode)))
+	 ("\\.djhtml\\'" . web-mode)
+         ("\\.html?\\'" . web-mode)))
 
-;; Major mode for Markdown
+;; Markdown
 (use-package markdown-mode
   :mode "\\.md\\'"
   :init
   (setq markdown-command "multimarkdown"))
 
-;; Org-mode
+;; Org
 (use-package org
   :ensure org-plus-contrib
   :init
@@ -269,43 +275,58 @@
    '((python . t)))
   (eval-after-load 'ox '(require 'ox-koma-letter)))
 
+;; Rust
+(use-package rust-mode)
+
+(use-package flycheck-rust
+  :init
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook 'flycheck-rust-setup)))
+
+(use-package flycheck-inline
+  :init
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook 'flycheck-inline-mode)))
+
 ;; mu4e
-(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
-(require 'mu4e)
+(setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
+(when (file-directory-p mu4e-directory)
+  (add-to-list 'load-path mu4e-directory)
+  (require 'mu4e)
 
-(setq mail-user-agent 'mu4e-user-agent
-      mu4e-maildir "~/Maildir"
-      mu4e-sent-folder "/Personal/Sent"
-      mu4e-drafts-folder "/Personal/Drafts"
-      mu4e-trash-folder "/Personal/Trash"
-      mu4e-get-mail-command "offlineimap"
-      mu4e-compose-signature "yukiisbo.red"
-      message-kill-buffer-on-exit t
-      message-send-mail-function 'sendmail-send-it)
+  (setq mail-user-agent 'mu4e-user-agent
+        mu4e-maildir "~/Maildir"
+        mu4e-sent-folder "/Personal/Sent"
+        mu4e-drafts-folder "/Personal/Drafts"
+        mu4e-trash-folder "/Personal/Trash"
+        mu4e-get-mail-command "offlineimap"
+        mu4e-compose-signature "yukiisbo.red"
+        message-kill-buffer-on-exit t
+        message-send-mail-function 'sendmail-send-it)
 
-(defvar my-mu4e-account-alist
-  '(("Personal"
-     (mu4e-sent-folder "/Personal/Sent")
-     (mu4e-drafts-folder "/Personal/Drafts")
-     (mu4e-trash-folder "/Personal/Trash")
-     (user-mail-adress "hi@yukiisbo.red"))))
+  (defvar my-mu4e-account-alist
+    '(("Personal"
+       (mu4e-sent-folder "/Personal/Sent")
+       (mu4e-drafts-folder "/Personal/Drafts")
+       (mu4e-trash-folder "/Personal/Trash")
+       (user-mail-adress "hi@yukiisbo.red"))))
 
-(defun yuki/mu4e-set-account ()
-  (let* ((account
-          (if mu4e-compose-parent-message
-              (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                (string-match "/\\(.*?\\)/" maildir)
-                (match-string 1 maildir))
-            (completing-read (format "Compose with account: (%s) "
-                                     (mapconcat #'(lambda (var) (car var))
-                                                my-mu4e-account-alist "/"))
-                             (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                             nil t nil nil (caar my-mu4e-account-alist))))
-         (account-vars (cdr (assoc account my-mu4e-account-alist))))
-    (if account-vars
-        (mapc #'(lambda (var)
-                  (set (car var) (cadr var)))
-              account-vars)
-      (error "No email account found"))))
+  (defun yuki/mu4e-set-account ()
+    (let* ((account
+            (if mu4e-compose-parent-message
+                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
+                  (string-match "/\\(.*?\\)/" maildir)
+                  (match-string 1 maildir))
+              (completing-read (format "Compose with account: (%s) "
+                                       (mapconcat #'(lambda (var) (car var))
+                                                  my-mu4e-account-alist "/"))
+                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
+                               nil t nil nil (caar my-mu4e-account-alist))))
+           (account-vars (cdr (assoc account my-mu4e-account-alist))))
+      (if account-vars
+          (mapc #'(lambda (var)
+                    (set (car var) (cadr var)))
+                account-vars)
+        (error "No email account found"))))
 
-(add-hook 'mu4e-compose-pre-hook 'yuki/mu4e-set-account)
+  (add-hook 'mu4e-compose-pre-hook 'yuki/mu4e-set-account))
