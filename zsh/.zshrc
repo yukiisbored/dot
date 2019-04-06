@@ -25,12 +25,12 @@ setopt appendhistory autocd beep extendedglob notify nomatch
 
 bindkey -e
 
-bindkey "^[Od" backward-word
-bindkey "^[Oc" forward-word
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
 bindkey "^[[3~" delete-char
 bindkey "^H" backward-kill-word
-bindkey "^[[A" history-substring-search-up
-bindkey "^[[B" history-substring-search-down
+bindkey "^[[1;5A" history-substring-search-up
+bindkey "^[[1;5B" history-substring-search-down
 
 case "$(uname -s)" in
     "OpenBSD")
