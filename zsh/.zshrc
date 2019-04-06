@@ -7,6 +7,11 @@ if ! command -v git >/dev/null; then
     return
 fi
 
+if ! command -v curl >/dev/null; then
+    echo "Curl is not installed. Please install curl." >&2
+    return
+fi
+
 if [ ! -d "$ZPLUG_HOME" ]; then
     echo "Installing zplug ..." >&2
     git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
@@ -90,5 +95,26 @@ zplug load
 if command -v "fortune" >/dev/null && \
         command -v "cowsay" >/dev/null; then
     fortune | cowsay
+    echo
+fi
+
+# Weather
+
+city="Besançon"
+
+wttr() {
+    curl -H "Accept-Language: fr" "wttr.in/$city?F"
+}
+
+# Daily
+
+lastdaily="$HOME/.zlastdaily"
+
+if [ ! -f "$lastdaily" ] || \
+       [ "$(cat $lastdaily)" != "$(date +'%F')" ]; then
+    wttr
+    echo
+    date +'%F' > "$lastdaily"
+    zplug update
     echo
 fi
