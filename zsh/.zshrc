@@ -83,3 +83,11 @@ zplug "zsh-users/zsh-completions"
     zplug install
 
 zplug load
+
+# Fortune | Cowsay
+
+if command -v "fortune" >/dev/null && \
+        command -v "cowsay" >/dev/null; then
+    fortune | cowsay
+    echo
+fi
