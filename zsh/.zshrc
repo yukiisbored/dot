@@ -77,6 +77,9 @@ PS1='$_PS1_HOST$(shrink_path -f) %% '
 
 alias emacs="$EDITOR"
 alias ec="$EDITOR"
+alias vi="$EDITOR"
+alias vim="$EDITOR"
+
 alias ef="$VISUAL"
 
 if [ -x "/usr/local/sbin/vm" ]; then
