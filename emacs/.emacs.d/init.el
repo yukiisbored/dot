@@ -55,9 +55,10 @@
 (set-fringe-mode 0)
 
 (defun yuki/disable-scroll-bars (frame)
-  (modify-frame-parameteres frame
-			    '((vertical-scroll-bars . nil)
-			      (horizontal-scroll-bars . nil))))
+  (when window-system
+    (modify-frame-parameteres frame
+                              '((vertical-scroll-bars . nil)
+                                (horizontal-scroll-bars . nil)))))
 
 (add-hook 'after-make-frame-functions 'yuki/disable-scroll-bars)
 
