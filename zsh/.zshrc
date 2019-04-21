@@ -32,8 +32,6 @@ setopt share_history appendhistory inc_append_history hist_ignore_space \
        prompt_subst complete_in_word always_to_end autocd auto_pushd interactive_comments \
        notify long_list_jobs nohup local_options local_traps complete_aliases
 
-stty erase '^h'
-
 bindkey -e
 
 # Use history substring instead of normal history browsing
