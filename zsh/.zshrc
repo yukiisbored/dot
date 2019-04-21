@@ -114,15 +114,3 @@ city="Besançon"
 wttr() {
     curl -H "Accept-Language: fr" "wttr.in/$city?F"
 }
-
-# Daily
-if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
-    lastdaily="$HOME/.zlastdaily"
-
-    if [ ! -f "$lastdaily" ] || \
-           [ "$(cat $lastdaily)" != "$(date +'%F')" ]; then
-        wttr
-        echo
-        date +'%F' > "$lastdaily"
-    fi
-fi
