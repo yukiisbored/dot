@@ -14,9 +14,9 @@ xrdb -m ~/.Xresources
 setxkbmap -layout us -variant altgr-intl
 xsetroot -cursor_name left_ptr
 
-xrandr | grep "DP2 connected" && \
-  xrandr --output LVDS1 --off \
-         --output DP2 --auto
+xrandr | grep "DP-2 connected" && \
+  xrandr --output LVDS-1 --off \
+         --output DP-2 --auto
 
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
