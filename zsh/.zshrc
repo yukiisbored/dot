@@ -1,5 +1,15 @@
-# Bootstrap zplug
+# Start/Attach tmux if this is an interactive SSH session
+if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
+    if tmux has-session; then
+        tmux attach
+    else
+        tmux
+    fi
+    exit
+fi
 
+
+# Bootstrap zplug
 export ZPLUG_HOME="$HOME/.zplug"
 
 if ! command -v git >/dev/null; then
@@ -64,12 +74,8 @@ esac
 
 # Prompt
 
-if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
-    _PS1_HOST='%m '
-fi
-
 setopt prompt_subst
-PS1='$_PS1_HOST$(shrink_path -f) %% '
+PS1='$(shrink_path -f) %% '
 
 # Aliases
 
