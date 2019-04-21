@@ -79,6 +79,10 @@ alias emacs="$EDITOR"
 alias ec="$EDITOR"
 alias ef="$VISUAL"
 
+if [ -x "/usr/local/sbin/vm" ]; then
+    alias vm="sudo /usr/local/sbin/vm"
+fi
+
 # zplug
 
 source "$ZPLUG_HOME/init.zsh"
