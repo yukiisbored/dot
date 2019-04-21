@@ -1,0 +1,14 @@
+#!/bin/sh
+
+level=$(acpiconf -i 0 | grep "Remaining capacity:" | cut -f2 -d: | sed 's/^[[:blank:]]*//;s/%//')
+state=$(acpiconf -i 0 | grep "State:" | cut -f2 -d: | sed 's/^[[:blank:]]*//;s/%//')
+
+icon=""
+
+[ $level -le 85 ] && icon=""
+[ $level -le 50 ] && icon=""
+[ $level -le 25 ] && icon=""
+[ $level -le 10 ] && icon=""
+[ $state = "high" ] && icon=""
+
+printf "%s %s%%\n" "$icon" "$level"

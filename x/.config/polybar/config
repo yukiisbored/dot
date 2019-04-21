@@ -1,0 +1,99 @@
+[colors]
+background          = #fdfde7
+background-selected = #afd7ff
+
+foreground          = #5f5f5f
+foreground-selected = #005f87
+
+secondary = #e60053
+alert     = #bd2c40
+
+[bar/yuki]
+width = 100%
+height = 24
+
+radius = 0.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 2
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 0
+module-margin-right = 2
+
+font-0 = "Noto Sans:style=Regular:size=10"
+font-1 = "Font Awesome 5 Free:style=Regular:size=10;1"
+font-2 = "Font Awesome 5 Free:style=Solid:size=10;1"
+font-3 = "Font Awesome 5 Brands:size=10;1"
+
+modules-left = workspaces
+modules-center =
+modules-right = os volume battery date
+
+wm-restack = bspwm
+
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+locale = fr_FR.UTF-8
+
+[module/workspaces]
+type = internal/bspwm
+
+label-focused = %name%
+label-focused-background = ${colors.background-selected}
+label-focused-foreground = ${colors.foreground-selected}
+label-focused-underline= ${colors.foreground-selected}
+label-focused-padding = 2
+
+label-occupied = %name%
+label-occupied-padding = 2
+
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %name%
+label-empty-padding = 2
+
+[module/os]
+type = custom/script
+exec = uname -or
+format-prefix = " "
+
+[module/volume]
+type = custom/script
+exec = $HOME/.config/polybar/bin/volume
+interval = 1
+
+scroll-up = mixer vol +2
+scroll-down = mixer vol -2
+
+click-left = mixer vol 0
+
+double-click-left = mixer vol 100
+
+[module/battery]
+type = custom/script
+exec = $HOME/.config/polybar/bin/battery
+interval = 1
+
+[module/date]
+type = internal/date
+
+interval = 1
+
+format =   <label>
+
+date = %a %d %b
+time = %H:%M
+
+label = %date% %time%
