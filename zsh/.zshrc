@@ -8,7 +8,7 @@ if ! command -v git >/dev/null; then
 fi
 
 if ! command -v curl >/dev/null; then
-    echo "Curl is not installed. Please install curl." >&2
+    echo "cURL is not installed. Please install curl." >&2
     return
 fi
 
@@ -26,16 +26,19 @@ export GPG_TTY="$(tty)"
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
-setopt appendhistory autocd beep extendedglob notify nomatch
+
+setopt share_history appendhistory inc_append_history hist_ignore_space \
+       hist_ignore_all_dups hist_find_no_dups hist_reduce_blanks extended_history \
+       prompt_subst complete_in_word always_to_end autocd auto_pushd interactive_comments \
+       notify long_list_jobs nohup local_options local_traps complete_aliases
+
+stty erase '^h'
 
 bindkey -e
 
-bindkey "^[[1;5D" backward-word
-bindkey "^[[1;5C" forward-word
-bindkey "^[[3~" delete-char
-bindkey "^H" backward-kill-word
-bindkey "^[[1;5A" history-substring-search-up
-bindkey "^[[1;5B" history-substring-search-down
+# Use history substring instead of normal history browsing
+bindkey "^P" history-substring-search-up
+bindkey "^N" history-substring-search-down
 
 case "$(uname -s)" in
     "OpenBSD")
@@ -70,11 +73,17 @@ fi
 setopt prompt_subst
 PS1='$_PS1_HOST$(shrink_path -f) %% '
 
+# Aliases
+
+alias emacs="$EDITOR"
+alias ec="$EDITOR"
+alias ef="$VISUAL"
+
 # zplug
 
 source "$ZPLUG_HOME/init.zsh"
 
-zplug 'zplug/zplug', hook-build:'zplug --self-manage'
+zplug "zplug/zplug", hook-build:"zplug --self-manage"
 zplug "plugins/python", from:oh-my-zsh
 zplug "plugins/pip", from:oh-my-zsh
 zplug "plugins/virtualenvwrapper", from:oh-my-zsh
@@ -107,14 +116,13 @@ wttr() {
 }
 
 # Daily
+if [ -z "$SSH_CLIENT" ] && [ -z "$SSH_TTY" ]; then
+    lastdaily="$HOME/.zlastdaily"
 
-lastdaily="$HOME/.zlastdaily"
-
-if [ ! -f "$lastdaily" ] || \
-       [ "$(cat $lastdaily)" != "$(date +'%F')" ]; then
-    wttr
-    echo
-    date +'%F' > "$lastdaily"
-    zplug update
-    echo
+    if [ ! -f "$lastdaily" ] || \
+           [ "$(cat $lastdaily)" != "$(date +'%F')" ]; then
+        wttr
+        echo
+        date +'%F' > "$lastdaily"
+    fi
 fi
