@@ -49,10 +49,8 @@
 
 (when window-system
   (tool-bar-mode -1)
-  (scroll-bar-mode -1))
-
-;; Give me more fucking space!
-(set-fringe-mode 0)
+  (scroll-bar-mode -1)
+  (set-fringe-mode 0))
 
 (defun yuki/disable-scroll-bars (frame)
   (when window-system
