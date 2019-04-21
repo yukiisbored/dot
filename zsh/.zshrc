@@ -1,5 +1,6 @@
 # Start/Attach tmux if this is an interactive SSH session
-if [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
+if command -v tmux >/dev/null && \
+        [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
     if tmux has-session; then
         tmux attach
     else
