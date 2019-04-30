@@ -9,8 +9,8 @@ if command -v tmux >/dev/null && \
     exit
 fi
 
-# ^? is erase
-stty erase '^?'
+# ^h is ERASE
+#stty erase '^h'
 
 # Bootstrap zplug
 export ZPLUG_HOME="$HOME/.zplug"
