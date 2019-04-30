@@ -93,6 +93,10 @@ if [ -x "/usr/local/sbin/vm" ]; then
     alias vm="sudo /usr/local/sbin/vm"
 fi
 
+if [ -x "/usr/local/bin/iocage" ]; then
+    alias iocage="sudo /usr/local/bin/iocage"
+fi
+
 # zplug
 
 source "$ZPLUG_HOME/init.zsh"
