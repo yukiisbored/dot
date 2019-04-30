@@ -45,20 +45,19 @@
 (sensible-defaults/backup-to-temp-directory)
 
 ;; Distraction free
-(menu-bar-mode -1)
+(menu-bar-mode 1)
 
-(when window-system
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1)
-  (set-fringe-mode 0))
-
-(defun yuki/disable-scroll-bars (frame)
+(defun yuki/distraction-free (frame)
+  (select-frame frame)
   (when window-system
+    (fringe-mode '(nil . 0))
+    (tool-bar-mode -1)
+    (scroll-bar-mode -1)
     (modify-frame-parameteres frame
                               '((vertical-scroll-bars . nil)
                                 (horizontal-scroll-bars . nil)))))
 
-(add-hook 'after-make-frame-functions 'yuki/disable-scroll-bars)
+(add-hook 'after-make-frame-functions 'yuki/distraction-free)
 
 ;; Visual aid
 (global-hl-line-mode t)
