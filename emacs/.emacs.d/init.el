@@ -150,6 +150,11 @@
         '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
   (setq switch-window-minibuffer-shortcut ?z))
 
+;; Tree
+(use-package neotree
+  :bind
+  ("C-x M-f" . neotree-toggle))
+
 ;; A Better Git interface
 (use-package magit
   :bind
