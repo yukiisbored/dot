@@ -47,17 +47,17 @@
 ;; Distraction free
 (menu-bar-mode 1)
 
-(defun yuki/distraction-free (frame)
+(defun yuki/frame-mods (frame)
   (select-frame frame)
   (when window-system
-    (fringe-mode '(nil . 0))
+    (fringe-mode '(nil . nil))
     (tool-bar-mode -1)
     (scroll-bar-mode -1)
-    (modify-frame-parameteres frame
-                              '((vertical-scroll-bars . nil)
-                                (horizontal-scroll-bars . nil)))))
+    (modify-frame-parameters frame
+                             '((vertical-scroll-bars . nil)
+                               (horizontal-scroll-bars . nil)))))
 
-(add-hook 'after-make-frame-functions 'yuki/distraction-free)
+(add-hook 'after-make-frame-functions 'yuki/frame-mods)
 
 ;; Visual aid
 (global-hl-line-mode t)
