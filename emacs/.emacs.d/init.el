@@ -270,6 +270,10 @@
   :init
   (setq markdown-command "multimarkdown"))
 
+;; Lua
+(use-package lua-mode
+  :mode "\\.lua\\'")
+
 ;; Org
 (use-package org
   :ensure org-plus-contrib
@@ -285,7 +289,8 @@
   (eval-after-load 'ox '(require 'ox-koma-letter)))
 
 ;; Rust
-(use-package rust-mode)
+(use-package rust-mode
+  :mode "\\.rs\\'")
 
 (use-package flycheck-rust
   :init
@@ -296,6 +301,22 @@
   :init
   (with-eval-after-load 'flycheck
     (add-hook 'flycheck-mode-hook 'flycheck-inline-mode)))
+
+(use-package racer
+  :config
+  (add-hook 'rust-mode-hook 'racer-mode)
+  (add-hook 'racer-mode-hook 'eldoc-mode)
+  (define-key rust-mode-map (kbd "TAB") 'company-indent-or-complete-common))
+
+(use-package cargo
+  :config
+  (add-hook 'rust-mode-hook 'cargo-minor-mode))
+
+
+(use-package langtool
+  :init
+  (setq langtool-language-tool-jar "~/.local/langtool/languagetool-commandline.jar"
+        langtool-default-language "fr"))
 
 ;; mu4e
 (setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
