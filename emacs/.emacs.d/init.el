@@ -247,8 +247,6 @@
   :config
   (add-hook 'before-save-hook 'gofmt-before-save))
 
-(use-package go-autocomplete)
-
 ;; Protocol Buffers
 (use-package protobuf-mode)
 
