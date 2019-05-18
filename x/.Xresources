@@ -10,24 +10,25 @@ Xft.rgba: rgb
 Emacs.font: Go Mono:size=12
 XTerm*font: xft:Go Mono:size=9
 
-*.foreground: #5f5f5f
-*.background: #fdfde7
-*.color0:     #3a3a3a
-*.color8:     #8a8a8a
-*.color1:     #cc0000
-*.color9:     #ef2929
-*.color2:     #5fd700
-*.color10:    #d7ff87
-*.color3:     #ffaf5f
-*.color11:    #ff8700
-*.color4:     #b218b2
-*.color12:    #d18aff
-*.color5:     #ff7bbb
-*.color13:    #ff3ea3
-*.color6:     #00d7af
-*.color14:    #87ffff
-*.color7:     #dadada
-*.color15:    #eeeeee
+*.foreground:   #373b41
+*.background:   #ffffff
+*.cursorColor:  #373b41
+*.color0:       #1d1f21
+*.color8:       #969896
+*.color1:       #cc342b
+*.color9:       #cc342b
+*.color2:       #198844
+*.color10:      #198844
+*.color3:       #fba922
+*.color11:      #fba922
+*.color4:       #3971ed
+*.color12:      #3971ed
+*.color5:       #a36ac7
+*.color13:      #a36ac7
+*.color6:       #3971ed
+*.color14:      #3971ed
+*.color7:       #c5c8c6
+*.color15:      #ffffff
 
 XTerm*borderWidth: 0
 XTerm*internalBorder: 2
