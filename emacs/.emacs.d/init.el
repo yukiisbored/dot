@@ -63,6 +63,8 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 
+(setq ispell-program-name "hunspell")
+
 ;; Show parentheses
 (setq show-paren-style 'expression)
 (add-hook 'prog-mode-hook 'show-paren-mode)
