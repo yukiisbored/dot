@@ -12,12 +12,12 @@ configuration {
 }
 
 * {
-    background-color:            #fdfde7;
+    background-color:            argb:aa111111;
 
-    selected-normal-foreground:  #005f87;
-    normal-foreground:           #5f5f5f;
-    selected-normal-background:  #afd7ff;
-    normal-background:           #fdfde7;
+    selected-normal-foreground:  #ffffff;
+    normal-foreground:           #eeeeee;
+    selected-normal-background:  #111111;
+    normal-background:           argb:00000000;
 
     selected-urgent-foreground:  @selected-normal-foreground;
     urgent-foreground:           @normal-foreground;
@@ -44,8 +44,6 @@ window {
     width:           22%;
     orientation:     horizontal;
     children:	     [mainbox];
-    border:          0px 2px 0px 0px;
-    border-color:    @selected-normal-background;
 }
 
 mainbox {
@@ -66,6 +64,7 @@ inputbar {
 }
 
 listview {
+    background-color: argb:00000000;
     spacing: 0.5em;
     dynamic: false;
     cycle:   true;
@@ -98,16 +97,22 @@ element normal.active {
 element selected.normal {
     background-color: @selected-normal-background;
     text-color:       @selected-normal-foreground;
+    border:           0px 3px 0px 0px;
+    border-color:     @selected-normal-foreground;
 }
 
 element selected.urgent {
     background-color: @selected-urgent-background;
     text-color:       @selected-urgent-foreground;
+    border:           0px 3px 0px 0px;
+    border-color:     @selected-normal-foreground;
 }
 
 element selected.active {
     background-color: @selected-active-background;
     text-color:       @selected-active-foreground;
+    border:           0px 3px 0px 0px;
+    border-color:     @selected-normal-foreground;
 }
 
 element alternate.normal {
