@@ -88,12 +88,10 @@
   :config
   (exec-path-from-shell-initialize))
 
-;; Moe, moe, kyun~
-(use-package moe-theme
-  :init
-  (setq moe-theme-highlight-buffer-id nil)
+;; Material theme
+(use-package material-theme
   :config
-  (moe-light))
+  (load-theme 'material-light t))
 
 ;; The superior completion front-end
 (use-package ivy
