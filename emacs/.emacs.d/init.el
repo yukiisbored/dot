@@ -83,8 +83,7 @@
   :if window-system
   :init
   (setq-default exec-path-from-shell-check-startup-files nil)
-  (setq exec-path-from-shell-variables '("PATH")
-           "GOPATH")
+  (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   :config
   (exec-path-from-shell-initialize))
 
