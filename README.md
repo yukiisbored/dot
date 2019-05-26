@@ -5,32 +5,26 @@ management.
 
 ## Software that I use
 
-* Operating system: OpenBSD
+* Operating system: FreeBSD
 * Window manager: bspwm
-* Panel: tint2
+* Panel: polybar
 * Compositor: compton
 * Background changer: nitrogen
 * Shell: zsh
-* Text editor: Emacs / exvi
+* Text editor: Emacs
 * Terminal emulator: xterm
 * Screen locker: xscreensaver
-* Web Browser: Chromium
-  * Extensions: uBlock Origin, Decentraleyes, HTTPS Everywhere, Thin scrollbar,
-	Iridium for YouTube
+* Web Browser: Firefox
 * File synchronization: Syncthing
 * Music player: Audacious
 * Fonts: Noto Sans
   * Monospace font: Go Mono
-* GTK Theme: Paper
+* GTK Theme: Arc
 
 ## Additional notes
 
 My locale configuration always change based on what language I'm
 currently learning. Currently, it's French.
-
-Tint2 config based on a post made by jambalak on ArchLabs Linux forum
-
-https://forum.archlabslinux.com/t/show-us-your-tint2/266/9
 
 Rofi themed based on sidetab.rasi
 
