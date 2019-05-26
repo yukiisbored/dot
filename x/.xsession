@@ -14,9 +14,7 @@ xrdb -m ~/.Xresources
 setxkbmap -layout us -variant altgr-intl
 xsetroot -cursor_name left_ptr
 
-xrandr | grep "DP-2 connected" && \
-  xrandr --output LVDS-1 --off \
-         --output DP-2 --auto
+[ "$(sysctl -n dev.acpi_dock.0.status)" -eq "1" ] && ~/.config/dock-trigger/docked.sh
 
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
