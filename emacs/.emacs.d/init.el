@@ -329,6 +329,10 @@
   (setq langtool-language-tool-jar "~/.local/langtool/languagetool-commandline.jar"
         langtool-default-language "fr"))
 
+(use-package php-mode)
+
+(use-package nginx-mode)
+
 ;; mu4e
 (setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
 (when (file-directory-p mu4e-directory)
