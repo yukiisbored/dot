@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sysctl hw.snd.default_unit=2
+sysctl hw.snd.default_unit=1
 
 while true
 do
