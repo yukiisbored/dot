@@ -230,8 +230,23 @@
   (scheme-mode . parinfer-mode)
   (lisp-mode . parinfer-mode)
   :init
-  (setq parinfer-extensions '(default pretty-parents paredit
-			       smart-tab smart-yank)))
+  (setq parinfer-extensions '(default pretty-parents paredit smart-tab smart-yank)))
+
+;; Multiple cursors
+(use-package multiple-cursors
+  :bind
+  (("C->" . mc/mark-next-like-this)
+   ("C-<" . mc/mark-previous-like-this)
+   ("C-c C-<" . mc/mark-all-like-this)
+   ("C-c c" . mc/edit-lines))
+  :config
+  (define-key mc/keymap (kbd "<return>") nil))
+
+;; Go to char
+(use-package iy-go-to-char
+  :bind
+  (("C-c p" . iy-go-to-char-backward)
+   ("C-c n" . iy-go-to-char)))
 
 ;; YAML
 (use-package yaml-mode
