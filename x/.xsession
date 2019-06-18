@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Add local PATH
+PATH="$HOME/bin:$PATH"; export PATH
+
 # Locales
 LC_CTYPE="fr_FR.UTF-8";	export LC_CTYPE
 LC_ALL="fr_FR.UTF-8";	export LC_ALL
@@ -20,4 +23,9 @@ xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
 xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
 
-exec bspwm
+xscreensaver -no-splash &
+compton --config /home/yuki/.config/compton/compton.conf -b
+$HOME/.local/bin/dock-trigger &
+nextcloud --background &
+
+exec awesome

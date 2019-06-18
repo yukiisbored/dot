@@ -6,17 +6,14 @@ management.
 ## Software that I use
 
 * Operating system: FreeBSD
-* Window manager: bspwm
-* Panel: polybar
+* Window manager: awesome
 * Compositor: compton
-* Background changer: nitrogen
 * Shell: zsh
 * Text editor: Emacs
 * Terminal emulator: xterm
 * Screen locker: xscreensaver
 * Web Browser: Firefox
-* File synchronization: Syncthing
-* Music player: Audacious
+* File synchronization: Nextcloud
 * Fonts: Noto Sans
   * Monospace font: Go Mono
 * GTK Theme: Arc
@@ -29,3 +26,10 @@ currently learning. Currently, it's French.
 Rofi themed based on sidetab.rasi
 
 https://github.com/DaveDavenport/rofi-themes/blob/master/User%20Themes/sidetab.rasi
+
+[Wallpaper][wallpaper-file] is originally from
+[openbsd-backgrounds][obsd-back-repo] made by T.J Townsend. Licensed under CC BY
+4.0.
+
+[wallpaper-file]: x/.config/awesome/themes/yuki/wallpaper.jpg
+[obsd-back-repo]: https://github.com/marcespie/openbsd-backgrounds
