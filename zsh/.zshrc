@@ -1,3 +1,19 @@
+# Check if we're in WSL
+if uname -r | grep 'Microsoft$' >/dev/null; then
+    WSL=1
+fi
+
+# Fix bad behaviour in WSL
+if [ -n "$WSL" ]; then
+    # Correct bad umask value
+    umask 002
+
+    # Go to home directory
+    if [ -t 1 ]; then
+	cd ~
+    fi
+fi
+
 # Start/Attach tmux if this is an interactive SSH session
 if command -v tmux >/dev/null && \
         [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
@@ -8,9 +24,6 @@ if command -v tmux >/dev/null && \
     fi
     exit
 fi
-
-# ^h is ERASE
-#stty erase '^h'
 
 # Bootstrap zplug
 export ZPLUG_HOME="$HOME/.zplug"
@@ -112,10 +125,15 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 
-! zplug check --verbose && \
+! zplug check && \
     zplug install
 
 zplug load
+
+# Clear junk after loading
+if [ -n "$WSL" ]; then
+    clear
+fi
 
 # Fortune | Cowsay
 
