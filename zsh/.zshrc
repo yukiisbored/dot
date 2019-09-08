@@ -148,7 +148,7 @@ fi
 
 # Weather
 
-city="Belfort
+city="Belfort"
 
 wttr() {
     curl -H "Accept-Language: fr" "wttr.in/$city?F"
