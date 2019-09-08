@@ -8,6 +8,9 @@ if [ -n "$WSL" ]; then
     # Correct bad umask value
     umask 002
 
+    # X server exists on :0, use it
+    export DISPLAY=":0"
+
     # Go to home directory
     if [ -t 1 ]; then
 	cd ~
