@@ -2,6 +2,9 @@
 (setq custom-file "~/.emacs.d/custom.el")
 (load custom-file 'noerr)
 
+;; Fix GNU Elpa issue with HTTPS
+(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+
 ;; Package setup
 (require 'package)
 (setq package-enable-at-startup nil
