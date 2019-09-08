@@ -326,11 +326,10 @@
   :config
   (add-hook 'rust-mode-hook 'cargo-minor-mode))
 
-
-(use-package langtool
+(use-package flycheck-grammalecte
   :init
-  (setq langtool-language-tool-jar "~/.local/langtool/languagetool-commandline.jar"
-        langtool-default-language "fr"))
+  (setq flycheck-grammalecte-enabled-modes
+	'(org-mode text-mode mail-mode latex-mode markdown-mode mu4e-compose-mode)))
 
 (use-package php-mode)
 
