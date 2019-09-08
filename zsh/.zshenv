@@ -6,7 +6,7 @@ if [ -d "/usr/local/jdk-1.8.0/bin/" ]; then
     export PATH="/usr/local/jdk-1.8.0/bin/:$PATH"
 fi
 
-export PATH="$HOME/bin:$PATH"
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
 export ALTERNATE_EDITOR=""
