@@ -337,6 +337,11 @@
 ;; Nginx
 (use-package nginx-mode)
 
+;; Java
+(use-package jdee
+  :init
+  (setq jdee-server-dir "~/jdee"))
+
 ;; mu4e
 (setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
 (when (file-directory-p mu4e-directory)
