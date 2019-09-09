@@ -284,6 +284,9 @@
   :init
   (setq markdown-command "multimarkdown"))
 
+;; Use Python 3 ffs
+(setq python-shell-interpreter "/usr/bin/env python3")
+
 ;; Lua
 (use-package lua-mode
   :mode "\\.lua\\'")
