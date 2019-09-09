@@ -331,8 +331,10 @@
   (setq flycheck-grammalecte-enabled-modes
 	'(org-mode text-mode mail-mode latex-mode markdown-mode mu4e-compose-mode)))
 
+;; PHP
 (use-package php-mode)
 
+;; Nginx
 (use-package nginx-mode)
 
 ;; mu4e
