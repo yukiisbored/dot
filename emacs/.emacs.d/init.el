@@ -256,6 +256,14 @@
   (("C-c p" . iy-go-to-char-backward)
    ("C-c n" . iy-go-to-char)))
 
+;; Dashboard
+(use-package dashboard
+  :init
+  (setq dashboard-startup-banner "~/.emacs.d/waifu_render.png")
+  (setq dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
+  :config
+  (dashboard-setup-startup-hook))
+
 ;; YAML
 (use-package yaml-mode
   :mode "\\.ya?ml")
