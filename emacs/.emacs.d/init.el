@@ -262,8 +262,9 @@
 ;; Dashboard
 (use-package dashboard
   :init
-  (setq dashboard-startup-banner "~/.emacs.d/waifu_render.png")
-  (setq dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
+  (setq dashboard-startup-banner "~/.emacs.d/waifu_render.png"
+	dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
+	dashboard-center-content t)
   :config
   (dashboard-setup-startup-hook))
 
