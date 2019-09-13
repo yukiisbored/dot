@@ -63,8 +63,6 @@
 (global-hl-line-mode t)
 (column-number-mode t)
 
-(setq ispell-program-name "hunspell")
-
 ;; Show parentheses
 (setq show-paren-style 'expression)
 (add-hook 'prog-mode-hook 'show-paren-mode)
@@ -86,6 +84,13 @@
   (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
   :config
   (exec-path-from-shell-initialize))
+
+;; Spell checking with hunspell/ispell
+(if (executable-find "hunspell")
+    (setq ispell-program-name "hunspell")
+  (if (executable-find "ispell")
+      (setq ispell-program-name "ispell")
+    (message "Please install hunspell/ispell for spell checking.")))
 
 ;; Material theme
 (use-package material-theme
