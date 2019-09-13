@@ -2,3 +2,4 @@
 !.gitignore
 !.emacs.d/init.el
 !.emacs.d/sensible-defaults.el
+!.emacs.d/waifu_render.png
