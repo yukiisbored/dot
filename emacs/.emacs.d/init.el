@@ -290,7 +290,15 @@
   (setq markdown-command "multimarkdown"))
 
 ;; Use Python 3 ffs
-(setq python-shell-interpreter "/usr/bin/env python3")
+(if (executable-find "python3")
+    (setq python-shell-interpreter "python3")
+  (if (executable-find "python3.7")
+      (setq python-shell-interpreter "python3.7")
+    (message "Failed to find Python 3 intepreter")))
+
+(setq flycheck-python-pycompile-executable python-shell-interpreter
+      flycheck-python-flake8-executable python-shell-interpreter
+      flycheck-python-pylint-executable python-shell-interpreter)
 
 ;; Lua
 (use-package lua-mode
