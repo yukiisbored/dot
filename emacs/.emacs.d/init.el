@@ -59,6 +59,9 @@
 
 (add-hook 'after-make-frame-functions 'yuki/frame-mods)
 
+(when window-system
+  (yuki/frame-mods (selected-frame)))
+
 ;; Visual aid
 (global-hl-line-mode t)
 (column-number-mode t)
