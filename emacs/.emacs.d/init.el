@@ -195,6 +195,9 @@
   :config
   (add-hook 'after-init-hook 'projectile-mode))
 
+;; Cheat sheets
+(use-package cheat-sh)
+
 ;; Modern on-the-fly syntax checking
 (use-package flycheck
   :config
