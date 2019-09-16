@@ -259,6 +259,18 @@
   (("C-c p" . iy-go-to-char-backward)
    ("C-c n" . iy-go-to-char)))
 
+;; Awesome Tray
+(use-package awesome-tray
+  :load-path "~/.emacs.d/awesome-tray/"
+  :config
+  (awesome-tray-mode t))
+
+;; Awesome Tab
+(use-package awesome-tab
+  :load-path "~/.emacs.d/awesome-tab/"
+  :config
+  (awesome-tab-mode t))
+
 ;; Dashboard
 (use-package dashboard
   :init
@@ -267,6 +279,9 @@
 	dashboard-center-content t)
   :config
   (dashboard-setup-startup-hook))
+
+;; All the Icons
+(use-package all-the-icons)
 
 ;; YAML
 (use-package yaml-mode
