@@ -294,6 +294,27 @@
   :config
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
+;; PDF tools
+(use-package pdf-tools
+  :mode "\\.pdf\\'")
+
+;; sublimity
+(use-package sublimity
+  :init
+  (setq sublimity-scroll-weight 10
+	sublimity-scroll-drift-length 5
+	sublimity-map-size 20
+	sublimity-map-fraction 0.3
+	sublimity-map-text-scale -7)
+  :config
+  (require 'sublimity-scroll)
+  (require 'sublimity-map)
+  (add-hook 'sublimity-map-setup-hook
+            (lambda ()
+              (setq buffer-face-mode-face '(:family "Monospace"))
+              (buffer-face-mode)))
+  (add-hook 'after-init-hook 'sublimity-mode))
+
 ;; YAML
 (use-package yaml-mode
   :mode "\\.ya?ml")
