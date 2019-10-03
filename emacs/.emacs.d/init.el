@@ -271,7 +271,7 @@
 ;; DOOM themes
 (use-package doom-themes
   :config
-  (load-theme 'doom-one-light t)
+  (load-theme 'doom-tomorrow-day t)
   (add-hook 'after-init-hook 'doom-themes-neotree-config)
   (add-hook 'after-init-hook 'doom-themes-org-config)
   (add-hook 'after-init-hook 'doom-themes-visual-bell-config))
@@ -316,6 +316,18 @@
               (setq buffer-face-mode-face '(:family "Monospace"))
               (buffer-face-mode)))
   (add-hook 'after-init-hook 'sublimity-mode))
+
+;; TABS, again
+(use-package centaur-tabs
+  :init
+  (setq centaur-tabs-height 16
+	centaur-tabs-set-icons t
+	centaur-tabs-set-bar 'left
+	centaur-tabs-set-modified-marker t)
+  :config
+  (add-hook 'after-init-hook 'centaur-tabs-mode)
+  (add-hook 'after-init-hook 'centaur-tabs-headline-match)
+  (add-hook 'neotree-mode-hook 'centaur-tabs-local-mode))
 
 ;; YAML
 (use-package yaml-mode
