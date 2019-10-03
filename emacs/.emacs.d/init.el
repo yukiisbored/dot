@@ -262,17 +262,10 @@
   (("C-c p" . iy-go-to-char-backward)
    ("C-c n" . iy-go-to-char)))
 
-;; Awesome Tray
-(use-package awesome-tray
-  :load-path "~/.emacs.d/awesome-tray/"
+;; DOOM modeline
+(use-package doom-modeline
   :config
-  (awesome-tray-mode t))
-
-;; Awesome Tab
-(use-package awesome-tab
-  :load-path "~/.emacs.d/awesome-tab/"
-  :config
-  (awesome-tab-mode t))
+  (add-hook 'after-init-hook 'doom-modeline-mode))
 
 ;; Dashboard
 (use-package dashboard
