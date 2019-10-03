@@ -98,11 +98,6 @@
       (setq ispell-program-name "ispell")
     (message "Please install hunspell/ispell for spell checking.")))
 
-;; Material theme
-(use-package material-theme
-  :config
-  (load-theme 'material-light t))
-
 ;; The superior completion front-end
 (use-package ivy
   :bind
@@ -163,9 +158,8 @@
 ;; Tree
 (use-package neotree
   :bind
-  ("C-x f" . neotree-toggle)
-  :init
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+  ("C-x f" . neotree-toggle))
+
 
 ;; Identation guides
 (use-package highlight-indent-guides
@@ -274,6 +268,14 @@
   (("C-c p" . iy-go-to-char-backward)
    ("C-c n" . iy-go-to-char)))
 
+;; DOOM themes
+(use-package doom-themes
+  :config
+  (load-theme 'doom-one-light t)
+  (add-hook 'after-init-hook 'doom-themes-neotree-config)
+  (add-hook 'after-init-hook 'doom-themes-org-config)
+  (add-hook 'after-init-hook 'doom-themes-visual-bell-config))
+
 ;; DOOM modeline
 (use-package doom-modeline
   :config
@@ -374,6 +376,7 @@
 	org-latex-listings 'minted
 	org-confirm-babel-evaluate nil
 	org-export-with-smart-quotes t
+	org-ellipsis "⤵"
 	initial-major-mode 'org-mode)
   :config
   (require 'org-tempo)
@@ -391,6 +394,10 @@
 (use-package graphviz-dot-mode
   :config
   (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))
+
+(use-package org-bullets
+  :config
+  (add-hook 'org-mode-hook 'org-bullets-mode))
 
 ;; Rust
 (use-package rust-mode
