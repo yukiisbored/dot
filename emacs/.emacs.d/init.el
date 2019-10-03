@@ -27,6 +27,9 @@
   (auto-compile-on-load-mode)
   (auto-compile-on-save-mode))
 
+;; Resolve lag caused by icons
+(setq inhibit-compacting-font-caches t)
+
 ;; UTF-8 forever <3
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -160,7 +163,10 @@
 ;; Tree
 (use-package neotree
   :bind
-  ("C-x M-f" . neotree-toggle))
+  ("C-x f" . neotree-toggle)
+  :init
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+
 
 ;; A Better Git interface
 (use-package magit
@@ -277,7 +283,10 @@
   (dashboard-setup-startup-hook))
 
 ;; All the Icons
-(use-package all-the-icons)
+(use-package all-the-icons
+  :ensure all-the-icons-dired
+  :config
+  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 ;; YAML
 (use-package yaml-mode
