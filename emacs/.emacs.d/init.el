@@ -167,6 +167,12 @@
   :init
   (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
 
+;; Identation guides
+(use-package highlight-indent-guides
+  :init
+  (setq highlight-indent-guides-method 'character)
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 
 ;; A Better Git interface
 (use-package magit
