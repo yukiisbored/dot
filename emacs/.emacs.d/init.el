@@ -331,15 +331,30 @@
 (use-package org
   :ensure org-plus-contrib
   :init
-  (setq org-src-tab-acts-natively t)
-  (setq org-latex-to-pdf-process
-        '("xelatex -interaction nonstopmode %f"
-          "xelatex -interaction nonstopmode %f"))
+  (setq org-src-tab-acts-natively t
+	org-src-fontify-natively t
+	org-latex-to-pdf-process '("xelatex -interaction nonstopmode %f"
+				   "xelatex -interaction nonstopmode %f")
+	org-latex-listings 'minted
+	org-confirm-babel-evaluate nil
+	org-export-with-smart-quotes t
+	initial-major-mode 'org-mode)
   :config
+  (require 'org-tempo)
+  (require 'ox-md)
+  (require 'ox-beamer)
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)))
+   '((python . t)
+     (emacs-lisp . t)
+     (dot . t)
+     (gnuplot . t)))
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
   (eval-after-load 'ox '(require 'ox-koma-letter)))
+
+(use-package graphviz-dot-mode
+  :config
+  (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))
 
 ;; Rust
 (use-package rust-mode
