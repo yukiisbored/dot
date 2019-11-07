@@ -304,18 +304,6 @@
   (require 'sublimity-scroll)
   (add-hook 'after-init-hook 'sublimity-mode))
 
-;; TABS, again
-(use-package centaur-tabs
-  :init
-  (setq centaur-tabs-height 16
-	centaur-tabs-set-icons t
-	centaur-tabs-set-bar 'left
-	centaur-tabs-set-modified-marker t)
-  :config
-  (add-hook 'after-init-hook 'centaur-tabs-mode)
-  (add-hook 'after-init-hook 'centaur-tabs-headline-match)
-  (add-hook 'neotree-mode-hook 'centaur-tabs-local-mode))
-
 ;; YAML
 (use-package yaml-mode
   :mode "\\.ya?ml")
