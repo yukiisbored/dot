@@ -36,11 +36,6 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-;; Improved scrolling
-(setq scroll-margin 0
-      scroll-conservatively 100000
-      scroll-preserve-screen-position 1)
-
 ;; Sensible defaults
 (load-file "~/.emacs.d/sensible-defaults.el/sensible-defaults.el")
 (sensible-defaults/use-all-settings)
