@@ -189,6 +189,7 @@
 
 ;; Project awareness
 (use-package projectile
+  :ensure projectile-git-autofetch
   :bind (:map projectile-mode-map)
   ("C-c p" . projectile-command-map)
   :init
