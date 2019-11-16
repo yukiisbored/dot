@@ -282,7 +282,13 @@
   :init
   (setq dashboard-startup-banner "~/.emacs.d/waifu_render.png"
 	dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
-	dashboard-center-content t)
+	dashboard-center-content t
+	dashboard-set-heading-icons t
+	dashboard-set-file-icons t
+	dashboard-set-navigator t
+	dashboard-items '((recents . 5)
+			  (projects . 5)
+			  (registers . 5)))
   :config
   (dashboard-setup-startup-hook))
 
