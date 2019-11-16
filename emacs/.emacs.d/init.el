@@ -426,45 +426,12 @@
   :init
   (setq jdee-server-dir "~/jdee"))
 
-;; mu4e
-(setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
+(if (file-directory-p "/usr/local/share/emacs/site-lisp/mu4e")
+    (setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
+  (setq mu4e-directory "/usr/share/emacs/site-lisp/mu4e"))
+
 (when (file-directory-p mu4e-directory)
   (add-to-list 'load-path mu4e-directory)
   (require 'mu4e)
-
-  (setq mail-user-agent 'mu4e-user-agent
-        mu4e-maildir "~/Maildir"
-        mu4e-sent-folder "/Personal/Sent"
-        mu4e-drafts-folder "/Personal/Drafts"
-        mu4e-trash-folder "/Personal/Trash"
-        mu4e-get-mail-command "offlineimap"
-        mu4e-compose-signature "yukiisbo.red"
-        message-kill-buffer-on-exit t
-        message-send-mail-function 'sendmail-send-it)
-
-  (defvar my-mu4e-account-alist
-    '(("Personal"
-       (mu4e-sent-folder "/Personal/Sent")
-       (mu4e-drafts-folder "/Personal/Drafts")
-       (mu4e-trash-folder "/Personal/Trash")
-       (user-mail-adress "hi@yukiisbo.red"))))
-
-  (defun yuki/mu4e-set-account ()
-    (let* ((account
-            (if mu4e-compose-parent-message
-                (let ((maildir (mu4e-message-field mu4e-compose-parent-message :maildir)))
-                  (string-match "/\\(.*?\\)/" maildir)
-                  (match-string 1 maildir))
-              (completing-read (format "Compose with account: (%s) "
-                                       (mapconcat #'(lambda (var) (car var))
-                                                  my-mu4e-account-alist "/"))
-                               (mapcar #'(lambda (var) (car var)) my-mu4e-account-alist)
-                               nil t nil nil (caar my-mu4e-account-alist))))
-           (account-vars (cdr (assoc account my-mu4e-account-alist))))
-      (if account-vars
-          (mapc #'(lambda (var)
-                    (set (car var) (cadr var)))
-                account-vars)
-        (error "No email account found"))))
-
-  (add-hook 'mu4e-compose-pre-hook 'yuki/mu4e-set-account))
+  (if (file-exists-p "~/.emacs.d/email-setup.el")
+      (load-file "~/.emacs.d/email-setup.el")))
