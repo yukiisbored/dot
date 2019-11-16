@@ -430,11 +430,6 @@
 ;; Nginx
 (use-package nginx-mode)
 
-;; Java
-(use-package jdee
-  :init
-  (setq jdee-server-dir "~/jdee"))
-
 (if (file-directory-p "/usr/local/share/emacs/site-lisp/mu4e")
     (setq mu4e-directory "/usr/local/share/emacs/site-lisp/mu4e")
   (setq mu4e-directory "/usr/share/emacs/site-lisp/mu4e"))
