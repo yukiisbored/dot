@@ -413,7 +413,8 @@
 (use-package flycheck-grammalecte
   :init
   (setq flycheck-grammalecte-enabled-modes
-	'(org-mode text-mode mail-mode latex-mode markdown-mode mu4e-compose-mode)))
+	'(org-mode text-mode mail-mode latex-mode markdown-mode mu4e-compose-mode)
+	flycheck-grammalecte-report-spellcheck t))
 
 ;; PHP
 (use-package php-mode)
