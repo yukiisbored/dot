@@ -238,6 +238,7 @@
 
 ;; Lisp
 (use-package parinfer
+  :ensure paredit
   :bind ("C-," . parinfer-toggle-mode)
   :hook
   (clojure-mode . parinfer-mode)
