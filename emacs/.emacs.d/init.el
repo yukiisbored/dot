@@ -380,17 +380,24 @@
 	org-ellipsis "⤵"
 	initial-major-mode 'org-mode)
   :config
+  (use-package ob-ipython)
   (require 'org-tempo)
   (require 'ox-md)
   (require 'ox-beamer)
+  (require 'ob-ipython)
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((python . t)
+   '((ipython . t)
+     (python . t)
      (emacs-lisp . t)
      (dot . t)
+     (java . t)
      (gnuplot . t)))
   (add-to-list 'org-latex-packages-alist '("" "minted"))
-  (eval-after-load 'ox '(require 'ox-koma-letter)))
+  (eval-after-load 'ox '(require 'ox-koma-letter))
+  (setq org-confirm-babel-evaluate nil)
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+  (add-to-list 'org-latex-minted-langs '(ipython "python")))
 
 (use-package graphviz-dot-mode
   :config
