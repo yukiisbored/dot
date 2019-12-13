@@ -68,6 +68,9 @@
 (setq show-paren-style 'expression)
 (add-hook 'prog-mode-hook 'show-paren-mode)
 
+;; Spaces only
+(setq-default indent-tabs-mode nil)
+
 ;; Whoami
 (setq user-full-name "Muhammad Kaisar Arkhan"
       user-mail-address "hi@yukiisbo.red")
