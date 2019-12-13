@@ -358,7 +358,9 @@
 
 (setq flycheck-python-pycompile-executable python-shell-interpreter
       flycheck-python-flake8-executable python-shell-interpreter
-      flycheck-python-pylint-executable python-shell-interpreter)
+      flycheck-python-pylint-executable python-shell-interpreter
+      org-babel-python-command python-shell-interpreter
+      python-shell-completion-native-enable 'nil)
 
 ;; Lua
 (use-package lua-mode
