@@ -1,1 +1,6 @@
+emacs/.emacs.d/*
+!emacs/.emacs.d/init.el
+!emacs/.emacs.d/sensible-defaults.el
+!emacs/.emacs.d/waifu_render.png
+!emacs/.emacs.d/snippets
 *.core

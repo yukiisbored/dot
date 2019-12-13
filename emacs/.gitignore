@@ -1,7 +1,0 @@
-*
-!.gitignore
-!.emacs.d/init.el
-!.emacs.d/sensible-defaults.el
-!.emacs.d/awesome-tab
-!.emacs.d/awesome-tray
-!.emacs.d/waifu_render.png
