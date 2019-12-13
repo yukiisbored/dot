@@ -333,7 +333,8 @@
 
 ;; HTML
 (use-package web-mode
-  :mode (("\\.phtml\\'" . web-mode)
+  :mode (("\\.php\\'" . web-mode)
+	 ("\\.phtml\\'" . web-mode)
          ("\\.tpl\\.php\\'" . web-mode)
          ("\\.[agj]sp\\'" . web-mode)
          ("\\.as[cp]x\\'" . web-mode)
