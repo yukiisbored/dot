@@ -175,15 +175,24 @@
 (use-package company
   :init
   (setq company-tooltip-align-annotations t)
+  :bind
+  ("C-c y" . company-yasnippet)
   :config
   (add-hook 'after-init-hook 'global-company-mode)
-
   (defun yuki/spelling-setup ()
     (make-local-variable 'company-backends)
     (add-to-list 'company-backends 'company-ispell))
   (add-hook 'yuki/spelling-setup 'text-mode-hook-setup)
   (add-hook 'yuki/spelling-setup 'org-mode-hook-setup)
   (add-hook 'yuki/spelling-setup 'markdown-mode-hook-setup))
+
+;; Template system
+(use-package yasnippet
+  :ensure yasnippet-snippets
+  :init
+  (setq yas-snippet-dirs '("~/.emacs.d/snippets"))
+  :config
+  (add-hook 'after-init-hook 'yas-global-mode))
 
 ;; Automatic whitespace cleanup
 (use-package whitespace-cleanup-mode
