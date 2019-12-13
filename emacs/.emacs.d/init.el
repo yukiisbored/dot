@@ -315,15 +315,6 @@
 (use-package pdf-tools
   :mode "\\.pdf\\'")
 
-;; sublimity
-(use-package sublimity
-  :init
-  (setq sublimity-scroll-weight 10
-	sublimity-scroll-drift-length 5)
-  :config
-  (require 'sublimity-scroll)
-  (add-hook 'after-init-hook 'sublimity-mode))
-
 ;; YAML
 (use-package yaml-mode
   :mode "\\.ya?ml")
