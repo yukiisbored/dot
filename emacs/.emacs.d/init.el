@@ -378,7 +378,9 @@
 	org-confirm-babel-evaluate nil
 	org-export-with-smart-quotes t
 	org-ellipsis "⤵"
-	initial-major-mode 'org-mode)
+	initial-major-mode 'org-mode
+        org-startup-with-inline-images t
+        org-src-window-setup 'current-window)
   :config
   (use-package ob-ipython)
   (require 'org-tempo)
