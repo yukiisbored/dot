@@ -85,14 +85,20 @@ esac
 setopt prompt_subst
 PS1='$(shrink_path -f) %% '
 
+if [ -n "$SSH_TTY" ]; then
+   PS1="$HOST $PS1"
+fi
+
 # Aliases
 
-alias emacs="$EDITOR"
-alias ec="$EDITOR"
-alias vi="$EDITOR"
-alias vim="$EDITOR"
+if command -v "emacs" >/dev/null; then
+   alias emacs="$EDITOR"
+   alias ec="$EDITOR"
+   alias vi="$EDITOR"
+   alias vim="$EDITOR"
 
-alias ef="$VISUAL"
+   alias ef="$VISUAL"
+fi
 
 if [ -x "/usr/local/sbin/vm" ]; then
     alias vm="sudo /usr/local/sbin/vm"
