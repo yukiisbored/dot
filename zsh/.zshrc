@@ -17,17 +17,6 @@ if [ -n "$WSL" ]; then
     fi
 fi
 
-# Start/Attach tmux if this is an interactive SSH session
-if command -v tmux >/dev/null && \
-        [ -z "$TMUX" ] && [ -n "$SSH_TTY" ] && [[ $- =~ i ]]; then
-    if tmux has-session; then
-        tmux attach
-    else
-        tmux
-    fi
-    exit
-fi
-
 # Bootstrap zplug
 export ZPLUG_HOME="$HOME/.zplug"
 
