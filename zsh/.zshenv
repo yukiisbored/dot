@@ -9,6 +9,8 @@ fi
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
-export ALTERNATE_EDITOR=""
-export EDITOR="emacsclient -t"
-export VISUAL="emacsclient -c -a emacs"
+if command -v emacs >/dev/null; then
+   export ALTERNATE_EDITOR=""
+   export EDITOR="emacsclient -t"
+   export VISUAL="emacsclient -c -a emacs"
+fi
