@@ -100,12 +100,16 @@ if command -v "emacs" >/dev/null; then
    alias ef="$VISUAL"
 fi
 
-if [ -x "/usr/local/sbin/vm" ]; then
-    alias vm="sudo /usr/local/sbin/vm"
-fi
-
-if [ -x "/usr/local/bin/iocage" ]; then
-    alias iocage="sudo /usr/local/bin/iocage"
+if command -v "doas" >/dev/null; then
+   function sudo() {
+       echo "It's doas, dummy.">&2
+       doas "$@"
+   }
+elif command -v "sudo" >/dev/null; then
+   function doas() {
+       echo "It's sudo, dummy.">&2
+       sudo "$@"
+   }
 fi
 
 # zplug
