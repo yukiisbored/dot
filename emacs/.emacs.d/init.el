@@ -341,7 +341,8 @@
          ("\\.erb\\'" . web-mode)
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
-         ("\\.html?\\'" . web-mode)))
+         ("\\.html?\\'" . web-mode)
+         ("\\.j?j2\\'" . web-mode)))
 
 ;; Markdown
 (use-package markdown-mode
