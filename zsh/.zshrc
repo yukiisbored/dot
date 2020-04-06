@@ -1,5 +1,6 @@
 # Check if we're in WSL
-WSL=$(grep -i 'microsoft' /proc/version)
+[ -f /proc/version ] &&
+    WSL=$(grep -i 'microsoft' /proc/version)
 
 # Fix bad behaviour in WSL
 if [ -n "$WSL" ]; then
