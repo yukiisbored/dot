@@ -1,0 +1,37 @@
+#!/bin/sh
+
+# Load my profile
+[ -f "$HOME/.zshenv" ] && . "$HOME/.zshenv"
+
+# Add local PATH
+export PATH="$HOME/bin:$PATH"
+
+# Locales
+export LC_CTYPE="fr_FR.UTF-8"
+export LC_ALL="fr_FR.UTF-8"
+export LANG="fr_FR.UTF-8"
+
+# XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+
+xrdb -m ~/.Xresources
+setxkbmap -layout us -variant altgr-intl -option compose:caps
+xsetroot -cursor_name left_ptr
+pulseaudio --daemon
+
+fluxbox -log "$HOME/.fluxbox/log" &
+fbpid=$!
+
+sleep 1
+{
+    nitrogen --restore
+    alttab &
+    xidle -program "$(command -v xlock)" &
+    compton --config "$HOME/.config/compton/compton.conf" &
+    nextcloud --background &
+    syncthing -no-browser &
+} &
+
+wait $fbpid

@@ -1,0 +1,48 @@
+Xcursor.theme: Adwaita
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+Emacs.font: IBM Plex Mono:size=12
+XTerm*font: xft:IBM Plex Mono:size=9
+
+*.foreground:   #373b41
+*.background:   #ffffff
+*.cursorColor:  #373b41
+*.color0:       #1d1f21
+*.color8:       #969896
+*.color1:       #cc342b
+*.color9:       #cc342b
+*.color2:       #198844
+*.color10:      #198844
+*.color3:       #fba922
+*.color11:      #fba922
+*.color4:       #3971ed
+*.color12:      #3971ed
+*.color5:       #a36ac7
+*.color13:      #a36ac7
+*.color6:       #3971ed
+*.color14:      #3971ed
+*.color7:       #c5c8c6
+*.color15:      #fff7e9
+
+XTerm*borderWidth: 0
+XTerm*internalBorder: 2
+XTerm*termName: xterm-256color
+XTerm*v100.saveLines: 10240
+XTerm*vt100.scrollBar: false
+XTerm*vt100.bellIsUrgent: true
+XTerm*allowBoldFonts: false
+XTerm*scrollKey: true
+XTerm*fullscreen: never
+XTerm*cutToBeginningOfLine: false
+XTerm*cutNewLine: false
+XTerm*charClass: 3:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on2Clicks: word
+XTerm*on3Clicks: line
+XTerm*eightBitInput: false
+XTerm*eightBitOutput: true
