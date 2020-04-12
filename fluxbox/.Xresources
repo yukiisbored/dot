@@ -46,3 +46,7 @@ XTerm*on2Clicks: word
 XTerm*on3Clicks: line
 XTerm*eightBitInput: false
 XTerm*eightBitOutput: true
+
+xterm*VT100.Translations: #override \
+                          Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                          Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)
