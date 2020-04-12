@@ -1,2 +1,0 @@
-#!/bin/sh
-exec emacsclient -c -a emacs
