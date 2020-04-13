@@ -33,6 +33,7 @@ sleep 1
 {
     nitrogen --restore
     alttab &
+    xautolock &
     xidle -program "$(command -v xlock)" &
     compton --config "$HOME/.config/compton/compton.conf" &
     nextcloud --background &
