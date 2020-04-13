@@ -10,25 +10,25 @@ Xft.rgba: rgb
 Emacs.font: IBM Plex Mono:size=12
 XTerm*font: xft:IBM Plex Mono:size=9
 
-*.foreground:   #373b41
-*.background:   #ffffff
-*.cursorColor:  #373b41
-*.color0:       #1d1f21
-*.color8:       #969896
-*.color1:       #cc342b
-*.color9:       #cc342b
-*.color2:       #198844
-*.color10:      #198844
-*.color3:       #fba922
-*.color11:      #fba922
-*.color4:       #3971ed
-*.color12:      #3971ed
-*.color5:       #a36ac7
-*.color13:      #a36ac7
-*.color6:       #3971ed
-*.color14:      #3971ed
-*.color7:       #c5c8c6
-*.color15:      #fff7e9
+XTerm*foreground:   #373b41
+XTerm*background:   #ffffff
+XTerm*cursorColor:  #373b41
+XTerm*color0:       #1d1f21
+XTerm*color8:       #969896
+XTerm*color1:       #cc342b
+XTerm*color9:       #cc342b
+XTerm*color2:       #198844
+XTerm*color10:      #198844
+XTerm*color3:       #fba922
+XTerm*color11:      #fba922
+XTerm*color4:       #3971ed
+XTerm*color12:      #3971ed
+XTerm*color5:       #a36ac7
+XTerm*color13:      #a36ac7
+XTerm*color6:       #3971ed
+XTerm*color14:      #3971ed
+XTerm*color7:       #c5c8c6
+XTerm*color15:      #fff7e9
 
 XTerm*borderWidth: 0
 XTerm*internalBorder: 2
