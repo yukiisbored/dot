@@ -5,19 +5,21 @@ management.
 
 ## Stuff that I use
 
-| Function             | Software                                                                                       |
-|----------------------|------------------------------------------------------------------------------------------------|
-| Operating systems    | Arch Linux (Surface, Desktop), HardenedBSD (Desktop), OpenBSD (Thinkpad), Windows 10 (Desktop) |
-| Display server       | X11 (Wayland suxx)                                                                             |
-| Window manager       | fluxbox (with alttab)                                                                          |
-| Compositor           | compton/picom                                                                                  |
-| Lockscreen           | xlock(more) with xidle                                                                         |
-| Font                 | IBM Plex Sans (GUI) / IBM Plex Mono (Terminal)                                                 |
-| Terminal emulator    | xterm (because it works)                                                                       |
-| Editor               | GNU Emacs (IRC and Mail client)                                                                |
-| Web browser          | Firefox                                                                                        |
-| Shell                | zsh                                                                                            |
-| File synchronisation | Syncthing (local), Nextcloud (internet)                                                        |
+| Function             | Software                                                                                                  |
+|----------------------|-----------------------------------------------------------------------------------------------------------|
+| Operating systems    | Arch Linux (Surface), HardenedBSD (Desktop), OpenBSD (Thinkpad), Windows 10 (Desktop), openSUSE (Desktop) |
+| Display server       | X11 (Wayland suxx)                                                                                        |
+| Window manager       | fluxbox (with alttab)                                                                                     |
+| Compositor           | compton/picom                                                                                             |
+| Lockscreen           | xlock(more) with xidle                                                                                    |
+| Font                 | IBM Plex Sans (GUI) / IBM Plex Mono (Terminal)                                                            |
+| Theme                | Greybird (GTK2/GTK3)                                                                                      |
+| Icon                 | Adwaita                                                                                                   |
+| Terminal emulator    | xterm (because it works)                                                                                  |
+| Editor               | GNU Emacs (IRC and Mail client)                                                                           |
+| Web browser          | Firefox                                                                                                   |
+| Shell                | zsh                                                                                                       |
+| File synchronisation | Syncthing (local), Nextcloud (internet)                                                                   |
 
 ## Questions that nobody asks
 
@@ -63,10 +65,6 @@ See above.
 See above.
 
 ## xlock, seriously?
-
-See above.
-
-## xidle, seriously?
 
 See above.
 
