@@ -16,15 +16,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
+# QT5
+export QT_QPA_PLATFORMTHEME=gtk2
+
 xrdb -m ~/.Xresources
 [ -f "$HOME/.enable_4k" ] && xrdb -m ~/.Xresources.hidpi
 
 setxkbmap -layout us -variant altgr-intl -option compose:caps
 xsetroot -cursor_name left_ptr
-
-# I fucking hate PulseAudio but I need it
-# for a lot of shit on Linux
-pulseaudio --daemon
 
 fluxbox -log "$HOME/.fluxbox/log" &
 fbpid=$!
