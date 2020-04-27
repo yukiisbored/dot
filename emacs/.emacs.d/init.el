@@ -343,7 +343,9 @@
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
          ("\\.html?\\'" . web-mode)
-         ("\\.j?j2\\'" . web-mode)))
+         ("\\.j?j2\\'" . web-mode))
+  :init
+  (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
 
 ;; Markdown
 (use-package markdown-mode
@@ -454,5 +456,8 @@
 (when (file-directory-p mu4e-directory)
   (add-to-list 'load-path mu4e-directory)
   (require 'mu4e)
-  (if (file-exists-p "~/.emacs.d/email-setup.el")
-      (load-file "~/.emacs.d/email-setup.el")))
+  (when (file-exists-p "~/.emacs.d/email-setup.el")
+    (load-file "~/.emacs.d/email-setup.el")))
+
+(when (file-exists-p "~/.emacs.d/irc-setup.el")
+  (load-file "~/.emacs.d/irc-setup.el"))
