@@ -1,4 +1,0 @@
-[submodule "emacs/.emacs.d/sensible-defaults.el"]
-	path = emacs/.emacs.d/sensible-defaults.el
-	url = https://github.com/hrs/sensible-defaults.el
-	branch = master
