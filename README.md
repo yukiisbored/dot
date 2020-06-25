@@ -46,8 +46,8 @@ While I like the flexibility, I would like to put myself into the
 shoes of a "normal user" and suffer the same fate as them.
 
 They may not have the technical capabilites to setup window managers
-and scour endless documentation just to configure small stuff like
-compositors and friends.
+nor the time to scour endless documentation just to configure small
+stuff like compositors.
 
 After all, if we recommend people to come and join us in the world of
 open source software, aren't we obliged to at least eat our own
