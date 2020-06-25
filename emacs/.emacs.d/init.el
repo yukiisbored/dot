@@ -33,6 +33,7 @@
 (require 'init-dockerfile)
 (require 'init-lua)
 (require 'init-go)
+(require 'init-elixir)
 
 ;; Org
 (require 'init-org)
