@@ -1,0 +1,55 @@
+Xcursor.theme: Adwaita
+
+Xft.autohint: 0
+Xft.lcdfilter: lcddefault
+Xft.hintstyle: hintslight
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+Emacs.font: IBM Plex Mono:size=12
+XTerm*font: xft:IBM Plex Mono:size=10
+
+XTerm*background: #fdfde7
+XTerm*foreground: #5f5f5f
+
+XTerm*borderColor: #fdfde7
+XTerm*cursorColor: #5f5f5f
+
+XTerm*color0: #5f5f5f
+XTerm*color1: #cc0000
+XTerm*color2: #008700
+XTerm*color3: #ff8700
+XTerm*color4: #5fafd7
+XTerm*color5: #ff1f8b
+XTerm*color6: #00d7af
+XTerm*color7: #ffffff
+XTerm*color8: #5f5f5f
+XTerm*color9: #cc0000
+XTerm*color10: #008700
+XTerm*color11: #ff8700
+XTerm*color12: #5fafd7
+XTerm*color13: #ff1f8b
+XTerm*color14: #00d7af
+XTerm*color15: #ffffff
+
+XTerm*borderWidth: 4
+XTerm*internalBorder: 2
+XTerm*termName: xterm-256color
+XTerm*v100.saveLines: 10240
+XTerm*vt100.scrollBar: false
+XTerm*vt100.bellIsUrgent: true
+XTerm*allowBoldFonts: false
+XTerm*scrollKey: true
+XTerm*fullscreen: never
+XTerm*cutToBeginningOfLine: false
+XTerm*cutNewLine: false
+XTerm*charClass: 3:48,36-47:48,58-59:48,61:48,63-64:48,95:48,126:48
+XTerm*on2Clicks: word
+XTerm*on3Clicks: line
+XTerm*eightBitInput: false
+XTerm*eightBitOutput: true
+
+xterm*VT100.Translations: #override \
+                          Ctrl Shift <Key>V:    insert-selection(CLIPBOARD) \n\
+                          Ctrl Shift <Key>C:    copy-selection(CLIPBOARD)

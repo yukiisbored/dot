@@ -1,0 +1,143 @@
+# Modifier key
+# ------------
+
+set $mod Mod4
+
+# Startup
+# -------
+
+exec xrdb -m ~/.Xresources
+exec setxkbmap -layout us -variant altgr-intl
+exec xsetroot -cursor_name left_ptr
+exec picom --config ~/.config/picom/picom.conf -b
+exec nitrogen --restore
+exec xidle -program ~/.config/i3/i3lock.sh -timeout 15
+exec emacs --daemon
+
+# Appearance
+# ----------
+
+font pango:IBM Plex Mono Bold 8
+
+gaps inner 8
+gaps outer 16
+
+default_border pixel 2
+
+for_window [class=".*"] title_format " %title"
+
+bar {
+    mode hide
+    hidden_state hide
+    modifier Mod4
+    font pango:IBM Plex Mono 8
+
+    status_command i3status
+    position       top
+
+    colors {
+           background #FDFDE7
+           statusline #5F5F5F
+           separator  #5F5F5f
+
+           focused_workspace  #FF4B4B #FFAFAF #D40000
+           active_workspace   #FF4B4B #FFAFAF #080808
+           inactive_workspace #FF4B4B #C4C4C4 #5F5F5F
+           urgent_workspace   #FF4B4B #900000 #FFFFFF
+           binding_mode       #FF4B4B #900000 #FFFFFF
+    }
+}
+
+client.focused          #FF4B4B #FFAFAF #080808 #D40000 #FF4B4B
+client.focused_inactive #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
+client.unfocused        #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
+
+# Workspace names
+# ---------------
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Keybindings
+# -----------
+
+# modifier key
+floating_modifier $mod
+
+# launchers
+bindsym $mod+Return exec xterm
+bindsym $mod+space exec ~/.config/i3/dmenu.sh
+bindsym $mod+l exec pkill -USR1 xidle
+
+# close windows
+bindsym $mod+Shift+q kill
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+e layout stacking
+bindsym $mod+r layout tabbed
+bindsym $mod+t layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace
+bindsym $mod+Shift+r restart
+
+# exit i3
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Do you *really* wanna end your session?' -B 'Yes, whatever you piece of shit' 'i3-msg exit'"
