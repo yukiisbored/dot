@@ -37,3 +37,6 @@
 
 ;; Org
 (require 'init-org)
+
+;; Mail
+(require 'init-mail)
