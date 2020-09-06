@@ -2,8 +2,16 @@ if [ -d "/usr/games" ]; then
     export PATH="/usr/games:$PATH"
 fi
 
-if [ -d "/usr/local/jdk-1.8.0/bin/" ]; then
-    export PATH="/usr/local/jdk-1.8.0/bin/:$PATH"
+if [ -d "/usr/local/jdk-1.8.0" ]; then
+    export JAVA_HOME="/usr/local/jdk-1.8.0"
+fi
+
+if [ -d "/usr/local/jdk-11" ]; then
+    export JAVA_HOME="/usr/local/jdk-11"
+fi
+
+if [ -n "$JAVA_HOME" ]; then
+    export PATH="${JAVA_HOME}/bin:$PATH"
 fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
