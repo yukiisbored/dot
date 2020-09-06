@@ -37,3 +37,6 @@
 
 ;; Mail
 (require 'init-mail)
+
+;; Faces
+(require 'init-faces)
