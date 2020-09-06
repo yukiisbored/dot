@@ -230,4 +230,11 @@
 (use-package treemacs-magit
   :after treemacs magit)
 
+;; Modeline
+(use-package doom-modeline
+  :init
+  (add-hook 'after-init-hook
+            (lambda ()
+              (doom-modeline-mode t))))
+
 (provide 'init-overhaul)
