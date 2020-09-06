@@ -192,12 +192,6 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (add-hook 'after-init-hook 'global-flycheck-mode))
 
-;; View flycheck errors next to the actual code
-(use-package flycheck-inline
-  :init
-  (with-eval-after-load 'flycheck
-    (add-hook 'flycheck-mode-hook 'flycheck-inline-mode)))
-
 ;; Projectile
 (use-package projectile
   :ensure projectile-git-autofetch
