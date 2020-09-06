@@ -12,15 +12,11 @@
 ;; Load environment variables from shell
 (require 'init-shell-path)
 
-;; UI/UX essentials
-(require 'init-ui)
-(require 'init-prog)
+;; Overhaul emacs
+(require 'init-overhaul)
 
-;; Major programming packages
-(require 'init-yasnippet)
-(require 'init-company)
-(require 'init-flycheck)
-(require 'init-projectile)
+;; Language server support
+(require 'init-lsp)
 
 ;; Programming modes
 (require 'init-web)

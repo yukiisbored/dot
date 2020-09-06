@@ -15,6 +15,13 @@
   (setq org-babel-python-command python-shell-interpreter)
   (setq python-shell-completion-native-enable 'nil))
 
+(use-package lsp-python-ms
+  :init
+  (setq lsp-python-ms-auto-install-server t)
+  :hook
+  (python-mode . (lambda ()
+                   (require 'lsp-python-ms)
+                   (lsp))))  ; or lsp-deferred
 
 (use-package live-py-mode)
 
