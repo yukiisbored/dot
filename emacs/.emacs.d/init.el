@@ -30,6 +30,7 @@
 (require 'init-lua)
 (require 'init-go)
 (require 'init-elixir)
+(require 'init-java)
 
 ;; Org
 (require 'init-org)
