@@ -11,8 +11,7 @@ exec setxkbmap -layout us -variant altgr-intl
 exec xsetroot -cursor_name left_ptr
 exec picom --config ~/.config/picom/picom.conf -b
 exec nitrogen --restore
-exec xidle -program ~/.config/i3/i3lock.sh -timeout 15
-exec emacs --daemon
+exec xidle
 
 # Appearance
 # ----------
