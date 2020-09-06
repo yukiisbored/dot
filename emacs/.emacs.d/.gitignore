@@ -7,4 +7,9 @@ tramp
 transient
 elpa
 auto-save-list
+eclipse.jdt.ls
+workspace
+.dap-breakpoints
+.cache
+.lsp-session*
 *~
