@@ -9,12 +9,14 @@ set $mod Mod4
 exec xrdb -m ~/.Xresources
 exec setxkbmap -layout us -variant altgr-intl
 exec xsetroot -cursor_name left_ptr
-exec picom --config ~/.config/picom/picom.conf -b
 exec nitrogen --restore
 exec xidle
 exec xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation" 1
 exec xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Button" 2
 exec xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
+exec gnome-kerying-daemon --replace --daemonize
+exec nm-applet
+exec xfce4-power-manager
 
 # Appearance
 # ----------
