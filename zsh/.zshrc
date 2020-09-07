@@ -126,14 +126,6 @@ zplug "zsh-users/zsh-autosuggestions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
 
-
-case "$(uname -s)" in
-    "Linux")
-        zplug "mattberther/zsh-pyenv"
-        zplug "lukechilds/zsh-nvm"
-        ;;
-esac
-
 ! zplug check && \
     zplug install
 
