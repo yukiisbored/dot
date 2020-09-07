@@ -14,6 +14,10 @@ if [ -n "$JAVA_HOME" ]; then
     export PATH="${JAVA_HOME}/bin:$PATH"
 fi
 
+if [ -n "$HOME/.composer/vendor" ]; then
+    export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
