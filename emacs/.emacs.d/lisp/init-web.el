@@ -11,6 +11,8 @@
          ("\\.djhtml\\'" . web-mode)
          ("\\.html?\\'" . web-mode)
          ("\\.j?j2\\'" . web-mode))
+  :hook
+  (web-mode . lsp)
   :init
   (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
 
