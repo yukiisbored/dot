@@ -1,8 +1,7 @@
 ;;; init-web.el --- Setup web modes
 
 (use-package web-mode
-  :mode (("\\.php\\'" . web-mode)
-         ("\\.phtml\\'" . web-mode)
+  :mode (("\\.phtml\\'" . web-mode)
          ("\\.twig\\'" . web-mode)
          ("\\.tpl\\.php\\'" . web-mode)
          ("\\.[agj]sp\\'" . web-mode)
