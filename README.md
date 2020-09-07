@@ -16,6 +16,24 @@ management.
 | Shell                | zsh                                            |
 | File synchronisation | Nextcloud                                      |
 
+### Language servers
+
+| Language              | Platforms             | Language server                          |
+|-----------------------|-----------------------|------------------------------------------|
+| Java                  | All                   | [Eclipse JDT]                            |
+| Python                | Windows, Linux, macOS | [Microsoft Python Language Server]       |
+| Python                | *BSDs                 | [Palantir]                               |
+| PHP                   | All                   | [Serenata]                               |
+| Javascript/Typescript | All                   | [Theia IDE Typescript language server]   |
+| HTML                  | All(?)                | [Microsoft VS Code HTML Language Server] |
+
+[Eclipse JDT]: https://projects.eclipse.org/projects/eclipse.jdt.ls
+[Microsoft Python Language Server]: https://github.com/Microsoft/python-language-server
+[Serenata]: https://serenata.gitlab.io
+[Theia IDE Typescript language server]: https://github.com/theia-ide/typescript-language-server
+[Microsoft VS Code HTML Language Server]: https://github.com/vscode-langservers/vscode-html-languageserver-bin
+[Palantir]: https://github.com/palantir/python-language-server
+
 ## Questions that nobody asks
 
 ### Why 3 operating systems?
