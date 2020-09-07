@@ -18,6 +18,13 @@
 (use-package poetry)
 (use-package live-py-mode)
 
+(use-package lsp-python-ms
+  :if (or (string-equal system-type "gnu/linux")
+          (string-equal system-type "windows-nt")
+          (string-equal system-type "darwin"))
+  :init
+  (setq lsp-python-ms-auto-install-server t))
+
 (add-hook 'python-mode-hook 'lsp)
 
 (provide 'init-python)
