@@ -93,7 +93,7 @@ Here's my opinion: **I don't give a fuck**.
 OpenBSD has a better and friendlier community with developers that
 actually eat their own dogfood everyday.
 
-Security is literallythe *last* reasons why I love OpenBSD over other
+Security is literally the *last* reason why I love OpenBSD over other
 UNIX-like operating systems.
 
 It has better userland utilities that's sane backed with one of the
