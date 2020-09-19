@@ -10,7 +10,8 @@
          ("\\.mustache\\'" . web-mode)
          ("\\.djhtml\\'" . web-mode)
          ("\\.html?\\'" . web-mode)
-         ("\\.j?j2\\'" . web-mode))
+         ("\\.j?j2\\'" . web-mode)
+         ("\\.vue\\'" . web-mode))
   :hook
   (web-mode . lsp)
   :init
