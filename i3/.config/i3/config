@@ -77,7 +77,7 @@ set $ws10 "10"
 floating_modifier $mod
 
 # launchers
-bindsym $mod+Return exec xterm
+bindsym $mod+Return exec xfce4-terminal
 bindsym $mod+space exec ~/.config/i3/dmenu.sh
 bindsym $mod+l exec pkill -USR1 xidle
 

@@ -10,6 +10,7 @@ management.
 | Operating systems    | OpenBSD, Windows 10, Manjaro Linux             |
 | Display server       | X11 (Fuck wayland shills)                      |
 | Window Manager       | i3                                             |
+| Terminal emulator    | XFCE4 Terminal                                 |
 | Font                 | IBM Plex Sans (GUI) / IBM Plex Mono (Terminal) |
 | Editor               | GNU Emacs                                      |
 | Web browser          | Iridium / Chromium                             |
