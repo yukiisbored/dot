@@ -56,6 +56,12 @@ client.focused          #FF4B4B #FFAFAF #080808 #D40000 #FF4B4B
 client.focused_inactive #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
 client.unfocused        #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
 
+# Window preferences
+# ------------------
+
+for_window [title="Application Finder"] floating enable
+for_window [title="Application Finder"] resize set 40 ppt 60 ppt
+for_window [title="Application Finder"] move position center
 # Workspace names
 # ---------------
 
@@ -78,7 +84,7 @@ floating_modifier $mod
 
 # launchers
 bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+space exec ~/.config/i3/dmenu.sh
+bindsym $mod+space exec xfce4-appfinder
 bindsym $mod+l exec pkill -USR1 xidle
 
 # close windows
