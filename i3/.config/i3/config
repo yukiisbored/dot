@@ -62,6 +62,7 @@ client.unfocused        #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
 for_window [title="Application Finder"] floating enable
 for_window [title="Application Finder"] resize set 40 ppt 60 ppt
 for_window [title="Application Finder"] move position center
+
 # Workspace names
 # ---------------
 
