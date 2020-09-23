@@ -91,12 +91,8 @@ fi
 # Aliases
 
 if command -v "emacs" >/dev/null; then
-   alias emacs="$EDITOR"
-   alias ec="$EDITOR"
    alias vi="$EDITOR"
    alias vim="$EDITOR"
-
-   alias ef="$VISUAL"
 fi
 
 if command -v "doas" >/dev/null; then

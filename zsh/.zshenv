@@ -23,6 +23,6 @@ export GOPATH="$HOME"
 
 if command -v emacs >/dev/null; then
    export ALTERNATE_EDITOR=""
-   export EDITOR="emacsclient -t"
-   export VISUAL="emacsclient -c -a emacs"
+   export EDITOR="emacs"
+   export VISUAL="emacs"
 fi
