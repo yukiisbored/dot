@@ -15,14 +15,47 @@ c.bindings.default['normal'] = {}
 
 # Bindings
 c.bindings.commands['normal'] = {
+
+    # Page scroll
     '<ctrl-v>': 'scroll-page 0 0.5',
     '<alt-v>': 'scroll-page 0 -0.5',
     '<ctrl-shift-v>': 'scroll-page 0 1',
     '<alt-shift-v>': 'scroll-page 0 -1',
+
+    # Common keys
     '<alt-x>': 'set-cmd-text :',
     '<ctrl-x>b': 'set-cmd-text -s :buffer',
+
+    # Ctrl-x prefix
     '<ctrl-x>k': 'tab-close',
-    '<ctrl-x><ctrl-c>': 'quit',
+    '<ctrl-x><ctrl-c>': 'quit --save',
+    '<ctrl-x>d': 'devtools bottom',
+    '<ctrl-x>p': 'tab-pin',
+    '<ctrl-x>m': 'tab-mute',
+
+    # Tab chording
+    '<ctrl-x>1': 'tab-focus 1',
+    '<ctrl-x>2': 'tab-focus 2',
+    '<ctrl-x>3': 'tab-focus 3',
+    '<ctrl-x>4': 'tab-focus 4',
+    '<ctrl-x>5': 'tab-focus 5',
+    '<ctrl-x>6': 'tab-focus 6',
+    '<ctrl-x>7': 'tab-focus 7',
+    '<ctrl-x>8': 'tab-focus 8',
+    '<ctrl-x>9': 'tab-focus 9',
+    '<ctrl-x><ctrl-1>': 'tab-move 1',
+    '<ctrl-x><ctrl-2>': 'tab-move 2',
+    '<ctrl-x><ctrl-3>': 'tab-move 3',
+    '<ctrl-x><ctrl-4>': 'tab-move 4',
+    '<ctrl-x><ctrl-5>': 'tab-move 5',
+    '<ctrl-x><ctrl-6>': 'tab-move 6',
+    '<ctrl-x><ctrl-7>': 'tab-move 7',
+    '<ctrl-x><ctrl-8>': 'tab-move 8',
+    '<ctrl-x><ctrl-9>': 'tab-move 9',
+    '<ctrl-x>c': 'open -t',
+    '<ctrl-x><ctrl-f>': 'set-cmd-text -s :open',
+
+    # Navigation
     '<ctrl-s>': 'set-cmd-text /',
     '<ctrl-r>': 'set-cmd-text ?',
     '<alt-s>': 'hint all',
@@ -30,8 +63,9 @@ c.bindings.commands['normal'] = {
     '<ctrl-[>': 'back',
     '<ctrl-tab>': 'tab-next',
     '<ctrl-shift-tab>': 'tab-prev',
-    '<ctrl-l>': 'set-cmd-text -s :open',
-    '<alt-l>': 'set-cmd-text -s :open -t',
+
+    # Text chording
+    '<ctrl-/>': 'fake-key <Ctrl-a>',
     '<ctrl-f>': 'fake-key <Right>',
     '<ctrl-b>': 'fake-key <Left>',
     '<ctrl-a>': 'fake-key <Home>',
@@ -45,6 +79,8 @@ c.bindings.commands['normal'] = {
     '<alt-backspace>': 'fake-key <Ctrl-Backspace>',
     '<ctrl-w>': 'fake-key <Ctrl-backspace>',
     '<ctrl-y>': 'insert-text {clipboard}',
+
+    # Make numbers... actual numbers...
     '1': 'fake-key 1',
     '2': 'fake-key 2',
     '3': 'fake-key 3',
@@ -55,6 +91,8 @@ c.bindings.commands['normal'] = {
     '8': 'fake-key 8',
     '9': 'fake-key 9',
     '0': 'fake-key 0',
+
+    # Misc.
     '<ctrl-h>': 'set-cmd-text -s :help',
     '<ctrl-g>': ESC_BIND,
 }
