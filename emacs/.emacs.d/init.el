@@ -31,6 +31,7 @@
 (require 'init-go)
 (require 'init-elixir)
 (require 'init-java)
+(require 'init-haskell)
 
 ;; Org
 (require 'init-org)
