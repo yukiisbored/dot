@@ -6,7 +6,9 @@
       (setq python-shell-interpreter "python3")
     (if (executable-find "python3.7")
         (setq python-shell-interpreter "python3.7")
-      (message "Failed to find Python 3 intepreter"))))
+      (if (executable-find "python3.8")
+        (setq python-shell-interpreter "python3.8")
+        (message "Failed to find Python 3 intepreter")))))
 
 (eval-and-compile
   (setq flycheck-python-pycompile-executable python-shell-interpreter)
