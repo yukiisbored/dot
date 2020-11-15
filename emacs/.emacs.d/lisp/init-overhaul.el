@@ -95,16 +95,6 @@
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
-;; Moe theme
-(use-package moe-theme
-  :init
-  (add-hook 'after-init-hook
-            (lambda ()
-              (require 'moe-theme)
-              (moe-theme-set-color 'red)
-              (moe-light))))
-
-
 ;; Makes it clear where the fuck you're on(tm)
 (use-package highlight-indent-guides
   :init
@@ -230,5 +220,12 @@
   (add-hook 'after-init-hook
             (lambda ()
               (doom-modeline-mode t))))
+
+;; Editorconfig
+(use-package editorconfig
+  :init
+  (add-hook 'after-init-hook
+            (lambda ()
+              (editorconfig-mode t))))
 
 (provide 'init-overhaul)
