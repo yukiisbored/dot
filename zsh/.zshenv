@@ -18,6 +18,14 @@ if [ -n "$HOME/.composer/vendor" ]; then
     export PATH="$HOME/.composer/vendor/bin:$PATH"
 fi
 
+if [ -n "$HOME/.ghcup" ]; then
+    export PATH="$HOME/.ghcup/bin:$PATH"
+fi
+
+if [ -n "$HOME/.cabal" ]; then
+    export PATH="$HOME/.cabal/bin:$PATH"
+fi
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
