@@ -17,6 +17,11 @@
             (when window-system
               (yuki/frame-mods (selected-frame)))))
 
+;; High-contrast theme
+(use-package modus-operandi-theme
+  :config
+  (load-theme 'modus-operandi 't))
+
 ;; The superior completion front-end
 (use-package ivy
   :bind
