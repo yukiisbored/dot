@@ -4,7 +4,8 @@
 
 (use-package lsp-mode
   :hook
-  (lsp-mode . lsp-enable-which-key-integration))
+  (lsp-mode . lsp-enable-which-key-integration)
+  (lsp-mode . lsp-lens-mode))
 
 (use-package lsp-ui
   :after lsp-mode)
@@ -14,5 +15,10 @@
 
 (use-package lsp-treemacs
   :after lsp-mode treemacs)
+
+(use-package dap-mode
+  :hook
+  (lsp-mode . dap-mode)
+  (lsp-mode . dap-ui-mode))
 
 (provide 'init-lsp)
