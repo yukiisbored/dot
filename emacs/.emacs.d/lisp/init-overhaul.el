@@ -19,8 +19,8 @@
 
 ;; High-contrast theme
 (use-package modus-operandi-theme
-  :config
-  (load-theme 'modus-operandi 't))
+  :init
+  (load-theme 'modus-operandi t))
 
 ;; The superior completion front-end
 (use-package ivy
