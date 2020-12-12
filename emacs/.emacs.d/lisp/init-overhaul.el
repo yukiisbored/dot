@@ -19,8 +19,20 @@
 
 ;; High-contrast theme
 (use-package modus-themes
+  :demand
+  :init
+  (setq modus-themes-mode-line 'moody)
   :config
   (modus-themes-load-operandi))
+
+;; Moody modeline
+(use-package moody
+  :demand
+  :init
+  (setq x-underline-at-descent-line t)
+  :config
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
 
 ;; The superior completion front-end
 (use-package ivy
