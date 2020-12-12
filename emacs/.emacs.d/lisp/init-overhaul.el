@@ -18,9 +18,9 @@
               (yuki/frame-mods (selected-frame)))))
 
 ;; High-contrast theme
-(use-package modus-operandi-theme
-  :init
-  (load-theme 'modus-operandi t))
+(use-package modus-themes
+  :config
+  (modus-themes-load-operandi))
 
 ;; The superior completion front-end
 (use-package ivy
