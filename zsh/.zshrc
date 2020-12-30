@@ -121,6 +121,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zdharma/fast-syntax-highlighting"
 zplug "zsh-users/zsh-completions"
+zplug "lukechilds/zsh-nvm"
 
 ! zplug check && \
     zplug install
