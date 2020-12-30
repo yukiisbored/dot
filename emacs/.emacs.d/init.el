@@ -32,6 +32,7 @@
 (require 'init-elixir)
 (require 'init-java)
 (require 'init-haskell)
+(require 'init-typescript)
 
 ;; Org
 (require 'init-org)
