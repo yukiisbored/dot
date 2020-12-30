@@ -238,4 +238,7 @@
             (lambda ()
               (editorconfig-mode t))))
 
+;; VTerm
+(use-package vterm)
+
 (provide 'init-overhaul)
