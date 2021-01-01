@@ -10,28 +10,25 @@ Xft.rgba: rgb
 Emacs.font: IBM Plex Mono:size=12
 XTerm*font: xft:IBM Plex Mono:size=10
 
-XTerm*background: #fdfde7
-XTerm*foreground: #5f5f5f
-
-XTerm*borderColor: #fdfde7
-XTerm*cursorColor: #5f5f5f
-
-XTerm*color0: #5f5f5f
-XTerm*color1: #cc0000
-XTerm*color2: #008700
-XTerm*color3: #ff8700
-XTerm*color4: #5fafd7
-XTerm*color5: #ff1f8b
-XTerm*color6: #00d7af
-XTerm*color7: #ffffff
-XTerm*color8: #5f5f5f
-XTerm*color9: #cc0000
-XTerm*color10: #008700
-XTerm*color11: #ff8700
-XTerm*color12: #5fafd7
-XTerm*color13: #ff1f8b
-XTerm*color14: #00d7af
-XTerm*color15: #ffffff
+XTerm*background:  #2e3436
+XTerm*foreground:  #eeeeec
+XTerm*cursorColor: #8ae234
+XTerm*color0:      #2e3436
+XTerm*color1:      #cc0000
+XTerm*color2:      #4e9a06
+XTerm*color3:      #edd400
+XTerm*color4:      #3465a4
+XTerm*color5:      #92659a
+XTerm*color6:      #07c7ca
+XTerm*color7:      #d3d7cf
+XTerm*color8:      #6e706b
+XTerm*color9:      #ef2929
+XTerm*color10:     #8ae234
+XTerm*color11:     #fce94f
+XTerm*color12:     #729fcf
+XTerm*color13:     #c19fbe
+XTerm*color14:     #63e9e9
+XTerm*color15:     #eeeeec
 
 XTerm*borderWidth: 4
 XTerm*internalBorder: 2

@@ -40,21 +40,11 @@ bar {
     position       top
 
     colors {
-           background #FDFDE7
-           statusline #5F5F5F
-           separator  #5F5F5f
-
-           focused_workspace  #FF4B4B #FFAFAF #D40000
-           active_workspace   #FF4B4B #FFAFAF #080808
-           inactive_workspace #FF4B4B #C4C4C4 #5F5F5F
-           urgent_workspace   #FF4B4B #900000 #FFFFFF
-           binding_mode       #FF4B4B #900000 #FFFFFF
+           focused_workspace  #02696B #04E8EB #333333
     }
 }
 
-client.focused          #FF4B4B #FFAFAF #080808 #D40000 #FF4B4B
-client.focused_inactive #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
-client.unfocused        #FF4B4B #C4C4C4 #5F5F5F #080808 #FFAFAF
+client.focused #04E8EB #04E8EB #333333 #04E8EB #04E8EB
 
 # Window preferences
 # ------------------
