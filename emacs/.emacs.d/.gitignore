@@ -18,3 +18,4 @@ lsp-cache
 session.*
 *.jar
 .mc-lists.el
+elpy
