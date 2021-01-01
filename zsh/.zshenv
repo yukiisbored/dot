@@ -26,6 +26,10 @@ if [ -n "$HOME/.cabal" ]; then
     export PATH="$HOME/.cabal/bin:$PATH"
 fi
 
+if [ -d "$HOME/.cargo" ]; then
+    export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
