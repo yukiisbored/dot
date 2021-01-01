@@ -29,4 +29,8 @@
 
 (add-hook 'python-mode-hook 'lsp)
 
+(use-package elpy
+  :init
+  (elpy-enable))
+
 (provide 'init-python)
