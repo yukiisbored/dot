@@ -96,6 +96,7 @@
 ;; Dashboard
 (use-package dashboard
   :init
+  (setq dashboard-startup-banner (expand-file-name "dashboard_banner.png" user-emacs-directory))
   (setq dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
   (setq dashboard-center-content t)
   (setq dashboard-set-heading-icons t)
