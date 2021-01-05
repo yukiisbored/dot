@@ -109,7 +109,7 @@
 
 ;; All the Icons
 (use-package all-the-icons
-  :ensure all-the-icons-dired
+  :requires (all-the-icons-dired)
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
@@ -174,7 +174,7 @@
 
 ;; Awesome code templating system
 (use-package yasnippet
-  :ensure yasnippet-snippets
+  :requires (yasnippet-snippets)
   :init
   (setq yas-snippet-dirs `("~/.emacs.d/snippets"))
   (add-hook 'after-init-hook 'yas-global-mode))
@@ -202,7 +202,7 @@
 
 ;; Projectile
 (use-package projectile
-  :ensure projectile-git-autofetch
+  :requires (projectile-git-autofetch)
   :init
   (setq projectile-completion-system 'ivy)
   (add-hook 'after-init-hook

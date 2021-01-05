@@ -19,3 +19,4 @@ session.*
 *.jar
 .mc-lists.el
 elpy
+straight
