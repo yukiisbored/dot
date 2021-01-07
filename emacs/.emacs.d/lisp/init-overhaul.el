@@ -108,8 +108,10 @@
   (dashboard-setup-startup-hook))
 
 ;; All the Icons
-(use-package all-the-icons
-  :requires (all-the-icons-dired)
+(use-package all-the-icons)
+
+;; All the Icons for Dired
+(use-package all-the-icons-dired
   :init
   (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
@@ -174,10 +176,12 @@
 
 ;; Awesome code templating system
 (use-package yasnippet
-  :requires (yasnippet-snippets)
   :init
   (setq yas-snippet-dirs `("~/.emacs.d/snippets"))
   (add-hook 'after-init-hook 'yas-global-mode))
+
+;; Snippets for YASnippet
+(use-package yasnippet-snippets)
 
 ;; Completion system
 (use-package company
@@ -200,14 +204,17 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (add-hook 'after-init-hook 'global-flycheck-mode))
 
+
 ;; Projectile
 (use-package projectile
-  :requires (projectile-git-autofetch)
   :init
   (setq projectile-completion-system 'ivy)
   (add-hook 'after-init-hook
             (lambda ()
               (projectile-mode t))))
+
+;; Use git for Projectile by default
+(use-package projectile-git-autofetch)
 
 ;; Treemacs
 (use-package treemacs
