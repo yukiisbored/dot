@@ -2,18 +2,9 @@
 [ -f /proc/version ] &&
     WSL=$(grep -i 'microsoft' /proc/version)
 
-# Fix bad behaviour in WSL
 if [ -n "$WSL" ]; then
-    # Correct bad umask value
-    umask 002
-
     # Load system-wide profile
     source /etc/profile
-
-    # Go to home directory
-    if [ -t 1 ]; then
-	cd ~
-    fi
 fi
 
 # Bootstrap zplug
@@ -127,11 +118,6 @@ zplug "lukechilds/zsh-nvm"
     zplug install
 
 zplug load
-
-# Clear junk after loading
-if [ -n "$WSL" ]; then
-    clear
-fi
 
 # Fortune | Cowsay
 
