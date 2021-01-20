@@ -61,6 +61,15 @@
     jdk11
     gradle
     maven
+
+    # Kotlin
+    kotlin
+
+    # Scala
+    scala
+    scalafmt
+    scalafix
+    sbt
   ];
 
   home.stateVersion = "21.03";
