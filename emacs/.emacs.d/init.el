@@ -33,6 +33,7 @@
 (require 'init-java)
 (require 'init-haskell)
 (require 'init-typescript)
+(require 'init-nix)
 
 ;; Org
 (require 'init-org)
