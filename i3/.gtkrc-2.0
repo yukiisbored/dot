@@ -1,5 +1,5 @@
-gtk-theme-name="Moe"
-gtk-icon-theme-name="Moe"
+gtk-theme-name="Adwaita"
+gtk-icon-theme-name="Adwaita"
 gtk-font-name="IBM Plex Sans 10"
 gtk-cursor-theme-name="Adwaita"
 gtk-cursor-theme-size=0
