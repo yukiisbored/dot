@@ -41,5 +41,8 @@
 ;; Mail
 (require 'init-mail)
 
+;; IRC
+(require 'init-irc)
+
 ;; Faces
 (require 'init-faces)
