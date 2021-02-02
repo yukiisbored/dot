@@ -17,6 +17,11 @@ exec xinput set-prop "/dev/wsmouse" "WS Pointer Wheel Emulation Axes" 6 7 4 5
 exec gnome-keyring-daemon --replace --daemonize
 exec nm-applet
 exec xfce4-power-manager
+exec flameshot
+exec picom --config /dev/null
+exec nextcloud
+exec pulseaudio --start
+exec /usr/local/lib/xfce4/notifyd/xfce4-notifyd
 
 # Appearance
 # ----------
@@ -75,8 +80,9 @@ floating_modifier $mod
 
 # launchers
 bindsym $mod+Return exec xfce4-terminal
-bindsym $mod+space exec xfce4-appfinder
+bindsym $mod+space exec xfrun4
 bindsym $mod+q exec pkill -USR1 xidle
+bindsym $mod+Shift+s exec flameshot gui
 
 # close windows
 bindsym $mod+Shift+q kill
