@@ -100,4 +100,8 @@
 (setq inhibit-startup-message t)
 (setq initial-scratch-message nil)
 
+;; Disable backups and auto-saves
+(setq auto-save-default nil)
+(setq make-backup-files nil)
+
 (provide 'init-defaults)

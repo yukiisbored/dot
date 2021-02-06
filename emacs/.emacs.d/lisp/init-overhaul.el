@@ -96,16 +96,20 @@
 ;; Dashboard
 (use-package dashboard
   :init
-  (setq dashboard-startup-banner (expand-file-name "dashboard_banner.png" user-emacs-directory))
-  (setq dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
-  (setq dashboard-center-content t)
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  (setq dashboard-set-navigator t)
-  (setq dashboard-items `((recents . 5)
+  (setq initial-buffer-choice "*dashboard*")
+  (setq dashboard-startup-banner (expand-file-name "dashboard_banner.png" user-emacs-directory)
+        dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
+        dashboard-center-content t
+        dashboard-set-heading-icons t
+        dashboard-set-file-icons t
+        dashboard-set-navigator t
+        dashboard-items `((recents . 5)
 			  (projects . 5)
 			  (registers . 5)))
-  (dashboard-setup-startup-hook))
+  (dashboard-setup-startup-hook)
+  (add-hook 'dashboard-mode-hook (lambda ()
+                                   (interactive)
+                                   (set-buffer-modified-p nil))))
 
 ;; All the Icons
 (use-package all-the-icons)
@@ -247,6 +251,13 @@
               (editorconfig-mode t))))
 
 ;; VTerm
-(use-package vterm)
+(use-package vterm
+  :init
+  (global-set-key (kbd "<s-return>") 'vterm))
+
+;; Clock in Emacs
+(setq display-time-24hr-format t
+      display-time-format "%H:%M - %d %B %Y")
+(display-time-mode 1)
 
 (provide 'init-overhaul)
