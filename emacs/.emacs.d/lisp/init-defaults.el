@@ -104,4 +104,7 @@
 (setq auto-save-default nil)
 (setq make-backup-files nil)
 
+;; Use SSH, not SCP for Tramp
+(setq tramp-default-method "ssh")
+
 (provide 'init-defaults)
