@@ -1,3 +1,7 @@
+if [ "$TERM" = "dumb" ]; then
+    return
+fi
+
 # Check if we're in WSL
 [ -f /proc/version ] &&
     WSL=$(grep -i 'microsoft' /proc/version)
