@@ -18,10 +18,7 @@ bindkey -e
 # Colored ls
 case "$(uname -s)" in
     OpenBSD)
-        if (( $+commands[colorls] ))
-        then
-            alias ls="colorls -G"
-        fi
+        (( $+commands[colorls] )) && alias ls="colorls -G"
         ;;
     FreeBSD|DragonFly)
         alias ls="ls -G"
@@ -74,9 +71,7 @@ spath() {
 
 PS1='$(spath -f) %% '
 
-if [[ -n "$SSH_TTY" ]] {
-    PS1="$HOST $PS1"
-}
+[[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
 
 # Aliases
 if (( $+commands[$EDITOR] )) {
