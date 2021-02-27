@@ -1,5 +1,9 @@
 ;;; init-overhaul.el --- Make Emacs even more powerful
 
+;; Focus follow mouse
+(setq mouse-autoselect-window t
+      focus-follows-mouse t)
+
 (defun yuki/frame-mods (frame)
   (select-frame frame)
   (when window-system
