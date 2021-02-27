@@ -1,40 +1,9 @@
+# If this is a dumb terminal, drop everything
 if [ "$TERM" = "dumb" ]; then
     return
 fi
 
-# Check if we're in WSL
-[ -f /proc/version ] &&
-    WSL=$(grep -i 'microsoft' /proc/version)
-
-if [ -n "$WSL" ]; then
-    # Load system-wide profile
-    source /etc/profile
-fi
-
-# Bootstrap zplug
-export ZPLUG_HOME="$HOME/.zplug"
-
-if ! command -v git >/dev/null; then
-    echo "Git is not installed. Please install git." >&2
-    return
-fi
-
-if ! command -v curl >/dev/null; then
-    echo "cURL is not installed. Please install curl." >&2
-    return
-fi
-
-if [ ! -d "$ZPLUG_HOME" ]; then
-    echo "Installing zplug ..." >&2
-    git clone https://github.com/zplug/zplug "$ZPLUG_HOME"
-fi
-
-# Tell GPG which tty to use
-
-export GPG_TTY="$(tty)"
-
-# Zsh config
-
+# Essentials
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
@@ -46,110 +15,97 @@ setopt share_history appendhistory inc_append_history hist_ignore_space \
 
 bindkey -e
 
-# Use history substring instead of normal history browsing
-bindkey "^P" history-substring-search-up
-bindkey "^N" history-substring-search-down
-
+# Colored ls
 case "$(uname -s)" in
-    "OpenBSD")
-        if command -v colorls >/dev/null; then
+    OpenBSD)
+        if (( $+commands[colorls] ))
+        then
             alias ls="colorls -G"
         fi
         ;;
-    "FreeBSD")
+    FreeBSD|DragonFly)
         alias ls="ls -G"
         ;;
-    "DragonFly")
-        alias ls="ls -G"
-        ;;
-    "Linux")
+    Linux|SunOS)
         alias ls="ls --color"
-        ;;
-    "SunOS")
-        # TODO: Proper checks to see if it's GNU
-        alias ls="ls --color"
-        ;;
-    *)
-        # Boo, no colored ls :(
         ;;
 esac
 
 # Prompt
+spath() {
+    dir=$PWD
 
-PS1='$(shrink_path -f) %% '
+    dir=${dir/#$HOME/\~}
+    tree=(${(s:/:)dir})
+    (
+        if [[ $tree[1] == \~* ]] {
+            cd -q ${~tree[1]}
+            result=$tree[1]
+            shift tree
+        } else {
+            cd -q /
+        }
 
-if [ -n "$SSH_TTY" ]; then
+        for dir in $tree; {
+            if (( $#tree == 1 )) {
+                result+="/$tree"
+                break
+            }
+                expn=(a b)
+                part=''
+                i=0
+                until [[ $i -gt 99 || ( $dir == $part ) && ( (( ${#expn} == 1 )) || $dir = $expn ) ]]; do
+                    (( i++ ))
+                    part+=$dir[$i]
+                    expn=($(echo ${part}*(-/)))
+                    [[ $i -ge $length ]] && break
+                done
+
+                typeset -i dif=$(( ${#dir} - ${#part} ))
+                [[ $dif -le 0 ]] && part="$dir"
+                result+="/$part"
+                cd -q $dir
+                shift tree
+        }
+
+        echo ${result:-/}
+    )
+}
+
+PS1='$(spath -f) %% '
+
+if [[ -n "$SSH_TTY" ]] {
     PS1="$HOST $PS1"
-fi
+}
 
 # Aliases
-
-if command -v "emacs" >/dev/null; then
+if (( $+commands[$EDITOR] )) {
    alias vi="$EDITOR"
    alias vim="$EDITOR"
-fi
+   alias nano="$EDITOR"
+}
 
-if command -v "doas" >/dev/null; then
+if (( $+commands[doas] )) {
    function sudo() {
        echo "It's doas, dummy.">&2
        doas "$@"
    }
-elif command -v "sudo" >/dev/null; then
+} elif (( $+commands[sudo] )) {
    function doas() {
        echo "It's sudo, dummy.">&2
        sudo "$@"
    }
-fi
-
-# zplug
-
-source "$ZPLUG_HOME/init.zsh"
-
-zplug "zplug/zplug", hook-build:"zplug --self-manage"
-zplug "plugins/python", from:oh-my-zsh
-zplug "plugins/pip", from:oh-my-zsh
-zplug "plugins/virtualenvwrapper", from:oh-my-zsh
-zplug "plugins/shrink-path", from:oh-my-zsh
-
-zplug "zsh-users/zsh-history-substring-search"
-zplug "zsh-users/zsh-autosuggestions"
-zplug "zdharma/fast-syntax-highlighting"
-zplug "zsh-users/zsh-completions"
-zplug "lukechilds/zsh-nvm"
-
-! zplug check && \
-    zplug install
-
-zplug load
-
-# Fortune | Cowsay
-
-if command -v "fortune" >/dev/null && \
-        command -v "cowsay" >/dev/null; then
-    fortune | cowsay
-    echo
-fi
-
-# Weather
-
-city="Belfort"
-
-wttr() {
-    curl -H "Accept-Language: fr" "wttr.in/$city?F"
 }
 
 # Emacs vterm
-
 vterm_printf(){
-    if [ -n "$TMUX" ] && ([ "${TERM%%-*}" = "tmux" ] || [ "${TERM%%-*}" = "screen" ] ); then
-        # Tell tmux to pass the escape sequences through
+    if [[ -n "$TMUX" ]] && ([[ "${TERM%%-*}" = "tmux" ]] || [[ "${TERM%%-*}" = "screen" ]] ) {
         printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
+    } elif [[ "${TERM%%-*}" = "screen" ]] {
         printf "\eP\e]%s\007\e\\" "$1"
-    else
+    } else {
         printf "\e]%s\e\\" "$1"
-    fi
+    }
 }
 
 vterm_cmd() {
@@ -167,3 +123,32 @@ vterm_prompt_end() {
 }
 
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+
+# zinit
+ZINIT_DIR="$HOME/.zinit"
+
+function bootstrap_zinit() {
+    if [[ ! -d "$HOME/.zinit" ]] {
+        mkdir "$ZINIT_DIR"
+        git clone https://github.com/zdharma/zinit.git "$ZINIT_DIR/bin"
+    } else {
+        echo "zinit already bootstrapped."
+    }
+}
+
+if [[ -d "$HOME/.zinit" ]] {
+    source "$HOME/.zinit/bin/zinit.zsh"
+
+    function _yuki_history_substring_search_keybinds() {
+        bindkey "^P" history-substring-search-up
+        bindkey "^N" history-substring-search-down
+    }
+
+    zinit light-mode for \
+          zsh-users/zsh-autosuggestions \
+          zsh-users/zsh-completions \
+          zdharma/fast-syntax-highlighting
+
+    zinit light-mode atload:'_yuki_history_substring_search_keybinds' for \
+          zsh-users/zsh-history-substring-search
+}
