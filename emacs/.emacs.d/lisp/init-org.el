@@ -26,9 +26,9 @@
                                (java . t)
                                (plantuml . t)))
 
-  (use-package ob-ipython
+  (use-package ein
     :if (executable-find "jupyter")
-    :init (cl-pushnew '(ipython . t) load-language-list))
+    :init (cl-pushnew '(ein . t) load-language-list))
 
   (org-babel-do-load-languages 'org-babel-load-languages load-language-list)
 
