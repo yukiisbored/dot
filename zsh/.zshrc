@@ -72,12 +72,18 @@ esac
 
 # Prompt
 
-setopt prompt_subst
-PS1='$(shrink_path -f) %% '
+case "$TERM" in
+    "dumb")
+        PS1="% "
+        ;;
+    xterm*|rxvt*|eterm*|screen*)
+        PS1='$(shrink_path -f) %% '
 
-if [ -n "$SSH_TTY" ]; then
-   PS1="$HOST $PS1"
-fi
+        if [ -n "$SSH_TTY" ]; then
+            PS1="$HOST $PS1"
+        fi
+        ;;
+esac
 
 # Aliases
 
