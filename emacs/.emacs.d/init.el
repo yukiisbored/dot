@@ -34,6 +34,7 @@
 (require 'init-haskell)
 (require 'init-typescript)
 (require 'init-nix)
+(require 'init-scala)
 
 ;; Org
 (require 'init-org)
