@@ -253,6 +253,7 @@
 (use-package vterm
   :init
   (global-set-key (kbd "<s-return>") 'vterm)
+  (global-set-key (kbd "C-x RET RET") 'vterm)
   (setq vterm-buffer-name-string "*vterm: %s*"))
 
 ;; Clock in Emacs
