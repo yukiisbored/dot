@@ -118,11 +118,6 @@
 ;; All the Icons
 (use-package all-the-icons)
 
-;; All the Icons for Dired
-(use-package all-the-icons-dired
-  :init
-  (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
-
 ;; Makes it clear where the fuck you're on(tm)
 (use-package highlight-indent-guides
   :init
@@ -257,7 +252,8 @@
 ;; VTerm
 (use-package vterm
   :init
-  (global-set-key (kbd "<s-return>") 'vterm))
+  (global-set-key (kbd "<s-return>") 'vterm)
+  (setq vterm-buffer-name-string "*vterm: %s*"))
 
 ;; Clock in Emacs
 (setq display-time-24hr-format t

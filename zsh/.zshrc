@@ -119,6 +119,11 @@ vterm_prompt_end() {
 
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
+[[ "$INSIDE_EMACS" = 'vterm' ]] && alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
+
+autoload -U add-zsh-hook
+add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
+
 # zinit
 ZINIT_DIR="$HOME/.zinit"
 
