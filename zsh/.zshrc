@@ -163,5 +163,4 @@ vterm_prompt_end() {
     vterm_printf "51;A$USER@$HOST:$(pwd)";
 }
 
-setopt PROMPT_SUBST
 PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
