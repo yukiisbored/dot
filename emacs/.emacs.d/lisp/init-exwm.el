@@ -36,7 +36,16 @@
                                      ([?\C-y] . [?\C-v])
                                      ;; search
                                      ([?\C-s] . [?\C-f])))
-  (exwm-systemtray-enable))
+  (exwm-systemtray-enable)
+  :config
+  (defun exwm-rename-buffer ()
+    (interactive)
+    (exwm-workspace-rename-buffer
+     (format "*EXWM: %s*"
+             (if (<= (length exwm-title) 50) exwm-title
+               (concat (substring exwm-title 0 49) "...")))))
+  (add-hook 'exwm-update-class-hook 'exwm-rename-buffer)
+  (add-hook 'exwm-update-title-hook 'exwm-rename-buffer))
 
 (use-package dmenu
   :bind ("s-SPC" . 'dmenu))
