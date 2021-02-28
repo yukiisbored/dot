@@ -35,6 +35,7 @@
 (require 'init-typescript)
 (require 'init-nix)
 (require 'init-scala)
+(require 'init-clojure)
 
 ;; Org
 (require 'init-org)
