@@ -39,6 +39,10 @@ if [ -d "$HOME/.cargo" ]; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "$HOME/.local/share/coursier" ]; then
+    export PATH="$HOME/.local/share/coursier/bin:$PATH"
+fi
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 
