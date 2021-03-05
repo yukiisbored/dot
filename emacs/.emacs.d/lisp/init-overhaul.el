@@ -44,6 +44,7 @@
   ("C-c C-r" . ivy-resume)
   :init
   (setq ivy-use-virtual-buffers t
+        ivy-initial-inputs-alist nil
 	enable-recursive-minibuffers t)
   (add-hook 'after-init-hook
 	    (lambda ()
