@@ -50,6 +50,16 @@
 	    (lambda ()
 	      (ivy-mode t))))
 
+;; More friendly for ivy
+(use-package ivy-rich
+  :hook (ivy-mode . ivy-rich-mode)
+  :init
+  (setq ivy-rich-path-style 'abbrev))
+
+;; Icons for ivy-rich
+(use-package all-the-icons-ivy-rich
+  :hook (ivy-mode . all-the-icons-ivy-rich-mode))
+
 ;; The superior isearch
 (use-package swiper
   :bind
