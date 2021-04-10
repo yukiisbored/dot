@@ -45,6 +45,7 @@ fi
 
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
+export DIRENV_LOG_FORMAT=""
 
 if command -v emacsclient >/dev/null; then
    export ALTERNATE_EDITOR=""
