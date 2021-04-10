@@ -32,9 +32,6 @@
 
   (org-babel-do-load-languages 'org-babel-load-languages load-language-list)
 
-  (use-package org-bullets
-    :hook (org-mode . org-bullets-mode))
-
   (use-package graphviz-dot-mode
     :config
     (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))

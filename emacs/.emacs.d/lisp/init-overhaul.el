@@ -21,23 +21,6 @@
             (when window-system
               (yuki/frame-mods (selected-frame)))))
 
-;; High-contrast theme
-(use-package modus-themes
-  :demand
-  :init
-  (setq modus-themes-mode-line 'moody)
-  :config
-  (modus-themes-load-operandi))
-
-;; Moody modeline
-(use-package moody
-  :demand
-  :init
-  (setq x-underline-at-descent-line t)
-  :config
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
-
 ;; The superior completion front-end
 (use-package helm
   :bind
@@ -210,6 +193,9 @@
   (setq-default flycheck-disabled-checkers '(emacs-lisp-checkdoc))
   (add-hook 'after-init-hook 'global-flycheck-mode))
 
+(use-package flycheck-inline
+  :hook
+  (flycheck-mode . flycheck-inline-mode))
 
 ;; Projectile
 (use-package projectile
@@ -237,12 +223,6 @@
 
 (use-package treemacs-projectile
   :after treemacs projectile)
-
-(use-package treemacs-all-the-icons
-  :init
-  (add-hook 'after-init-hook
-            (lambda ()
-              (treemacs-load-theme "all-the-icons"))))
 
 (use-package treemacs-magit
   :after treemacs magit)
@@ -272,5 +252,21 @@
 (setq display-time-24hr-format t
       display-time-format "%H:%M - %d %B %Y")
 (display-time-mode 1)
+
+;; Doom Emacs Theme
+(use-package doom-themes
+  :init
+  (add-hook 'after-init-hook
+            (lambda ()
+              (load-theme 'doom-opera-light t)
+              (doom-themes-visual-bell-config)
+              (doom-themes-treemacs-config)
+              (doom-themes-org-config)))
+  (custom-set-faces
+   '(helm-ff-directory ((t (:extend t :foreground "#3b6ea8"))))
+   '(helm-ff-symlink ((t (:inherit font-lock-comment-face :extend t :foreground "#842879"))))))
+
+(use-package doom-modeline
+  :hook (after-init . doom-modeline-mode))
 
 (provide 'init-overhaul)
