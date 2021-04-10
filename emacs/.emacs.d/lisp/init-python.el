@@ -31,7 +31,10 @@
   :if (or (string-equal system-type "gnu/linux")
           (string-equal system-type "darwin"))
   :init
-  (setq lsp-python-ms-executable "python-language-server"))
+  (let ((mspyls-location (executable-find "python-language-server")))
+    (if mspyls-location
+        (setq lsp-python-ms-executable mypyls-location)
+      (setq lsp-python-ms-auto-install-server t))))
 
 (add-hook 'python-mode-hook 'lsp)
 
