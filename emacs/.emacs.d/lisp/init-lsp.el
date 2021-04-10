@@ -1,11 +1,12 @@
 ;;; init-lsp.el --- Language server support for Emacs.
 
-(setq lsp-keymap-prefix "C-c l")
-
 (use-package lsp-mode
   :hook
   (lsp-mode . lsp-enable-which-key-integration)
-  (lsp-mode . lsp-lens-mode))
+  (lsp-mode . lsp-lens-mode)
+  :init
+  (setq lsp-enable-file-watchers nil
+        lsp-keymap-prefix "C-c l"))
 
 (use-package lsp-ui
   :after lsp-mode)
