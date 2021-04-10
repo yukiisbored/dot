@@ -39,52 +39,28 @@
   (moody-replace-vc-mode))
 
 ;; The superior completion front-end
-(use-package ivy
+(use-package helm
   :bind
-  ("C-c C-r" . ivy-resume)
+  ("C-h a"   . helm-apropos)
+  ("C-h f"   . helm-apropos)
+  ("C-h r"   . helm-info-emacs)
+  ("C-x C-f" . helm-find-files)
+  ("M-x"     . helm-M-x)
+  ("C-x b"   . helm-mini)
   :init
-  (setq ivy-use-virtual-buffers t
-        ivy-initial-inputs-alist nil
-	enable-recursive-minibuffers t)
+  (setq helm-mode-fuzzy-match t)
   (add-hook 'after-init-hook
-	    (lambda ()
-	      (ivy-mode t))))
-
-;; More friendly for ivy
-(use-package ivy-rich
-  :hook (ivy-mode . ivy-rich-mode)
-  :init
-  (setq ivy-rich-path-style 'abbrev))
-
-;; Icons for ivy-rich
-(use-package all-the-icons-ivy-rich
-  :hook (ivy-mode . all-the-icons-ivy-rich-mode))
+            (lambda ()
+              (helm-mode t)
+              (helm-autoresize-mode t))))
 
 ;; The superior isearch
-(use-package swiper
+(use-package swiper-helm
   :bind
-  ("C-s" . swiper)
-  ("C-r" . swiper))
+  ("C-s" . swiper))
 
-;; Use the superior completion front end
-(use-package counsel
-  :bind
-  ("M-x"     . counsel-M-x)
-  ("C-x C-f" . counsel-find-file)
-  ("<f1> f"  . counsel-describe-function)
-  ("<f2> v"  . counsel-describe-variable)
-  ("<f1> l"  . counsel-find-library)
-  ("<f1> i"  . counsel-info-lookup-symbol)
-  ("<f2> u"  . counsel-unicode-char)
-  :config
-  (define-key read-expression-map
-    (kbd "C-r") 'counsel-expression-history))
-
-;; The silver searcher
-(use-package ag
-  :after counsel
-  :bind
-  ("C-c k" . counsel-ag))
+;; The Silver Searcher
+(use-package helm-ag)
 
 ;; Display available keybindings in popup
 (use-package which-key
@@ -128,6 +104,14 @@
 
 ;; All the Icons
 (use-package all-the-icons)
+
+;; All the Icons in Helm
+(use-package helm-icons
+  :after helm all-the-icons
+  :init
+  (setq helm-icons-provider 'all-the-icons)
+  (add-hook 'after-init-hook (lambda ()
+                               (helm-icons-enable))))
 
 ;; Makes it clear where the fuck you're on(tm)
 (use-package highlight-indent-guides
@@ -222,7 +206,7 @@
 ;; Projectile
 (use-package projectile
   :init
-  (setq projectile-completion-system 'ivy)
+  (setq projectile-completion-system 'helm)
   (add-hook 'after-init-hook
             (lambda ()
               (projectile-mode t))))
@@ -266,6 +250,13 @@
   (global-set-key (kbd "<s-return>") 'vterm)
   (global-set-key (kbd "C-x RET RET") 'vterm)
   (setq vterm-buffer-name-string "*vterm: %s*"))
+
+;; direnv integration
+(use-package direnv
+ :init
+ (add-hook 'after-init-hook
+           (lambda ()
+             (direnv-mode t))))
 
 ;; Clock in Emacs
 (setq display-time-24hr-format t

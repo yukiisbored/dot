@@ -11,8 +11,8 @@
 (use-package lsp-ui
   :after lsp-mode)
 
-(use-package lsp-ivy
-  :after lsp-mode ivy)
+(use-package helm-lsp
+  :after lsp-mode helm)
 
 (use-package lsp-treemacs
   :after lsp-mode treemacs)
