@@ -124,6 +124,11 @@ PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 autoload -U add-zsh-hook
 add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
 
+# direnv integration
+if (( $+commands[direnv] )) {
+    eval "$(direnv hook zsh)"
+}
+
 # zinit
 ZINIT_DIR="$HOME/.zinit"
 
