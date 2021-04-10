@@ -29,10 +29,9 @@
 
 (use-package lsp-python-ms
   :if (or (string-equal system-type "gnu/linux")
-          (string-equal system-type "windows-nt")
           (string-equal system-type "darwin"))
   :init
-  (setq lsp-python-ms-auto-install-server t))
+  (setq lsp-python-ms-executable "python-language-server"))
 
 (add-hook 'python-mode-hook 'lsp)
 
