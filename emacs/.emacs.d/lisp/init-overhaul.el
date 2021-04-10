@@ -25,6 +25,7 @@
 (use-package helm
   :hook
   (helm-mode . helm-ido-like-load-file-nav)
+  (helm-mode . helm-ido-like-no-dots)
   :bind
   ("C-h a"   . helm-apropos)
   ("C-h f"   . helm-apropos)
@@ -44,7 +45,7 @@
                  (inhibit-same-window . t)
                  (window-height . 0.4)))
 
-  ;; Start of File Navigation from https://github.com/clemera/helm-ido-like-guide
+  ;; Start of https://github.com/clemera/helm-ido-like-guide
   (defun helm-ido-like-find-files-up-one-level-maybe ()
     (interactive)
     (if (looking-back "/" 1)
@@ -86,8 +87,34 @@
       (define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
       (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
       (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)))
-  ;; End of File Navigation from https://github.com/clemera/helm-ido-like-guide
 
+  (defvar helm-ido-like-no-dots-whitelist
+    '("*Helm file completions*")
+    "List of helm buffers in which to show dot directories.")
+
+  (defun helm-ido-like-no-dots-display-file-p (file)
+    ;; in a whitelisted buffer display all but the relative path to parent dir
+    (or (and (member helm-buffer helm-ido-like-no-dots-whitelist)
+             (not (string-match "\\(?:/\\|\\`\\)\\.\\{2\\}\\'" file)))
+        ;; in all other buffers display all files but the two relative ones
+        (not (string-match "\\(?:/\\|\\`\\)\\.\\{1,2\\}\\'" file))))
+
+
+  (defun helm-ido-like-no-dots-auto-add (&rest args)
+    "Auto add buffers which want to read directory names to the whitelist."
+    (if (eq (car (last args)) 'file-directory-p)
+        (add-to-list 'helm-ido-like-no-dots-whitelist
+                     (format "*helm-mode-%s*"
+                             (helm-symbol-name
+                              (or (helm-this-command) this-command))))))
+
+
+  (defun helm-ido-like-no-dots ()
+    (require 'cl-lib)
+    (advice-add 'helm-ff-filter-candidate-one-by-one
+                :before-while 'helm-ido-like-no-dots-display-file-p)
+    (advice-add  'helm--generic-read-file-name :before 'helm-ido-like-no-dots-auto-add))
+  ;; End of https://github.com/clemera/helm-ido-like-guide
 
   (add-hook 'after-init-hook
             (lambda ()
@@ -313,15 +340,20 @@
 ;; Doom Emacs Theme
 (use-package doom-themes
   :init
+  ;; Increase contrast for some stuff
+  ;; Some people really need to read W3C WCAG
+  (setq doom-opera-light-brighter-comments t)
+
+  (custom-set-faces
+   '(helm-ff-directory ((t (:extend t :foreground "#3b6ea8"))))
+   '(helm-ff-symlink ((t (:inherit font-lock-comment-face :extend t :foreground "#842879")))))
+
   (add-hook 'after-init-hook
             (lambda ()
               (load-theme 'doom-opera-light t)
               (doom-themes-visual-bell-config)
               (doom-themes-treemacs-config)
-              (doom-themes-org-config)))
-  (custom-set-faces
-   '(helm-ff-directory ((t (:extend t :foreground "#3b6ea8"))))
-   '(helm-ff-symlink ((t (:inherit font-lock-comment-face :extend t :foreground "#842879"))))))
+              (doom-themes-org-config))))
 
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode))
