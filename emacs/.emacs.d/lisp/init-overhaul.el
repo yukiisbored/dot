@@ -48,7 +48,13 @@
   ("M-x"     . helm-M-x)
   ("C-x b"   . helm-mini)
   :init
-  (setq helm-mode-fuzzy-match t)
+  (setq helm-split-window-in-side-p t
+        helm-mode-fuzzy-match t)
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*helm.*\\*\\'"
+                 (display-buffer-in-side-window)
+                 (inhibit-same-window . t)
+                 (window-height . 0.4)))
   (add-hook 'after-init-hook
             (lambda ()
               (helm-mode t)
