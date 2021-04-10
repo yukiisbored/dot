@@ -3,8 +3,11 @@
 ;; Set default directory to $HOME
 (setq default-directory "~/")
 
-;; Increase GC threshold to 20 MB
-(setq gc-cons-threshold 20000000)
+;; Increase GC threshold to 100 MB
+(setq gc-cons-threshold 100000000)
+
+;; Read at most 1 MB from processes
+(setq read-process-output-max (* 1024 1024))
 
 ;; Delete trailing whitespace everytime file is saved
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
