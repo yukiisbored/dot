@@ -23,6 +23,8 @@
 
 ;; The superior completion front-end
 (use-package helm
+  :hook
+  (helm-mode . helm-ido-like-load-file-nav)
   :bind
   ("C-h a"   . helm-apropos)
   ("C-h f"   . helm-apropos)
@@ -31,17 +33,65 @@
   ("M-x"     . helm-M-x)
   ("C-x b"   . helm-mini)
   :init
-  (setq helm-split-window-in-side-p t
-        helm-mode-fuzzy-match t)
+  (setq helm-split-window-in-side-p t    ;; Required to place helm at the bottom
+        helm-mode-fuzzy-match       t    ;; Enable fuzzy matching
+        helm-display-header-line    nil) ;; Do not display the header line
+
+  ;; Display helm at the bottom
   (add-to-list 'display-buffer-alist
                '("\\`\\*helm.*\\*\\'"
                  (display-buffer-in-side-window)
                  (inhibit-same-window . t)
                  (window-height . 0.4)))
+
+  ;; Start of File Navigation from https://github.com/clemera/helm-ido-like-guide
+  (defun helm-ido-like-find-files-up-one-level-maybe ()
+    (interactive)
+    (if (looking-back "/" 1)
+        (call-interactively 'helm-find-files-up-one-level)
+      (delete-char -1)))
+
+
+  (defun helm-ido-like-find-files-navigate-forward (orig-fun &rest args)
+    "Adjust how helm-execute-persistent actions behaves, depending on context."
+    (let ((sel (helm-get-selection)))
+      (if (file-directory-p sel)
+          ;; the current dir needs to work to
+          ;; be able to select directories if needed
+          (cond ((and (stringp sel)
+                      (string-match "\\.\\'" (helm-get-selection)))
+                 (helm-maybe-exit-minibuffer))
+                (t
+                 (apply orig-fun args)))
+        (helm-maybe-exit-minibuffer))))
+
+
+  (defun helm-ido-like-load-file-nav ()
+    (advice-add 'helm-execute-persistent-action :around #'helm-ido-like-find-files-navigate-forward)
+    ;; <return> is not bound in helm-map by default
+    (define-key helm-map (kbd "<return>") 'helm-maybe-exit-minibuffer)
+    (with-eval-after-load 'helm-files
+      (define-key helm-read-file-map (kbd "<backspace>") 'helm-ido-like-find-files-up-one-level-maybe)
+      (define-key helm-read-file-map (kbd "DEL") 'helm-ido-like-find-files-up-one-level-maybe)
+      (define-key helm-find-files-map (kbd "<backspace>") 'helm-ido-like-find-files-up-one-level-maybe)
+      (define-key helm-find-files-map (kbd "DEL") 'helm-ido-like-find-files-up-one-level-maybe)
+
+      (define-key helm-find-files-map (kbd "<return>") 'helm-execute-persistent-action)
+      (define-key helm-read-file-map (kbd "<return>") 'helm-execute-persistent-action)
+      (define-key helm-find-files-map (kbd "RET") 'helm-execute-persistent-action)
+      (define-key helm-read-file-map (kbd "RET") 'helm-execute-persistent-action)
+
+      ;; Tab is the same as return because of my muscle memories
+      (define-key helm-find-files-map (kbd "<tab>") 'helm-execute-persistent-action)
+      (define-key helm-read-file-map (kbd "<tab>") 'helm-execute-persistent-action)
+      (define-key helm-find-files-map (kbd "TAB") 'helm-execute-persistent-action)
+      (define-key helm-read-file-map (kbd "TAB") 'helm-execute-persistent-action)))
+  ;; End of File Navigation from https://github.com/clemera/helm-ido-like-guide
+
+
   (add-hook 'after-init-hook
             (lambda ()
-              (helm-mode t)
-              (helm-autoresize-mode t))))
+              (helm-mode t))))
 
 ;; The superior isearch
 (use-package swiper-helm
