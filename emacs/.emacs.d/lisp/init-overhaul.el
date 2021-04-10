@@ -199,8 +199,10 @@
             (lambda ()
               (global-company-mode t))))
 
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+(use-package company-quickhelp
+  :after company
+  :hook
+  (company-mode . company-quickhelp-mode))
 
 ;; Flycheck -- Better than flymake
 (use-package flycheck
