@@ -152,6 +152,13 @@
   (add-hook 'after-init-hook (lambda ()
                                (helm-icons-enable))))
 
+;; All the icons in Dired
+(use-package all-the-icons-dired
+  :after all-the-icons
+  :hook
+  (dired-mode . all-the-icons-dired-mode))
+
+
 ;; Makes it clear where the fuck you're on(tm)
 (use-package highlight-indent-guides
   :init
