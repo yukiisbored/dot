@@ -236,9 +236,11 @@
 (use-package treemacs-projectile
   :after treemacs projectile)
 
-(use-package treemacs-icons-dired
-  :after treemacs dired
-  :config (treemacs-icons-dired-mode))
+(use-package treemacs-all-the-icons
+  :init
+  (add-hook 'after-init-hook
+            (lambda ()
+              (treemacs-load-theme "all-the-icons"))))
 
 (use-package treemacs-magit
   :after treemacs magit)
