@@ -1,76 +1,24 @@
 { config, pkgs, ... }:
 
+let
+   comma = import ( pkgs.fetchFromGitHub {
+      owner = "Shopify";
+      repo = "comma";
+      rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
+      sha256 = "0n5a3rnv9qnnsrl76kpi6dmaxmwj1mpdd2g0b4n1wfimqfaz6gi1";
+  }) {};
+in
 {
   programs.home-manager.enable = true;
 
   home.username = "yuki";
   home.homeDirectory = "/home/yuki";
-  home.packages = with pkgs; [
-    # Physiological needs
-    emacs
-    git
-    stow
-    tmux
-
-    # Docker
-    docker
-    docker-compose
-
-    # Kubernetes
-    kubectl
-    kubectx
-    kubespy
-    kubernetes-helm
-    kubeval
-    kustomize
-    kind
-
-    # Ansible
-    ansible
-    ansible-lint
-
-    # Cloud providers
-    google-cloud-sdk
-    awscli
-
-    # Python
-    python3
-    poetry
-    python38Packages.flake8
-
-    # Web development
-    nodejs-12_x
-
-    # Haskell
-    ghc
-    haskell-language-server
-    cabal-install
-    hlint
-
-    # Rust
-    rustup
-
-    # Elixir/Erlang
-    elixir
-    erlang
-
-    # Go
-    go
-
-    # Java
-    jdk11
-    gradle
-    maven
-
-    # Kotlin
-    kotlin
-
-    # Scala
-    scala
-    scalafmt
-    scalafix
-    sbt
+  home.packages = [
+    pkgs.direnv
+    comma
   ];
+
+  services.lorri.enable = true;
 
   home.stateVersion = "21.03";
 }
