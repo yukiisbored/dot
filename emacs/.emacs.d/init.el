@@ -36,6 +36,7 @@
 (require 'init-nix)
 (require 'init-scala)
 (require 'init-clojure)
+(require 'init-fsharp)
 
 ;; Org
 (require 'init-org)
