@@ -4,7 +4,7 @@
   :if window-system
   :init
   (setq-default exec-path-from-shell-check-startup-files nil)
-  (setq exec-path-from-shell-variables '("PATH" "GOPATH"))
+  (setq exec-path-from-shell-variables '("PATH" "GOPATH" "NIX_PATH"))
   (add-hook 'after-init-hook
             #'exec-path-from-shell-initialize))
 
