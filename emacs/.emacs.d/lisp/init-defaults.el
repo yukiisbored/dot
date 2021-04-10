@@ -6,6 +6,9 @@
 ;; Increase GC threshold to 100 MB
 (setq gc-cons-threshold 100000000)
 
+;; Don’t compact font caches during GC.
+(setq inhibit-compacting-font-caches t)
+
 ;; Read at most 1 MB from processes
 (setq read-process-output-max (* 1024 1024))
 
