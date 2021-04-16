@@ -210,7 +210,8 @@
 ;; Projectile
 (use-package projectile
   :init
-  (setq projectile-completion-system 'ivy)
+  (setq projectile-completion-system 'ivy
+        projectile-keymap-prefix (kbd "C-c C-p"))
   (add-hook 'after-init-hook
             (lambda ()
               (projectile-mode t))))
