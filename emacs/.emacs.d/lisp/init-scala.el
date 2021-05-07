@@ -13,8 +13,4 @@
    'self-insert-command
    minibuffer-local-completion-map))
 
-(use-package lsp-metals
-  :hook
-  (scala-mode . lsp))
-
 (provide 'init-scala)

@@ -16,7 +16,7 @@
 (require 'init-overhaul)
 
 ;; Language server support
-(require 'init-lsp)
+(require 'init-eglot)
 
 ;; Programming modes
 (require 'init-web)
@@ -37,6 +37,7 @@
 (require 'init-scala)
 (require 'init-clojure)
 (require 'init-fsharp)
+(require 'init-csharp)
 
 ;; Org
 (require 'init-org)

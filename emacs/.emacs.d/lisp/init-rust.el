@@ -1,9 +1,7 @@
 ;;; init-rust.el --- Setup rust mode
 
 (use-package rust-mode
-  :mode "\\.rs\\'"
-  :hook
-  (rust-mode . lsp))
+  :mode "\\.rs\\'")
 
 (use-package cargo
   :hook

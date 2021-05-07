@@ -27,17 +27,6 @@
   (setq pipenv-projectile-after-switch-function
         'pipenv-projectile-after-switch-extended))
 
-(use-package lsp-python-ms
-  :if (or (string-equal system-type "gnu/linux")
-          (string-equal system-type "darwin"))
-  :init
-  (let ((mspyls-location (executable-find "python-language-server")))
-    (if mspyls-location
-        (setq lsp-python-ms-executable mypyls-location)
-      (setq lsp-python-ms-auto-install-server t))))
-
-(add-hook 'python-mode-hook 'lsp)
-
 (use-package elpy
   :init
   (elpy-enable))

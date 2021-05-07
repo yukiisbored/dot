@@ -1,7 +1,5 @@
 ;;; init-php.el --- Setup PHP mode
 
-(use-package php-mode
-  :hook
-  (php-mode . lsp))
+(use-package php-mode)
 
 (provide 'init-php)

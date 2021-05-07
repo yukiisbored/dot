@@ -13,8 +13,6 @@
          ("\\.j?j2\\'" . web-mode)
          ("\\.vue\\'" . web-mode)
          ("\\.svelte\\'" . web-mode))
-  :hook
-  (web-mode . lsp)
   :init
   (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
 

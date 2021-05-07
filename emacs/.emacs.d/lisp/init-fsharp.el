@@ -1,7 +1,5 @@
 ;;; init-fsharp.el -- The OCaml-influcened multi-paradigm language
 
-(use-package fsharp-mode
-  :hook
-  (fsharp-mode . lsp))
+(use-package fsharp-mode)
 
 (provide 'init-fsharp)

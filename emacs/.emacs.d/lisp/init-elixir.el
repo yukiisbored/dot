@@ -1,7 +1,5 @@
 ;;; init-elixir.el --- Setup Elixir
 
-(use-package elixir-mode
-  :hook
-  (elixir-mode . lsp))
+(use-package elixir-mode)
 
 (provide 'init-elixir)
