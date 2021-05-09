@@ -2,13 +2,11 @@
 
 ;; Use Python 3 ffs
 (eval-and-compile
-  (if (executable-find "python3")
-      (setq python-shell-interpreter "python3")
-    (if (executable-find "python3.7")
-        (setq python-shell-interpreter "python3.7")
-      (if (executable-find "python3.8")
+  (if (executable-find "python3.7")
+      (setq python-shell-interpreter "python3.7")
+    (if (executable-find "python3.8")
         (setq python-shell-interpreter "python3.8")
-        (message "Failed to find Python 3 intepreter")))))
+      (setq python-shell-interpreter "python3"))))
 
 (eval-and-compile
   (setq flycheck-python-pycompile-executable python-shell-interpreter)
