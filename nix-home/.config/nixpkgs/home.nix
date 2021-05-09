@@ -14,6 +14,8 @@ in
   home.username = "yuki";
   home.homeDirectory = "/home/yuki";
   home.packages = [
+    pkgs.emacs
+    pkgs.silver-searcher
     pkgs.direnv
     comma
   ];
