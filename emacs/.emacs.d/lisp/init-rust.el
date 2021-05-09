@@ -4,7 +4,6 @@
   :mode "\\.rs\\'")
 
 (use-package cargo
-  :hook
-  (rust-mode . cargo-minor-mode))
+  :hook ((rust-mode . cargo-minor-mode)))
 
 (provide 'init-rust)

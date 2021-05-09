@@ -1,7 +1,5 @@
 ;;; init-package.el --- Bootstrap packages
 
-(require 'init-early)
-
 ;; Configure use-package and straight
 (eval-and-compile
   (setq use-package-verbose t

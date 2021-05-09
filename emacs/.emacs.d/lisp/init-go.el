@@ -2,7 +2,6 @@
 
 (use-package go-mode
   :mode "\\.go\\'"
-  :init
-  (add-hook 'before-save-hook 'gofmt-before-save))
+  :hook ((before-save . gofmt-before-save)))
 
 (provide 'init-go)

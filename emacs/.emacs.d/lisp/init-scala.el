@@ -1,8 +1,7 @@
 ;;; init-scala.el -- Provide Scala support for Emacs
 
 (use-package scala-mode
-  :interpreter
-  (("scala" . scala-mode)))
+  :interpreter (("scala" . scala-mode)))
 
 (use-package sbt-mode
   :init

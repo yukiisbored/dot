@@ -1,13 +1,21 @@
 ;;; init-eglot.el --- EGlot
 
 (use-package eglot
-  :hook
-  ((python-mode . eglot-ensure)
-   (csharp-mode . eglot-ensure))
+  :hook ((python-mode     . eglot-ensure)
+         (csharp-mode     . eglot-ensure)
+         (php-mode        . eglot-ensure)
+         (go-mode         . eglot-ensure)
+         (elixir-mode     . eglot-ensure)
+         (java-mode       . eglot-ensure)
+         (haskell-mode    . eglot-ensure)
+         (typescript-mode . eglot-ensure)
+         (nix-mode        . eglot-ensure)
+         (scala-mode      . eglot-ensure))
+  :bind (:map eglot-mode-map
+         ("C-c e r" . eglot-rename)
+         ("C-c e f" . eglot-format)
+         ("C-c e h" . eglot-help-at-point))
   :config
-  (define-key eglot-mode-map (kbd "C-c e r") 'eglot-rename)
-  (define-key eglot-mode-map (kbd "C-c e f") 'eglot-format)
-  (define-key eglot-mode-map (kbd "C-c e h") 'eglot-help-at-point)
   (add-to-list 'eglot-server-programs
                `(csharp-mode . ("omnishare" "-lsp"))))
 

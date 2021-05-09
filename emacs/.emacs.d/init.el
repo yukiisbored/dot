@@ -51,7 +51,4 @@
 ;; Faces
 (require 'init-faces)
 
-;; EXWM
-(require 'init-exwm)
-
 (server-start)
