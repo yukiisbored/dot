@@ -285,4 +285,10 @@
 (use-package doom-modeline
   :hook (after-init . doom-modeline-mode))
 
+;; Smooth scrolling
+(use-package good-scroll
+  :hook (after-init . good-scroll-mode)
+  :init
+  (setq good-scroll-step 180))
+
 (provide 'init-overhaul)
