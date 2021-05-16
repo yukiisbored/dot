@@ -10,13 +10,28 @@
          (haskell-mode    . eglot-ensure)
          (typescript-mode . eglot-ensure)
          (nix-mode        . eglot-ensure)
-         (scala-mode      . eglot-ensure))
+         (scala-mode      . eglot-ensure)
+         (haxe-mode       . eglot-ensure))
   :bind (:map eglot-mode-map
          ("C-c e r" . eglot-rename)
          ("C-c e f" . eglot-format)
          ("C-c e h" . eglot-help-at-point))
+  :init
+  (setq eglot-workspace-configuration `((:haxe-language-server . (:haxe.executable "haxe"))))
   :config
   (add-to-list 'eglot-server-programs
-               `(csharp-mode . ("omnishare" "-lsp"))))
+               `(csharp-mode . ("omnishare" "-lsp")))
+  (add-to-list 'eglot-server-programs
+               `(haxe-mode . (eglot-haxe-language-server "haxe-language-server")))
 
+  (defclass eglot-haxe-language-server (eglot-lsp-server) ()
+    :documentation "A custom class for Haxe Language Server")
+
+  (cl-defmethod eglot-initialization-options ((server eglot-haxe-language-server))
+    "Passes the build.hxml file as displayArguments"
+    (let* ((root (car (project-roots (eglot--project server))))
+           (build-hxml (expand-file-name "build.hxml" root))
+           (compile-hxml (expand-file-name "compile.hxml" root))
+           (hxml-file (if (file-exists-p compile-hxml) compile-hxml build-hxml)))
+         (list :displayArguments hxml-file))))
 (provide 'init-eglot)

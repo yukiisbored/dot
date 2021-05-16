@@ -38,6 +38,7 @@
 (require 'init-clojure)
 (require 'init-fsharp)
 (require 'init-csharp)
+(require 'init-haxe)
 
 ;; Org
 (require 'init-org)
