@@ -14,8 +14,26 @@ in
   home.username = "yuki";
   home.homeDirectory = "/home/yuki";
   home.packages = [
+    pkgs.tmux
+
     pkgs.emacs
     pkgs.silver-searcher
+
+    pkgs.pipenv
+    pkgs.poetry
+    pkgs.python38Packages.python-language-server
+
+    pkgs.nodejs-12_x
+    pkgs.nodePackages.typescript-language-server
+
+    pkgs.kubectl
+    pkgs.kubectx
+    pkgs.google-cloud-sdk
+
+    pkgs.sqlite
+
+    pkgs.haxe
+
     pkgs.direnv
     comma
   ];
