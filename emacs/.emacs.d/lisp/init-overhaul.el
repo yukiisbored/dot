@@ -6,9 +6,9 @@
 
 (defun yuki/frame-mods (frame)
   (select-frame frame)
+  (menu-bar-mode -1)
   (when window-system
     (fringe-mode '(nil . nil))
-    (menu-bar-mode 1)
     (tool-bar-mode -1)
     (scroll-bar-mode -1)
     (modify-frame-parameters frame
@@ -18,8 +18,7 @@
 (add-hook 'after-make-frame-functions 'yuki/frame-mods)
 (add-hook 'after-init-hook
           (lambda ()
-            (when window-system
-              (yuki/frame-mods (selected-frame)))))
+              (yuki/frame-mods (selected-frame))))
 
 ;; The superior completion front-end
 (use-package ivy
