@@ -38,6 +38,7 @@
 
 ;; Icons for ivy-rich
 (use-package all-the-icons-ivy-rich
+  :if window-system
   :hook ((ivy-mode . all-the-icons-ivy-rich-mode)))
 
 ;; The superior isearch
@@ -85,7 +86,9 @@
 (use-package dashboard
   :init
   (setq initial-buffer-choice "*dashboard*"
-        dashboard-startup-banner (expand-file-name "dashboard_banner.png" user-emacs-directory)
+        dashboard-startup-banner (if window-system
+                                     (expand-file-name "dashboard_banner.png" user-emacs-directory)
+                                   (expand-file-name "dashboard_banner.txt" user-emacs-directory))
         dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
         dashboard-center-content t
         dashboard-set-heading-icons t
@@ -97,7 +100,8 @@
   (dashboard-setup-startup-hook))
 
 ;; All the Icons
-(use-package all-the-icons)
+(use-package all-the-icons
+  :if window-system)
 
 ;; A Better Git interface than git(1)
 (use-package magit
