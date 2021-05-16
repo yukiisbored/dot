@@ -223,6 +223,7 @@
 
 ;; Doom Emacs Theme
 (use-package doom-themes
+  :if window-system
   :hook ((after-init . (lambda () (load-theme 'doom-opera-light t)))
          (after-init . doom-themes-visual-bell-config)
          (after-init . doom-themes-treemacs-config)
