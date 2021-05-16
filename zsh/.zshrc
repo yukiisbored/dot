@@ -3,6 +3,9 @@ if [ "$TERM" = "dumb" ]; then
     return
 fi
 
+# WSL check
+(uname -r | grep -q 'WSL') && WSL=1
+
 # Essentials
 HISTFILE=~/.histfile
 HISTSIZE=1000
@@ -33,6 +36,7 @@ spath() {
     dir=$PWD
 
     dir=${dir/#$HOME/\~}
+    dir=${dir/#\/mnt\/c\/Users\/accou/\~/winhome}
     tree=(${(s:/:)dir})
     (
         if [[ $tree[1] == \~* ]] {
@@ -74,6 +78,10 @@ PS1='$(spath -f) %% '
 [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
 
 # Aliases
+if [[ -n "$WSL" ]] {
+   alias emacs="emacs -nw"
+}
+
 if (( $+commands[$EDITOR] )) {
    alias vi="$EDITOR"
    alias vim="$EDITOR"
