@@ -13,6 +13,7 @@
   (setq flycheck-python-flake8-executable python-shell-interpreter)
   (setq flycheck-python-pylint-executable python-shell-interpreter)
   (setq org-babel-python-command python-shell-interpreter)
+  (setq elpy-rpc-python-command python-shell-interpreter)
   (setq python-shell-completion-native-enable 'nil))
 
 (use-package poetry)
@@ -24,9 +25,5 @@
   :init
   (setq pipenv-projectile-after-switch-function
         'pipenv-projectile-after-switch-extended))
-
-(use-package elpy
-  :init
-  (elpy-enable))
 
 (provide 'init-python)
