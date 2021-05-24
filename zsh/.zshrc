@@ -77,11 +77,12 @@ PS1='$(spath -f) %% '
 
 [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
 
-# Aliases
+# Setup DISPLAY on WSL
 if [[ -n "$WSL" ]] {
-   alias emacs="emacs -nw"
+   export DISPLAY="$(ip route show 0.0.0.0/0 dev eth0 | cut -d' ' -f3):0.0"
 }
 
+# Aliases
 if (( $+commands[$EDITOR] )) {
    alias vi="$EDITOR"
    alias vim="$EDITOR"
