@@ -25,6 +25,7 @@ in
 
     pkgs.nodejs-12_x
     pkgs.nodePackages.typescript-language-server
+    pkgs.nodePackages.node2nix
 
     pkgs.kubectl
     pkgs.kubectx
