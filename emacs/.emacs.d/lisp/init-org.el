@@ -1,7 +1,6 @@
 ;;; init-org.el --- Setup org-mode
 
 (use-package org
-  :straight org-plus-contrib
   :init
   (setq org-src-tab-acts-natively      t
         org-src-fontify-natively       t
