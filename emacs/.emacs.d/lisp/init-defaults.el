@@ -94,10 +94,9 @@
 (set-keyboard-coding-system 'utf-8)
 
 ;; Visual aid
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (global-hl-line-mode t)
-	    (column-number-mode t)))
+(add-hook 'after-init-hook 'column-number-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'text-mode-hook 'hl-line-mode)
 
 ;; Spaces are superior, fuck you.
 (setq-default indent-tabs-mode nil)

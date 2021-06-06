@@ -8,17 +8,39 @@
   (select-frame frame)
   (menu-bar-mode -1)
   (when window-system
-    (fringe-mode '(nil . nil))
+    (tooltip-mode 0)
     (tool-bar-mode -1)
     (scroll-bar-mode -1)
+    (set-face-attribute 'default nil :font "Fira Code-12" )
+    (set-frame-font "Fira Code-12" nil t)
     (modify-frame-parameters frame
-                             `((vertical-scroll-bars . nil)
-                               (horizontal-scroll-bars . nil)))))
+                             `((min-height . 1)
+                               (height     . 45)
+	                       (min-width  . 1)
+                               (width      . 81)
+                               (vertical-scroll-bars . nil)
+                               (internal-border-width . 24)
+                               (left-fringe    . 1)
+                               (right-fringe   . 1)
+                               (tool-bar-lines . 0)
+                               (menu-bar-lines . 0)))))
 
 (add-hook 'after-make-frame-functions 'yuki/frame-mods)
 (add-hook 'after-init-hook
           (lambda ()
-              (yuki/frame-mods (selected-frame))))
+            (yuki/frame-mods (selected-frame))))
+
+;; Underline should be on the bottomline
+(setq x-underline-at-descent-line t)
+
+;; Vertical window divider
+(setq window-divider-default-right-width 24
+      window-divider-default-places      'right-only)
+
+(window-divider-mode 1)
+
+;; Make Emacs UI look more bearable
+(setq widget-image-enable nil)
 
 ;; The superior completion front-end
 (use-package ivy
@@ -84,8 +106,7 @@
 ;; Dashboard
 (use-package dashboard
   :init
-  (setq initial-buffer-choice "*dashboard*"
-        dashboard-startup-banner (if window-system
+  (setq dashboard-startup-banner (if window-system
                                      (expand-file-name "dashboard_banner.png" user-emacs-directory)
                                    (expand-file-name "dashboard_banner.txt" user-emacs-directory))
         dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
@@ -95,7 +116,8 @@
         dashboard-set-navigator t
         dashboard-items `((recents . 5)
 			  (projects . 5)
-			  (registers . 5)))
+			  (registers . 5))
+        dashboard-page-separator "\n\n\n")
   (dashboard-setup-startup-hook))
 
 ;; All the Icons
@@ -233,11 +255,36 @@
   ;; Some people really need to read W3C WCAG
   (setq doom-opera-light-brighter-comments t)
 
+  ;; Invisible window-divider
   (custom-set-faces
-   '(helm-ff-directory ((t (:extend t :foreground "#3b6ea8"))))
-   '(helm-ff-symlink ((t (:inherit font-lock-comment-face :extend t :foreground "#842879"))))))
+   '(window-divider ((t (:foreground "#fafafa" :inherit (vertical-border)))))))
 
 (use-package doom-modeline
-  :hook ((after-init . doom-modeline-mode)))
+  :hook ((after-init . doom-modeline-mode))
+  :init
+  (setq doom-modeline-height 48
+        doom-modeline-bar-width 1)
+
+  ;; Invisible modelines
+  (custom-set-faces
+   '(mode-line-inactive ((t (:box nil :foreground "#9e9e9e" :background "#fafafa"))))
+   '(mode-line   ((t (:box nil :background "#fafafa"))))))
+
+(use-package ligature
+  :hook ((after-init . global-ligature-mode))
+  :straight (el-patch :type git
+                      :host github :repo "mickeynp/ligature.el")
+  :config
+  (ligature-set-ligatures 't '("www"))
+  (ligature-set-ligatures 'prog-mode '("www" "**" "***" "**/" "*>" "*/" "\\\\" "\\\\\\" "{-" "::"
+                                       ":::" ":=" "!!" "!=" "!==" "-}" "----" "-->" "->" "->>"
+                                       "-<" "-<<" "-~" "#{" "#[" "##" "###" "####" "#(" "#?" "#_"
+                                       "#_(" ".-" ".=" ".." "..<" "..." "?=" "??" ";;" "/*" "/**"
+                                       "/=" "/==" "/>" "//" "///" "&&" "||" "||=" "|=" "|>" "^=" "$>"
+                                       "++" "+++" "+>" "=:=" "==" "===" "==>" "=>" "=>>" "<="
+                                       "=<<" "=/=" ">-" ">=" ">=>" ">>" ">>-" ">>=" ">>>" "<*"
+                                       "<*>" "<|" "<|>" "<$" "<$>" "<!--" "<-" "<--" "<->" "<+"
+                                       "<+>" "<=" "<==" "<=>" "<=<" "<>" "<<" "<<-" "<<=" "<<<"
+                                       "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 
 (provide 'init-overhaul)
