@@ -12,8 +12,9 @@
          ("\\.html?\\'"     . web-mode)
          ("\\.j?j2\\'"      . web-mode)
          ("\\.vue\\'"       . web-mode)
-         ("\\.svelte\\'"    . web-mode))
+         ("\\.svelte\\'"    . svelte-mode))
   :init
-  (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
+  (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'")))
+  (define-derived-mode svelte-mode web-mode "svelte-mode"))
 
 (provide 'init-web)
