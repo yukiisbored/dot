@@ -26,7 +26,6 @@
                                (plantuml   . t)))
   (org-babel-do-load-languages 'org-babel-load-languages load-language-list)
   (add-to-list 'org-latex-packages-alist '("" "minted"))
-  (eval-after-load 'ox '(require 'ox-koma-letter))
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append))
 
 (use-package ein
