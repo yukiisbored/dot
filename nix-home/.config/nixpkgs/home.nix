@@ -18,6 +18,8 @@ in
 
     pkgs.emacs
     pkgs.silver-searcher
+    pkgs.httpie
+    pkgs.age
 
     pkgs.pipenv
     pkgs.poetry
