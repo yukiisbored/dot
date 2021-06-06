@@ -11,16 +11,24 @@
          (typescript-mode . eglot-ensure)
          (nix-mode        . eglot-ensure)
          (scala-mode      . eglot-ensure)
-         (haxe-mode       . eglot-ensure))
+         (haxe-mode       . eglot-ensure)
+         (haxe-mode       . yuki/haxe-workspace-config)
+         (rust-mode       . eglot-ensure)
+         (svelte-mode     . eglot-ensure))
   :bind (:map eglot-mode-map
          ("C-c e r" . eglot-rename)
          ("C-c e f" . eglot-format)
          ("C-c e h" . eglot-help-at-point))
   :init
-  (setq eglot-workspace-configuration `((:haxe-language-server . (:haxe.executable "haxe"))))
+  (defun yuki/haxe-workspace-config ()
+    (setq-local eglot-workspace-configuration
+                `((:haxe-language-server . (:haxe.executable "haxe")))))
   :config
+  ;; C#
   (add-to-list 'eglot-server-programs
                `(csharp-mode . ("omnishare" "-lsp")))
+
+  ;; Haxe
   (add-to-list 'eglot-server-programs
                `(haxe-mode . (eglot-haxe-language-server "haxe-language-server")))
 
@@ -33,5 +41,10 @@
            (build-hxml (expand-file-name "build.hxml" root))
            (compile-hxml (expand-file-name "compile.hxml" root))
            (hxml-file (if (file-exists-p compile-hxml) compile-hxml build-hxml)))
-         (list :displayArguments hxml-file))))
+      (list :displayArguments hxml-file)))
+
+  ;; Svelte
+  (add-to-list 'eglot-server-programs
+               `(svelte-mode . ("svelteserver" "--stdio"))))
+
 (provide 'init-eglot)
