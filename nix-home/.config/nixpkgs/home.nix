@@ -1,7 +1,14 @@
-{ config, pkgs, ... }:
+{ config, ... }:
 
 let
-   comma = import ( pkgs.fetchFromGitHub {
+  sources = import ./nix/sources.nix;
+  pkgs = import sources.nixpkgs {
+    overlays = [
+      (import sources.emacs-overlay)
+    ];
+  };
+
+  comma = import (pkgs.fetchFromGitHub {
       owner = "Shopify";
       repo = "comma";
       rev = "4a62ec17e20ce0e738a8e5126b4298a73903b468";
@@ -13,31 +20,32 @@ in
 
   home.username = "yuki";
   home.homeDirectory = "/home/yuki";
-  home.packages = [
-    pkgs.tmux
+  home.packages = with pkgs; [
+    emacsGcc
 
-    pkgs.emacs
-    pkgs.silver-searcher
-    pkgs.httpie
-    pkgs.age
+    tmux
+    silver-searcher
+    sqlite
+    httpie
+    age
 
-    pkgs.pipenv
-    pkgs.poetry
-    pkgs.python38Packages.python-language-server
+    pipenv
+    poetry
+    python38Packages.python-language-server
 
-    pkgs.nodejs-12_x
-    pkgs.nodePackages.typescript-language-server
-    pkgs.nodePackages.node2nix
+    nodejs-12_x
+    nodePackages.typescript-language-server
+    nodePackages.node2nix
 
-    pkgs.kubectl
-    pkgs.kubectx
-    pkgs.google-cloud-sdk
+    kubectl
+    kubectx
+    google-cloud-sdk
 
-    pkgs.sqlite
+    haxe
 
-    pkgs.haxe
-
-    pkgs.direnv
+    direnv
+    niv
+    cachix
     comma
   ];
 
