@@ -43,6 +43,10 @@ if [ -d "$HOME/.local/share/coursier" ]; then
     export PATH="$HOME/.local/share/coursier/bin:$PATH"
 fi
 
+if [ -d "$HOME/.gnupg/trezor" ]; then
+    export GNUPGHOME="$HOME/.gnupg/trezor"
+fi
+
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 export DIRENV_LOG_FORMAT=""
