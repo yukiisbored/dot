@@ -1,6 +1,5 @@
 if [ -e "$HOME/.nix-profile/etc/profile.d/nix.sh" ]; then
     . "$HOME/.nix-profile/etc/profile.d/nix.sh"
-    export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 fi
 
 if [ -e "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh" ]; then
@@ -50,6 +49,7 @@ fi
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 export GOPATH="$HOME"
 export DIRENV_LOG_FORMAT=""
+export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
 
 if command -v emacsclient >/dev/null; then
    export ALTERNATE_EDITOR=""
