@@ -1,58 +1,29 @@
 # yuki/dot
 
-These are my personal dotfiles handled with GNU stow for easy symlink
-management.
+[![NixOS 21.05](https://img.shields.io/badge/NixOS-v21.05-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
 
-## Stuff that I use
+This repository contains my personal configuration which are managed
+with mainly GNU stow.
+
+a Nix flake is also provided to install and configure all of the
+software that is utilized by Yuki.
+
+## Software
 
 | Function             | Software                                       |
 |----------------------|------------------------------------------------|
-| Operating systems    | OpenBSD, Windows 10, Manjaro Linux             |
-| Display server       | X11 (Fuck wayland shills)                      |
-| Window Manager       | i3                                             |
-| Terminal emulator    | XFCE4 Terminal                                 |
+| Operating systems    | NixOS, OpenBSD                                 |
+| Display server       | X11 (Fuck Wayland shills)                      |
+| Desktop Environment  | GNOME                                          |
 | Font                 | IBM Plex Sans (GUI) / IBM Plex Mono (Terminal) |
 | Editor               | GNU Emacs                                      |
 | Web browser          | Iridium / Chromium                             |
 | Shell                | zsh                                            |
 | File synchronisation | Nextcloud                                      |
 
-### Language servers
-
-| Language              | Platforms             | Language server                          |
-|-----------------------|-----------------------|------------------------------------------|
-| Java                  | All                   | [Eclipse JDT]                            |
-| Python                | Windows, Linux, macOS | [Microsoft Python Language Server]       |
-| Python                | *BSDs                 | [Palantir]                               |
-| PHP                   | All                   | [Serenata]                               |
-| Javascript/Typescript | All                   | [Theia IDE Typescript language server]   |
-| HTML                  | All(?)                | [Microsoft VS Code HTML Language Server] |
-
-[Eclipse JDT]: https://projects.eclipse.org/projects/eclipse.jdt.ls
-[Microsoft Python Language Server]: https://github.com/Microsoft/python-language-server
-[Serenata]: https://serenata.gitlab.io
-[Theia IDE Typescript language server]: https://github.com/theia-ide/typescript-language-server
-[Microsoft VS Code HTML Language Server]: https://github.com/vscode-langservers/vscode-html-languageserver-bin
-[Palantir]: https://github.com/palantir/python-language-server
-
 ## Questions that nobody asks
 
-### Why 3 operating systems?
-
-Windows 10 because games. I still *need* to play games and gaming on
-Linux, while works, still sucks. Good luck getting Japanese region
-titles running well in Wine among our lord and saviour, DRM.
-
-Manjaro Linux because I have a Pinebook Pro. While OpenBSD runs, it's
-still lacking a lot of stuff that I would consider essential for me
-to be able to daily drive it. Even then, school requires me running
-software like Android Studio. So yeah...
-
-OpenBSD because I love my sanity so much that I rather not deal with
-the pains and trauma events running Linux on my *personal* machines
-without a good reason.
-
-## Why do you care about running OpenBSD?
+### Why do you use OpenBSD?
 
 **Fuck Linux.**
 
@@ -105,7 +76,7 @@ simple and easy to the point that I can be so fucking high and drunk
 at the same time and I wouldn't have any god damn issues setting up a
 router with CARP and fail-over.
 
-I've been daily driving CURRENT (the development branch) on my
+I had been daily driving CURRENT (the development branch) on my old
 Thinkpad X220 that I use for university and I've had 0 problems with
 it. Absolutely nothing.
 
@@ -115,20 +86,38 @@ have a server running HardenedBSD. Having filesystem snapshots along
 with the ability to switch to a particular snapshot from the
 bootloader would be really nice though.
 
-## Why not Wayland because Wayland is better for touch device and blahblah...?
+### Why do you use Nix?
+
+While the rest of the Linux world is jacking off to application
+containers that delivers 2 GB+ container images daily, the small
+tightly-knit community behind Nix is actually solving the root issue
+with all of the terribleness related to software deployment and system
+provisioning.
+
+In my honest opinion, the functional software deployment model which
+it introduces is easily one of the greatest innovations of the 21st
+century.
+
+I really do wish a bright future for this technology and its methods
+because damn, I prefer this over application containers that everyone
+is jacking off to.
+
+I recommend reading the Nix thesis by Eelco Dostra if you have the
+time.
+
+### Why not Wayland because Wayland is better for touch device and blahblah...?
 
 1. Wayland isn't a thing in BSDs.
 2. Shut the fuck up for fuck's sake, I'd rather have something that
    can run all of my software rather than breaking 10% of it.
 
-## Emacs, seriously?
+### Emacs, seriously?
 
 It just works, I don't give a fuck. You can laugh at the fact it's a
 monolithic operating system or takes 30 minutes to load or the fact it
 takes only (*sees top*) 120 MB of RAM.
 
 It works fine for me and I can do shit from writing blog posts to read
-emails to writing Ansible Playbooks without a hitch.
 
 ## Mirrors
 
