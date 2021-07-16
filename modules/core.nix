@@ -34,6 +34,7 @@
     direnv
     niv
     cachix
+    comma
 
     gcc
     gnumake

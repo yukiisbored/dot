@@ -10,12 +10,20 @@
     };
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
+
+    comma = {
+      url = "github:Shopify/comma";
+      flake = false;
+    };
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
     let
       overlays = [
         inputs.emacs-overlay.overlay
+        (self: super: {
+          comma = import "${inputs.comma}/default.nix" { pkgs = self; };
+        })
       ];
     in {
       homeConfigurations.core = home-manager.lib.homeManagerConfiguration {
