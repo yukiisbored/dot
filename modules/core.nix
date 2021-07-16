@@ -3,6 +3,8 @@
 {
   programs.home-manager.enable = true;
 
+  xdg.configFile."nix/nix.conf".source = ./../nix/nix.conf;
+
   home.packages = with pkgs; [
     emacsGcc
 
