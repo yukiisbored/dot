@@ -14,7 +14,7 @@ See `flake.nix` for available homeConfigurations
 
 ```console
 $ nix run '.#linux'
-``
+```
 
 ## Software
 
