@@ -18,5 +18,7 @@
     nextcloud-client
 
     libreoffice-still
+
+    lutris
   ];
 }

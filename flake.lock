@@ -68,12 +68,29 @@
         "type": "github"
       }
     },
+    "nixpkgsFork": {
+      "locked": {
+        "lastModified": 1626462461,
+        "narHash": "sha256-rjQC4S1pIBuwlP5curOX35Ixu3t9HAzOXbiYtKykUUM=",
+        "owner": "yukiisbored",
+        "repo": "nixpkgs",
+        "rev": "358209ba1b1a1257ac05ed718b54aa0863b21810",
+        "type": "github"
+      },
+      "original": {
+        "owner": "yukiisbored",
+        "ref": "yuki_is_bored/lutris-extra",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "comma": "comma",
         "emacs-overlay": "emacs-overlay",
         "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "nixpkgsFork": "nixpkgsFork"
       }
     }
   },

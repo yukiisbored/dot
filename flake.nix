@@ -15,6 +15,8 @@
       url = "github:Shopify/comma";
       flake = false;
     };
+
+    nixpkgsFork.url = "github:yukiisbored/nixpkgs/yuki_is_bored/lutris-extra";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
@@ -24,6 +26,20 @@
         (self: super: {
           comma = import "${inputs.comma}/default.nix" { pkgs = self; };
         })
+        (self: super:
+          let
+            forkPkgs = import inputs.nixpkgsFork {
+              system = "x86_64-linux";
+              config.allowUnfree = true;
+            };
+          in
+            {
+              lutris = forkPkgs.lutris.override {
+                extraLibraries = pkgs: with pkgs; [
+                  opusfile
+                ];
+              };
+            })
       ];
     in {
       homeConfigurations.core = home-manager.lib.homeManagerConfiguration {
