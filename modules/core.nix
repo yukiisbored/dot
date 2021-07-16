@@ -11,6 +11,7 @@
     sqlite
     httpie
 
+    git-crypt
     trezor_agent
     gnupg
     age
