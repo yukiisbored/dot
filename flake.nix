@@ -18,7 +18,7 @@
         inputs.emacs-overlay.overlay
       ];
     in {
-      homeConfigurations.linux = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations.core = home-manager.lib.homeManagerConfiguration {
         system = "x86_64-linux";
         homeDirectory = "/home/yuki";
         username = "yuki";
@@ -29,11 +29,30 @@
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = overlays;
             imports = [
-              ./nix/home.nix
+              ./modules/home.nix
             ];
           };
       };
 
-      linux = self.homeConfigurations.linux.activationPackage;
+      homeConfigurations.desktop = home-manager.lib.homeManagerConfiguration {
+        system = "x86_64-linux";
+        homeDirectory = "/home/yuki";
+        username = "yuki";
+
+        configuration = { pkgs, config, ... }:
+          {
+            xdg.configFile."nix/nix.conf".source = ./nix/nix.conf;
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.overlays = overlays;
+            imports = [
+              ./modules/home.nix
+              ./modules/desktop.nix
+            ];
+          };
+      };
+
+
+      core = self.homeConfigurations.core.activationPackage;
+      desktop = self.homeConfigurations.desktop.activationPackage;
     };
 }

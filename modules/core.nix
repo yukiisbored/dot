@@ -3,8 +3,6 @@
 {
   programs.home-manager.enable = true;
 
-  home.username = "yuki";
-  home.homeDirectory = "/home/yuki";
   home.packages = with pkgs; [
     emacsGcc
 
@@ -12,10 +10,14 @@
     silver-searcher
     sqlite
     httpie
+
+    trezor_agent
+    gnupg
     age
 
     pipenv
     poetry
+    python38
     python38Packages.python-language-server
 
     nodejs-12_x
@@ -31,6 +33,11 @@
     direnv
     niv
     cachix
+
+    gcc
+    gnumake
+    cmake
+    libtool
   ];
 
   services.lorri.enable = true;
