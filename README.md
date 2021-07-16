@@ -8,6 +8,14 @@ with mainly GNU stow.
 a Nix flake is also provided to install and configure all of the
 software that is utilized by Yuki.
 
+## Using flake
+
+See `flake.nix` for available homeConfigurations
+
+```console
+$ nix run '.#linux'
+``
+
 ## Software
 
 | Function             | Software                                       |
