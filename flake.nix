@@ -29,7 +29,7 @@
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = overlays;
             imports = [
-              ./modules/home.nix
+              ./modules/core.nix
             ];
           };
       };
@@ -45,7 +45,7 @@
             nixpkgs.config.allowUnfree = true;
             nixpkgs.overlays = overlays;
             imports = [
-              ./modules/home.nix
+              ./modules/core.nix
               ./modules/desktop.nix
             ];
           };
