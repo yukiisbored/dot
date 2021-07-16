@@ -12,8 +12,16 @@ software that is utilized by Yuki.
 
 See `flake.nix` for available homeConfigurations
 
+If you want to replicate the entire desktop experience,
+
 ```console
-$ nix run '.#linux'
+$ nix run '.#desktop'
+```
+
+If you want to replicate the essentials,
+
+```console
+$ nix run '.#core'
 ```
 
 ## Software
