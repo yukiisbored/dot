@@ -20,3 +20,4 @@ session.*
 .mc-lists.el
 elpy
 straight
+eln-cache
