@@ -1,5 +1,8 @@
 { pkgs, config, ... }:
 
+let
+  nodePackages' = import ./../node/default.nix { inherit pkgs; };
+in
 {
   programs.home-manager.enable = true;
 
@@ -27,6 +30,10 @@
     nodePackages.typescript-language-server
     nodePackages.node2nix
 
+    purescript
+    spago
+    nodePackages'.purescript-language-server
+
     kubectl
     kubectx
     google-cloud-sdk
@@ -37,6 +44,9 @@
     niv
     cachix
     comma
+
+    dhall
+    dhall-lsp-server
 
     gcc
     gnumake
