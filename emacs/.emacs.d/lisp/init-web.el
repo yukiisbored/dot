@@ -17,4 +17,6 @@
   (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'")))
   (define-derived-mode svelte-mode web-mode "svelte-mode"))
 
+(use-package pug-mode)
+
 (provide 'init-web)
