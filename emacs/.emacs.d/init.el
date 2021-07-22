@@ -39,6 +39,8 @@
 (require 'init-fsharp)
 (require 'init-csharp)
 (require 'init-haxe)
+(require 'init-dhall)
+(require 'init-purescript)
 
 ;; Org
 (require 'init-org)

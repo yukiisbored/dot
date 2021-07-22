@@ -14,7 +14,9 @@
          (haxe-mode       . eglot-ensure)
          (haxe-mode       . yuki/haxe-workspace-config)
          (rust-mode       . eglot-ensure)
-         (svelte-mode     . eglot-ensure))
+         (svelte-mode     . eglot-ensure)
+         (dhall-mode      . eglot-ensure)
+         (purescript-mode . eglot-ensure))
   :bind (:map eglot-mode-map
          ("C-c e r" . eglot-rename)
          ("C-c e f" . eglot-format)
@@ -45,6 +47,14 @@
 
   ;; Svelte
   (add-to-list 'eglot-server-programs
-               `(svelte-mode . ("svelteserver" "--stdio"))))
+               `(svelte-mode . ("svelteserver" "--stdio")))
+
+  ;; Dhall
+  (add-to-list 'eglot-server-programs
+               `(dhall-mode . ("dhall-lsp-server")))
+
+  ;; Purescript
+  (add-to-list 'eglot-server-programs
+               `(purescript-mode . ("purescript-language-server" "--stdio"))))
 
 (provide 'init-eglot)
