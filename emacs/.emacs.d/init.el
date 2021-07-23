@@ -16,7 +16,7 @@
 (require 'init-overhaul)
 
 ;; Language server support
-(require 'init-eglot)
+(require 'init-lsp)
 
 ;; Programming modes
 (require 'init-web)
