@@ -34,6 +34,10 @@ in
     spago
     nodePackages'.purescript-language-server
 
+    ghc
+    cabal-install
+    haskell-language-server
+
     kubectl
     kubectx
     google-cloud-sdk
