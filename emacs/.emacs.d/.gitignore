@@ -21,3 +21,6 @@ session.*
 elpy
 straight
 eln-cache
+emojis
+eshell
+url
