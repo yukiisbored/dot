@@ -2,6 +2,8 @@
   description = "Yuki's dotfiles";
 
   inputs = {
+    utils.url = "github:numtide/flake-utils";
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
     home-manager = {
       url = "github:nix-community/home-manager/release-21.05";
@@ -18,82 +20,72 @@
     nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs @ { self, nixpkgs, home-manager, ... }:
-    let
-      supportedSystems = nixpkgs.lib.platforms.unix;
+  outputs = inputs @ { self, utils, home-manager, ... }:
+    with utils.lib; eachDefaultSystem (system:
+      let
+        config = {
+          allowUnfree = true;
+        };
 
-      forAllSystems = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
+        forkPkgs = import inputs.nixpkgsFork {
+          inherit system;
+          inherit config;
+        };
 
-      pkgsFor = forAllSystems (system:
-        let
-          config = {
-            allowUnfree = true;
-          };
+        unstablePkgs = import inputs.nixpkgsUnstable {
+          inherit system;
+          inherit config;
+        };
 
-          forkPkgs = import inputs.nixpkgsFork {
-            inherit system;
-            inherit config;
-          };
+        pkgs = import inputs.nixpkgs {
+          inherit system;
+          inherit config;
 
-          unstablePkgs = import inputs.nixpkgsUnstable {
-            inherit system;
-            inherit config;
-          };
-        in
-          import nixpkgs {
-            inherit system;
-            inherit config;
+          overlays = [
+            inputs.emacs-overlay.overlay
 
-            overlays = [
-              inputs.emacs-overlay.overlay
+            (self: super: {
+              comma = import "${inputs.comma}/default.nix" { pkgs = self; };
 
-              (self: super: {
-                comma = import "${inputs.comma}/default.nix" { pkgs = self; };
+              lutris = forkPkgs.lutris.override {
+                extraLibraries = pkgs: with pkgs; [
+                  opusfile
+                ];
+              };
 
-                lutris = forkPkgs.lutris.override {
-                  extraLibraries = pkgs: with pkgs; [
-                    opusfile
-                  ];
-                };
+              rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
 
-                rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
-
-                python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
-              })
-            ];
-          });
-    in {
-      homeConfigurations.core = home-manager.lib.homeManagerConfiguration rec {
-        system = "x86_64-linux";
-        pkgs = pkgsFor.${system};
-
-        homeDirectory = "/home/yuki";
-        username = "yuki";
-
-        configuration = { pkgs, config, ... }: {
-          imports = [
-            ./modules/core.nix
+              python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
+            })
           ];
         };
-      };
 
-      homeConfigurations.desktop = home-manager.lib.homeManagerConfiguration rec {
-        system = "x86_64-linux";
-        pkgs = pkgsFor.${system};
+        homeConfig = imports: (home-manager.lib.homeManagerConfiguration {
+          inherit system;
+          inherit pkgs;
 
-        homeDirectory = "/home/yuki";
-        username = "yuki";
+          homeDirectory = "/home/yuki";
+          username = "yuki";
 
-        configuration = { pkgs, config, ... }: {
-          imports = [
-            ./modules/core.nix
-            ./modules/desktop.nix
-          ];
-        };
-      };
+          configuration = { ... }: {
+            inherit imports;
+          };
+        }).activationPackage;
+      in
+        rec {
+          packages = {
+            core = homeConfig [ ./modules/core.nix ];
+            desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
+          };
 
+          defaultPackage = packages.desktop;
 
-      core = self.homeConfigurations.core.activationPackage;
-      desktop = self.homeConfigurations.desktop.activationPackage;
-    };
+          apps = {
+            core = mkApp { drv = packages.core; };
+            desktop = mkApp { drv = packages.desktop; };
+          };
+
+          defaultApp = apps.desktop;
+        }
+    );
 }

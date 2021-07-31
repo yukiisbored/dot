@@ -174,7 +174,8 @@
         "nixpkgs": "nixpkgs",
         "nixpkgsFork": "nixpkgsFork",
         "nixpkgsUnstable": "nixpkgsUnstable",
-        "rnix-lsp": "rnix-lsp"
+        "rnix-lsp": "rnix-lsp",
+        "utils": "utils_2"
       }
     },
     "utils": {
@@ -184,6 +185,21 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "rev": "5021eac20303a61fafe17224c087f5519baed54d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_2": {
+      "locked": {
+        "lastModified": 1623875721,
+        "narHash": "sha256-A8BU7bjS5GirpAUv4QA+QnJ4CceLHkcXdRp4xITDB0s=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "f7e004a55b120c02ecb6219596820fcd32ca8772",
         "type": "github"
       },
       "original": {
