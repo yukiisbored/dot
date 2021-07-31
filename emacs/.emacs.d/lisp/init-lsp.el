@@ -12,7 +12,6 @@
    (go-mode         . lsp)
    (elixir-mode     . lsp)
    (java-mode       . lsp)
-   (haskell-mode    . lsp)
    (typescript-mode . lsp)
    (nix-mode        . lsp)
    (scala-mode      . lsp)
