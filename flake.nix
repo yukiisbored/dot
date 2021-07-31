@@ -14,6 +14,7 @@
       flake = false;
     };
     nixpkgsFork.url = "github:yukiisbored/nixpkgs/yuki_is_bored/lutris-extra";
+    nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = inputs @ { self, nixpkgs, home-manager, ... }:
@@ -29,6 +30,11 @@
           };
 
           forkPkgs = import inputs.nixpkgsFork {
+            inherit system;
+            inherit config;
+          };
+
+          unstablePkgs = import inputs.nixpkgsUnstable {
             inherit system;
             inherit config;
           };
@@ -48,6 +54,8 @@
                     opusfile
                   ];
                 };
+
+                python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
               })
             ];
           });

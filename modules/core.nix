@@ -24,7 +24,7 @@ in
     pipenv
     poetry
     python38
-    python38Packages.python-language-server
+    python38Packages.python-lsp-server
 
     nodejs-12_x
     nodePackages.typescript-language-server
