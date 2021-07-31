@@ -234,6 +234,10 @@
 (use-package emojify
   :hook (after-init . global-emojify-mode))
 
+;; Auto formatting
+(use-package format-all
+  :hook (prog-mode . format-all-mode))
+
 ;; Doom Emacs Theme
 (use-package doom-themes
   :if window-system
