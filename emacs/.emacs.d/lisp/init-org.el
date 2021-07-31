@@ -22,7 +22,9 @@
         org-export-with-smart-quotes        t
         org-startup-with-inline-images      t
         org-src-window-setup                'current-window
-        org-html-head-include-default-style nil)
+        org-html-head-include-default-style nil
+        org-html-html5-fancy                t
+        org-html-doctype                    "html5")
   :config
   ;; Babel
   (defvar load-language-list `((emacs-lisp . t)
