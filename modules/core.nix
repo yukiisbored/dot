@@ -16,6 +16,7 @@ in
     sqlite
     httpie
 
+    git-lfs
     git-crypt
     trezor_agent
     gnupg
@@ -48,6 +49,7 @@ in
     niv
     cachix
     comma
+    rnix-lsp
 
     dhall
     dhall-lsp-server

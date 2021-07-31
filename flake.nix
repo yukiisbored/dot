@@ -13,6 +13,7 @@
       url = "github:Shopify/comma";
       flake = false;
     };
+    rnix-lsp.url = "github:nix-community/rnix-lsp";
     nixpkgsFork.url = "github:yukiisbored/nixpkgs/yuki_is_bored/lutris-extra";
     nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
@@ -54,6 +55,8 @@
                     opusfile
                   ];
                 };
+
+                rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
 
                 python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
               })
