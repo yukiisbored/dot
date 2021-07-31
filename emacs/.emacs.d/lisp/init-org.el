@@ -110,7 +110,7 @@
          (list "org-static"
                :base-directory "~/org/static"
                :exclude (regexp-opt '("public/"))
-               :base-extension (regexp-opt '("css" "js" "png" "jpg" "gif"))
+               :base-extension (regexp-opt '("css" "js" "png" "jpg" "gif" "webm" "mp4"))
                :publishing-directory "~/org/public/static"
                :recursive t
                :publishing-function 'org-publish-attachment)
