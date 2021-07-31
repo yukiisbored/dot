@@ -5,6 +5,7 @@
     ungoogled-chromium
     thunderbird
 
+    zoom-us
     element-desktop
     tdesktop
 
