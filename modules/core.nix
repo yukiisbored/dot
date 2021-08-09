@@ -49,7 +49,6 @@ in
     niv
     cachix
     comma
-    rnix-lsp
 
     dhall
     dhall-lsp-server
@@ -58,6 +57,8 @@ in
     gnumake
     cmake
     libtool
+
+    asciinema
   ];
 
   services.lorri.enable = true;
