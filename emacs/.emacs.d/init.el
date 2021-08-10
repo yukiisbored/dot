@@ -120,6 +120,10 @@
 ;; Use SSH, not SCP for Tramp
 (setq tramp-default-method "ssh")
 
+;; Do not emit warnings
+(setq warning-suppress-log-types '((comp))
+      warning-suppress-types '((comp)))
+
 ;; Declare package archives
 (setq package-archives
   `(("gnu" . "https://elpa.gnu.org/packages/")
