@@ -8,6 +8,54 @@ in
 
   xdg.configFile."nix/nix.conf".source = ./../nix/nix.conf;
 
+
+  programs.zsh = {
+    enable = true;
+
+    initExtra = builtins.readFile ./../zsh/.zshrc;
+    envExtra = builtins.readFile ./../zsh/.zshenv;
+
+    plugins = [
+      {
+        name = "zsh-history-substring-search";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-history-substring-search";
+          rev = "4abed97b6e67eb5590b39bcd59080aa23192f25d";
+          sha256 = "8kiPBtgsjRDqLWt0xGJ6vBBLqCWEIyFpYfd+s1prHWk=";
+        };
+      }
+      {
+        name = "zsh-autosuggestions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-autosuggestions";
+          rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
+          sha256 = "KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
+        };
+      }
+      {
+        name = "zsh-completions";
+        src = pkgs.fetchFromGitHub {
+          owner = "zsh-users";
+          repo = "zsh-completions";
+          rev = "d4511c23659381b56dec8be8c8553b7ff3dc5fd8";
+          sha256 = "OOMabAhRcgs7YpCx+g6yIqTHDMwMueBD+s7P+WCdHPk=";
+        };
+      }
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma";
+          repo = "fast-syntax-highlighting";
+          rev = "817916dfa907d179f0d46d8de355e883cf67bd97";
+          sha256 = "rHdOnA0Y/i/ISDlriGrGDXr5rD2nZ4T7iuG7PFUVIFQ=";
+        };
+      }
+    ];
+  };
+
+
   home.packages = with pkgs; [
     emacsGcc
 

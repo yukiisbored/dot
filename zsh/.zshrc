@@ -83,12 +83,6 @@ if [[ -n "$WSL" ]] {
 }
 
 # Aliases
-if (( $+commands[$EDITOR] )) {
-   alias vi="$EDITOR"
-   alias vim="$EDITOR"
-   alias nano="$EDITOR"
-}
-
 if (( $+commands[doas] )) {
    function sudo() {
        echo "It's doas, dummy.">&2
