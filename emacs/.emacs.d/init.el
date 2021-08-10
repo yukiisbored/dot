@@ -264,7 +264,10 @@
   :bind (("C-x o" . ace-window))
   :init
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-        aw-minibuffer-flag t))
+        aw-minibuffer-flag t)
+
+  (custom-set-faces
+    '(aw-leading-char-face ((t (:foreground "red" :weight bold :height 2.0))))))
 
 ;; Dashboard
 (use-package dashboard
@@ -436,6 +439,8 @@
 
   ;; Invisible modelines
   (custom-set-faces
+   '(doom-modeline-bar ((t (:background "#fafafa"))))
+   '(doom-modeline-bar-inactive ((t (:background "#fafafa"))))
    '(mode-line-inactive ((t (:box nil :foreground "#9e9e9e" :background "#fafafa"))))
    '(mode-line   ((t (:box nil :background "#fafafa"))))))
 
