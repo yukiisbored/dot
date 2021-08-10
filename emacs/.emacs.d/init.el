@@ -399,8 +399,10 @@
   (setq vterm-buffer-name-string "*vterm: %s*"))
 
 ;; direnv integration
-(use-package direnv
-  :hook ((after-init . direnv-mode)))
+(use-package envrc
+  :bind
+  (("C-c e" . envrc-command-map))
+  :hook ((after-init . envrc-global-mode)))
 
 ;; Auto formatting
 (use-package format-all
@@ -451,7 +453,6 @@
                                        "<~" "<~~" "</" "</>" "~@" "~-" "~>" "~~" "~~>" "%%")))
 
 (use-package lsp-mode
-  :after direnv
   :hook
   ((lsp-mode . lsp-enable-which-key-integration)
    (lsp-mode . lsp-lens-mode)
@@ -472,8 +473,7 @@
    (purescript-mode . lsp))
   :init
   (setq lsp-enable-file-watchers nil
-        lsp-keymap-prefix "C-c l")
-  (advice-add 'lsp :before 'direnv-update-environment)) ;; Hack to get direnv running before lsp
+        lsp-keymap-prefix "C-c l"))
 
 (use-package lsp-ui
   :after lsp-mode)
