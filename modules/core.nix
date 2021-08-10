@@ -2,6 +2,12 @@
 
 let
   nodePackages' = import ./../node/default.nix { inherit pkgs; };
+
+  emacs = pkgs.emacsWithPackagesFromUsePackage {
+    package = pkgs.emacsGcc;
+    config = ./../emacs/.emacs.d/init.el;
+    alwaysEnsure = true;
+  };
 in
 {
   programs.home-manager.enable = true;
@@ -55,9 +61,15 @@ in
     ];
   };
 
+  home.file.".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
+  home.file.".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
+  home.file.".emacs.d/site-lisp/ligature.el".source = builtins.fetchurl {
+    url = "https://raw.githubusercontent.com/mickeynp/ligature.el/45132323de4f42d3273307f569c2a8418020a46f/ligature.el";
+    sha256 = "0cc8j8zv7s3d4dv3sb9xdaygnqc20v7jiqcpvi8d4gjifbbcmbhq";
+  };
 
   home.packages = with pkgs; [
-    emacsGcc
+    emacs
 
     tmux
     silver-searcher

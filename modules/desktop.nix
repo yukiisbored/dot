@@ -29,5 +29,6 @@
 
     fira
     fira-code
+    emacs-all-the-icons-fonts
   ];
 }
