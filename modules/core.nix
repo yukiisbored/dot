@@ -14,7 +14,6 @@ in
 
   xdg.configFile."nix/nix.conf".source = ./../nix/nix.conf;
 
-
   programs.zsh = {
     enable = true;
 
@@ -61,11 +60,34 @@ in
     ];
   };
 
-  home.file.".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
-  home.file.".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
-  home.file.".emacs.d/site-lisp/ligature.el".source = builtins.fetchurl {
-    url = "https://raw.githubusercontent.com/mickeynp/ligature.el/45132323de4f42d3273307f569c2a8418020a46f/ligature.el";
-    sha256 = "0cc8j8zv7s3d4dv3sb9xdaygnqc20v7jiqcpvi8d4gjifbbcmbhq";
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+
+    nix-direnv = {
+      enable = true;
+      enableFlakes = true;
+    };
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = "Muhammad Kaisar Arkhan (Yuki)";
+    userEmail = "hi@yukiisbo.red";
+  };
+
+  home.file = {
+    ".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
+    ".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
+    ".emacs.d/site-lisp/ligature.el".source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/mickeynp/ligature.el/45132323de4f42d3273307f569c2a8418020a46f/ligature.el";
+      sha256 = "0cc8j8zv7s3d4dv3sb9xdaygnqc20v7jiqcpvi8d4gjifbbcmbhq";
+    };
   };
 
   home.packages = with pkgs; [
