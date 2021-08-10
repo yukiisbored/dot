@@ -264,10 +264,7 @@
   :bind (("C-x o" . ace-window))
   :init
   (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-        aw-minibuffer-flag t)
-
-  (custom-set-faces
-    '(aw-leading-char-face ((t (:foreground "red" :weight bold :height 2.0))))))
+        aw-minibuffer-flag t))
 
 ;; Dashboard
 (use-package dashboard
@@ -418,31 +415,103 @@
 ;; Doom Emacs Theme
 (use-package doom-themes
   :if window-system
-  :hook ((after-init . (lambda () (load-theme 'doom-opera-light t)))
+  :hook ((after-init . (lambda () (enable-theme 'doom-yuki)))
          (after-init . doom-themes-visual-bell-config)
          (after-init . doom-themes-treemacs-config)
          (after-init . doom-themes-org-config))
   :init
-  ;; Increase contrast for some stuff
-  ;; Some people really need to read W3C WCAG
-  (setq doom-opera-light-brighter-comments t)
+  (require 'doom-themes)
+  (def-doom-theme doom-yuki
+    "Yuki's personal theme based on DOOM"
 
-  ;; Invisible window-divider
-  (custom-set-faces
-   '(window-divider ((t (:foreground "#fafafa" :inherit (vertical-border)))))))
+    ;; name        default   256       16
+    ((bg         '("#ffffff" nil       nil))
+     (bg-alt     '("#eeeeee" nil       nil))
+     (base0      '("#ffffff" "#dfdfdf" nil))
+     (base1      '("#f5f5f5" "#979797" nil))
+     (base2      '("#eeeeee" "#6b6b6b" nil))
+     (base3      '("#e0e0e0" "#525252" nil))
+     (base4      '("#bdbdbd" "#3f3f3f" nil))
+     (base5      '("#9e9e9e" "#262626" nil))
+     (base6      '("#757575" "#2e2e2e" nil))
+     (base7      '("#616161" "#1e1e1e" nil))
+     (base8      '("#424242" "#000000" nil))
+     (fg         '("#2a2a2a" "#2a2a2a" nil))
+     (fg-alt     '("#454545" "#757575" nil))
+
+     (grey       base4)
+     (red        '("#bf1a08" "#bf1a08" "red"          ))
+     (orange     '("#da8548" "#dd8844" "brightred"    ))
+     (green      '("#50a14f" "#50a14f" "green"        ))
+     (teal       '("#4db5bd" "#44b9b1" "brightgreen"  ))
+     (yellow     '("#986801" "#986801" "yellow"       ))
+     (blue       '("#4078f2" "#4078f2" "brightblue"   ))
+     (dark-blue  '("#a0bcf8" "#a0bcf8" "blue"         ))
+     (magenta    '("#7807b5" "#7807b5" "magenta"      ))
+     (violet     '("#aa0aff" "#aa0aff" "brightmagenta"))
+     (cyan       '("#0184bc" "#0184bc" "brightcyan"   ))
+     (dark-cyan  '("#005478" "#005478" "cyan"         ))
+
+     ;; face categories -- required for all themes
+     (highlight      violet)
+     (vertical-bar   bg-alt)
+     (selection      dark-blue)
+     (builtin        magenta)
+     (comments       dark-cyan)
+     (doc-comments   cyan)
+     (constants      violet)
+     (functions      violet)
+     (keywords       magenta)
+     (methods        cyan)
+     (operators      blue)
+     (type           yellow)
+     (strings        green)
+     (variables      (doom-lighten magenta 0.5))
+     (numbers        orange)
+     (region         bg-alt)
+     (error          red)
+     (warning        yellow)
+     (success        green)
+     (vc-modified    orange)
+     (vc-added       green)
+     (vc-deleted     red)
+
+     (modeline-fg     nil)
+     (modeline-fg-alt base5)
+
+     (modeline-bg            (car bg))
+     (modeline-bg-l          (car bg-alt))
+     (modeline-bg-inactive   (car bg-alt))
+     (modeline-bg-inactive-l (doom-darken bg-alt 0.1)))
+
+    ;; Base theme face overrides
+    ((lazy-highlight :background (doom-blend bg highlight 0.7) :weight 'bold)
+     (window-divider :foreground bg)
+
+     ;; modeline
+     (mode-line :background modeline-bg :foreground modeline-fg)
+     (mode-line-inactive :background modeline-bg :foreground modeline-fg-alt)
+     (mode-line-emphasis :foreground highlight)
+
+     ;; doom-modeline
+     (doom-modeline-bar :background bg)
+     (doom-modeline-bar-inactive :background bg)
+
+     ;; ivy
+     (ivy-current-match :background base3)
+
+     ;; ace-window
+     (aw-leading-char-face :foreground highlight :weight 'bold :height 4.0)
+
+     ;; solaire-mode
+     (solaire-mode-line-face :inherit 'mode-line :background modeline-bg-l)
+     (solaire-mode-line-inactive-face :inherit 'mode-line-inactive :background modeline-bg-inactive-l))))
 
 (use-package doom-modeline
   :hook ((after-init . doom-modeline-mode))
   :init
   (setq doom-modeline-height 48
-        doom-modeline-bar-width 1)
-
-  ;; Invisible modelines
-  (custom-set-faces
-   '(doom-modeline-bar ((t (:background "#fafafa"))))
-   '(doom-modeline-bar-inactive ((t (:background "#fafafa"))))
-   '(mode-line-inactive ((t (:box nil :foreground "#9e9e9e" :background "#fafafa"))))
-   '(mode-line   ((t (:box nil :background "#fafafa"))))))
+        doom-modeline-bar-width 1))
 
 ;; Ligatures
 (use-package ligature
