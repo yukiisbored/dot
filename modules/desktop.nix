@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
 {
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     ungoogled-chromium
     thunderbird
@@ -24,5 +26,8 @@
 
     lutris
     unityhub
+
+    fira
+    fira-code
   ];
 }
