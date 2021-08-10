@@ -256,17 +256,11 @@
   (setq which-key-idle-delay 0.5))
 
 ;; Easier window management
-(use-package switch-window
-  :bind (("C-x o" . switch-window)
-         ("C-x 1" . switch-window-then-maximize)
-         ("C-x 2" . switch-window-then-split-below)
-         ("C-x 3" . switch-window-then-split-right)
-         ("C-x 0" . switch-window-then-delete))
+(use-package ace-window
+  :bind (("C-x o" . ace-window))
   :init
-  (setq switch-window-shortcut-style 'qwerty
-        switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k"
-                                         "l" ";" "w" "e" "i" "o")
-        switch-window-minibuffer-shortcut ?z))
+  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
+        aw-minibuffer-flag t))
 
 ;; Dashboard
 (use-package dashboard
@@ -375,11 +369,24 @@
 (use-package projectile-git-autofetch
   :after projectile)
 
-;; Neotree
-(use-package neotree
-  :bind (("C-x t" . neotree-toggle))
+;; Treemacs
+(use-package treemacs
+  :bind
+  (("M-0"       . treemacs-select-window)
+   ("C-x t 1"   . treemacs-delete-other-windows)
+   ("C-x t t"   . treemacs)
+   ("C-x t B"   . treemacs-bookmark)
+   ("C-x t C-t" . treemacs-find-file)
+   ("C-x t M-t" . treemacs-find-tag))
   :init
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow)))
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
+
+(use-package treemacs-projectile
+  :after (treemacs projectile))
+
+(use-package treemacs-magit
+  :after (treemacs magit))
 
 ;; Editorconfig
 (use-package editorconfig
@@ -426,6 +433,7 @@
    '(mode-line-inactive ((t (:box nil :foreground "#9e9e9e" :background "#fafafa"))))
    '(mode-line   ((t (:box nil :background "#fafafa"))))))
 
+;; Ligatures
 (use-package ligature
   :load-path "~/.emacs.d/site-lisp"
   :hook ((after-init . global-ligature-mode))
