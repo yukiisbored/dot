@@ -890,10 +890,18 @@
                :base-directory "~/org/drafts/"
                :base-extension "org"
                :publishing-directory "~/org/public/drafts/"
+               :auto-preamble t
                :recursive t
-               :publishing-function 'org-html-publish-to-html
+               :publishing-function 'yuki/org-html-publish-to-html
                :headline-levels 3
-               :auto-preamble t)
+               :auto-preamble t
+               :html-link-home "https://notes.yukiisbo.red"
+               :html-link-use-abs-url t
+               :html-link-org-files-as-html t
+               :author "Yuki"
+               :email "hi@yukiisbo.red"
+               :meta-image "static/images/profile.png"
+               :meta-type "article")
          (list "org-feed"
                :base-directory "~/org"
                :exclude (regexp-opt '("index.org" "setup.org" "intro.org" "drafts/" "feed.org"))
