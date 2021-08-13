@@ -466,7 +466,7 @@
      (operators      blue)
      (type           yellow)
      (strings        green)
-     (variables      (doom-lighten magenta 0.5))
+     (variables      violet)
      (numbers        orange)
      (region         bg-alt)
      (error          red)
