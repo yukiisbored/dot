@@ -129,6 +129,10 @@
   `(("gnu" . "https://elpa.gnu.org/packages/")
     ("melpa" . "https://melpa.org/packages/")))
 
+;; Declare local load paths
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp")
+(add-to-list 'load-path "~/.emacs.d/site-lisp")
+
 ;; Start Emacs package manager
 (setq package-enable-at-startup nil)
 (package-initialize)
@@ -516,6 +520,7 @@
 ;; Ligatures
 (use-package ligature
   :load-path "~/.emacs.d/site-lisp"
+  :pin manual
   :hook ((after-init . global-ligature-mode))
   :config
   (ligature-set-ligatures 't '("www"))
@@ -635,6 +640,26 @@
 
 (use-package haskell-mode
   :hook ((haskell-mode . interactive-haskell-mode)))
+
+(use-package tuareg)
+
+(use-package merlin
+  :after tuareg company
+  :pin manual
+  :hook
+  (tuareg-mode . merlin-mode)
+  (merlin-mode . company-mode)
+  :custom
+  (merlin-command "ocamlmerlin"))
+
+(use-package utop
+  :after tuareg
+  :pin manual
+  :hook
+  (tuareg-mode . utop-minor-mode))
+
+(use-package ocp-indent
+  :pin manual)
 
 (use-package typescript-mode)
 

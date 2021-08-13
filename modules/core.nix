@@ -93,54 +93,71 @@ in
   home.packages = with pkgs; [
     emacs
 
+    # General utilities
     tmux
     silver-searcher
     sqlite
     httpie
+    asciinema
 
+    # File storage
     git-lfs
     git-crypt
     trezor_agent
     gnupg
     age
 
+    # Cloud
+    kubectl
+    kubectx
+    google-cloud-sdk
+
+    # Python
     pipenv
     poetry
     python38
     python38Packages.python-lsp-server
 
+    # JavaScript / Node.js
     nodejs-12_x
     nodePackages.typescript-language-server
     nodePackages.node2nix
 
+    # PureScript
     purescript
     spago
     nodePackages'.purescript-language-server
 
+    # Haskell
     ghc
     cabal-install
     haskell-language-server
 
-    kubectl
-    kubectx
-    google-cloud-sdk
-
+    # Haxe
     haxe
 
+    # Nix
     direnv
     niv
     cachix
     comma
 
+    # Dhall
     dhall
     dhall-lsp-server
 
+    # C/C++
     gcc
     gnumake
     cmake
     libtool
 
-    asciinema
+    # OCaml
+    dune_2
+    opam
+    ocamlPackages.merlin
+    ocamlPackages.ocp-indent
+    ocamlPackages.utop
   ];
 
   services.lorri.enable = true;
