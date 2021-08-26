@@ -20,6 +20,10 @@ in
     initExtra = builtins.readFile ./../zsh/.zshrc;
     envExtra = builtins.readFile ./../zsh/.zshenv;
 
+    shellAliases = {
+      flake = "nix flake";
+    };
+
     plugins = [
       {
         name = "zsh-history-substring-search";
