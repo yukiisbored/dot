@@ -16,7 +16,6 @@
       flake = false;
     };
     rnix-lsp.url = "github:nix-community/rnix-lsp";
-    nixpkgsFork.url = "github:yukiisbored/nixpkgs/yuki_is_bored/lutris-extra";
     nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
@@ -25,11 +24,6 @@
       let
         config = {
           allowUnfree = true;
-        };
-
-        forkPkgs = import inputs.nixpkgsFork {
-          inherit system;
-          inherit config;
         };
 
         unstablePkgs = import inputs.nixpkgsUnstable {
@@ -47,7 +41,7 @@
             (self: super: {
               comma = import "${inputs.comma}/default.nix" { pkgs = self; };
 
-              lutris = forkPkgs.lutris.override {
+              lutris = unstablePkgs.lutris.override {
                 extraLibraries = pkgs: with pkgs; [
                   opusfile
                 ];
