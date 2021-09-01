@@ -15,8 +15,6 @@ in
 {
   programs.home-manager.enable = true;
 
-  xdg.configFile."nix/nix.conf".source = ./../nix/nix.conf;
-
   programs.zsh = {
     enable = true;
 
