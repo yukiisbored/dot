@@ -1,14 +1,15 @@
 Config
-  { font        = "xft:Fira Code:size=12"
+  { font        = "xft:Ricty Diminished with Fira Code:size=12"
   , border      = NoBorder
-  , bgColor     = "#ffffff"
-  , fgColor     = "#2a2a2a"
+  , bgColor     = "#000000"
+  , fgColor     = "#aaaaaa"
+  , alpha       = 200
   , position    = Top
   , commands    =
-      [ Run Cpu ["-t", "cpu: <fc=#aa0aff><bar> <total>%</fc>"] 10
-      , Run Memory ["-t","mem: <fc=#aa0aff><usedbar> <usedratio>%</fc>"] 10
-      , Run BatteryP ["BAT0"] ["-t", "bat: <fc=#aa0aff><leftbar> <left>%</fc>"] 600
-      , Run Date "<fc=#aa0aff>%a, %d %b %H:%M</fc>" "date" 10
+      [ Run Cpu ["-t", "cpu: <fc=#ffffff><bar> <total>%</fc>"] 10
+      , Run Memory ["-t","mem: <fc=#ffffff><usedbar> <usedratio>%</fc>"] 10
+      , Run BatteryP ["BAT0"] ["-t", "bat: <fc=#ffffff><leftbar> <left>%</fc>"] 600
+      , Run Date "<fc=#ffffff>%a, %d %b %H:%M</fc>" "date" 10
       , Run StdinReader
       ]
   , sepChar     = "%"

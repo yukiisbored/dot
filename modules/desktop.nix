@@ -6,6 +6,12 @@
   xsession = {
     enable = true;
 
+    pointerCursor = {
+      package = pkgs.vanilla-dmz;
+      name    = "Vanilla-DMZ-AA";
+      size    = 16;
+    };
+
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -14,10 +20,49 @@
     };
 
     initExtra = ''
-      ${pkgs.xfce.xfce4-power-manager}/bin/xfce4-power-manager &
       ${pkgs.nitrogen}/bin/nitrogen --restore &
     '';
   };
+
+  services.dunst = {
+    enable = true;
+
+    settings = {
+      global = {
+        geometry = "384x16-24+45";
+        transparency = 5;
+        frame_color = "#000000";
+        frame_width = 16;
+
+        font = "Fira Sans 12";
+
+        markup = "full";
+        format = "<b>%s</b>\\n%b";
+
+        vertical_alignment = "center";
+        word_wrap = true;
+        ignore_newline = false;
+      };
+
+      urgency_normal = {
+        background = "#000000";
+        foreground = "#ffffff";
+        timeout = 10;
+      };
+    };
+  };
+
+  services.picom = {
+    enable = true;
+    shadow = true;
+  };
+
+  services.screen-locker = {
+    enable = true;
+    lockCmd = "${pkgs.betterlockscreen}/bin/betterlockscreen --lock";
+  };
+
+  services.flameshot.enable = true;
 
   services.grobi = {
     enable = true;
@@ -46,8 +91,6 @@
     ];
   };
 
-  services.xscreensaver.enable = true;
-
   programs.kitty = {
     enable = true;
 
@@ -68,7 +111,7 @@
     enable = true;
 
     font = "Fira Code 12";
-    theme = "Arc";
+    theme = "sidebar";
 
     extraConfig = {
       modi = "drun";
@@ -96,12 +139,11 @@
 
     fira
     fira-code
+    rictydiminished-with-firacode
     emacs-all-the-icons-fonts
 
     xmobar
-    xfce.xfce4-power-manager
-    xfce.xfce4-screenshooter
-    xscreensaver
+    betterlockscreen
     nitrogen
   ];
 }
