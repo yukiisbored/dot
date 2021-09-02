@@ -139,8 +139,9 @@
 
     fira
     fira-code
-    rictydiminished-with-firacode
+    migu
     emacs-all-the-icons-fonts
+    font-awesome_4
 
     xmobar
     betterlockscreen

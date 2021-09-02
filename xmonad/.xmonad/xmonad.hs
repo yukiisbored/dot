@@ -63,6 +63,7 @@ myXmobarPP = def { ppCurrent         = xmobarColor "white" "" . toJapanese
                  , ppUrgent          = xmobarColor "red" "yellow" . toJapanese
                  , ppLayout          = const ""
                  , ppTitle           = xmobarColor "white" "" . shorten 80
+                 , ppSep             = "  :  "
                  }
 
 myLayout =
