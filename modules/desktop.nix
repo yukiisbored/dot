@@ -127,6 +127,7 @@
     zoom-us
     element-desktop
     tdesktop
+    discord
 
     gimp
     darktable
