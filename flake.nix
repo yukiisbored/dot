@@ -31,27 +31,28 @@
           inherit config;
         };
 
+        overlays = [
+          inputs.emacs-overlay.overlay
+
+          (self: super: {
+            comma = import "${inputs.comma}/default.nix" { pkgs = self; };
+
+            lutris = unstablePkgs.lutris.override {
+              extraLibraries = pkgs: with pkgs; [
+                opusfile
+              ];
+            };
+
+            rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
+
+            python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
+          })
+        ];
+
         pkgs = import inputs.nixpkgs {
           inherit system;
           inherit config;
-
-          overlays = [
-            inputs.emacs-overlay.overlay
-
-            (self: super: {
-              comma = import "${inputs.comma}/default.nix" { pkgs = self; };
-
-              lutris = unstablePkgs.lutris.override {
-                extraLibraries = pkgs: with pkgs; [
-                  opusfile
-                ];
-              };
-
-              rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
-
-              python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
-            })
-          ];
+          inherit overlays;
         };
 
         homeConfig = imports: ({ ... }: { inherit imports; });
