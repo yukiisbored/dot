@@ -54,25 +54,25 @@
           ];
         };
 
-        homeConfig = imports: (home-manager.lib.homeManagerConfiguration {
+        homeConfig = imports: ({ ... }: { inherit imports; });
+        mkActivationPackage = configuration: (home-manager.lib.homeManagerConfiguration {
           inherit system;
           inherit pkgs;
+          inherit configuration;
 
           homeDirectory = "/home/yuki";
           username = "yuki";
-
-          configuration = { ... }: {
-            inherit imports;
-          };
-        });
+        }).activationPackage;
       in
         rec {
+          inherit overlays;
+
           homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
             desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
           };
 
-          packages = builtins.mapAttrs (_: x: x.activationPackage) homeConfigurations;
+          packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
           defaultPackage = packages.desktop;
 
           apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
