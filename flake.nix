@@ -64,22 +64,20 @@
           configuration = { ... }: {
             inherit imports;
           };
-        }).activationPackage;
+        });
       in
         rec {
-          packages = {
+          homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
             desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
           };
 
+          packages = builtins.mapAttrs (_: x: x.activationPackage) homeConfigurations;
           defaultPackage = packages.desktop;
 
-          apps = {
-            core = mkApp { drv = packages.core; };
-            desktop = mkApp { drv = packages.desktop; };
-          };
-
+          apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
           defaultApp = apps.desktop;
         }
     );
 }
+`
