@@ -164,6 +164,9 @@ in
     ocamlPackages.merlin
     ocamlPackages.ocp-indent
     ocamlPackages.utop
+
+    # Java
+    jdk11
   ];
 
   services.lorri.enable = true;
