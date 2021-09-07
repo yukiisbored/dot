@@ -73,7 +73,7 @@ myLayout =
 
 myConfig xmproc =
   def
-      { terminal           = "kitty"
+      { terminal           = "alacritty"
       , modMask            = mod4Mask
       , borderWidth        = 3
       , logHook            = xmobarLogHook

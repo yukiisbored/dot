@@ -91,19 +91,56 @@
     ];
   };
 
-  programs.kitty = {
+  programs.alacritty = {
     enable = true;
 
-    font = {
-      name = "Fira Code";
-      size = 12;
-    };
-
     settings = {
-      foreground = "#000000";
-      background = "#ffffff";
+      env = {
+        TERM = "xterm-256color";
+      };
 
-      window_padding_width  = "16";
+      font = {
+        normal.family = "Fira Code";
+        size = 8.0;
+      };
+
+      colors = {
+        primary = {
+          foreground = "#2a2a2a";
+          background = "#ffffff";
+          bright_foreground = "#2a2a2a";
+        };
+
+        normal = {
+          black =   "#2a2a2a";
+          red =     "#bf1a08";
+          green =   "#50a14f";
+          yellow =  "#986801";
+          blue =    "#4078f2";
+          magenta = "#7807b5";
+          cyan =    "#0184bc";
+          white =   "#ffffff";
+        };
+
+        bright = {
+          black =   "#2a2a2a";
+          red =     "#bf1a08";
+          green =   "#50a14f";
+          yellow =  "#986801";
+          blue =    "#4078f2";
+          magenta = "#7807b5";
+          cyan =    "#0184bc";
+          white =   "#ffffff";
+        };
+
+      };
+
+      window = {
+        padding = {
+          x = 16;
+          y = 16;
+        };
+      };
     };
   };
 
