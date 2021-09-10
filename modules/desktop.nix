@@ -97,11 +97,13 @@
     settings = {
       env = {
         TERM = "xterm-256color";
+        WINIT_HIDPI_FACTOR = "1";
+        WINIT_X11_SCALE_FACTOR = "1";
       };
 
       font = {
         normal.family = "Fira Code";
-        size = 8.0;
+        size = 12.0;
       };
 
       colors = {
