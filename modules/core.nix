@@ -8,9 +8,6 @@ let
     config = ./../emacs/.emacs.d/init.el;
     alwaysEnsure = true;
   };
-
-  ghc = pkgs.haskellPackages.ghcWithPackages
-    (p: with p; [ lens mtl xmonad xmonad-contrib xmonad-extras ]);
 in
 {
   programs.home-manager.enable = true;
