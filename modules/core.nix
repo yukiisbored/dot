@@ -93,8 +93,8 @@ in
   fonts.fontconfig.enable = true;
 
   xdg = {
-    enable=true;
-    mime.enable=true;
+    enable = true;
+    mime.enable = true;
   };
 
   targets.genericLinux.enable = true;
