@@ -74,10 +74,10 @@
           };
 
           packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
-          defaultPackage = packages.desktop;
+          defaultPackage = packages.core;
 
           apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
-          defaultApp = apps.desktop;
+          defaultApp = apps.core;
         }
     );
 }
