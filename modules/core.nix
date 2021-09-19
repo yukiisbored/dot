@@ -92,6 +92,13 @@ in
 
   fonts.fontconfig.enable = true;
 
+  xdg = {
+    enable=true;
+    mime.enable=true;
+  };
+
+  targets.genericLinux.enable = true;
+
   home.packages = with pkgs; [
     emacs
 
