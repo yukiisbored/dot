@@ -75,11 +75,6 @@ in
     };
   };
 
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
   programs.git = {
     enable = true;
     userName = "Muhammad Kaisar Arkhan (Yuki)";
