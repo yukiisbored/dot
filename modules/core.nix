@@ -124,43 +124,32 @@ in
     # Python
     pipenv
     poetry
-    python38
     python38Packages.python-lsp-server
 
     # JavaScript / Node.js
-    nodejs-12_x
+    yarn
+    nodePackages.npm
     nodePackages.typescript-language-server
     nodePackages.node2nix
 
     # PureScript
-    purescript
     spago
     nodePackages'.purescript-language-server
 
     # Haskell
-    ghc
-    cabal-install
     haskell-language-server
     haskellPackages.brittany
-
-    # Haxe
-    haxe
 
     # Nix
     direnv
     niv
     cachix
     comma
+    nixUnstable
 
     # Dhall
     dhall
     dhall-lsp-server
-
-    # C/C++
-    gcc
-    gnumake
-    cmake
-    libtool
 
     # OCaml
     dune_2
@@ -169,8 +158,6 @@ in
     ocamlPackages.ocp-indent
     ocamlPackages.utop
 
-    # Java
-    jdk11
     # Fonts
     fira
     fira-code
