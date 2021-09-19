@@ -177,12 +177,6 @@
 
     libreoffice-still
 
-    fira
-    fira-code
-    migu
-    emacs-all-the-icons-fonts
-    font-awesome_4
-
     xmobar
     betterlockscreen
     nitrogen

@@ -90,6 +90,8 @@ in
     };
   };
 
+  fonts.fontconfig.enable = true;
+
   home.packages = with pkgs; [
     emacs
 
@@ -162,6 +164,12 @@ in
 
     # Java
     jdk11
+    # Fonts
+    fira
+    fira-code
+    migu
+    emacs-all-the-icons-fonts
+    font-awesome_4
   ];
 
   services.lorri.enable = true;
