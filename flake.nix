@@ -71,13 +71,14 @@
           homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
             desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
+            generic = homeConfig [ ./modules/generic.nix ];
           };
 
           packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
-          defaultPackage = packages.core;
+          defaultPackage = packages.generic;
 
           apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
-          defaultApp = apps.core;
+          defaultApp = apps.generic;
         }
     );
 }
