@@ -159,6 +159,8 @@
 
   xdg.configFile."xmobar/.xmobarrc".source = ./../xmonad/.config/xmobar/.xmobarrc;
 
+  services.syncthing.enable = true;
+
   home.packages = with pkgs; [
     firefox
     thunderbird
@@ -180,5 +182,7 @@
     xmobar
     betterlockscreen
     nitrogen
+
+    appimage-run
   ];
 }
