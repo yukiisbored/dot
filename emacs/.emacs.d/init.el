@@ -264,11 +264,17 @@
   (setq which-key-idle-delay 0.5))
 
 ;; Easier window management
-(use-package ace-window
-  :bind (("C-x o" . ace-window))
+(use-package switch-window
+  :bind (("C-x o" . switch-window)
+         ("C-x 1" . switch-window-then-maximize)
+         ("C-x 2" . switch-window-then-split-below)
+         ("C-x 3" . switch-window-then-split-right)
+         ("C-x 0" . switch-window-then-delete))
   :init
-  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)
-        aw-minibuffer-flag t))
+  (setq switch-window-shortcut-style 'qwerty
+        switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k"
+                                         "l" ";" "w" "e" "i" "o")
+        switch-window-minibuffer-shortcut ?z))
 
 ;; Dashboard
 (use-package dashboard
@@ -976,6 +982,20 @@
   :hook ((org-mode . org-bullets-mode))
   :init
   (setq org-bullets-bullet-list '(" ")))
+
+(use-package org-roam
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :custom
+  ((org-roam-directory (file-truename "~/roam"))
+   (org-roam-v2-ack t))
+  :config
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
 
 (use-package htmlize)
 
