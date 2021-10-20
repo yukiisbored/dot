@@ -98,6 +98,7 @@ in
     sqlite
     httpie
     asciinema
+    graphviz
 
     # File storage
     git-lfs
