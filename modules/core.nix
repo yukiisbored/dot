@@ -4,7 +4,7 @@ let
   nodePackages' = import ./../node/default.nix { inherit pkgs; };
 
   emacs = pkgs.emacsWithPackagesFromUsePackage {
-    package = pkgs.emacsGcc;
+    package = pkgs.emacsPgtkGcc;
     config = ./../emacs/.emacs.d/init.el;
     alwaysEnsure = true;
   };
