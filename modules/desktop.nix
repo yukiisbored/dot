@@ -70,8 +70,8 @@
     rules = [
       {
         name = "Home";
-        outputs_connected = [ "DP-1-2" ];
-        configure_single = "DP-1-2";
+        outputs_connected = [ "DP-1" ];
+        configure_single = "DP-1";
         primary = true;
         atomic = true;
         execute_after = [
@@ -80,8 +80,8 @@
       }
       {
         name = "Mobile";
-        outputs_disconnected = [ "DP-1-2" ];
-        configure_single = "eDP-1";
+        outputs_disconnected = [ "DP-1" ];
+        configure_single = "LVDS-1";
         primary = true;
         atomic = true;
         execute_after = [
