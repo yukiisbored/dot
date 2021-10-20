@@ -160,7 +160,7 @@
   xdg.configFile."xmobar/.xmobarrc".source = ./../xmonad/.config/xmobar/.xmobarrc;
 
   home.packages = with pkgs; [
-    ungoogled-chromium
+    firefox
     thunderbird
 
     zoom-us
