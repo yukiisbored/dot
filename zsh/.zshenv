@@ -38,6 +38,10 @@ if [ -d "$HOME/.gnupg/trezor" ]; then
     export GNUPGHOME="$HOME/.gnupg/trezor"
 fi
 
+if [ -d "$HOME/.asdf" ]; then
+    source "$HOME/.asdf/asdf.sh"
+fi
+
 export GOPATH="$HOME"
 
 if command -v emacsclient >/dev/null; then
