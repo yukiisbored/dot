@@ -71,7 +71,7 @@
           homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
             desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
-            generic = homeConfig [ ./modules/generic.nix ];
+            generic = homeConfig [ ./modules/core.nix ./modules/generic.nix ];
           };
 
           packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
