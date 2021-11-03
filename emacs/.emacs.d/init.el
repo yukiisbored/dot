@@ -997,6 +997,19 @@
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
+(use-package simple-httpd)
+(use-package websocket)
+
+(use-package org-roam-ui
+  :load-path "~/.emacs.d/private/org-roam-ui"
+  :pin manual
+  :commands (org-roam-ui-mode)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
 (use-package htmlize)
 
 (if (file-directory-p "/usr/local/share/emacs/site-lisp/mu4e")
