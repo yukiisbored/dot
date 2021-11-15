@@ -77,11 +77,6 @@ PS1='$(spath -f) %% '
 
 [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
 
-# Setup DISPLAY on WSL
-if [[ -n "$WSL" ]] {
-   export DISPLAY="$(ip route show 0.0.0.0/0 dev eth0 | cut -d' ' -f3):0.0"
-}
-
 # Aliases
 if (( $+commands[doas] )) {
    function sudo() {
@@ -132,31 +127,24 @@ if (( $+commands[direnv] )) {
     eval "$(direnv hook zsh)"
 }
 
-# zinit
-ZINIT_DIR="$HOME/.zinit"
+# antigen
+ZSH_ANTIGEN="$HOME/.antigen.zsh"
 
-function bootstrap_zinit() {
-    if [[ ! -d "$HOME/.zinit" ]] {
-        mkdir "$ZINIT_DIR"
-        git clone https://github.com/zdharma/zinit.git "$ZINIT_DIR/bin"
+function bootstrap_antigen() {
+    if [[ ! -f "$ZSH_ANTIGEN" ]] {
+        curl -L git.io/antigen -o "$ZSH_ANTIGEN"
     } else {
-        echo "zinit already bootstrapped."
+        echo "antigen already bootstrapped."
     }
 }
 
-if [[ -d "$HOME/.zinit" ]] {
-    source "$HOME/.zinit/bin/zinit.zsh"
+if [[ -f "$ZSH_ANTIGEN" ]] {
+    source "$ZSH_ANTIGEN"
 
-    function _yuki_history_substring_search_keybinds() {
-        bindkey "^P" history-substring-search-up
-        bindkey "^N" history-substring-search-down
-    }
+    antigen bundle zsh-users/zsh-history-substring-search
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle zsh-users/zsh-completions
+    antigen bundle zsh-users/zsh-syntax-highlighting
 
-    zinit light-mode for \
-          zsh-users/zsh-autosuggestions \
-          zsh-users/zsh-completions \
-          zdharma/fast-syntax-highlighting
-
-    zinit light-mode atload:'_yuki_history_substring_search_keybinds' for \
-          zsh-users/zsh-history-substring-search
+    antigen apply
 }

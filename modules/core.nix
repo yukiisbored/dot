@@ -58,12 +58,12 @@ in
         };
       }
       {
-        name = "fast-syntax-highlighting";
+        name = "zsh-syntax-highlighting";
         src = pkgs.fetchFromGitHub {
-          owner = "zdharma";
-          repo = "fast-syntax-highlighting";
-          rev = "817916dfa907d179f0d46d8de355e883cf67bd97";
-          sha256 = "rHdOnA0Y/i/ISDlriGrGDXr5rD2nZ4T7iuG7PFUVIFQ=";
+          owner = "zsh-users";
+          repo = "zsh-syntax-highlighting";
+          rev = "c7caf57ca805abd54f11f756fda6395dd4187f8a";
+          sha256 = "MeuPqDeJpbJi2hT7VUgyQNSmDPY/biUncvyY78IBfzM=";
         };
       }
     ];
