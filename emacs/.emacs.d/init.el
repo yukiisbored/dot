@@ -410,15 +410,11 @@
    (lsp-mode . lsp-lens-mode)
 
    (python-mode     . lsp)
-   (csharp-mode     . lsp)
    (php-mode        . lsp)
    (go-mode         . lsp)
    (elixir-mode     . lsp)
    (java-mode       . lsp)
    (typescript-mode . lsp)
-   (nix-mode        . lsp)
-   (scala-mode      . lsp)
-   (haxe-mode       . lsp)
    (rust-mode       . lsp)
    (svelte-mode     . lsp)
    (dhall-mode      . lsp)
@@ -518,20 +514,10 @@
 (use-package clojure-mode)
 (use-package cider)
 
-(use-package fsharp-mode)
-
-(use-package csharp-mode
-  :mode "\\.cs\\'")
-
-(use-package haxe-mode)
-
 (use-package dhall-mode
   :config
   (setq dhall-format-arguments (\` ("--ascii"))
         dhall-use-header-line nil))
-
-(use-package purescript-mode
-  :hook ((purescript-mode . turn-on-purescript-indentation)))
 
 (use-package org
   :ensure org-plus-contrib
