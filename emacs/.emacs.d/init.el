@@ -124,6 +124,12 @@
 (setq warning-suppress-log-types '((comp))
       warning-suppress-types '((comp)))
 
+;; Setup hooks to boot server
+(add-hook 'after-init-hook
+          (lambda ()
+            (require 'server)
+            (unless (server-running-p) (server-start))))
+
 ;; Declare package archives
 (setq package-archives
   `(("gnu" . "https://elpa.gnu.org/packages/")
