@@ -510,26 +510,6 @@
 (use-package haskell-mode
   :hook ((haskell-mode . interactive-haskell-mode)))
 
-(use-package tuareg)
-
-(use-package merlin
-  :after tuareg company
-  :pin manual
-  :hook
-  (tuareg-mode . merlin-mode)
-  (merlin-mode . company-mode)
-  :custom
-  (merlin-command "ocamlmerlin"))
-
-(use-package utop
-  :after tuareg
-  :pin manual
-  :hook
-  (tuareg-mode . utop-minor-mode))
-
-(use-package ocp-indent
-  :pin manual)
-
 (use-package typescript-mode)
 
 (use-package nix-mode
