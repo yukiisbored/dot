@@ -191,35 +191,12 @@
     (tool-bar-mode -1)
     (scroll-bar-mode -1)
     (set-face-attribute 'default nil :font "Fira Code-12" )
-    (set-frame-font "Fira Code-12" nil t)
-    (modify-frame-parameters frame
-                             `((min-height . 1)
-                               (height     . 45)
-	                       (min-width  . 1)
-                               (width      . 81)
-                               (vertical-scroll-bars . nil)
-                               (internal-border-width . 24)
-                               (left-fringe    . 1)
-                               (right-fringe   . 1)
-                               (tool-bar-lines . 0)
-                               (menu-bar-lines . 0)))))
+    (set-frame-font "Fira Code-12" nil t)))
 
 (add-hook 'after-make-frame-functions 'yuki/frame-mods)
 (add-hook 'after-init-hook
           (lambda ()
             (yuki/frame-mods (selected-frame))))
-
-;; Underline should be on the bottomline
-(setq x-underline-at-descent-line t)
-
-;; Vertical window divider
-(setq window-divider-default-right-width 24
-      window-divider-default-places      'right-only)
-
-(window-divider-mode 1)
-
-;; Make Emacs UI look more bearable
-(setq widget-image-enable nil)
 
 ;; The superior completion front-end
 (use-package ivy
@@ -427,107 +404,6 @@
 ;; Auto formatting
 (use-package format-all
   :hook (prog-mode . format-all-mode))
-
-;; Doom Emacs Theme
-(use-package doom-themes
-  :if window-system
-  :hook ((after-init . (lambda () (enable-theme 'doom-yuki)))
-         (after-init . doom-themes-visual-bell-config)
-         (after-init . doom-themes-treemacs-config)
-         (after-init . doom-themes-org-config))
-  :init
-  (require 'doom-themes)
-  (def-doom-theme doom-yuki
-    "Yuki's personal theme based on DOOM"
-
-    ;; name        default   256       16
-    ((bg         '("#ffffff" nil       nil))
-     (bg-alt     '("#eeeeee" nil       nil))
-     (base0      '("#ffffff" "#dfdfdf" nil))
-     (base1      '("#f5f5f5" "#979797" nil))
-     (base2      '("#eeeeee" "#6b6b6b" nil))
-     (base3      '("#e0e0e0" "#525252" nil))
-     (base4      '("#bdbdbd" "#3f3f3f" nil))
-     (base5      '("#9e9e9e" "#262626" nil))
-     (base6      '("#757575" "#2e2e2e" nil))
-     (base7      '("#616161" "#1e1e1e" nil))
-     (base8      '("#424242" "#000000" nil))
-     (fg         '("#2a2a2a" "#2a2a2a" nil))
-     (fg-alt     '("#454545" "#757575" nil))
-
-     (grey       base4)
-     (red        '("#bf1a08" "#bf1a08" "red"          ))
-     (orange     '("#da8548" "#dd8844" "brightred"    ))
-     (green      '("#50a14f" "#50a14f" "green"        ))
-     (teal       '("#4db5bd" "#44b9b1" "brightgreen"  ))
-     (yellow     '("#986801" "#986801" "yellow"       ))
-     (blue       '("#4078f2" "#4078f2" "brightblue"   ))
-     (dark-blue  '("#a0bcf8" "#a0bcf8" "blue"         ))
-     (magenta    '("#7807b5" "#7807b5" "magenta"      ))
-     (violet     '("#aa0aff" "#aa0aff" "brightmagenta"))
-     (cyan       '("#0184bc" "#0184bc" "brightcyan"   ))
-     (dark-cyan  '("#005478" "#005478" "cyan"         ))
-
-     ;; face categories -- required for all themes
-     (highlight      violet)
-     (vertical-bar   bg-alt)
-     (selection      dark-blue)
-     (builtin        magenta)
-     (comments       dark-cyan)
-     (doc-comments   cyan)
-     (constants      violet)
-     (functions      violet)
-     (keywords       magenta)
-     (methods        cyan)
-     (operators      blue)
-     (type           yellow)
-     (strings        green)
-     (variables      violet)
-     (numbers        orange)
-     (region         bg-alt)
-     (error          red)
-     (warning        yellow)
-     (success        green)
-     (vc-modified    orange)
-     (vc-added       green)
-     (vc-deleted     red)
-
-     (modeline-fg     nil)
-     (modeline-fg-alt base5)
-
-     (modeline-bg            (car bg))
-     (modeline-bg-l          (car bg-alt))
-     (modeline-bg-inactive   (car bg-alt))
-     (modeline-bg-inactive-l (doom-darken bg-alt 0.1)))
-
-    ;; Base theme face overrides
-    ((lazy-highlight :background (doom-blend bg highlight 0.7) :weight 'bold)
-     (window-divider :foreground bg)
-
-     ;; modeline
-     (mode-line :background modeline-bg :foreground modeline-fg)
-     (mode-line-inactive :background modeline-bg :foreground modeline-fg-alt)
-     (mode-line-emphasis :foreground highlight)
-
-     ;; doom-modeline
-     (doom-modeline-bar :background bg)
-     (doom-modeline-bar-inactive :background bg)
-
-     ;; ivy
-     (ivy-current-match :background base3)
-
-     ;; ace-window
-     (aw-leading-char-face :foreground highlight :weight 'bold :height 4.0)
-
-     ;; solaire-mode
-     (solaire-mode-line-face :inherit 'mode-line :background modeline-bg-l)
-     (solaire-mode-line-inactive-face :inherit 'mode-line-inactive :background modeline-bg-inactive-l))))
-
-(use-package doom-modeline
-  :hook ((after-init . doom-modeline-mode))
-  :init
-  (setq doom-modeline-height 48
-        doom-modeline-bar-width 1))
 
 ;; Ligatures
 (use-package ligature
@@ -769,28 +645,6 @@
   (add-to-list 'org-latex-packages-alist '("" "minted"))
   (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
-  ;; Use bullet points for lists
-  (font-lock-add-keywords 'org-mode
-                            '(("^ *\\(-\\) "
-                               (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
-
-  ;; Heading fonts
-  (let* ((variable-tuple (cond ((x-list-fonts "Fira Sans")    '(:font   "Fira Sans"))
-                               ((x-family-fonts "Sans Serif") '(:family "Sans Serif"))
-                               (nil (warn "Cannot find a Sans Serif Font. Install Fira Sans."))))
-         (base-font-color     (face-foreground 'default nil 'default))
-         (headline           `(:inherit default :weight bold :foreground ,base-font-color)))
-
-    (custom-theme-set-faces 'user
-                            `(org-level-8 ((t (,@headline ,@variable-tuple))))
-                            `(org-level-7 ((t (,@headline ,@variable-tuple))))
-                            `(org-level-6 ((t (,@headline ,@variable-tuple))))
-                            `(org-level-5 ((t (,@headline ,@variable-tuple))))
-                            `(org-level-4 ((t (,@headline ,@variable-tuple :height 1.1))))
-                            `(org-level-3 ((t (,@headline ,@variable-tuple :height 1.25))))
-                            `(org-level-2 ((t (,@headline ,@variable-tuple :height 1.5))))
-                            `(org-level-1 ((t (,@headline ,@variable-tuple :height 1.75))))
-                            `(org-document-title ((t (,@headline ,@variable-tuple :height 1.5 :underline nil))))))
   ;; Publishing
   (require 'ox-publish)
   (require 'ox-rss)
@@ -983,11 +837,6 @@
   :after org
   :config
   (add-to-list 'org-src-lang-modes '("dot" . graphviz-dot)))
-
-(use-package org-bullets
-  :hook ((org-mode . org-bullets-mode))
-  :init
-  (setq org-bullets-bullet-list '(" ")))
 
 (use-package org-roam
   :bind (("C-c n l" . org-roam-buffer-toggle)
