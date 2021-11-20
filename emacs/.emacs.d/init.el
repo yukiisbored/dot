@@ -772,11 +772,6 @@
                :publishing-function 'org-publish-attachment)
          (list "org" :components '("org-posts" "org-drafts" "org-feed" "org-static")))))
 
-(use-package ein
-  :after org
-  :if (executable-find "jupyter")
-  :init (cl-pushnew '(ein . t) load-language-list))
-
 (use-package graphviz-dot-mode
   :after org
   :config
