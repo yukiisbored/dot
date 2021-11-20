@@ -8,13 +8,6 @@ let
     config = ./../emacs/.emacs.d/init.el;
     alwaysEnsure = true;
   };
-
-  org-roam-ui = pkgs.fetchFromGitHub {
-    owner = "org-roam";
-    repo = "org-roam-ui";
-    rev = "c93f6b61a8d3d2edcf07eda6220278c418d1054b";
-    sha256 = "0hk8idlgmzw9p06afn4vm8mkxp8whnv3kqi9dfc0607giw14frbb";
-  };
 in
 {
   programs.home-manager.enable = true;
@@ -92,7 +85,6 @@ in
       url = "https://raw.githubusercontent.com/mickeynp/ligature.el/45132323de4f42d3273307f569c2a8418020a46f/ligature.el";
       sha256 = "0cc8j8zv7s3d4dv3sb9xdaygnqc20v7jiqcpvi8d4gjifbbcmbhq";
     };
-    ".emacs.d/private/org-roam-ui".source = org-roam-ui;
   };
 
   fonts.fontconfig.enable = true;

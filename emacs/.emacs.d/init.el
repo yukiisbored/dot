@@ -795,8 +795,6 @@
 (use-package websocket)
 
 (use-package org-roam-ui
-  :load-path "~/.emacs.d/private/org-roam-ui"
-  :pin manual
   :commands (org-roam-ui-mode)
   :config
   (setq org-roam-ui-sync-theme t
