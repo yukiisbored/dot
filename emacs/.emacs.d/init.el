@@ -106,7 +106,9 @@
 
 (require 'use-package)
 
-(use-package diminish)
+(use-package diminish
+  :diminish subword-mode eldoc-mode)
+
 (use-package bind-key)
 (use-package gnu-elpa-keyring-update)
 
@@ -128,6 +130,7 @@
            (exec-path-from-shell-variables '("PATH" "GOPATH" "NIX_PATH"))))
 
 (use-package ivy
+  :diminish
   :bind (("C-c C-r" . ivy-resume))
   :hook ((after-init . ivy-mode))
   :custom ((ivy-use-virtual-buffers      t)
@@ -162,6 +165,7 @@
   :bind (("C-c k" . counsel-ag)))
 
 (use-package which-key
+  :diminish
   :hook ((after-init . which-key-mode))
   :custom ((which-key-idle-delay 0.5)))
 
@@ -198,6 +202,7 @@
   :bind (("C-x g" . magit-status)))
 
 (use-package whitespace-cleanup-mode
+  :diminish
   :hook ((after-init . global-whitespace-cleanup-mode)))
 
 (use-package undo-tree
@@ -216,6 +221,7 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
 (use-package rainbow-mode
+  :diminish
   :hook (prog-mode . rainbow-mode))
 
 (use-package imenu-anywhere
@@ -230,6 +236,7 @@
          ([return]  . nil)))
 
 (use-package yasnippet
+  :diminish yas-minor-mode
   :hook ((after-init . yas-global-mode))
   :custom ((yas-snippet-dirs '("~/.emacs.d/snippets"))))
 
@@ -237,6 +244,7 @@
   :after yasnippet)
 
 (use-package company
+  :diminish
   :hook ((after-init . global-company-mode))
   :bind (("C-c y" . company-yasnippet))
   :custom ((company-tooltip-align-annotations t)
@@ -248,6 +256,7 @@
   :hook ((company-mode . company-quickhelp-mode)))
 
 (use-package flycheck
+  :diminish
   :hook ((after-init . global-flycheck-mode))
   :custom ((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 
@@ -263,6 +272,7 @@
   :after projectile)
 
 (use-package editorconfig
+  :diminish
   :hook ((after-init . editorconfig-mode)))
 
 (use-package vterm
@@ -275,7 +285,15 @@
   :hook ((after-init . envrc-global-mode)))
 
 (use-package format-all
+  :diminish
   :hook (prog-mode . format-all-mode))
+
+(use-package modus-themes
+  :custom ((modus-themes-mixed-fonts t)
+	   (modus-themes-syntax '(yellow-comments green-strings alt-syntax))
+	   (modus-themes-scale-headings t))
+  :init (modus-themes-load-themes)
+  :config (modus-themes-load-operandi))
 
 (use-package lsp-mode
   :hook ((lsp-mode . lsp-enable-which-key-integration)
