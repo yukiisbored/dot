@@ -112,8 +112,8 @@
 
 (use-package paradox
   :custom ((paradox-execute-asynchronously t)
-           (paradox-github-token t)
-           (paradox-display-star-count nil))
+           (paradox-github-token           t)
+           (paradox-display-star-count     nil))
   :init
   (defun yuki/paradox-enable (&rest _)
     "Enable paradox, overriding the default package-menu."
@@ -130,8 +130,8 @@
 (use-package ivy
   :bind (("C-c C-r" . ivy-resume))
   :hook ((after-init . ivy-mode))
-  :custom ((ivy-use-virtual-buffers t)
-           (ivy-initial-inputs-alist nil)
+  :custom ((ivy-use-virtual-buffers      t)
+           (ivy-initial-inputs-alist     nil)
            (enable-recursive-minibuffers t)))
 
 (use-package ivy-rich
@@ -171,24 +171,23 @@
          ("C-x 2" . switch-window-then-split-below)
          ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete))
-  :custom ((switch-window-shortcut-style 'qwerty)
-           (switch-window-qwerty-shortcuts '("a" "s" "d" "f"
-                                             "j" "k" "l" ";"
-                                             "w" "e" "i" "o"))
+  :custom ((switch-window-shortcut-style      'qwerty)
+           (switch-window-qwerty-shortcuts    '("a" "s" "d" "f"
+                                                "j" "k" "l" ";"
+                                                "w" "e" "i" "o"))
            (switch-window-minibuffer-shortcut ?z)))
 
 (use-package dashboard
-  :custom
-  ((dashboard-startup-banner (expand-file-name "assets/dashboard_banner.png" user-emacs-directory))
-   (dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
-   (dashboard-center-content t)
-   (dashboard-set-heading-icons t)
-   (dashboard-set-file-icons t)
-   (dashboard-set-navigator t)
-   (dashboard-items '((recents . 5)
-		      (projects . 5)
-		      (registers . 5)))
-   (dashboard-page-separator "\n\n\n"))
+  :custom ((dashboard-startup-banner    (expand-file-name "assets/dashboard_banner.png" user-emacs-directory))
+	   (dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
+	   (dashboard-center-content    t)
+	   (dashboard-set-heading-icons t)
+	   (dashboard-set-file-icons    t)
+	   (dashboard-set-navigator     t)
+	   (dashboard-items             '((recents . 5)
+			                  (projects . 5)
+			                  (registers . 5)))
+	   (dashboard-page-separator    "\n\n\n"))
   :init
   (dashboard-setup-startup-hook))
 
@@ -202,9 +201,8 @@
   :hook ((after-init . global-whitespace-cleanup-mode)))
 
 (use-package undo-tree
-  :custom
-  (undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo")))
-  (undo-tree-auto-save-history t)
+  :custom ((undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo")))
+	   (undo-tree-auto-save-history       t))
   :init
   (unless (file-directory-p "~/.emacs.d/undo")
     (make-directory "~/.emacs.d/undo")))
@@ -233,8 +231,7 @@
 
 (use-package yasnippet
   :hook ((after-init . yas-global-mode))
-  :custom
-  ((yas-snippet-dirs '("~/.emacs.d/snippets"))))
+  :custom ((yas-snippet-dirs '("~/.emacs.d/snippets"))))
 
 (use-package yasnippet-snippets
   :after yasnippet)
@@ -260,7 +257,7 @@
 (use-package projectile
   :hook ((after-init . projectile-mode))
   :custom ((projectile-completion-system 'ivy)
-           (projectile-keymap-prefix (kbd "C-c p"))))
+           (projectile-keymap-prefix     (kbd "C-c p"))))
 
 (use-package projectile-git-autofetch
   :after projectile)
@@ -295,7 +292,7 @@
          (dhall-mode      . lsp)
          (purescript-mode . lsp))
   :custom ((lsp-enable-file-watchers nil)
-           (lsp-keymap-prefix "C-c l")))
+           (lsp-keymap-prefix        "C-c l")))
 
 (use-package lsp-ui
   :after lsp-mode)
@@ -370,49 +367,47 @@
 (use-package cider)
 
 (use-package dhall-mode
-  :config
-  (setq dhall-format-arguments (\` ("--ascii"))
-        dhall-use-header-line nil))
+  :custom ((dhall-format-arguments (\` ("--ascii")))
+	   (dhall-use-header-line nil)))
 
 (use-package org
   :ensure org-plus-contrib
   :hook
   ((org-mode . (lambda () (hl-line-mode nil)))
    (org-mode . auto-fill-mode))
-  :custom
-  ((initial-major-mode                  'org-mode)
-   (org-startup-indented                t)
-   (org-pretty-entities                 t)
-   (org-hide-emphasis-markers           t)
-   (org-fontify-whole-heading-line      t)
-   (org-fontify-done-headline           t)
-   (org-fontify-quote-and-verse-blocks  t)
-   (org-ellipsis                        "  ")
+  :custom ((initial-major-mode                  'org-mode)
+	   (org-startup-indented                t)
+	   (org-pretty-entities                 t)
+	   (org-hide-emphasis-markers           t)
+	   (org-fontify-whole-heading-line      t)
+	   (org-fontify-done-headline           t)
+	   (org-fontify-quote-and-verse-blocks  t)
+	   (org-ellipsis                        "  ")
 
-   (org-src-tab-acts-natively           t)
-   (org-src-fontify-natively            t)
-   (org-src-window-setup                'current-window)
+	   (org-src-tab-acts-natively           t)
+	   (org-src-fontify-natively            t)
+	   (org-src-window-setup                'current-window)
 
-   (org-latex-to-pdf-process            '("xelatex -interaction nonstopmode %f"
-                                          "xelatex -interaction nonstopmode %f"))
-   (org-latex-listings                  'minted)
+	   (org-latex-to-pdf-process            '("xelatex -interaction nonstopmode %f"
+						  "xelatex -interaction nonstopmode %f"))
+	   (org-latex-listings                  'minted)
 
-   (org-confirm-babel-evaluate          nil)
+	   (org-confirm-babel-evaluate          nil)
 
-   (org-export-with-smart-quotes        t)
-   (org-export-with-section-numbers     nil)
-   (org-export-with-toc                 nil)
+	   (org-export-with-smart-quotes        t)
+	   (org-export-with-section-numbers     nil)
+	   (org-export-with-toc                 nil)
 
-   (org-startup-with-inline-images      t)
+	   (org-startup-with-inline-images      t)
 
-   (org-html-divs                       '((preamble  "header" "top")
-                                          (content   "main"   "content")
-                                          (postamble "footer" "postamble")))
-   (org-html-container-element          "section")
-   (org-html-validation-link            nil)
-   (org-html-head-include-default-style nil)
-   (org-html-html5-fancy                t)
-   (org-html-doctype                    "html5"))
+	   (org-html-divs                       '((preamble  "header" "top")
+						  (content   "main"   "content")
+						  (postamble "footer" "postamble")))
+	   (org-html-container-element          "section")
+	   (org-html-validation-link            nil)
+	   (org-html-head-include-default-style nil)
+	   (org-html-html5-fancy                t)
+	   (org-html-doctype                    "html5"))
   :config
   ;; Babel
   (defvar load-language-list `((emacs-lisp . t)
@@ -624,19 +619,17 @@
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture)
          ("C-c n j" . org-roam-dailies-capture-today))
-  :custom
-  ((org-roam-directory (file-truename "~/roam"))
-   (org-roam-v2-ack t))
+  :custom ((org-roam-directory (file-truename "~/roam"))
+	   (org-roam-v2-ack t))
   :config
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
 (use-package org-roam-ui
   :commands (org-roam-ui-mode)
-  :custom
-  ((org-roam-ui-sync-theme t)
-   (org-roam-ui-follow t)
-   (org-roam-ui-update-on-save t)
-   (org-roam-ui-open-on-start t)))
+  :custom ((org-roam-ui-sync-theme t)
+	   (org-roam-ui-follow t)
+	   (org-roam-ui-update-on-save t)
+	   (org-roam-ui-open-on-start t)))
 
 (use-package htmlize)
