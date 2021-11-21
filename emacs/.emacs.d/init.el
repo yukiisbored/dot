@@ -1,157 +1,108 @@
-;; Do not alter the startup file for customize variables
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file 'noerr)
 
-;; Fix GnuTLS
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+(eval-and-compile
+  (setq frame-inhibit-implied-resize   t
+        inhibit-compacting-font-caches t
 
-;; Do not alter fonts
-(setq frame-inhibit-implied-resize t)
+        gc-cons-threshold              (* 100 1024 1024)
+        read-process-output-max        (* 1024 1024)
 
-;; Set default directory to $HOME
-(setq default-directory "~/")
+        vc-follow-symlinks             t
 
-;; Increase GC threshold to 100 MB
-(setq gc-cons-threshold 100000000)
+        indent-tabs-mode               nil
+        sentence-end-double-space      nil
+        require-final-newline          t
 
-;; Don’t compact font caches during GC.
-(setq inhibit-compacting-font-caches t)
+        dired-listing-switched         "-alh"
 
-;; Read at most 1 MB from processes
-(setq read-process-output-max (* 1024 1024))
+        show-paren-delay               0.0
+        show-paren-style               'expression
 
-;; Delete trailing whitespace everytime file is saved
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
+        mouse-yank-at-point            t
 
-;; Treat camel case subwords as separate words in programming modes
-(add-hook 'prog-mode-hook #'subword-mode)
+        inhibit-startup-message        t
+        initial-scratch-message        nil
 
-;; Always follow symlinks
-(setq vc-follow-symlinks t)
+        auto-save-default              nil
+        make-backup-files              nil
 
-;; Make scripts executable on save
-(add-hook 'after-save-hook
-	  #'executable-make-buffer-file-executable-if-script-p)
+        mouse-autoselect-window        t
+        focus-follows-mouse            t)
 
-;; Don't add two spaces after periods.
-(setq sentence-end-double-space nil)
+  (defun yuki/ask-make-parent-dir ()
+    "Make parent directory if it does not exist"
+    (when buffer-file-name
+      (let ((dir (file-name-directory buffer-file-name)))
+        (when (and (not (file-exists-p dir))
+		   (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
+	  (make-directory dir t)))))
 
-;; Make parent directory if they don't exist
-(defun yuki/ask-make-parent-dir ()
-  (when buffer-file-name
-    (let ((dir (file-name-directory buffer-file-name)))
-      (when (and (not (file-exists-p dir))
-		 (y-or-n-p (format "Directory %s does not exist. Create it?" dir)))
-	(make-directory dir t)))))
+  (defun yuki/boot-server ()
+    (require 'server)
+    (unless (server-running-p) (server-start)))
 
-(add-hook 'before-save-hook #'yuki/ask-make-parent-dir)
+  (fset #'yes-or-no-p #'y-or-n-p)
 
-;; Enable transient mark mode
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (transient-mark-mode t)))
+  (prefer-coding-system 'utf-8)
+  (set-default-coding-systems 'utf-8)
+  (set-terminal-coding-system 'utf-8)
+  (set-keyboard-coding-system 'utf-8)
 
-;; Delete selected text if something is typed
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (delete-selection-mode t)))
+  (add-hook 'text-mode-hook 'hl-line-mode)
 
-;; Append newline at the end of files
-(setq require-final-newline t)
+  (add-hook 'prog-mode-hook 'hl-line-mode)
+  (add-hook 'prog-mode-hook 'subword-mode)
 
-;; Use `y/n?' instead of `yes/no?'
-(fset #'yes-or-no-p #'y-or-n-p)
+  (add-hook 'before-save-hook 'yuki/ask-make-parent-dir)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-;; Use human-readable units in dired
-(setq-default dired-listing-switched "-alh")
+  (add-hook 'after-save-hook 'executable-make-buffer-file-executable-if-script-p)
 
-;; Turn on syntax highlighting whenever possible
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (global-font-lock-mode t)))
+  (add-hook 'after-init-hook 'transient-mark-mode)
+  (add-hook 'after-init-hook 'delete-selection-mode)
+  (add-hook 'after-init-hook 'global-font-lock-mode)
+  (add-hook 'after-init-hook 'global-auto-revert-mode)
+  (add-hook 'after-init-hook 'show-paren-mode)
+  (add-hook 'after-init-hook 'column-number-mode)
+  (add-hook 'after-init-hook 'yuki/boot-server))
 
-;; Always refresh file when something is changed
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (global-auto-revert-mode t)))
+(eval-and-compile
+  (defun yuki/frame-mods (frame)
+    (select-frame frame)
+    (menu-bar-mode -1)
+    (when window-system
+      (tooltip-mode 0)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)
+      (set-face-attribute 'default nil :font "Fira Code-12" )
+      (set-frame-font "Fira Code-12" nil t)))
 
-;; Visually indicate matching pairs of parentheses.
-(setq show-paren-delay 0.0)
-(setq show-paren-style 'expression)
+  (add-hook 'after-make-frame-functions 'yuki/frame-mods)
+  (add-hook 'after-init-hook
+            (lambda ()
+              (yuki/frame-mods (selected-frame)))))
 
-(add-hook 'after-init-hook
-	  (lambda ()
-	    (show-paren-mode t)))
+(eval-and-compile
+  (setq package-archives
+        `(("gnu" . "https://elpa.gnu.org/packages/")
+          ("melpa" . "https://melpa.org/packages/")))
 
-;; 80 COLUMNS IS STANDARD
-(setq fill-column 80)
+  (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp")
+  (add-to-list 'load-path "~/.emacs.d/site-lisp")
 
-;; Yank to where the cursor is
-(setq mouse-yank-at-point t)
+  (setq package-enable-at-startup nil)
+  (package-initialize)
 
-;; Backup to temp directory
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
+  ;; Setup `use-package'
+  (setq use-package-verbose t
+        use-package-always-ensure t
+        use-package-always-defer t
+        use-package-expand-minimally t)
 
-;; UTF-8 forever
-(prefer-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-
-;; Visual aid
-(add-hook 'after-init-hook 'column-number-mode)
-(add-hook 'prog-mode-hook 'hl-line-mode)
-(add-hook 'text-mode-hook 'hl-line-mode)
-
-;; Spaces are superior, fuck you.
-(setq-default indent-tabs-mode nil)
-
-;; Empty startup
-(setq inhibit-startup-message t)
-(setq initial-scratch-message nil)
-
-;; Disable backups and auto-saves
-(setq auto-save-default nil)
-(setq make-backup-files nil)
-
-;; Use SSH, not SCP for Tramp
-(setq tramp-default-method "ssh")
-
-;; Do not emit warnings
-(setq warning-suppress-log-types '((comp))
-      warning-suppress-types '((comp)))
-
-;; Setup hooks to boot server
-(add-hook 'after-init-hook
-          (lambda ()
-            (require 'server)
-            (unless (server-running-p) (server-start))))
-
-;; Declare package archives
-(setq package-archives
-  `(("gnu" . "https://elpa.gnu.org/packages/")
-    ("melpa" . "https://melpa.org/packages/")))
-
-;; Declare local load paths
-(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp")
-(add-to-list 'load-path "~/.emacs.d/site-lisp")
-
-;; Start Emacs package manager
-(setq package-enable-at-startup nil)
-(package-initialize)
-
-;; Setup `use-package'
-(setq use-package-verbose t
-      use-package-always-ensure t
-      use-package-always-defer t
-      use-package-expand-minimally t)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package)))
 
 (require 'use-package)
 
@@ -159,71 +110,42 @@
 (use-package bind-key)
 (use-package gnu-elpa-keyring-update)
 
-;; A modern Packages Menu
 (use-package paradox
+  :custom ((paradox-execute-asynchronously t)
+           (paradox-github-token t)
+           (paradox-display-star-count nil))
   :init
-  (setq paradox-execute-asynchronously t
-        paradox-github-token t
-        paradox-display-star-count nil)
-
-  ;; Replace default `list-packages'
   (defun yuki/paradox-enable (&rest _)
     "Enable paradox, overriding the default package-menu."
     (paradox-enable))
-  (advice-add #'list-packages :before #'yuki/paradox-enable))
+
+  (advice-add 'list-packages :before 'yuki/paradox-enable))
 
 (use-package exec-path-from-shell
   :if window-system
   :hook ((after-init . exec-path-from-shell-initialize))
-  :init
-  (setq-default exec-path-from-shell-check-startup-files nil)
-  (setq exec-path-from-shell-variables '("PATH" "GOPATH" "NIX_PATH")))
+  :custom ((exec-path-from-shell-check-startup-files nil)
+           (exec-path-from-shell-variables '("PATH" "GOPATH" "NIX_PATH"))))
 
-;; Focus follow mouse
-(setq mouse-autoselect-window t
-      focus-follows-mouse t)
-
-(defun yuki/frame-mods (frame)
-  (select-frame frame)
-  (menu-bar-mode -1)
-  (when window-system
-    (tooltip-mode 0)
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1)
-    (set-face-attribute 'default nil :font "Fira Code-12" )
-    (set-frame-font "Fira Code-12" nil t)))
-
-(add-hook 'after-make-frame-functions 'yuki/frame-mods)
-(add-hook 'after-init-hook
-          (lambda ()
-            (yuki/frame-mods (selected-frame))))
-
-;; The superior completion front-end
 (use-package ivy
   :bind (("C-c C-r" . ivy-resume))
   :hook ((after-init . ivy-mode))
-  :init
-  (setq ivy-use-virtual-buffers t
-        ivy-initial-inputs-alist nil
-	enable-recursive-minibuffers t))
+  :custom ((ivy-use-virtual-buffers t)
+           (ivy-initial-inputs-alist nil)
+           (enable-recursive-minibuffers t)))
 
-;; More friendly for ivy
 (use-package ivy-rich
   :hook ((ivy-mode . ivy-rich-mode))
-  :init
-  (setq ivy-rich-path-style 'abbrev))
+  :custom ((ivy-rich-path-style 'abbrev)))
 
-;; Icons for ivy-rich
 (use-package all-the-icons-ivy-rich
   :if window-system
   :hook ((ivy-mode . all-the-icons-ivy-rich-mode)))
 
-;; The superior isearch
 (use-package swiper
   :bind (("C-s" . swiper)
          ("C-r" . swiper)))
 
-;; Use the superior completion front end
 (use-package counsel
   :bind (("M-x"     . counsel-M-x)
          ("C-x C-f" . counsel-find-file)
@@ -235,86 +157,72 @@
          :map read-expression-map
          ("C-r"     . counsel-expression-history)))
 
-;; The silver searcher
 (use-package ag
   :after counsel
   :bind (("C-c k" . counsel-ag)))
 
-;; Display available keybindings in popup
 (use-package which-key
   :hook ((after-init . which-key-mode))
-  :init
-  (setq which-key-idle-delay 0.5))
+  :custom ((which-key-idle-delay 0.5)))
 
-;; Easier window management
 (use-package switch-window
   :bind (("C-x o" . switch-window)
          ("C-x 1" . switch-window-then-maximize)
          ("C-x 2" . switch-window-then-split-below)
          ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete))
-  :init
-  (setq switch-window-shortcut-style 'qwerty
-        switch-window-qwerty-shortcuts '("a" "s" "d" "f" "j" "k"
-                                         "l" ";" "w" "e" "i" "o")
-        switch-window-minibuffer-shortcut ?z))
+  :custom ((switch-window-shortcut-style 'qwerty)
+           (switch-window-qwerty-shortcuts '("a" "s" "d" "f"
+                                             "j" "k" "l" ";"
+                                             "w" "e" "i" "o"))
+           (switch-window-minibuffer-shortcut ?z)))
 
-;; Dashboard
 (use-package dashboard
+  :custom
+  ((dashboard-startup-banner (expand-file-name "assets/dashboard_banner.png" user-emacs-directory))
+   (dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs.")
+   (dashboard-center-content t)
+   (dashboard-set-heading-icons t)
+   (dashboard-set-file-icons t)
+   (dashboard-set-navigator t)
+   (dashboard-items '((recents . 5)
+		      (projects . 5)
+		      (registers . 5)))
+   (dashboard-page-separator "\n\n\n"))
   :init
-  (setq dashboard-startup-banner (if window-system
-                                     (expand-file-name "assets/dashboard_banner.png" user-emacs-directory)
-                                   (expand-file-name "assets/dashboard_banner.txt" user-emacs-directory))
-        dashboard-banner-logo-title "Hi Yuki, Welcome to GNU Emacs."
-        dashboard-center-content t
-        dashboard-set-heading-icons t
-        dashboard-set-file-icons t
-        dashboard-set-navigator t
-        dashboard-items `((recents . 5)
-			  (projects . 5)
-			  (registers . 5))
-        dashboard-page-separator "\n\n\n")
   (dashboard-setup-startup-hook))
 
-;; All the Icons
 (use-package all-the-icons
   :if window-system)
 
-;; A Better Git interface than git(1)
 (use-package magit
   :bind (("C-x g" . magit-status)))
 
-;; Automatic whitespace cleanup
 (use-package whitespace-cleanup-mode
   :hook ((after-init . global-whitespace-cleanup-mode)))
 
-;; Persistent Undo
 (use-package undo-tree
+  :custom
+  (undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo")))
+  (undo-tree-auto-save-history t)
   :init
   (unless (file-directory-p "~/.emacs.d/undo")
-    (make-directory "~/.emacs.d/undo"))
-  (setq undo-tree-history-directory-alist '((".*" . "~/.emacs.d/undo"))
-        undo-tree-auto-save-history t))
+    (make-directory "~/.emacs.d/undo")))
 
-;; Highlight TODO
 (use-package hl-todo
   :hook (after-init . global-hl-todo-mode))
 
-;; Highlight version control diffs
 (use-package diff-hl
   :hook ((dired-mode         . diff-hl-dired-mode)
          (after-init         . global-diff-hl-mode)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-;; Show colors for rgb(rr,gg,bb) and #rrggbb
 (use-package rainbow-mode
   :hook (prog-mode . rainbow-mode))
 
-;; IMenu Anywhere
 (use-package imenu-anywhere
   :bind (("C-c ." . imenu-anywhere)))
 
-;; Multiple cursors
 (use-package multiple-cursors
   :bind (("C->"     . mc/mark-next-like-this)
          ("C-<"     . mc/mark-previous-like-this)
@@ -323,87 +231,71 @@
          :map mc/keymap
          ([return]  . nil)))
 
-;; Awesome code templating system
 (use-package yasnippet
   :hook ((after-init . yas-global-mode))
-  :init
-  (setq yas-snippet-dirs `("~/.emacs.d/snippets")))
+  :custom
+  ((yas-snippet-dirs '("~/.emacs.d/snippets"))))
 
-;; Snippets for YASnippet
 (use-package yasnippet-snippets
   :after yasnippet)
 
-;; Completion system
 (use-package company
   :hook ((after-init . global-company-mode))
   :bind (("C-c y" . company-yasnippet))
-  :init
-  (setq company-tooltip-align-annotations t
-        company-minimum-prefix-length 1
-        company-idle-delay 0.0))
+  :custom ((company-tooltip-align-annotations t)
+           (company-minimum-prefix-length 1)
+           (company-idle-delay 0.0)))
 
 (use-package company-quickhelp
   :after company
   :hook ((company-mode . company-quickhelp-mode)))
 
-;; Flycheck -- Better than flymake
 (use-package flycheck
   :hook ((after-init . global-flycheck-mode))
-  :init
-  (setq flycheck-disabled-checkers '(emacs-lisp-checkdoc)))
+  :custom ((flycheck-disabled-checkers '(emacs-lisp-checkdoc))))
 
 (use-package flycheck-inline
   :hook ((flycheck-mode . flycheck-inline-mode)))
 
-;; Projectile
 (use-package projectile
   :hook ((after-init . projectile-mode))
-  :init
-  (setq projectile-completion-system 'ivy
-        projectile-keymap-prefix (kbd "C-c p")))
+  :custom ((projectile-completion-system 'ivy)
+           (projectile-keymap-prefix (kbd "C-c p"))))
 
-;; Use git for Projectile by default
 (use-package projectile-git-autofetch
   :after projectile)
 
-;; Editorconfig
 (use-package editorconfig
   :hook ((after-init . editorconfig-mode)))
 
-;; VTerm
 (use-package vterm
   :bind (("C-x RET RET" . vterm))
-  :init
-  (setq vterm-buffer-name-string "*vterm: %s*"))
+  :custom ((vterm-buffer-name-string "*vterm: %s*")))
 
-;; direnv integration
 (use-package envrc
   :bind
   (("C-c e" . envrc-command-map))
   :hook ((after-init . envrc-global-mode)))
 
-;; Auto formatting
 (use-package format-all
   :hook (prog-mode . format-all-mode))
 
 (use-package lsp-mode
-  :hook
-  ((lsp-mode . lsp-enable-which-key-integration)
-   (lsp-mode . lsp-lens-mode)
+  :hook ((lsp-mode . lsp-enable-which-key-integration)
+         (lsp-mode . lsp-lens-mode)
 
-   (python-mode     . lsp)
-   (php-mode        . lsp)
-   (go-mode         . lsp)
-   (elixir-mode     . lsp)
-   (java-mode       . lsp)
-   (typescript-mode . lsp)
-   (rust-mode       . lsp)
-   (svelte-mode     . lsp)
-   (dhall-mode      . lsp)
-   (purescript-mode . lsp))
-  :init
-  (setq lsp-enable-file-watchers nil
-        lsp-keymap-prefix "C-c l"))
+         (python-mode     . lsp)
+         (php-mode        . lsp)
+         (go-mode         . lsp)
+         (elixir-mode     . lsp)
+         (java-mode       . lsp)
+         (typescript-mode . lsp)
+         (rust-mode       . lsp)
+         (svelte-mode     . lsp)
+         (dhall-mode      . lsp)
+         (purescript-mode . lsp))
+  :custom ((lsp-enable-file-watchers nil)
+           (lsp-keymap-prefix "C-c l")))
 
 (use-package lsp-ui
   :after lsp-mode)
@@ -412,14 +304,8 @@
   :after lsp-mode ivy)
 
 (use-package dap-mode
-  :hook
-  ((lsp-mode . dap-mode)
-   (lsp-mode . dap-ui-mode)))
-
-(use-package lsp-haskell
-  :hook
-  ((haskell-mode . lsp)
-   (haskell-literate-mode . lsp)))
+  :hook ((lsp-mode . dap-mode)
+         (lsp-mode . dap-ui-mode)))
 
 (use-package web-mode
   :mode (("\\.phtml\\'"     . web-mode)
@@ -434,8 +320,8 @@
          ("\\.j?j2\\'"      . web-mode)
          ("\\.vue\\'"       . web-mode)
          ("\\.svelte\\'"    . svelte-mode))
+  :custom ((web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
   :init
-  (setq web-mode-engines-alist '(("django" . "\\.j?j2\\'")))
   (define-derived-mode svelte-mode web-mode "svelte-mode"))
 
 (use-package pug-mode)
@@ -449,30 +335,13 @@
 (use-package cargo
   :hook ((rust-mode . cargo-minor-mode)))
 
-;; Use Python 3 ffs
-(eval-and-compile
-  (if (executable-find "python3.7")
-      (setq python-shell-interpreter "python3.7")
-    (if (executable-find "python3.8")
-        (setq python-shell-interpreter "python3.8")
-      (setq python-shell-interpreter "python3"))))
-
-(eval-and-compile
-  (setq flycheck-python-pycompile-executable python-shell-interpreter)
-  (setq flycheck-python-flake8-executable python-shell-interpreter)
-  (setq flycheck-python-pylint-executable python-shell-interpreter)
-  (setq org-babel-python-command python-shell-interpreter)
-  (setq elpy-rpc-python-command python-shell-interpreter)
-  (setq python-shell-completion-native-enable 'nil))
-
 (use-package php-mode)
 
 (use-package nginx-mode)
 
 (use-package markdown-mode
   :mode "\\.md\\'"
-  :init
-  (setq markdown-command "multimarkdown"))
+  :custom ((markdown-command "multimarkdown")))
 
 (use-package dockerfile-mode)
 
@@ -487,6 +356,10 @@
 
 (use-package haskell-mode
   :hook ((haskell-mode . interactive-haskell-mode)))
+
+(use-package lsp-haskell
+  :hook ((haskell-mode . lsp)
+         (haskell-literate-mode . lsp)))
 
 (use-package typescript-mode)
 
@@ -506,41 +379,40 @@
   :hook
   ((org-mode . (lambda () (hl-line-mode nil)))
    (org-mode . auto-fill-mode))
-  :init
-  (setq initial-major-mode                  'org-mode
+  :custom
+  ((initial-major-mode                  'org-mode)
+   (org-startup-indented                t)
+   (org-pretty-entities                 t)
+   (org-hide-emphasis-markers           t)
+   (org-fontify-whole-heading-line      t)
+   (org-fontify-done-headline           t)
+   (org-fontify-quote-and-verse-blocks  t)
+   (org-ellipsis                        "  ")
 
-        org-startup-indented                t
-        org-pretty-entities                 t
-        org-hide-emphasis-markers           t
-        org-fontify-whole-heading-line      t
-        org-fontify-done-headline           t
-        org-fontify-quote-and-verse-blocks  t
-        org-ellipsis                        "  "
+   (org-src-tab-acts-natively           t)
+   (org-src-fontify-natively            t)
+   (org-src-window-setup                'current-window)
 
-        org-src-tab-acts-natively           t
-        org-src-fontify-natively            t
-        org-src-window-setup                'current-window
+   (org-latex-to-pdf-process            '("xelatex -interaction nonstopmode %f"
+                                          "xelatex -interaction nonstopmode %f"))
+   (org-latex-listings                  'minted)
 
-        org-latex-to-pdf-process            `("xelatex -interaction nonstopmode %f"
-                                              "xelatex -interaction nonstopmode %f")
-        org-latex-listings                  'minted
+   (org-confirm-babel-evaluate          nil)
 
-        org-confirm-babel-evaluate          nil
+   (org-export-with-smart-quotes        t)
+   (org-export-with-section-numbers     nil)
+   (org-export-with-toc                 nil)
 
-        org-export-with-smart-quotes        t
-        org-export-with-section-numbers     nil
-        org-export-with-toc                 nil
+   (org-startup-with-inline-images      t)
 
-        org-startup-with-inline-images      t
-
-        org-html-divs                       '((preamble  "header" "top")
-                                              (content   "main"   "content")
-                                              (postamble "footer" "postamble"))
-        org-html-container-element          "section"
-        org-html-validation-link            nil
-        org-html-head-include-default-style nil
-        org-html-html5-fancy                t
-        org-html-doctype                    "html5")
+   (org-html-divs                       '((preamble  "header" "top")
+                                          (content   "main"   "content")
+                                          (postamble "footer" "postamble")))
+   (org-html-container-element          "section")
+   (org-html-validation-link            nil)
+   (org-html-head-include-default-style nil)
+   (org-html-html5-fancy                t)
+   (org-html-doctype                    "html5"))
   :config
   ;; Babel
   (defvar load-language-list `((emacs-lisp . t)
@@ -759,15 +631,12 @@
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
-(use-package simple-httpd)
-(use-package websocket)
-
 (use-package org-roam-ui
   :commands (org-roam-ui-mode)
-  :config
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
+  :custom
+  ((org-roam-ui-sync-theme t)
+   (org-roam-ui-follow t)
+   (org-roam-ui-update-on-save t)
+   (org-roam-ui-open-on-start t)))
 
 (use-package htmlize)
