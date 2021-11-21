@@ -8,6 +8,26 @@ let
     config = ./../emacs/.emacs.d/init.el;
     alwaysEnsure = true;
   };
+
+  iosevka-etoile = pkgs.fetchzip {
+    name = "iosevka-etoile";
+    url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-etoile-11.0.1.zip";
+    sha256 = "UKEfkZQU9o1Hk2SVxdMMtLUmjYgIaf6mTvfTb5zIKTw=";
+    postFetch = ''
+      mkdir -p $out/share/fonts
+      unzip $downloadedFile -d $out/share/fonts/truetype
+    '';
+  };
+
+  iosevka-term-slab = pkgs.fetchzip {
+    name = "iosevka-term-slab";
+    url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-term-slab-11.0.1.zip";
+    sha256 = "czgr/xjTnBLXuBeYkRDxMPISZJPb4GGlgh0J/6hYAgk=";
+    postFetch = ''
+      mkdir -p $out/share/fonts
+      unzip $downloadedFile -d $out/share/fonts/truetype
+    '';
+  };
 in
 {
   programs.home-manager.enable = true;
@@ -81,6 +101,10 @@ in
   home.file = {
     ".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
     ".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
+    ".emacs.d/site-lisp/ios-config-mode.el".source = builtins.fetchurl {
+      url = "https://raw.githubusercontent.com/nibrahim/IOS-config-mode/master/ios-config-mode.el";
+      sha256 = "17nzmrbaarkzv2cyqjzgssibhmvqlq10jfraa7zkgnazybk3nd9a";
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -149,9 +173,8 @@ in
     ocamlPackages.utop
 
     # Fonts
-    fira
-    fira-code
-    migu
+    iosevka-term-slab
+    iosevka-etoile
     emacs-all-the-icons-fonts
     font-awesome_4
   ];

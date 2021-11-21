@@ -53,6 +53,8 @@
 
   (add-hook 'prog-mode-hook 'hl-line-mode)
   (add-hook 'prog-mode-hook 'subword-mode)
+  (add-hook 'prog-mode-hook 'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook 'prettify-symbols-mode)
 
   (add-hook 'before-save-hook 'yuki/ask-make-parent-dir)
   (add-hook 'before-save-hook 'delete-trailing-whitespace)
@@ -75,13 +77,14 @@
       (tooltip-mode 0)
       (tool-bar-mode -1)
       (scroll-bar-mode -1)
-      (set-face-attribute 'default nil :font "Fira Code-12" )
-      (set-frame-font "Fira Code-12" nil t)))
+      (set-frame-font "Iosevka Term Slab-12" nil t)
+      (set-face-attribute 'default nil :font "Iosevka Term Slab-12")
+      (set-face-attribute 'fixed-pitch nil :font "Iosevka Term Slab-12")
+      (set-face-attribute 'variable-pitch nil :font "Iosevka Etoile-12")))
 
+  (add-hook 'text-mode-hook 'variable-pitch-mode)
   (add-hook 'after-make-frame-functions 'yuki/frame-mods)
-  (add-hook 'after-init-hook
-            (lambda ()
-              (yuki/frame-mods (selected-frame)))))
+  (add-hook 'after-init-hook (lambda () (yuki/frame-mods (selected-frame)))))
 
 (eval-and-compile
   (setq package-archives
@@ -176,9 +179,7 @@
          ("C-x 3" . switch-window-then-split-right)
          ("C-x 0" . switch-window-then-delete))
   :custom ((switch-window-shortcut-style      'qwerty)
-           (switch-window-qwerty-shortcuts    '("a" "s" "d" "f"
-                                                "j" "k" "l" ";"
-                                                "w" "e" "i" "o"))
+           (switch-window-qwerty-shortcuts    '("a" "s" "d" "f" "j" "k" "l" ";" "w" "e" "i" "o"))
            (switch-window-minibuffer-shortcut ?z)))
 
 (use-package dashboard
@@ -289,13 +290,17 @@
   :hook (prog-mode . format-all-mode))
 
 (use-package modus-themes
-  :custom ((modus-themes-mixed-fonts t)
-	   (modus-themes-syntax '(yellow-comments green-strings alt-syntax))
-	   (modus-themes-scale-headings t))
+  :custom ((modus-themes-syntax               '(yellow-comments green-strings alt-syntax))
+	   (modus-themes-mode-line            '(borderless padded))
+	   (modus-themes-subtle-line-numbers  t)
+	   (modus-themes-scale-headings       t)
+	   (modus-themes-italic-constructs    t)
+	   (modus-themes-mixed-fonts          t))
   :init (modus-themes-load-themes)
   :config (modus-themes-load-operandi))
 
 (use-package lsp-mode
+  :diminish lsp-lens-mode
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-lens-mode)
 
@@ -370,6 +375,7 @@
 (use-package elixir-mode)
 
 (use-package haskell-mode
+  :diminish interactive-haskell-mode
   :hook ((haskell-mode . interactive-haskell-mode)))
 
 (use-package lsp-haskell
@@ -379,6 +385,7 @@
 (use-package typescript-mode)
 
 (use-package nix-mode
+  :hook ((after-init . nix-prettify-global-mode))
   :mode "\\.nix\\'")
 
 (use-package clojure-mode)
@@ -387,6 +394,15 @@
 (use-package dhall-mode
   :custom ((dhall-format-arguments (\` ("--ascii")))
 	   (dhall-use-header-line nil)))
+
+(use-package ios-config-mode
+  :commands ios-config-mode
+  :pin manual
+  :load-path "~/.emacs.d/site-lisp"
+  :custom-face
+  (ios-config-ipadd-face ((t (:foreground nil :inherit font-lock-constant-face))))
+  (ios-config-toplevel-face ((t (:foreground nil :inherit font-lock-function-name-face))))
+  (ios-config-command-face ((t (:foreground nil :inherit font-lock-keyword-face)))))
 
 (use-package org
   :ensure org-plus-contrib
@@ -624,6 +640,10 @@
                :recursive t
                :publishing-function 'org-publish-attachment)
          (list "org" :components '("org-posts" "org-drafts" "org-feed" "org-static")))))
+
+(use-package org-bullets
+  :hook ((org-mode . org-bullets-mode))
+  :custom ((org-bullets-bullet-list '(" "))))
 
 (use-package graphviz-dot-mode
   :after org
