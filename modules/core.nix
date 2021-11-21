@@ -81,10 +81,6 @@ in
   home.file = {
     ".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
     ".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
-    ".emacs.d/site-lisp/ligature.el".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/mickeynp/ligature.el/45132323de4f42d3273307f569c2a8418020a46f/ligature.el";
-      sha256 = "0cc8j8zv7s3d4dv3sb9xdaygnqc20v7jiqcpvi8d4gjifbbcmbhq";
-    };
   };
 
   fonts.fontconfig.enable = true;
