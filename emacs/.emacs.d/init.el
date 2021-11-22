@@ -404,6 +404,10 @@
   (ios-config-toplevel-face ((t (:foreground nil :inherit font-lock-function-name-face))))
   (ios-config-command-face ((t (:foreground nil :inherit font-lock-keyword-face)))))
 
+(use-package rfc-mode
+  :commands rfc-mode-browse rfc-mode-read
+  :custom ((rfc-mode-directory (expand-file-name "~/rfc/"))))
+
 (use-package org
   :ensure org-plus-contrib
   :hook
