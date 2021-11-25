@@ -42,6 +42,16 @@ if [ -d "$HOME/.asdf" ]; then
     source "$HOME/.asdf/asdf.sh"
 fi
 
+if [ -d "$HOME/flutter" ]; then
+    export PATH="$HOME/flutter/bin:$PATH"
+fi
+
+
+if [ -d "$HOME/bin" ]; then
+    export PATH="$HOME/bin:$PATH"
+fi
+
+
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
 
