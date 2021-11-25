@@ -404,6 +404,14 @@
   (ios-config-toplevel-face ((t (:foreground nil :inherit font-lock-function-name-face))))
   (ios-config-command-face ((t (:foreground nil :inherit font-lock-keyword-face)))))
 
+(use-package dart-mode)
+
+(use-package lsp-dart
+  :hook
+  ((dart-mode . lsp)))
+
+(use-package hover)
+
 (use-package rfc-mode
   :commands rfc-mode-browse rfc-mode-read
   :custom ((rfc-mode-directory (expand-file-name "~/rfc/"))))
