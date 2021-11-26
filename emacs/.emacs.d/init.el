@@ -506,7 +506,8 @@
            (image (concat link-home (org-publish-find-property file :meta-image project)))
            (type (org-publish-find-property file :meta-type project)))
       (mapconcat 'identity
-                 `(,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/rss+xml) '(href "rss.xml") '(title "RSS feed"))
+                 `(,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/atom+xml) '(href "/feed.xml") '(title "Atom feed"))
+		   ,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/rss+xml) '(href "/rss.xml") '(title "RSS feed"))
                    ,(yuki/org-html-close-tag "meta" '(property og:title) `(content ,title))
                    ,(yuki/org-html-close-tag "meta" '(property og:url) `(content ,full-url))
                    ,(and description
@@ -557,37 +558,11 @@
            (file-name-nondirectory (directory-file-name entry)))
           (t entry)))
 
-  (defun yuki/org-rss-publish-to-rss (plist filename pub-dir)
-    (if (equal "feed.org" (file-name-nondirectory filename))
-        (org-rss-publish-to-rss plist filename pub-dir)))
-
-  (defun yuki/org-feed (title sitemap)
-    (let* ((title "Yuki's Notes"))
-      (concat (format "#+TITLE: %s\n\n" title)
-              (org-list-to-subtree
-               sitemap
-               1
-               '(:splice t :istart nil :icount nil
-                 :dtstart " " :dtend " ")))))
-
-  (defun yuki/org-feed-format (entry style project)
-    (let* ((file (org-publish--expand-file-name entry project))
-           (title (org-publish-find-title entry project))
-           (date (format-time-string "%Y-%m-%d" (org-publish-find-date entry project)))
-           (link (concat (file-name-sans-extension entry) ".html")))
-      (with-temp-buffer
-        (insert (format "* [[file:%s][%s]]\n" entry title))
-        (org-set-property "RSS_PERMALINK" link)
-        (org-set-property "RSS_TITLE" title)
-        (org-set-property "PUBDATE" date)
-        (insert (format "#+INCLUDE: \"%s\" :lines \"3-\"" file))
-        (buffer-string))))
-
   (setq org-publish-project-alist
         (list
          (list "org-posts"
                :base-directory "~/org"
-               :exclude (regexp-opt '("index.org" "setup.org" "intro.org" "drafts/" "feed.org"))
+               :exclude (regexp-opt '("index.org" "intro.org" "drafts/"))
                :base-extension "org"
                :publishing-directory "~/org/public/"
                :recursive t
@@ -623,27 +598,6 @@
                :email "hi@yukiisbo.red"
                :meta-image "static/images/profile.png"
                :meta-type "article")
-         (list "org-feed"
-               :base-directory "~/org"
-               :exclude (regexp-opt '("index.org" "setup.org" "intro.org" "drafts/" "feed.org"))
-               :base-extension "org"
-               :publishing-directory "~/org/public/"
-               :recursive t
-               :publishing-function 'yuki/org-rss-publish-to-rss
-               :headline-levels 3
-               :auto-sitemap t
-               :rss-extension "xml"
-               :html-link-home "https://notes.yukiisbo.red"
-               :html-link-use-abs-url t
-               :html-link-org-files-as-html t
-               :sitemap-filename "feed.org"
-               :sitemap-title "Yuki's notes"
-               :sitemap-style 'list
-               :sitemap-sort-files 'anti-chronologically
-               :sitemap-function 'yuki/org-feed
-               :sitemap-format-entry 'yuki/org-feed-format
-               :author "Yuki"
-               :email "hi@yukiisbo.red")
          (list "org-static"
                :base-directory "~/org/static"
                :exclude (regexp-opt '("public/"))
@@ -651,7 +605,36 @@
                :publishing-directory "~/org/public/static"
                :recursive t
                :publishing-function 'org-publish-attachment)
-         (list "org" :components '("org-posts" "org-drafts" "org-feed" "org-static")))))
+         (list "org" :components '("org-posts" "org-drafts" "org-static")))))
+
+(use-package webfeeder
+  :after org
+  :init
+  (defun yuki/org-generate-feed ()
+    (webfeeder-build
+     "feed.xml"
+     "~/org/public"
+     "https://notes.yukiisbo.red"
+     (mapcar (lambda (f) (replace-regexp-in-string ".*/?public/" "" f))
+	     (directory-files-recursively "~/org/public/posts" ".*\.html$"))
+     :title "Yuki's Notes"
+     :description "The writings of a computer hobbyist dork"
+     :author "Yuki <hi@yukiisbo.red>")
+    (webfeeder-build
+     "rss.xml"
+     "~/org/public"
+     "https://notes.yukiisbo.red"
+     (mapcar (lambda (f) (replace-regexp-in-string ".*/?public/" "" f))
+	     (directory-files-recursively "~/org/public/posts" ".*\.html$"))
+     :title "Yuki's Notes"
+     :description "The writings of a computer hobbyist dork"
+     :author "Yuki <hi@yukiisbo.red>"
+     :builder 'webfeeder-make-rss))
+
+  (defun yuki/publish ()
+    (interactive)
+    (org-publish "org")
+    (yuki/org-generate-feed)))
 
 (use-package org-bullets
   :hook ((org-mode . org-bullets-mode))
