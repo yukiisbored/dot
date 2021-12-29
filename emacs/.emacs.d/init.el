@@ -506,7 +506,10 @@
            (image (concat link-home (org-publish-find-property file :meta-image project)))
            (type (org-publish-find-property file :meta-type project)))
       (mapconcat 'identity
-                 `(,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/atom+xml) '(href "/feed.xml") '(title "Atom feed"))
+                 `(,(yuki/org-html-close-tag "link" '(rel me) '(href "mailto:hi@yukiisbo.red"))
+		   ,(yuki/org-html-close-tag "link" '(rel webmention) '(href "https://webmention.io/notes.yukiisbo.red/webmention"))
+		   ,(yuki/org-html-close-tag "link" '(rel pingback) '(href "https://webmention.io/notes.yukiisbo.red/xmlrpc"))
+		   ,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/atom+xml) '(href "/feed.xml") '(title "Atom feed"))
 		   ,(yuki/org-html-close-tag "link" '(rel alternate) '(type application/rss+xml) '(href "/rss.xml") '(title "RSS feed"))
                    ,(yuki/org-html-close-tag "meta" '(property og:title) `(content ,title))
                    ,(yuki/org-html-close-tag "meta" '(property og:url) `(content ,full-url))
