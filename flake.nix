@@ -4,19 +4,18 @@
   inputs = {
     utils.url = "github:numtide/flake-utils";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
     home-manager = {
-      url = "github:nix-community/home-manager/release-21.05";
+      url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     comma = {
-      url = "github:Shopify/comma";
+      url = "github:nix-community/comma";
       flake = false;
     };
     rnix-lsp.url = "github:nix-community/rnix-lsp";
-    nixpkgsUnstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -26,26 +25,13 @@
           allowUnfree = true;
         };
 
-        unstablePkgs = import inputs.nixpkgsUnstable {
-          inherit system;
-          inherit config;
-        };
-
         overlays = [
           inputs.emacs-overlay.overlay
 
           (self: super: {
             comma = import "${inputs.comma}/default.nix" { pkgs = self; };
 
-            lutris = unstablePkgs.lutris.override {
-              extraLibraries = pkgs: with pkgs; [
-                opusfile
-              ];
-            };
-
             rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
-
-            python38Packages.python-lsp-server = unstablePkgs.python38Packages.python-lsp-server;
           })
         ];
 

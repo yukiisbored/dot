@@ -80,7 +80,7 @@
       (set-frame-font "Iosevka Term Slab-12" nil t)
       (set-face-attribute 'default nil :font "Iosevka Term Slab-12")
       (set-face-attribute 'fixed-pitch nil :font "Iosevka Term Slab-12")
-      (set-face-attribute 'variable-pitch nil :font "Iosevka Etoile-12")))
+      (set-face-attribute 'variable-pitch nil :font "Iosevka Term Slab-12")))
 
   (add-hook 'text-mode-hook 'variable-pitch-mode)
   (add-hook 'after-make-frame-functions 'yuki/frame-mods)
@@ -89,6 +89,7 @@
 (eval-and-compile
   (setq package-archives
         `(("gnu" . "https://elpa.gnu.org/packages/")
+	  ("nongnu" . "https://elpa.nongnu.org/nongnu/")
           ("melpa" . "https://melpa.org/packages/")))
 
   (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp")
@@ -417,7 +418,6 @@
   :custom ((rfc-mode-directory (expand-file-name "~/rfc/"))))
 
 (use-package org
-  :ensure org-plus-contrib
   :hook
   ((org-mode . (lambda () (hl-line-mode nil)))
    (org-mode . auto-fill-mode))
@@ -455,6 +455,8 @@
 	   (org-html-html5-fancy                t)
 	   (org-html-doctype                    "html5"))
   :config
+  (use-package org-contrib)
+
   ;; Babel
   (defvar load-language-list `((emacs-lisp . t)
                                (perl       . t)
@@ -472,7 +474,6 @@
 
   ;; Publishing
   (require 'ox-publish)
-  (require 'ox-rss)
 
   (defun yuki/format-date-subtitle (file project)
     (format-time-string "Published on %Y-%m-%d" (org-publish-find-date file project)))
