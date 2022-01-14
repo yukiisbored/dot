@@ -313,6 +313,7 @@
          (typescript-mode . lsp)
          (rust-mode       . lsp)
          (svelte-mode     . lsp)
+	 (vue-mode        . lsp)
          (dhall-mode      . lsp)
          (purescript-mode . lsp))
   :custom ((lsp-enable-file-watchers nil)
@@ -339,11 +340,12 @@
          ("\\.djhtml\\'"    . web-mode)
          ("\\.html?\\'"     . web-mode)
          ("\\.j?j2\\'"      . web-mode)
-         ("\\.vue\\'"       . web-mode)
+         ("\\.vue\\'"       . vue-mode)
          ("\\.svelte\\'"    . svelte-mode))
   :custom ((web-mode-engines-alist '(("django" . "\\.j?j2\\'"))))
   :init
-  (define-derived-mode svelte-mode web-mode "svelte-mode"))
+  (define-derived-mode svelte-mode web-mode "svelte-mode")
+  (define-derived-mode vue-mode web-mode "vue-mode"))
 
 (use-package pug-mode)
 
