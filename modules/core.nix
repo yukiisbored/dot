@@ -173,6 +173,9 @@ in
     ocamlPackages.ocp-indent
     ocamlPackages.utop
 
+    # Coq
+    coq
+
     # Fonts
     iosevka-term-slab
     iosevka-etoile

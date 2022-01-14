@@ -421,6 +421,8 @@
 
 (use-package hover)
 
+(use-package proof-general)
+
 (use-package rfc-mode
   :commands rfc-mode-browse rfc-mode-read
   :custom ((rfc-mode-directory (expand-file-name "~/rfc/"))))
