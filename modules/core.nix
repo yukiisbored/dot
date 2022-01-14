@@ -159,7 +159,6 @@ in
     direnv
     niv
     cachix
-    comma
     nixUnstable
     nix-prefetch-git
 

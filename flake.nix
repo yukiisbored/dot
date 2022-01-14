@@ -11,10 +11,6 @@
     };
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
-    comma = {
-      url = "github:nix-community/comma";
-      flake = false;
-    };
     rnix-lsp.url = "github:nix-community/rnix-lsp";
   };
 
@@ -29,8 +25,6 @@
           inputs.emacs-overlay.overlay
 
           (self: super: {
-            comma = import "${inputs.comma}/default.nix" { pkgs = self; };
-
             rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
           })
         ];
