@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ pkgs, config, lib, ... }:
 
 let
   nodePackages' = import ./../node/default.nix { inherit pkgs; };
@@ -7,6 +7,8 @@ let
     package = pkgs.emacsPgtkGcc;
     config = ./../emacs/.emacs.d/init.el;
     alwaysEnsure = true;
+
+    override = epkgs: lib.filterAttrs (n: v: n != "tree-sitter" && n != "tree-sitter-langs") epkgs;
   };
 
   iosevka-etoile = pkgs.fetchzip {

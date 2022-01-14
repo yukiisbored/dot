@@ -300,6 +300,12 @@
   :init (modus-themes-load-themes)
   :config (modus-themes-load-operandi))
 
+(use-package tree-sitter
+  :hook ((after-init . global-tree-sitter-mode)
+	 (tree-sitter-mode . tree-sitter-hl-mode))
+  :config
+  (use-package tree-sitter-langs))
+
 (use-package lsp-mode
   :diminish lsp-lens-mode
   :hook ((lsp-mode . lsp-enable-which-key-integration)
