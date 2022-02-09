@@ -152,7 +152,6 @@ in
     nodePackages'.purescript-language-server
 
     # Haskell
-    haskell-language-server
     haskellPackages.brittany
 
     # Nix
