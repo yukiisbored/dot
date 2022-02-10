@@ -139,6 +139,8 @@
     "x" 'counsel-M-x
     "f" 'counsel-find-file
     "k" 'counsel-ag
+    "b" 'counsel-switch-buffer
+    "B" 'counsel-switch-buffer-other-window
 
     ;; switch-window
     "o" 'switch-window
