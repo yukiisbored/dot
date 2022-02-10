@@ -25,10 +25,7 @@
         initial-scratch-message        nil
 
         auto-save-default              nil
-        make-backup-files              nil
-
-        mouse-autoselect-window        t
-        focus-follows-mouse            t)
+        make-backup-files              nil)
 
   (defun yuki/ask-make-parent-dir ()
     "Make parent directory if it does not exist"
@@ -116,6 +113,71 @@
 (use-package bind-key)
 (use-package gnu-elpa-keyring-update)
 
+(use-package evil
+  :custom ((evil-want-integration t)
+	   (evil-want-keybinding nil))
+  :hook ((after-init . evil-mode)))
+
+(use-package evil-collection
+  :after evil
+  :hook ((evil-mode . evil-collection-init)))
+
+(use-package evil-tutor)
+
+(use-package evil-leader
+  :hook ((after-init . global-evil-leader-mode))
+  :config
+  (evil-leader/set-leader "<SPC>")
+  (evil-leader/set-key
+    ;; emacs
+    "S" 'save-buffer
+
+    ;; swiper
+    "s" 'swiper
+
+    ;; counsel
+    "x" 'counsel-M-x
+    "f" 'counsel-find-file
+    "k" 'counsel-ag
+
+    ;; switch-window
+    "o" 'switch-window
+    "1" 'switch-window-then-maximize
+    "2" 'switch-window-then-split-below
+    "3" 'switch-window-then-split-right
+    "0" 'switch-window-then-delete
+
+    ;; magit
+    "g" 'magit-status
+
+    ;; imenu-anywhere
+    "." 'imenu-anywhere
+
+    ;; multiple-cursors
+    ">"   'mc/mark-next-like-this
+    "<"   'mc/mark-previous-like-this
+    "C-<" 'mc/mark-all-like-this
+    "c"   'mc/edit-line
+
+    ;; company-yasnippet
+    "y" 'company-yasnippet
+
+    ;; vterm
+    "RET" 'vterm
+
+    ;; projectile
+    "pf" 'projectile-find-file
+    "pa" 'projectile-find-file-in-known-projects
+
+    ;; org-roam
+    "nl" 'org-roam-buffer-toggle
+    "nf" 'org-roam-node-find
+    "ng" 'org-roam-graph
+    "ni" 'org-roam-node-insert
+    "nc" 'org-roam-capture
+    "nj" 'org-roam-dailies-capture-today
+    ))
+
 (use-package paradox
   :custom ((paradox-execute-asynchronously t)
            (paradox-github-token           t)
@@ -135,7 +197,6 @@
 
 (use-package ivy
   :diminish
-  :bind (("C-c C-r" . ivy-resume))
   :hook ((after-init . ivy-mode))
   :custom ((ivy-use-virtual-buffers      t)
            (ivy-initial-inputs-alist     nil)
@@ -678,5 +739,12 @@
 	   (org-roam-ui-follow t)
 	   (org-roam-ui-update-on-save t)
 	   (org-roam-ui-open-on-start t)))
+
+(use-package evil-org
+  :after org
+  :hook ((org-mode . evil-org-mode))
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys))
 
 (use-package htmlize)
