@@ -130,7 +130,7 @@
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
     ;; emacs
-    "S" 'save-buffer
+    "w" 'save-buffer
 
     ;; swiper
     "s" 'swiper
