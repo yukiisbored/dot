@@ -155,12 +155,6 @@
     ;; imenu-anywhere
     "." 'imenu-anywhere
 
-    ;; multiple-cursors
-    ">"   'mc/mark-next-like-this
-    "<"   'mc/mark-previous-like-this
-    "C-<" 'mc/mark-all-like-this
-    "c"   'mc/edit-line
-
     ;; company-yasnippet
     "y" 'company-yasnippet
 
