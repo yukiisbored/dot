@@ -3,14 +3,6 @@
 let
   nodePackages' = import ./../node/default.nix { inherit pkgs; };
 
-  emacs = pkgs.emacsWithPackagesFromUsePackage {
-    package = pkgs.emacsPgtkGcc;
-    config = ./../emacs/.emacs.d/init.el;
-    alwaysEnsure = true;
-
-    override = epkgs: lib.filterAttrs (n: v: n != "tree-sitter" && n != "tree-sitter-langs") epkgs;
-  };
-
   iosevka-etoile = pkgs.fetchzip {
     name = "iosevka-etoile";
     url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-etoile-11.0.1.zip";
@@ -100,8 +92,21 @@ in
     userEmail = "hi@yukiisbo.red";
   };
 
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsWithPackagesFromUsePackage {
+      package = pkgs.emacsPgtkGcc;
+      config = ./../emacs/.emacs.d/init.el;
+      alwaysEnsure = true;
+
+      override = epkgs: lib.filterAttrs (n: v: n != "tree-sitter" && n != "tree-sitter-langs") epkgs;
+    };
+    extraConfig = builtins.readFile ./../emacs/.emacs.d/init.el;
+  };
+
+  services.emacs.enable = true;
+
   home.file = {
-    ".emacs.d/init.el".source = ./../emacs/.emacs.d/init.el;
     ".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
     ".emacs.d/site-lisp/ios-config-mode.el".source = builtins.fetchurl {
       url = "https://raw.githubusercontent.com/nibrahim/IOS-config-mode/master/ios-config-mode.el";
@@ -112,8 +117,6 @@ in
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    emacs
-
     # General utilities
     tmux
     silver-searcher
