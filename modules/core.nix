@@ -125,6 +125,7 @@ in
     asciinema
     graphviz
     shairport-sync
+    comma
 
     # File storage
     git-lfs

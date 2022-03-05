@@ -12,6 +12,10 @@
 
     emacs-overlay.url = "github:nix-community/emacs-overlay";
     rnix-lsp.url = "github:nix-community/rnix-lsp";
+    comma = {
+      url = "github:nix-community/comma";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -26,6 +30,7 @@
 
           (self: super: {
             rnix-lsp = inputs.rnix-lsp.defaultPackage.${system};
+            comma = inputs.comma.defaultPackage.${system};
           })
         ];
 
