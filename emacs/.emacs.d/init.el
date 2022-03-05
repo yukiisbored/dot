@@ -330,13 +330,11 @@
   :bind (("C-x RET RET" . vterm))
   :custom ((vterm-buffer-name-string "*vterm: %s*")))
 
-(use-package envrc
-  :bind
-  (("C-c e" . envrc-command-map))
-  :hook ((after-init . envrc-global-mode)))
-
 (use-package format-all
   :hook (prog-mode . format-all-mode))
+
+(use-package direnv
+  :hook ((after-init . direnv-mode)))
 
 (use-package telephone-line
   :hook ((after-init . telephone-line-mode))
@@ -384,7 +382,9 @@
          (dhall-mode      . lsp)
          (purescript-mode . lsp))
   :custom ((lsp-enable-file-watchers nil)
-           (lsp-keymap-prefix        "C-c l")))
+           (lsp-keymap-prefix        "C-c l"))
+  :init
+  (advice-add 'lsp :before 'direnv-update-environment))
 
 (use-package lsp-ui
   :after lsp-mode)
