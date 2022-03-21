@@ -753,6 +753,7 @@
   :hook ((org-mode . evil-org-mode))
   :config
   (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+  (evil-org-agenda-set-keys)
+  (evil-org-set-key-theme '(textobjects insert navigation additional shift todo heading)))
 
 (use-package htmlize)
