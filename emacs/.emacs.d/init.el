@@ -483,7 +483,10 @@
 
 (use-package lsp-dart
   :hook
-  ((dart-mode . lsp)))
+  ((dart-mode . lsp))
+  :custom
+  ((lsp-dart-sdk-dir "~/flutter/bin/cache/dart-sdk")
+   (lsp-dart-flutter-sdk-dir "~/flutter")))
 
 (use-package hover)
 
