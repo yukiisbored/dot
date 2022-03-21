@@ -370,11 +370,12 @@
   :hook ((lsp-mode . lsp-enable-which-key-integration)
          (lsp-mode . lsp-lens-mode)
 
-         (python-mode     . lsp)
          (php-mode        . lsp)
          (go-mode         . lsp)
          (elixir-mode     . lsp)
          (java-mode       . lsp)
+	 (javascript-mode . lsp)
+	 (js-mode         . lsp)
          (typescript-mode . lsp)
          (rust-mode       . lsp)
          (svelte-mode     . lsp)
@@ -385,6 +386,11 @@
            (lsp-keymap-prefix        "C-c l"))
   :init
   (advice-add 'lsp :before 'direnv-update-environment))
+
+(use-package lsp-pyright
+  :hook ((python-mode . (lambda ()
+			  (require 'lsp-pyright)
+			  (lsp)))))
 
 (use-package lsp-ui
   :after lsp-mode)

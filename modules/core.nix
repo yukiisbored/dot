@@ -142,7 +142,7 @@ in
     # Python
     pipenv
     poetry
-    python38Packages.python-lsp-server
+    nodePackages.pyright
 
     # JavaScript / Node.js
     nodejs
