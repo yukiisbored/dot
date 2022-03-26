@@ -4,7 +4,7 @@ if [ "$TERM" = "dumb" ]; then
 fi
 
 # WSL check
-(uname -r | grep -q 'WSL') && WSL=1
+(uname -r | grep -q 'Microsoft') && WSL=1
 
 # Essentials
 HISTFILE=~/.histfile
@@ -89,6 +89,9 @@ if (( $+commands[doas] )) {
        sudo "$@"
    }
 }
+
+# WSL X11 (sans WSLg)
+[[ -n "$WSL" ]] && export DISPLAY="$(ip route get 1 | awk '{print $NF}'):0.0"
 
 # Emacs vterm
 vterm_printf(){
