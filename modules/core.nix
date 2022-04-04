@@ -130,14 +130,9 @@ in
     nodePackages.pyright
 
     # JavaScript / Node.js
-    nodejs
-    yarn
     nodePackages.npm
     nodePackages.typescript-language-server
     nodePackages.node2nix
-
-    # PureScript
-    spago
 
     # Haskell
     haskellPackages.brittany
@@ -152,13 +147,6 @@ in
     # Dhall
     dhall
     dhall-lsp-server
-
-    # OCaml
-    dune_2
-    opam
-    ocamlPackages.merlin
-    ocamlPackages.ocp-indent
-    ocamlPackages.utop
 
     # Coq
     coq
