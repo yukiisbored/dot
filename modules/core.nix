@@ -94,25 +94,10 @@ in
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsWithPackagesFromUsePackage {
-      package = pkgs.emacsPgtkGcc;
-      config = ./../emacs/.emacs.d/init.el;
-      alwaysEnsure = true;
-
-      override = epkgs: lib.filterAttrs (n: v: n != "tree-sitter" && n != "tree-sitter-langs") epkgs;
-    };
-    extraConfig = builtins.readFile ./../emacs/.emacs.d/init.el;
+    package = pkgs.emacsPgtkGcc;
   };
 
   services.emacs.enable = true;
-
-  home.file = {
-    ".emacs.d/assets".source = ./../emacs/.emacs.d/assets;
-    ".emacs.d/site-lisp/ios-config-mode.el".source = builtins.fetchurl {
-      url = "https://raw.githubusercontent.com/nibrahim/IOS-config-mode/master/ios-config-mode.el";
-      sha256 = "17nzmrbaarkzv2cyqjzgssibhmvqlq10jfraa7zkgnazybk3nd9a";
-    };
-  };
 
   fonts.fontconfig.enable = true;
 
@@ -126,6 +111,8 @@ in
     graphviz
     shairport-sync
     comma
+    ripgrep
+    fd
 
     # File storage
     git-lfs
@@ -185,6 +172,4 @@ in
     emacs-all-the-icons-fonts
     font-awesome_4
   ];
-
-  services.lorri.enable = true;
 }
