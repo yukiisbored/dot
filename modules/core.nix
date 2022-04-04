@@ -1,8 +1,6 @@
 { pkgs, config, lib, ... }:
 
 let
-  nodePackages' = import ./../node/default.nix { inherit pkgs; };
-
   iosevka-etoile = pkgs.fetchzip {
     name = "iosevka-etoile";
     url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-etoile-11.0.1.zip";
@@ -140,7 +138,6 @@ in
 
     # PureScript
     spago
-    nodePackages'.purescript-language-server
 
     # Haskell
     haskellPackages.brittany
