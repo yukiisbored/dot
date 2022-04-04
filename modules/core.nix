@@ -152,6 +152,7 @@ in
     coq
 
     # Fonts
+    fira
     iosevka-term-slab
     iosevka-etoile
     emacs-all-the-icons-fonts
