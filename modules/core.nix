@@ -90,16 +90,11 @@ in
     userEmail = "hi@yukiisbo.red";
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacsPgtkGcc;
-  };
-
-  services.emacs.enable = true;
-
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
+    emacs
+
     # General utilities
     tmux
     silver-searcher
