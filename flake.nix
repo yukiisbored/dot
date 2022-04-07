@@ -12,6 +12,7 @@
       url = "github:nix-community/comma";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -22,6 +23,8 @@
         };
 
         overlays = [
+          inputs.emacs-overlay.overlay
+
           (self: super: {
             comma = inputs.comma.defaultPackage.${system};
           })
