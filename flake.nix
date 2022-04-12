@@ -27,6 +27,7 @@
 
           (self: super: {
             comma = inputs.comma.defaultPackage.${system};
+            kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
           })
         ];
 

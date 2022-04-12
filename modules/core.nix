@@ -117,6 +117,7 @@ in
     # Cloud
     kubectl
     kubectx
+    kubectl-modify-secret
     google-cloud-sdk
 
     # Python
