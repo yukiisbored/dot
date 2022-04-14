@@ -113,6 +113,7 @@ in
     comma
     ripgrep
     fd
+    localtunnel
 
     # File storage
     git-lfs
