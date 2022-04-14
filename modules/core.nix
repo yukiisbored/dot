@@ -90,6 +90,13 @@ in
     userEmail = "hi@yukiisbo.red";
   };
 
+  programs.neovim = {
+    enable = true;
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [

@@ -55,8 +55,8 @@ fi
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
 
-if command -v emacsclient >/dev/null; then
+if command -v nvim >/dev/null; then
    export ALTERNATE_EDITOR=""
-   export EDITOR="emacsclient"
-   export VISUAL="emacsclient"
+   export EDITOR="nvim"
+   export VISUAL="nvim"
 fi
