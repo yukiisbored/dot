@@ -97,11 +97,15 @@ in
     vimdiffAlias = true;
   };
 
+  programs.emacs = {
+    enable = true;
+    package = pkgs.emacsPgtkGcc;
+    extraPackages = epkgs: with epkgs; [ vterm ];
+  };
+
   fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    emacsPgtkGcc
-
     # General utilities
     tmux
     silver-searcher
