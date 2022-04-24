@@ -138,7 +138,6 @@ in
     nodePackages.pyright
 
     # JavaScript / Node.js
-    nodePackages.npm
     nodePackages.typescript-language-server
     nodePackages.node2nix
     nodejs-14_x
