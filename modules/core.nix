@@ -141,6 +141,7 @@ in
     nodePackages.npm
     nodePackages.typescript-language-server
     nodePackages.node2nix
+    nodejs-14_x
 
     # Haskell
     haskellPackages.brittany
