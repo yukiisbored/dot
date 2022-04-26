@@ -4,7 +4,7 @@ if [ "$TERM" = "dumb" ]; then
 fi
 
 # WSL check
-(uname -r | grep -q 'Microsoft') && WSL=1
+(uname -r | grep -q '[Mm]icrosoft') && WSL=1
 
 # Essentials
 HISTFILE=~/.histfile
