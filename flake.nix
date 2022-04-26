@@ -29,6 +29,7 @@
             comma = inputs.comma.defaultPackage.${system};
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
             inherit (self.callPackage ./packages/localtunnel {}) localtunnel;
+            emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
           })
         ];
 

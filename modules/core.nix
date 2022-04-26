@@ -118,6 +118,7 @@ in
     ripgrep
     fd
     localtunnel
+    emacsql-sqlite
 
     # File storage
     git-lfs
