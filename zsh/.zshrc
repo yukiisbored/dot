@@ -90,8 +90,8 @@ if (( $+commands[doas] )) {
    }
 }
 
-# WSL X11 (sans WSLg)
-[[ -n "$WSL" ]] && export DISPLAY="$(ip route get 1 | awk '{print $NF}'):0.0"
+# WSL
+[[ -n "$WSL" ]] && alias emacs="emacs -nw"
 
 # Emacs vterm
 vterm_printf(){
