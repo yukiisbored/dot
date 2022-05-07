@@ -99,8 +99,12 @@ in
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsGcc;
-    extraPackages = epkgs: with epkgs; [ vterm ];
+    package = pkgs.emacsPgtkNativeComp;
+    extraPackages = epkgs: [
+      epkgs.vterm
+      epkgs.tree-sitter
+      epkgs.tree-sitter-langs
+    ];
   };
 
   fonts.fontconfig.enable = true;
