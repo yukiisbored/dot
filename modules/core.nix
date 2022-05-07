@@ -150,7 +150,7 @@ in
     direnv
     niv
     cachix
-    nixUnstable
+    nixFlakes
     nix-prefetch-git
 
     # Dhall
