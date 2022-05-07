@@ -90,9 +90,6 @@ if (( $+commands[doas] )) {
    }
 }
 
-# WSL X11 (sans WSLg)
-[[ -n "$WSL" ]] && export DISPLAY="$(ip route get 1 | awk '{print $NF}'):0.0"
-
 # Emacs vterm
 vterm_printf(){
     if [[ -n "$TMUX" ]] && ([[ "${TERM%%-*}" = "tmux" ]] || [[ "${TERM%%-*}" = "screen" ]] ) {
