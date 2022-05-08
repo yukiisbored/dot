@@ -27,17 +27,18 @@
         };
 
         unstablePkgs = import inputs.nixpkgs-unstable {
-          inherit system;
-          inherit config;
+          inherit system config;
         };
 
         overlays = [
           inputs.emacs-overlay.overlay
 
           (self: super: {
-            comma = inputs.comma.packages."${system}".comma;
-            kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
+            inherit (inputs.comma.packages."${system}") comma;
+
+
             inherit (self.callPackage ./packages/localtunnel {}) localtunnel;
+            kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
             emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
 
             emacsPackagesFor = emacs: (
