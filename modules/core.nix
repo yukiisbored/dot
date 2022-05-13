@@ -86,7 +86,7 @@ in
 
   programs.git = {
     enable = true;
-    userName = "Muhammad Kaisar Arkhan (Yuki)";
+    userName = "Yuki Langley";
     userEmail = "hi@yukiisbo.red";
   };
 
