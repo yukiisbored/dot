@@ -4,16 +4,10 @@
   inputs = {
     utils.url = "github:numtide/flake-utils";
 
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-21.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
 
     home-manager = {
       url = "github:nix-community/home-manager/release-21.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    comma = {
-      url = "github:nix-community/comma";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -26,28 +20,12 @@
           allowUnfree = true;
         };
 
-        unstablePkgs = import inputs.nixpkgs-unstable {
-          inherit system config;
-        };
-
         overlays = [
           inputs.emacs-overlay.overlay
 
           (self: super: {
-            inherit (inputs.comma.packages."${system}") comma;
-
-
-            inherit (self.callPackage ./packages/localtunnel {}) localtunnel;
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
             emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
-
-            emacsPackagesFor = emacs: (
-              (super.emacsPackagesFor emacs).overrideScope' (
-                eself: esuper: esuper // {
-                  inherit (unstablePkgs.emacsPackages) tree-sitter tree-sitter-langs tsc;
-                }
-              )
-            );
           })
         ];
 

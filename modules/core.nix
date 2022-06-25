@@ -99,7 +99,7 @@ in
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsPgtkNativeComp;
+    package = pkgs.emacsNativeComp;
     extraPackages = epkgs: [
       epkgs.vterm
       epkgs.tree-sitter
@@ -121,7 +121,6 @@ in
     comma
     ripgrep
     fd
-    localtunnel
     emacsql-sqlite
 
     # File storage
