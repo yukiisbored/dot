@@ -1,25 +1,6 @@
 { pkgs, config, lib, ... }:
-
 let
-  iosevka-etoile = pkgs.fetchzip {
-    name = "iosevka-etoile";
-    url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-etoile-11.0.1.zip";
-    sha256 = "UKEfkZQU9o1Hk2SVxdMMtLUmjYgIaf6mTvfTb5zIKTw=";
-    postFetch = ''
-      mkdir -p $out/share/fonts
-      unzip $downloadedFile -d $out/share/fonts/truetype
-    '';
-  };
-
-  iosevka-term-slab = pkgs.fetchzip {
-    name = "iosevka-term-slab";
-    url = "https://github.com/be5invis/Iosevka/releases/download/v11.0.1/ttf-iosevka-term-slab-11.0.1.zip";
-    sha256 = "czgr/xjTnBLXuBeYkRDxMPISZJPb4GGlgh0J/6hYAgk=";
-    postFetch = ''
-      mkdir -p $out/share/fonts
-      unzip $downloadedFile -d $out/share/fonts/truetype
-    '';
-  };
+  iosevka-term-slab = pkgs.iosevka-bin.override { variant = "sgr-iosevka-term-slab"; };
 in
 {
   programs.home-manager.enable = true;
@@ -166,7 +147,6 @@ in
     # Fonts
     fira
     iosevka-term-slab
-    iosevka-etoile
     emacs-all-the-icons-fonts
     font-awesome_4
   ];
