@@ -3,14 +3,12 @@
 
   inputs = {
     utils.url = "github:numtide/flake-utils";
-
     nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
-
     home-manager = {
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -21,11 +19,10 @@
         };
 
         overlays = [
-          inputs.emacs-overlay.overlay
-
           (self: super: {
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
             emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
+            doom-emacs = inputs.nix-doom-emacs.package."${system}";
           })
         ];
 
@@ -35,7 +32,7 @@
           inherit overlays;
         };
 
-        homeConfig = imports: ({ ... }: { inherit imports; });
+        homeConfig = imports: ({ ... }: { imports = [ inputs.nix-doom-emacs.hmModule ] ++ imports; });
         mkActivationPackage = configuration: (home-manager.lib.homeManagerConfiguration {
           inherit system;
           inherit pkgs;

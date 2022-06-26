@@ -75,17 +75,12 @@ in
     vimdiffAlias = true;
   };
 
-  programs.emacs = {
-    enable = true;
-    package = pkgs.emacsNativeComp;
-    extraPackages = epkgs: [
-      epkgs.vterm
-      epkgs.tree-sitter
-      epkgs.tree-sitter-langs
-    ];
-  };
-
   fonts.fontconfig.enable = true;
+
+  programs.doom-emacs = {
+    enable = true;
+    doomPrivateDir = ../doom/.doom.d;
+  };
 
   home.packages = with pkgs; [
     # General utilities
