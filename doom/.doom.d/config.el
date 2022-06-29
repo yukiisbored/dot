@@ -31,7 +31,9 @@
         modus-themes-mixed-fonts          t)
   (modus-themes-load-themes)
   :config
-  (modus-themes-load-operandi))
+  (if (window-system)
+      (modus-themes-load-operandi)
+    (modus-themes-load-vivendi)))
 
 (use-package! telephone-line
   :hook (after-init . telephone-line-mode)
