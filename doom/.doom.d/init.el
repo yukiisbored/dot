@@ -16,7 +16,7 @@
 
 (doom! :completion
        company                         ; the ultimate code completion backend
-       (ivy +flx +prescient +icons)    ; /The/ search engine for love and life
+       (vertico +icons)                ; /The/ search engine of the future
 
        :ui
        doom                            ; what makes DOOM look the way it does
@@ -26,16 +26,12 @@
        indent-guides                   ; highlighted indent columns
        ophints                         ; highlight the region an operation acts on
        (popup +defaults)               ; tame sudden yet inevitable temporary windows
-       treemacs                        ; a project drawer, like neotree but cooler
        vc-gutter                       ; vcs diff in the fringe
-       vi-tilde-fringe                 ; fringe tildes to mark beyond EOB
        (window-select +switch-window)  ; visually switch windows
        workspaces                      ; tab emulation, persistence & separate workspaces
 
        :editor
        (evil +everywhere)              ; come to the dark side, we have cookies
-       file-templates                  ; auto-snippets for empty files
-       fold                            ; (nigh) universal code folding
        multiple-cursors                ; editing in many places at once
        snippets                        ; my elves. They type so I don't have to
        word-wrap                       ; soft wrapping with language-aware indent
@@ -44,20 +40,17 @@
        (dired +icons)                  ; making dired pretty [functional]
        electric                        ; smarter, keyword-based electric-indent
        (ibuffer +icons)                ; interactive buffer management
-       undo                            ; persistent, smarter undo for your inevitable mistakes
+       (undo +tree)                    ; persistent, smarter undo for your inevitable mistakes
        vc                              ; version-control and Emacs, sitting in a tree
 
        :term
        vterm                           ; the best terminal emulation in Emacs
 
-       :checkers
-       syntax                          ; tasing you for every semicolon you forget
-
        :tools
        editorconfig                    ; let someone else argue about tabs vs spaces
        (eval +overlay)                 ; run code, run (also, repls)
        lookup                          ; navigate your code and its documentation
-       lsp                             ; M-x vscode
+       (lsp +eglot)                    ; M-x vscode
        magit                           ; a git porcelain for Emacs
        rgb                             ; creating color strings
 
@@ -66,10 +59,10 @@
        (tty +osc)                      ; improve the terminal Emacs experience
 
        :lang
-       (cc +lsp)                       ; C > C++ == 1
+       cc                              ; C > C++ == 1
        coq                             ; proofs-as-programs
        data                            ; config/data formats
-       (dart +flutter +lsp)            ; paint ui and not much else
+       (dart +flutter)                 ; paint ui and not much else
        dhall
        (elixir +lsp)                   ; erlang done right
        elm                             ; care for a cup of TEA?
@@ -78,11 +71,9 @@
        fsharp                          ; ML stands for Microsoft's Language
        fstar                           ; (dependent) types and (monadic) effects and Z3
        (go +lsp)                       ; the hipster dialect
-       (haskell +lsp)                  ; a language that's lazier than I am
+       haskell                         ; a language that's lazier than I am
        json                            ; At least it ain't XML
-       (java +lsp)                     ; the poster child for carpal tunnel syndrome
        javascript                      ; all(hope(abandon(ye(who(enter(here))))))
-       (kotlin +lsp)                   ; a better, slicker Java(Script)
        latex                           ; writing papers in Emacs has never been so fun
        lua                             ; one-based indices? one-based indices
        markdown                        ; writing docs for people to ignore
@@ -97,7 +88,7 @@
        (rust +lsp)                     ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        sh                              ; she sells {ba,z,fi}sh shells on the C xor
        swift                           ; who asked for emoji variables?
-       (web +lsp)                      ; the tubes
+       web                             ; the tubes
        yaml                            ; JSON, but readable
        zig                             ; C, but simpler
 

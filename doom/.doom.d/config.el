@@ -16,10 +16,9 @@
  '(org-level-1 :height 1.5)
  '(org-document-title :height 1.75 :underline nil))
 
-(setq indent-tabs-mode nil)
+(add-hook! haskell-mode (lsp!))
 
-(use-package! swiper
-  :bind ("C-s" . swiper))
+(setq indent-tabs-mode nil)
 
 (use-package! modus-themes
   :init
@@ -53,13 +52,16 @@
 (use-package! direnv
   :hook (after-init . direnv-mode))
 
-(use-package! lsp
-  :init
-  (advice-add 'lsp :before 'direnv-update-environment))
-
 (use-package! emacsql-sqlite
   :init
   (setq emacsql-sqlite-executable (locate-file "emacsql-sqlite" exec-path)))
+
+(use-package! eglot
+  :init
+  (advice-add 'eglot-ensure :before 'direnv-update-environment)
+  :config
+  (assoc-delete-all 'elixir-mode eglot-server-programs)
+  (add-to-list 'eglot-server-programs '(elixir-mode "elixir-ls")))
 
 (use-package! org
   :hook
