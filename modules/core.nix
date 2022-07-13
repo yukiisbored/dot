@@ -109,6 +109,9 @@ in
     kubectl-modify-secret
     google-cloud-sdk
 
+    # Godot
+    python39Packages.gdtoolkit
+
     # Python
     pipenv
     poetry

@@ -71,6 +71,7 @@
        fsharp                          ; ML stands for Microsoft's Language
        fstar                           ; (dependent) types and (monadic) effects and Z3
        (go +lsp)                       ; the hipster dialect
+       (gdscript +lsp)
        haskell                         ; a language that's lazier than I am
        json                            ; At least it ain't XML
        javascript                      ; all(hope(abandon(ye(who(enter(here))))))
