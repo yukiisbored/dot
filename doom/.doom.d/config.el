@@ -50,18 +50,25 @@
         telephone-line-height                   24))
 
 (use-package! direnv
+  :unless IS-WINDOWS
   :hook (after-init . direnv-mode))
 
 (use-package! emacsql-sqlite
+  :unless IS-WINDOWS
   :init
   (setq emacsql-sqlite-executable (locate-file "emacsql-sqlite" exec-path)))
 
 (use-package! eglot
   :init
-  (advice-add 'eglot-ensure :before 'direnv-update-environment)
+  (unless IS-WINDOWS
+    (advice-add 'eglot-ensure :before 'direnv-update-environment))
+  (setq next-error-function 'flymake-goto-next-error)
   :config
   (assoc-delete-all 'elixir-mode eglot-server-programs)
   (add-to-list 'eglot-server-programs '(elixir-mode "elixir-ls")))
+
+(use-package! powershell
+  :if IS-WINDOWS)
 
 (use-package! org
   :hook
@@ -75,7 +82,6 @@
         org-fontify-whole-heading-line      t
         org-fontify-done-headline           t
         org-fontify-quote-and-verse-blocks  t
-        org-ellipsis                        "  "
 
         org-src-tab-acts-natively           t
         org-src-fontify-natively            t

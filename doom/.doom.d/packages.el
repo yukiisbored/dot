@@ -12,3 +12,4 @@
 (package! org-bullets)
 (package! direnv)
 (package! org-roam-ui)
+(package! powershell)

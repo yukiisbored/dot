@@ -44,7 +44,7 @@
        vc                              ; version-control and Emacs, sitting in a tree
 
        :term
-       vterm                           ; the best terminal emulation in Emacs
+       (:unless IS-WINDOWS vterm)      ; the best terminal emulation in Emacs
 
        :tools
        editorconfig                    ; let someone else argue about tabs vs spaces
