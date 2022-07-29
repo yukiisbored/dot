@@ -46,6 +46,9 @@
        :term
        (:unless IS-WINDOWS vterm)      ; the best terminal emulation in Emacs
 
+       :checkers
+       syntax                          ; tasing you for every semicolon you forget
+
        :tools
        editorconfig                    ; let someone else argue about tabs vs spaces
        (eval +overlay)                 ; run code, run (also, repls)
