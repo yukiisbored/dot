@@ -36,7 +36,7 @@ spath() {
     dir=$PWD
 
     dir=${dir/#$HOME/\~}
-    dir=${dir/#\/mnt\/c\/Users\/accou/\~/winhome}
+    dir=${dir/#\/mnt\/c\/Users\/Yuki/\~/winhome}
     tree=(${(s:/:)dir})
     (
         if [[ $tree[1] == \~* ]] {
@@ -122,8 +122,16 @@ PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 
 [[ "$INSIDE_EMACS" = 'vterm' ]] && alias clear='vterm_printf "51;Evterm-clear-scrollback";tput clear'
 
+
+# Update title
+update_title() {
+    print -Pn "\e]2;%m:%2~\a"
+}
+
 autoload -U add-zsh-hook
-add-zsh-hook -Uz chpwd (){ print -Pn "\e]2;%m:%2~\a" }
+add-zsh-hook -Uz chpwd update_title
+
+update_title
 
 # direnv integration
 if (( $+commands[direnv] )) {
