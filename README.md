@@ -26,16 +26,27 @@ $ nix run '.#core'
 
 ## Software
 
-| Function             | Software                                            |
-|----------------------|-----------------------------------------------------|
-| Operating systems    | Debian, NixOS, OpenBSD, WSL (Windows 10/Windows 11) |
-| Display server       | X11 (Still, fuck Wayland shills)                    |
-| Desktop Environment  | KDE / XMonad                                        |
-| Font                 | Iosevka Term Slab / Iosevka Etoile                  |
-| Editor               | GNU Emacs                                           |
-| Web browser          | Vivaldi (everyone expects Chromium now, I give up)  |
-| Shell                | zsh                                                 |
-| File synchronisation | Seafile                                             |
+| Function          | Software                      |
+|-------------------|-------------------------------|
+| Operating systems | Windows 10, openSUSE, OpenBSD |
+| Font              | Iosevka Term Slab             |
+| Editor            | GNU Emacs                     |
+| Web browser       | Vivaldi                       |
+| Shell             | zsh                           |
+
+I don't use NixOS anymore because:
+
+1. I either find NixOS modules to be getting in the way for system configuration
+   and I rarely find myself to have the mental energy to hack them.
+
+2. I need to run non-free software which relies on FHS and other traditional
+   Linux-isms and I rarely find myself to have the mental energy to hack them.
+
+It's a great operating system for a lot of people, especially those who are
+first venturing in their journey, but sadly, I've been living within the arcane 
+horrors of UNIX system administration and old habits die hard.
+
+Good luck fellow travelers o/
 
 ## Mirrors
 
