@@ -77,9 +77,6 @@ PS1='$(spath -f) %% '
 
 [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
 
-# X410
-[[ -n "$WSL" ]] && export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2; exit;}'):0.0
-
 # Aliases
 if (( $+commands[doas] )) {
    function sudo() {
