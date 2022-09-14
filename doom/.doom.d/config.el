@@ -75,8 +75,7 @@
   ((org-mode . (lambda () (hl-line-mode nil)))
    (org-mode . auto-fill-mode))
   :init
-  (setq initial-major-mode                  'org-mode
-        org-startup-indented                t
+  (setq org-startup-indented                t
         org-pretty-entities                 t
         org-hide-emphasis-markers           t
         org-fontify-whole-heading-line      t
