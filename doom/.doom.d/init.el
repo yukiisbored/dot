@@ -56,45 +56,49 @@
        (lsp +eglot)                    ; M-x vscode
        magit                           ; a git porcelain for Emacs
        rgb                             ; creating color strings
+       tree-sitter
 
        :os
        (:if IS-MAC macos)              ; improve compatibility with macOS
        (tty +osc)                      ; improve the terminal Emacs experience
 
        :lang
-       (cc +lsp)                       ; C > C++ == 1
+       (cc +lsp +tree-sitter)          ; C > C++ == 1
        coq                             ; proofs-as-programs
        data                            ; config/data formats
        (dart +flutter)                 ; paint ui and not much else
        dhall
-       (elixir +lsp)                   ; erlang done right
-       elm                             ; care for a cup of TEA?
+       (elixir +lsp +tree-sitter)      ; erlang done right
+       (elm +tree-sitter)              ; care for a cup of TEA?
        emacs-lisp                      ; drown in parentheses
        erlang                          ; an elegant language for a more civilized age
        fsharp                          ; ML stands for Microsoft's Language
        fstar                           ; (dependent) types and (monadic) effects and Z3
-       (go +lsp)                       ; the hipster dialect
+       (go +lsp +tree-sitter)          ; the hipster dialect
        (gdscript +lsp)
        haskell                         ; a language that's lazier than I am
-       json                            ; At least it ain't XML
-       javascript                      ; all(hope(abandon(ye(who(enter(here))))))
+       (json +tree-sitter)             ; At least it ain't XML
+       (javascript +tree-sitter)       ; all(hope(abandon(ye(who(enter(here))))))
        latex                           ; writing papers in Emacs has never been so fun
        lua                             ; one-based indices? one-based indices
        markdown                        ; writing docs for people to ignore
        nim                             ; python + lisp at the speed of c
-       nix                             ; I hereby declare "nix geht mehr!"
-       ocaml                           ; an objective camel
+       (nix +tree-sitter)              ; I hereby declare "nix geht mehr!"
+       (ocaml +tree-sitter)            ; an objective camel
        (org +roam2)                    ; organize your plain life in plain text
-       php                             ; perl's insecure younger brother
+       (php +tree-sitter)              ; perl's insecure younger brother
        purescript                      ; javascript, but functional
-       (python +lsp +pyright)          ; beautiful is better than ugly
+       (python                         ; beautiful is better than ugly
+        +lsp
+        +pyright
+        +tree-sitter)
        qt                              ; the 'cutest' gui framework ever
-       (rust +lsp)                     ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
-       sh                              ; she sells {ba,z,fi}sh shells on the C xor
-       swift                           ; who asked for emoji variables?
-       web                             ; the tubes
+       (rust +lsp +tree-sitter)        ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
+       (sh +tree-sitter)               ; she sells {ba,z,fi}sh shells on the C xor
+       (swift +tree-sitter)            ; who asked for emoji variables?
+       (web +tree-sitter)              ; the tubes
        yaml                            ; JSON, but readable
-       zig                             ; C, but simpler
+       (zig +tree-sitter)              ; C, but simpler
 
        :config
        (default +bindings +smartparens))
