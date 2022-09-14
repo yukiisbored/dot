@@ -80,6 +80,7 @@ in
   programs.doom-emacs = {
     enable = true;
     doomPrivateDir = ../doom/.doom.d;
+    emacsPackage = pkgs.emacsPgtkNativeComp;
   };
 
   home.packages = with pkgs; [

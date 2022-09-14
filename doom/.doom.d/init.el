@@ -62,7 +62,7 @@
        (tty +osc)                      ; improve the terminal Emacs experience
 
        :lang
-       cc                              ; C > C++ == 1
+       (cc +lsp)                       ; C > C++ == 1
        coq                             ; proofs-as-programs
        data                            ; config/data formats
        (dart +flutter)                 ; paint ui and not much else

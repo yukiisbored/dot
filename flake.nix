@@ -8,7 +8,15 @@
       url = "github:nix-community/home-manager/release-22.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
+    emacs-overlay = {
+      url = "github:nix-community/emacs-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-doom-emacs = {
+      url = "github:nix-community/nix-doom-emacs";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.emacs-overlay.follows = "emacs-overlay";
+    };
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -19,10 +27,11 @@
         };
 
         overlays = [
+          inputs.emacs-overlay.overlay
+
           (self: super: {
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
             emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
-            doom-emacs = inputs.nix-doom-emacs.package."${system}";
           })
         ];
 
