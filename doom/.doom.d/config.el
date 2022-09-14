@@ -16,8 +16,6 @@
  '(org-level-1 :height 1.5)
  '(org-document-title :height 1.75 :underline nil))
 
-(add-hook! haskell-mode (lsp!))
-
 (setq indent-tabs-mode nil)
 
 (use-package! modus-themes
@@ -57,15 +55,6 @@
   :unless IS-WINDOWS
   :init
   (setq emacsql-sqlite-executable (locate-file "emacsql-sqlite" exec-path)))
-
-(use-package! eglot
-  :init
-  (unless IS-WINDOWS
-    (advice-add 'eglot-ensure :before 'direnv-update-environment))
-  (setq next-error-function 'flymake-goto-next-error)
-  :config
-  (assoc-delete-all 'elixir-mode eglot-server-programs)
-  (add-to-list 'eglot-server-programs '(elixir-mode "elixir-ls")))
 
 (use-package! powershell
   :if IS-WINDOWS)

@@ -53,7 +53,7 @@
        editorconfig                    ; let someone else argue about tabs vs spaces
        (eval +overlay)                 ; run code, run (also, repls)
        lookup                          ; navigate your code and its documentation
-       (lsp +eglot)                    ; M-x vscode
+       lsp                             ; M-x vscode
        magit                           ; a git porcelain for Emacs
        rgb                             ; creating color strings
        tree-sitter
@@ -76,7 +76,7 @@
        fstar                           ; (dependent) types and (monadic) effects and Z3
        (go +lsp +tree-sitter)          ; the hipster dialect
        (gdscript +lsp)
-       haskell                         ; a language that's lazier than I am
+       (haskell +lsp)                  ; a language that's lazier than I am
        (json +tree-sitter)             ; At least it ain't XML
        (javascript +tree-sitter)       ; all(hope(abandon(ye(who(enter(here))))))
        latex                           ; writing papers in Emacs has never been so fun
