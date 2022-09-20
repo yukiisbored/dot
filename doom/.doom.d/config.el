@@ -1,100 +1,20 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
 (setq user-full-name    "Yuki"
       user-mail-address "hi@yukiisbo.red")
 
-(setq doom-font (font-spec :family "Iosevka Term Slab" :size 14))
+(setq doom-font  (font-spec :family "Iosevka Term Slab" :size 14)
+      doom-theme 'doom-acario-light)
 
 (setq display-line-numbers-type 'relative)
 
-(custom-theme-set-faces!
- '(org-level-3 :height 1.1)
- '(org-level-2 :height 1.25)
- '(org-level-1 :height 1.5)
- '(org-document-title :height 1.75 :underline nil))
-
-(setq indent-tabs-mode nil)
-
-(use-package! modus-themes
-  :init
-  (setq modus-themes-syntax               '(yellow-comments green-strings alt-syntax)
-        modus-themes-mode-line            '(borderless padded)
-        modus-themes-subtle-line-numbers  t
-        modus-themes-scale-headings       t
-        modus-themes-italic-constructs    t
-        modus-themes-mixed-fonts          t)
-  (modus-themes-load-themes)
-  :config
-  (if (window-system)
-      (modus-themes-load-operandi)
-    (modus-themes-load-vivendi)))
-
-(use-package! telephone-line
-  :hook (after-init . telephone-line-mode)
-  :init
-  (setq telephone-line-lhs                      '((evil   . (telephone-line-evil-tag-segment))
-                                                  (accent . (telephone-line-vc-segment
-                                                             telephone-line-erc-modified-channels-segment
-                                                             telephone-line-process-segment))
-                                                  (nil    . (telephone-line-buffer-segment)))
-        telephone-line-rhs                      '((nil    . (telephone-line-misc-info-segment))
-                                                  (accent . (telephone-line-major-mode-segment))
-                                                  (evil   . (telephone-line-airline-position-segment)))
-        telephone-line-primary-left-separator   'telephone-line-flat
-        telephone-line-primary-right-separator  'telephone-line-flat
-        telephone-line-height                   24))
+(setq org-roam-directory "~/roam")
 
 (use-package! direnv
   :unless IS-WINDOWS
   :hook (after-init . direnv-mode))
 
-(use-package! emacsql-sqlite
-  :unless IS-WINDOWS
-  :init
-  (setq emacsql-sqlite-executable (locate-file "emacsql-sqlite" exec-path)))
-
-(use-package! powershell
-  :if IS-WINDOWS)
-
 (use-package! org
-  :hook
-  ((org-mode . (lambda () (hl-line-mode nil)))
-   (org-mode . auto-fill-mode))
-  :init
-  (setq org-startup-indented                t
-        org-pretty-entities                 t
-        org-hide-emphasis-markers           t
-        org-fontify-whole-heading-line      t
-        org-fontify-done-headline           t
-        org-fontify-quote-and-verse-blocks  t
-
-        org-src-tab-acts-natively           t
-        org-src-fontify-natively            t
-        org-src-window-setup                'current-window
-
-        org-latex-to-pdf-process            '("xelatex -interaction nonstopmode %f"
-                                              "xelatex -interaction nonstopmode %f")
-        org-latex-listings                  'minted
-
-        org-confirm-babel-evaluate          nil
-
-        org-export-with-smart-quotes        t
-        org-export-with-section-numbers     nil
-        org-export-with-toc                 nil
-
-        org-startup-with-inline-images      t
-
-        org-html-divs                       '((preamble  "header" "top")
-                                              (content   "main"   "content")
-                                              (postamble "footer" "postamble"))
-        org-html-container-element          "section"
-        org-html-validation-link            nil
-        org-html-head-include-default-style nil
-        org-html-html5-fancy                t
-        org-html-doctype                    "html5")
   :config
   ;; Publishing
   (require 'ox-publish)
@@ -262,19 +182,3 @@
     (org-publish "org")
     (yuki/org-generate-feed)))
 
-(use-package! org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :init (setq org-bullets-bullet-list '(" ")))
-
-(use-package! org-roam
-  :init (setq org-roam-directory "~/roam"))
-
-(use-package! websocket
-  :after org-roam)
-
-(use-package! org-roam-ui
-  :after org-roam
-  :init
-  (setq org-roam-ui-sync-theme     t
-        org-roam-ui-follow         t
-        org-roam-ui-update-on-save t))
