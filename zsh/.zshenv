@@ -51,6 +51,9 @@ if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
+ if [ -d "$HOME/.opam" ]; then
+     source "$HOME/.opam/opam-init/init.zsh"
+ fi
 
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
