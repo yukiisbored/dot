@@ -11,7 +11,6 @@
 (setq org-roam-directory "~/roam")
 
 (use-package! direnv
-  :unless IS-WINDOWS
   :hook (after-init . direnv-mode))
 
 (use-package! company-tabnine
