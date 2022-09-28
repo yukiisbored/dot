@@ -3,3 +3,4 @@
 
 (package! webfeeder)
 (package! direnv)
+(package! company-tabnine)

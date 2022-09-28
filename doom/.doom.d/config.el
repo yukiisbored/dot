@@ -14,6 +14,21 @@
   :unless IS-WINDOWS
   :hook (after-init . direnv-mode))
 
+(use-package! company-tabnine
+  :after company
+  :init
+  (setq company-tabnine-install-static-binary 't
+        +lsp-company-backends '(company-tabnine :separate company-capf company-yasnippet)
+        company-show-numbers t
+        company-idle-delay 0))
+
+(use-package! lsp
+  :init
+  (defun yuki/lsp-hacks ()
+    (direnv-update-environment)
+    (setq lsp-clangd-binary-path (executable-find "clangd")))
+  (advice-add 'lsp :before 'yuki/lsp-hacks))
+
 (use-package! org
   :config
   ;; Publishing
