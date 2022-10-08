@@ -96,6 +96,7 @@ in
     ripgrep
     fd
     emacsql-sqlite
+    croc
 
     # File storage
     git-lfs
