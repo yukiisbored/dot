@@ -35,36 +35,23 @@
           })
         ];
 
-        pkgs = import inputs.nixpkgs {
-          inherit system;
-          inherit config;
-          inherit overlays;
-        };
+        pkgs = import inputs.nixpkgs { inherit system config overlays; };
 
         homeConfig = imports: ({ ... }: { imports = [ inputs.nix-doom-emacs.hmModule ] ++ imports; });
         mkActivationPackage = configuration: (home-manager.lib.homeManagerConfiguration {
-          inherit system;
-          inherit pkgs;
-          inherit configuration;
-
+          inherit system pkgs configuration;
           homeDirectory = "/home/yuki";
           username = "yuki";
         }).activationPackage;
       in
         rec {
-          inherit overlays;
-
           homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
-            desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
             generic = homeConfig [ ./modules/core.nix ./modules/generic.nix ];
           };
 
           packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
-          defaultPackage = packages.generic;
-
           apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
-          defaultApp = apps.generic;
         }
     );
 }
