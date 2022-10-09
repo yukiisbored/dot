@@ -77,10 +77,9 @@ in
 
   fonts.fontconfig.enable = true;
 
-  programs.doom-emacs = {
+  programs.emacs = {
     enable = true;
-    doomPrivateDir = ../doom/.doom.d;
-    emacsPackage = pkgs.emacsPgtkNativeComp;
+    package = pkgs.emacsPgtkNativeComp;
   };
 
   home.packages = with pkgs; [
