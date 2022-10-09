@@ -6,7 +6,8 @@
 (setq doom-font  (font-spec :family "Julia Mono" :size 14)
       doom-theme 'doom-dracula)
 
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'relative
+      warning-minimum-level :error)
 
 (setq org-roam-directory "~/roam")
 
