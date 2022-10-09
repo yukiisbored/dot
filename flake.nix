@@ -12,11 +12,6 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs = {
-      url = "github:nix-community/nix-doom-emacs";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.emacs-overlay.follows = "emacs-overlay";
-    };
   };
 
   outputs = inputs @ { self, utils, home-manager, ... }:
@@ -37,7 +32,7 @@
 
         pkgs = import inputs.nixpkgs { inherit system config overlays; };
 
-        homeConfig = imports: ({ ... }: { imports = [ inputs.nix-doom-emacs.hmModule ] ++ imports; });
+        homeConfig = imports: ({ ... }: { inherit imports; });
         mkActivationPackage = configuration: (home-manager.lib.homeManagerConfiguration {
           inherit system pkgs configuration;
           homeDirectory = "/home/yuki";
