@@ -28,7 +28,7 @@ $ nix run '.#core'
 
 | Function          | Software             |
 |-------------------|----------------------|
-| Operating systems | Windows 10, openSUSE |
+| Operating systems | Windows 11, openSUSE |
 | Font              | Iosevka Term Slab    |
 | Editor            | GNU Emacs            |
 | Web browser       | Vivaldi              |
