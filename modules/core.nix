@@ -80,6 +80,7 @@ in
   programs.emacs = {
     enable = true;
     package = pkgs.emacsPgtkNativeComp;
+    extraPackages = epkgs: [ epkgs.vterm ];
   };
 
   home.packages = with pkgs; [
