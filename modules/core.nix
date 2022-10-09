@@ -143,6 +143,7 @@ in
     # Fonts
     fira
     iosevka-term-slab
+    julia-mono
     emacs-all-the-icons-fonts
     font-awesome_4
   ];

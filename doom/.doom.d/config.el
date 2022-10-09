@@ -3,8 +3,8 @@
 (setq user-full-name    "Yuki"
       user-mail-address "hi@yukiisbo.red")
 
-(setq doom-font  (font-spec :family "Iosevka Term Slab" :size 14)
-      doom-theme 'doom-one-light)
+(setq doom-font  (font-spec :family "Julia Mono" :size 14)
+      doom-theme 'doom-dracula)
 
 (setq display-line-numbers-type 'relative)
 
