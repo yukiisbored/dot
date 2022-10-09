@@ -10,7 +10,7 @@
        doom-quit
        hl-todo
        indent-guides
-       modeline
+       (modeline +light)
        nav-flash
        ophints
        (popup +all +defaults)
