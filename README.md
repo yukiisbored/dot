@@ -26,13 +26,13 @@ $ nix run '.#core'
 
 ## Software
 
-| Function          | Software                      |
-|-------------------|-------------------------------|
-| Operating systems | Windows 10, openSUSE, OpenBSD |
-| Font              | Iosevka Term Slab             |
-| Editor            | GNU Emacs                     |
-| Web browser       | Vivaldi                       |
-| Shell             | zsh                           |
+| Function          | Software             |
+|-------------------|----------------------|
+| Operating systems | Windows 10, openSUSE |
+| Font              | Iosevka Term Slab    |
+| Editor            | GNU Emacs            |
+| Web browser       | Vivaldi              |
+| Shell             | zsh                  |
 
 I don't use NixOS anymore because:
 
