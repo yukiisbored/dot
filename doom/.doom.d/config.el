@@ -9,29 +9,23 @@
 (setq display-line-numbers-type 'relative
       warning-minimum-level :error)
 
-(setq org-roam-directory "~/roam")
+(setq org-roam-directory "~/roam"
+      org-html-divs                       '((preamble  "header" "top")
+                                            (content   "main"   "content")
+                                            (postamble "footer" "postamble"))
+      org-html-container-element          "section"
+      org-html-validation-link            nil
+      org-html-head-include-default-style nil
+      org-html-html5-fancy                t
+      org-html-doctype                    "html5")
 
-(use-package! direnv
-  :hook (after-init . direnv-mode))
-
-(use-package! company-tabnine
-  :after company
-  :init
-  (setq company-tabnine-install-static-binary 't
-        +lsp-company-backends '(company-tabnine :separate company-capf company-yasnippet)
-        company-show-numbers t
-        company-idle-delay 0))
-
-(use-package! lsp
-  :init
+(after! lsp
   (defun yuki/lsp-hacks ()
     (direnv-update-environment)
     (setq lsp-clangd-binary-path (executable-find "clangd")))
   (advice-add 'lsp :before 'yuki/lsp-hacks))
 
-(use-package! org
-  :config
-  ;; Publishing
+(after! org
   (require 'ox-publish)
 
   (defun yuki/format-date-subtitle (file project)
@@ -168,8 +162,10 @@
                :publishing-function 'org-publish-attachment)
          (list "org" :components '("org-posts" "org-drafts" "org-static")))))
 
+(use-package! direnv
+  :hook (after-init . direnv-mode))
+
 (use-package! webfeeder
-  :after org
   :init
   (defun yuki/org-generate-feed ()
     (webfeeder-build
@@ -194,6 +190,8 @@
 
   (defun yuki/publish ()
     (interactive)
+    (disable-theme doom-theme)
     (org-publish "org")
+    (load-theme doom-theme t)
     (yuki/org-generate-feed)))
 

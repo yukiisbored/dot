@@ -74,7 +74,7 @@
        markdown
        (nix +tree-sitter)
        (ocaml +lsp +tree-sitter)
-       (org +roam2)
+       (org +roam2 +pretty)
        (php +lsp +tree-sitter)
        (purescript +lsp)
        (python +lsp +pyright +tree-sitter)
