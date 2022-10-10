@@ -3,4 +3,5 @@
 
 (package! webfeeder)
 (package! direnv)
-(package! company-tabnine)
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
