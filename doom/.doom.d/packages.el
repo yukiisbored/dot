@@ -5,3 +5,4 @@
 (package! direnv)
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+(unpin! haskell-mode)
