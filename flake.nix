@@ -43,6 +43,7 @@
           homeConfigurations = {
             core = homeConfig [ ./modules/core.nix ];
             generic = homeConfig [ ./modules/core.nix ./modules/generic.nix ];
+            desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
           };
 
           packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
