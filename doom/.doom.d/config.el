@@ -4,7 +4,7 @@
       user-mail-address "hi@yukiisbo.red")
 
 (setq doom-font  (font-spec :family "Julia Mono" :size 14)
-      doom-theme 'doom-dracula)
+      doom-theme 'doom-one-light)
 
 (setq display-line-numbers-type 'relative
       warning-minimum-level :error)
