@@ -26,6 +26,7 @@
     synergy
 
     qpwgraph
+    easyeffects
   ] ++ (with pkgs.gnomeExtensions; [
     dash-to-panel
     openweather
