@@ -24,6 +24,8 @@
     remmina
     moonlight-qt
     synergy
+
+    qpwgraph
   ] ++ (with pkgs.gnomeExtensions; [
     dash-to-panel
     openweather
