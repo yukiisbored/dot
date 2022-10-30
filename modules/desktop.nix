@@ -20,6 +20,9 @@
 
     gnome.gnome-tweaks
     appimage-run
+
+    remmina
+    moonlight-qt
   ] ++ (with pkgs.gnomeExtensions; [
     dash-to-panel
     openweather
