@@ -12,8 +12,6 @@
     discord
     gajim
 
-    resilio-sync
-
     gimp
     inkscape
     libreoffice-still
@@ -33,4 +31,20 @@
     appindicator
     x11-gestures
   ]);
+
+  systemd.user.services.rslsync = {
+    Unit = {
+      Description = "Resilio Sync per-user service";
+    };
+
+    Service = {
+      Type = "simple";
+      ExecStart = "${pkgs.resilio-sync}/bin/rslsync --nodaemon";
+      Restart = "on-abort";
+    };
+
+    Install = {
+      WantedBy = [ "default.target" ];
+    };
+  };
 }
