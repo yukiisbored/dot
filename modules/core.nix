@@ -8,51 +8,61 @@ in
   programs.zsh = {
     enable = true;
 
-    initExtra = builtins.readFile ./../zsh/.zshrc;
-    envExtra = builtins.readFile ./../zsh/.zshenv;
-
-    shellAliases = {
-      flake = "nix flake";
-    };
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    enableVteIntegration = true;
+    autocd = true;
+    defaultKeymap = "emacs";
 
     plugins = [
       {
-        name = "zsh-history-substring-search";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-history-substring-search";
-          rev = "4abed97b6e67eb5590b39bcd59080aa23192f25d";
-          sha256 = "8kiPBtgsjRDqLWt0xGJ6vBBLqCWEIyFpYfd+s1prHWk=";
-        };
-      }
-      {
-        name = "zsh-autosuggestions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-autosuggestions";
-          rev = "a411ef3e0992d4839f0732ebeb9823024afaaaa8";
-          sha256 = "KLUYpUu4DHRumQZ3w59m9aTW6TBKMCXl2UcKi4uMd7w=";
-        };
-      }
-      {
-        name = "zsh-completions";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-completions";
-          rev = "d4511c23659381b56dec8be8c8553b7ff3dc5fd8";
-          sha256 = "OOMabAhRcgs7YpCx+g6yIqTHDMwMueBD+s7P+WCdHPk=";
-        };
-      }
-      {
-        name = "zsh-syntax-highlighting";
-        src = pkgs.fetchFromGitHub {
-          owner = "zsh-users";
-          repo = "zsh-syntax-highlighting";
-          rev = "c7caf57ca805abd54f11f756fda6395dd4187f8a";
-          sha256 = "MeuPqDeJpbJi2hT7VUgyQNSmDPY/biUncvyY78IBfzM=";
-        };
+        name = "shrink-path";
+        src = pkgs.oh-my-zsh + /share/oh-my-zsh/plugins/shrink-path;
       }
     ];
+
+    initExtra = ''
+      setopt prompt_subst
+      PS1='$(shrink_path -f) %% '
+      [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
+
+      update_title() {
+        print -Pn "\e]2;%m:%2~\a"
+      }
+
+      autoload -U add-zsh-hook
+      add-zsh-hook -Uz chpwd update_title
+
+      update_title
+
+      bindkey '^p' _atuin_search_widget
+    '';
+    envExtra = builtins.readFile ./../zsh/.zshenv;
+  };
+
+  programs.atuin = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.exa = {
+    enable = true;
+    enableAliases = true;
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
+  programs.scmpuff = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.direnv = {

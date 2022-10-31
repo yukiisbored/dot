@@ -1,15 +1,3 @@
-if [ -d "/usr/games" ]; then
-    export PATH="/usr/games:$PATH"
-fi
-
-if [ -d "/usr/local/jdk-1.8.0" ]; then
-    export JAVA_HOME="/usr/local/jdk-1.8.0"
-fi
-
-if [ -d "/usr/local/jdk-11" ]; then
-    export JAVA_HOME="/usr/local/jdk-11"
-fi
-
 if [ -n "$JAVA_HOME" ]; then
     export PATH="${JAVA_HOME}/bin:$PATH"
 fi
@@ -51,9 +39,9 @@ if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
 
- if [ -d "$HOME/.opam" ]; then
-     source "$HOME/.opam/opam-init/init.zsh"
- fi
+if [ -d "$HOME/.opam" ]; then
+    source "$HOME/.opam/opam-init/init.zsh"
+fi
 
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
