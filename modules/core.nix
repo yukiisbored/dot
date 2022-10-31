@@ -55,10 +55,7 @@ in
     enableAliases = true;
   };
 
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
-  };
+  programs.nix-index.enable = true;
 
   programs.scmpuff = {
     enable = true;
