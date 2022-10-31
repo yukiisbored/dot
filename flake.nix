@@ -3,9 +3,9 @@
 
   inputs = {
     utils.url = "github:numtide/flake-utils";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = {
-      url = "github:nix-community/home-manager/release-22.05";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     emacs-overlay = {
@@ -14,40 +14,59 @@
     };
   };
 
-  outputs = inputs @ { self, utils, home-manager, ... }:
-    with utils.lib; eachDefaultSystem (system:
-      let
-        config = {
-          allowUnfree = true;
-        };
+  outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
+    let
+      inherit (home-manager.lib) homeManagerConfiguration;
+
+      system = "x86_64-linux";
+
+      common.home = {
+        username = "yuki";
+        homeDirectory = "/home/yuki";
+        stateVersion = "22.11";
+      };
+
+      pkgs = import nixpkgs {
+        inherit system;
+
+        config.allowUnfree = true;
 
         overlays = [
           inputs.emacs-overlay.overlay
 
           (self: super: {
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
-            emacsql-sqlite = self.callPackage ./packages/emacsql-sqlite {};
           })
         ];
+      };
+    in {
+      homeConfigurations.core = homeManagerConfiguration {
+        inherit pkgs;
 
-        pkgs = import inputs.nixpkgs { inherit system config overlays; };
+        modules = [
+          common
+          ./modules/core.nix
+        ];
+      };
 
-        homeConfig = imports: ({ ... }: { inherit imports; });
-        mkActivationPackage = configuration: (home-manager.lib.homeManagerConfiguration {
-          inherit system pkgs configuration;
-          homeDirectory = "/home/yuki";
-          username = "yuki";
-        }).activationPackage;
-      in
-        rec {
-          homeConfigurations = {
-            core = homeConfig [ ./modules/core.nix ];
-            generic = homeConfig [ ./modules/core.nix ./modules/generic.nix ];
-            desktop = homeConfig [ ./modules/core.nix ./modules/desktop.nix ];
-          };
+      homeConfigurations.generic = homeManagerConfiguration {
+        inherit pkgs;
 
-          packages = builtins.mapAttrs (_: x: mkActivationPackage x) homeConfigurations;
-          apps = builtins.mapAttrs (_: x: mkApp { drv = x; }) packages;
-        }
-    );
+        modules = [
+          common
+          ./modules/core.nix
+          ./modules/generic.nix
+        ];
+      };
+
+      homeConfigurations.desktop = homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          common
+          ./modules/core.nix
+          ./modules/desktop.nix
+        ];
+      };
+    };
 }

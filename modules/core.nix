@@ -95,7 +95,6 @@ in
     comma
     ripgrep
     fd
-    emacsql-sqlite
     croc
 
     # File storage
@@ -110,9 +109,6 @@ in
     kubectx
     kubectl-modify-secret
     google-cloud-sdk
-
-    # Godot
-    python39Packages.gdtoolkit
 
     # Python
     pipenv
@@ -131,7 +127,7 @@ in
     direnv
     niv
     cachix
-    nixFlakes
+    nixUnstable
     nix-prefetch-git
 
     # Dhall

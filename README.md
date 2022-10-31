@@ -1,6 +1,6 @@
 # yuki/dot
 
-[![NixOS 22.05](https://img.shields.io/badge/NixOS-v22.05-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
+[![NixOS Unstable](https://img.shields.io/badge/NixOS-Unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
 
 This repository contains my personal configuration which are managed
 with mainly GNU stow.
