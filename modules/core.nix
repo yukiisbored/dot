@@ -8,16 +8,34 @@ in
   programs.zsh = {
     enable = true;
 
+    enableAutosuggestions = true;
     enableCompletion = true;
     enableSyntaxHighlighting = true;
     enableVteIntegration = true;
     autocd = true;
     defaultKeymap = "emacs";
+    history = {
+      extended = true;
+      path = "${config.home.homeDirectory}/.histfile";
+    };
 
     plugins = [
       {
         name = "shrink-path";
         src = pkgs.oh-my-zsh + /share/oh-my-zsh/plugins/shrink-path;
+      }
+      {
+        name = "zsh-fzf-history-search";
+        src = pkgs.fetchFromGitHub {
+          owner = "joshskidmore";
+          repo = "zsh-fzf-history-search";
+          rev = "f2432b240c40cff889aab3f10272b8466fb3d9ab";
+          sha256 = "+reiUhVneaz2u170cltpYtYaHhu9wvaZuhf8TdJIrGs=";
+        };
+      }
+      {
+        name = "fzf-tab";
+        src = pkgs.zsh-fzf-tab + /share/fzf-tab;
       }
     ];
 
@@ -34,15 +52,9 @@ in
       add-zsh-hook -Uz chpwd update_title
 
       update_title
-
-      bindkey '^p' _atuin_search_widget
     '';
-    envExtra = builtins.readFile ./../zsh/.zshenv;
-  };
 
-  programs.atuin = {
-    enable = true;
-    enableZshIntegration = true;
+    envExtra = builtins.readFile ./../zsh/.zshenv;
   };
 
   programs.fzf = {
@@ -55,7 +67,10 @@ in
     enableAliases = true;
   };
 
-  programs.nix-index.enable = true;
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = false;
+  };
 
   programs.scmpuff = {
     enable = true;
@@ -65,7 +80,6 @@ in
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;
-
     nix-direnv.enable = true;
   };
 
