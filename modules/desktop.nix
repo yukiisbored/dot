@@ -24,6 +24,9 @@
 
     qpwgraph
     easyeffects
+
+    heroic
+    prismlauncher
   ] ++ (with pkgs.gnomeExtensions; [
     dash-to-panel
     openweather
