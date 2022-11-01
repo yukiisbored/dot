@@ -57,6 +57,8 @@
       add-zsh-hook -Uz chpwd update_title
 
       update_title
+
+      FZF_DEFAULT_OPTS="--layout=reverse"
     '';
 
     envExtra = builtins.readFile ./../zsh/.zshenv;
