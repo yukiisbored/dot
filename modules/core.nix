@@ -1,7 +1,4 @@
 { pkgs, config, lib, ... }:
-let
-  iosevka-term-slab = pkgs.iosevka-bin.override { variant = "sgr-iosevka-term-slab"; };
-in
 {
   programs.home-manager.enable = true;
 
@@ -168,7 +165,6 @@ in
 
     # Fonts
     fira
-    iosevka-term-slab
     julia-mono
     emacs-all-the-icons-fonts
     font-awesome_4
