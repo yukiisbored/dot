@@ -10,7 +10,6 @@ in
 
     enableAutosuggestions = true;
     enableCompletion = true;
-    enableSyntaxHighlighting = true;
     enableVteIntegration = true;
     autocd = true;
     defaultKeymap = "emacs";
@@ -20,6 +19,15 @@ in
     };
 
     plugins = [
+      {
+        name = "fast-syntax-highlighting";
+        src = pkgs.fetchFromGitHub {
+          owner = "zdharma-continuum";
+          repo = "fast-syntax-highlighting";
+          rev = "770bcd986620d6172097dc161178210855808ee0";
+          sha256 = "T4k0pbT7aqLrIRIi2EM15LXCnpRFHzFilAYfRG6kbeY=";
+        };
+      }
       {
         name = "shrink-path";
         src = pkgs.oh-my-zsh + /share/oh-my-zsh/plugins/shrink-path;
