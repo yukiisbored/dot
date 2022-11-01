@@ -4,7 +4,7 @@
       user-mail-address "hi@yukiisbo.red")
 
 (setq doom-font  (font-spec :family "Julia Mono" :size 14)
-      doom-theme 'doom-one-light)
+      doom-theme 'modus-operandi)
 
 (setq display-line-numbers-type 'relative
       warning-minimum-level :error)
@@ -190,9 +190,7 @@
 
   (defun yuki/publish ()
     (interactive)
-    (disable-theme doom-theme)
     (org-publish "org")
-    (load-theme doom-theme t)
     (yuki/org-generate-feed)))
 
 (use-package! copilot
