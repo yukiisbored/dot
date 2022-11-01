@@ -41,7 +41,7 @@
 
     Service = {
       Type = "simple";
-      ExecStart = "${pkgs.resilio-sync}/bin/rslsync --nodaemon";
+      ExecStart = "${pkgs.pkgsStable.resilio-sync}/bin/rslsync --nodaemon";
       Restart = "on-abort";
     };
 

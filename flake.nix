@@ -4,6 +4,7 @@
   inputs = {
     utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.05";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,19 +27,24 @@
         stateVersion = "22.11";
       };
 
-      pkgs = import nixpkgs {
+      pkgsCommon = {
         inherit system;
-
         config.allowUnfree = true;
+      };
 
+      pkgsStable = import inputs.nixpkgs-stable pkgsCommon;
+
+      pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           inputs.emacs-overlay.overlay
 
           (self: super: {
+            inherit pkgsStable;
+
             kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
           })
         ];
-      };
+      });
     in {
       homeConfigurations.core = homeManagerConfiguration {
         inherit pkgs;
