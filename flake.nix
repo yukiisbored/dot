@@ -37,12 +37,7 @@
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           inputs.emacs-overlay.overlay
-
-          (self: super: {
-            inherit pkgsStable;
-
-            kubectl-modify-secret = self.callPackage ./packages/kubectl-modify-secret.nix {};
-          })
+          (self: super: { inherit pkgsStable; })
         ];
       });
     in {
