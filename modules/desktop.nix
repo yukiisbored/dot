@@ -1,6 +1,12 @@
 { pkgs, config, ... }:
 
 {
+  services.emacs = {
+    enable = true;
+    package = config.programs.emacs.package;
+    defaultEditor = true;
+  };
+
   home.packages = with pkgs; [
     (vivaldi.override {
       proprietaryCodecs = true;
