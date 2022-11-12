@@ -18,6 +18,7 @@
        vi-tilde-fringe
        (window-select +switch-window)
        workspaces
+       zen
 
        :editor
        (evil +everywhere)
