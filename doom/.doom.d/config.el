@@ -193,10 +193,21 @@
     (org-publish "org")
     (yuki/org-generate-feed)))
 
+(after! company
+  (delq 'company-preview-if-just-one-frontend company-frontends))
+
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (("C-TAB" . 'copilot-accept-completion-by-word)
-         ("C-<tab>" . 'copilot-accept-completion-by-word)
-         :map copilot-completion-map
-         ("<tab>" . 'copilot-accept-completion)
-         ("TAB" . 'copilot-accept-completion)))
+  :bind (:map company-mode-map
+        ("<tab>" . yuki/tab)
+        ("TAB" . yuki/tab)
+        :map company-active-map
+        ("<tab>" . yuki/tab)
+        ("TAB" . yuki/tab))
+  :init
+  (setq copilot-enable-predicates '(evil-insert-state-p))
+  (defun yuki/tab ()
+    (interactive)
+    (or (copilot-accept-completion)
+        (company-indent-or-complete-common nil)
+        (indent-for-tab-command))))
