@@ -151,6 +151,9 @@
     nodePackages.node2nix
     nodejs-14_x
 
+    # OCaml / Reason
+    nodePackages.esy
+
     # Haskell
     haskellPackages.brittany
 
