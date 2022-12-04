@@ -109,7 +109,7 @@
 
   programs.emacs = {
     enable = true;
-    package = pkgs.emacsNativeComp;
+    package = pkgs.emacsPgtk;
     extraPackages = epkgs: [ epkgs.vterm ];
   };
 
