@@ -19,6 +19,8 @@
        (window-select +switch-window)
        workspaces
        zen
+       deft
+       (emoji +github +unicode)
 
        :editor
        (evil +everywhere)
@@ -27,6 +29,7 @@
        rotate-text
        snippets
        word-wrap
+       fold
 
        :emacs
        (dired +icons +ranger)
