@@ -74,7 +74,7 @@
        (gdscript +lsp)
        (haskell +lsp)
        (json +tree-sitter)
-       (javascript +tree-sitter)
+       (javascript +lsp +tree-sitter)
        (kotlin +lsp)
        markdown
        (nix +tree-sitter)
