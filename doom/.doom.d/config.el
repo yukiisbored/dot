@@ -198,16 +198,9 @@
 
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
-  :bind (:map company-mode-map
-        ("<tab>" . yuki/tab)
-        ("TAB" . yuki/tab)
-        :map company-active-map
-        ("<tab>" . yuki/tab)
-        ("TAB" . yuki/tab))
+  :bind (:map evil-insert-state-map
+              ("M-<right>" . copilot-accept-completion-by-line)
+              ("M-<return>" . copilot-accept-completion)
+              ("M-<tab>" . copilot-next-completion))
   :init
-  (setq copilot-enable-predicates '(evil-insert-state-p))
-  (defun yuki/tab ()
-    (interactive)
-    (or (copilot-accept-completion)
-        (company-indent-or-complete-common nil)
-        (indent-for-tab-command))))
+  (setq copilot-node-executable (executable-find "node-16")))

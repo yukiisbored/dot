@@ -149,7 +149,12 @@
     # JavaScript / Node.js
     nodePackages.typescript-language-server
     nodePackages.node2nix
-    nodejs-14_x
+    nodePackages.gatsby-cli
+    nodejs
+    (runCommand "nodejs-16" {} ''
+      mkdir -p $out/bin
+      ln -s ${pkgs.nodejs-slim-16_x}/bin/node $out/bin/node-16
+    '')
 
     # OCaml / Reason
     nodePackages.esy
