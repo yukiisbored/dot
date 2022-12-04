@@ -40,7 +40,8 @@
 
        :checkers
        (syntax +childframe)
-       (spell +hunspell +everywhere)
+       (spell +aspell)
+       grammar
 
        :tools
        editorconfig

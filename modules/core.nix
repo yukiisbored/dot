@@ -126,6 +126,8 @@
     ripgrep
     fd
     croc
+    (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
+    languagetool
 
     # File storage
     git-lfs
