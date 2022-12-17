@@ -19,6 +19,8 @@
       org-html-html5-fancy                t
       org-html-doctype                    "html5")
 
+(add-to-list 'auto-mode-alist '("\\.mdx" . markdown-mode))
+
 (after! lsp
   (defun yuki/lsp-hacks ()
     (direnv-update-environment)
