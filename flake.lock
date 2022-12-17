@@ -36,12 +36,33 @@
         "type": "github"
       }
     },
-    "home-manager": {
+    "gke-gcloud-auth-plugin": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
         ],
         "utils": "utils"
+      },
+      "locked": {
+        "lastModified": 1668773468,
+        "narHash": "sha256-oo6PapZ3H2iBKlq91/4ApVDh/5sEiZlRjja69igCBTc=",
+        "owner": "talzion12",
+        "repo": "gke-gcloud-auth-plugin-flake",
+        "rev": "6980576fb5b8264633e76fff539938c6a65e7ed4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "talzion12",
+        "repo": "gke-gcloud-auth-plugin-flake",
+        "type": "github"
+      }
+    },
+    "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "utils": "utils_2"
       },
       "locked": {
         "lastModified": 1670163996,
@@ -92,10 +113,11 @@
     "root": {
       "inputs": {
         "emacs-overlay": "emacs-overlay",
+        "gke-gcloud-auth-plugin": "gke-gcloud-auth-plugin",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
-        "utils": "utils_2"
+        "utils": "utils_3"
       }
     },
     "utils": {
@@ -114,6 +136,21 @@
       }
     },
     "utils_2": {
+      "locked": {
+        "lastModified": 1667395993,
+        "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "5aed5285a952e0b949eb3ba02c12fa4fcfef535f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "utils_3": {
       "locked": {
         "lastModified": 1667395993,
         "narHash": "sha256-nuEHfE/LcWyuSWnS8t12N1wc105Qtau+/OdUAjtQ0rA=",

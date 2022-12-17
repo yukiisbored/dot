@@ -13,6 +13,10 @@
       url = "github:nix-community/emacs-overlay";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    gke-gcloud-auth-plugin = {
+      url = "github:talzion12/gke-gcloud-auth-plugin-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -37,6 +41,7 @@
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           inputs.emacs-overlay.overlay
+          (self: super: { gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system}; })
           (self: super: { inherit pkgsStable; })
         ];
       });

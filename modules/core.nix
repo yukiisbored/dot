@@ -141,6 +141,7 @@
     kubectl
     kubectx
     google-cloud-sdk
+    gke-gcloud-auth-plugin
 
     # Python
     pipenv
