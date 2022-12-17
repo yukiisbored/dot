@@ -204,3 +204,6 @@
               ("M-<tab>" . copilot-next-completion))
   :init
   (setq copilot-node-executable (executable-find "node-16")))
+
+(use-package! wakatime
+  :hook (after-init . global-wakatime-mode))

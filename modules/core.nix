@@ -128,6 +128,7 @@
     croc
     (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
     languagetool
+    wakatime
 
     # File storage
     git-lfs
