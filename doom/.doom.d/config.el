@@ -36,3 +36,16 @@
 
 (use-package! wakatime
   :hook (after-init . global-wakatime-mode))
+
+(use-package! blamer
+  :hook (after-init . global-blamer-mode)
+  :bind (:map evil-normal-state-map
+              ("gb" . blamer-show-commit-info))
+  :defer 20
+  :custom
+  (blamer-idle-time 0)
+  (blamer-max-commit-message-length 50)
+  :custom-face
+  (blamer-face ((t :foreground "gray"
+                   :background nil
+                   :italic t))))
