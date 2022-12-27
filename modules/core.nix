@@ -44,27 +44,7 @@
       }
     ];
 
-    initExtra = ''
-      export COLORTERM=truecolor
-
-      setopt noextendedglob
-
-      setopt prompt_subst
-      PS1='$(shrink_path -f) %% '
-      [[ -n "$SSH_TTY" ]] && PS1="$HOST $PS1"
-
-      update_title() {
-        print -Pn "\e]2;%m:%2~\a"
-      }
-
-      autoload -U add-zsh-hook
-      add-zsh-hook -Uz chpwd update_title
-
-      update_title
-
-      FZF_DEFAULT_OPTS="--layout=reverse"
-    '';
-
+    initExtra = builtins.readFile ./../zsh/.zshrc;
     envExtra = builtins.readFile ./../zsh/.zshenv;
   };
 
