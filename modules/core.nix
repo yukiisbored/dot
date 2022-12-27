@@ -45,6 +45,8 @@
     ];
 
     initExtra = ''
+      export COLORTERM=truecolor
+
       setopt noextendedglob
 
       setopt prompt_subst
@@ -103,6 +105,17 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+  };
+
+  programs.helix = {
+    enable = true;
+    settings = {
+      editor.cursor-shape = {
+        insert = "bar";
+        normal = "block";
+        select = "underline";
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;

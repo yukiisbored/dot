@@ -51,3 +51,9 @@ if command -v nvim >/dev/null; then
    export EDITOR="nvim"
    export VISUAL="nvim"
 fi
+
+if command -v hx >/dev/null; then
+   export ALTERNATE_EDITOR=""
+   export EDITOR="hx"
+   export VISUAL="hx"
+fi
