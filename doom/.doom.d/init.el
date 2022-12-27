@@ -55,7 +55,7 @@
        pdf
        rgb
        tree-sitter
-       repl
+       direnv
 
        :os
        (:if IS-MAC macos)
