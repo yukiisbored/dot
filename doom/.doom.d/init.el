@@ -55,6 +55,7 @@
        pdf
        rgb
        tree-sitter
+       repl
 
        :os
        (:if IS-MAC macos)
