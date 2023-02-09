@@ -13,7 +13,7 @@
        modeline
        nav-flash
        ophints
-       (popup +all +defaults)
+       (popup +defaults)
        vc-gutter
        vi-tilde-fringe
        (window-select +switch-window)
@@ -21,6 +21,7 @@
        zen
        deft
        (emoji +github +unicode)
+       (treemacs +lsp)
 
        :editor
        (evil +everywhere)

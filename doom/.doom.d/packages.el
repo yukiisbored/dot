@@ -8,3 +8,5 @@
 (package! modus-themes)
 (package! wakatime-mode)
 (package! blamer)
+(package! prisma-mode
+  :recipe (:host github :repo "pimeys/emacs-prisma-mode" :branch "main"))

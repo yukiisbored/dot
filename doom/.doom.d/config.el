@@ -22,3 +22,6 @@
 
 (use-package! wakatime
   :hook (after-init . global-wakatime-mode))
+
+(use-package! prisma-mode
+  :hook (prisma-mode . lsp))
