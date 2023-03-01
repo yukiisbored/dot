@@ -41,8 +41,11 @@
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           inputs.emacs-overlay.overlay
-          (self: super: { gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system}; })
-          (self: super: { inherit pkgsStable; })
+          (self: super: {
+            inherit pkgsStable;
+            gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
+            konfig = self.callPackage ./packages/konfig {};
+          })
         ];
       });
     in {

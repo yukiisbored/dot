@@ -132,8 +132,12 @@
     # Cloud
     kubectl
     kubectx
+    konfig
+    kubernetes-helm
+    helmfile
     google-cloud-sdk
     gke-gcloud-auth-plugin
+    scaleway-cli
 
     # Python
     pipenv
