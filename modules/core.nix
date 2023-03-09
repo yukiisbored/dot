@@ -148,6 +148,7 @@
     nodePackages.typescript-language-server
     nodePackages.node2nix
     nodePackages.gatsby-cli
+    deno
 
     # OCaml / Reason
     nodePackages.esy
