@@ -121,6 +121,8 @@
     (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
     languagetool
     wakatime
+    pwgen
+    yt-dlp
 
     # File storage
     git-lfs
