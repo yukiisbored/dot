@@ -124,6 +124,7 @@
     wakatime
     pwgen
     yt-dlp
+    jq
 
     # File storage
     git-lfs
@@ -141,6 +142,7 @@
     google-cloud-sdk
     gke-gcloud-auth-plugin
     scaleway-cli
+    kind
 
     # Python
     pipenv
