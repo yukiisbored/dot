@@ -80,7 +80,6 @@
        (kotlin +lsp)
        markdown
        (nix +tree-sitter)
-       (ocaml +lsp +tree-sitter)
        (org +roam2 +pretty)
        (php +lsp +tree-sitter)
        (purescript +lsp)
