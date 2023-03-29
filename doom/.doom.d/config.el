@@ -1,5 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+(require 'lsp)
+
 (setq user-full-name    "Yuki"
       user-mail-address "hi@yukiisbo.red")
 
@@ -13,6 +15,9 @@
 
 (add-to-list 'auto-mode-alist '("\\.mdx" . markdown-mode))
 
+(defun yuki/lsp-set-priority (server priority)
+  (setf (lsp--client-priority (gethash server lsp-clients)) priority))
+
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map evil-insert-state-map
@@ -24,4 +29,8 @@
   :hook (after-init . global-wakatime-mode))
 
 (use-package! prisma-mode
-  :hook (prisma-mode . lsp))
+  :after lsp
+  :init
+  (add-hook 'prisma-mode-hook #'lsp-deferred)
+  :config
+  (yuki/lsp-set-priority 'prismals -2))
