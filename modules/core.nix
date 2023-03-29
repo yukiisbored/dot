@@ -102,6 +102,7 @@
 
   programs.emacs = {
     enable = true;
+    package = pkgs.emacsPgtk;
     extraPackages = epkgs: [ epkgs.vterm ];
   };
 
@@ -154,9 +155,6 @@
 
     # OCaml / Reason
     nodePackages.esy
-
-    # Haskell
-    haskellPackages.brittany
 
     # Nix
     direnv
