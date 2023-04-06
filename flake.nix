@@ -8,10 +8,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    emacs-overlay = {
-      url = "github:nix-community/emacs-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     gke-gcloud-auth-plugin = {
       url = "github:talzion12/gke-gcloud-auth-plugin-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -37,7 +34,6 @@
 
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
-          inputs.emacs-overlay.overlay
           (self: super: {
             gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
             konfig = self.callPackage ./packages/konfig {};
@@ -49,6 +45,7 @@
         inherit pkgs;
 
         modules = [
+          inputs.nix-doom-emacs.hmModule
           common
           ./modules/core.nix
         ];
@@ -58,6 +55,7 @@
         inherit pkgs;
 
         modules = [
+          inputs.nix-doom-emacs.hmModule
           common
           ./modules/core.nix
           ./modules/generic.nix
