@@ -20,7 +20,6 @@
        workspaces
        zen
        deft
-       (emoji +github +unicode)
        (treemacs +lsp)
 
        :editor
@@ -64,31 +63,19 @@
 
        :lang
        (cc +lsp +tree-sitter)
-       coq
-       data
        (dart +flutter +lsp)
-       dhall
-       (elixir +lsp +tree-sitter)
-       (elm +tree-sitter)
        emacs-lisp
-       (erlang +lsp)
-       (go +lsp +tree-sitter)
-       (gdscript +lsp)
        (haskell +lsp)
        (json +tree-sitter)
        (javascript +lsp +tree-sitter)
-       (kotlin +lsp)
        markdown
        (nix +tree-sitter)
-       (org +roam2 +pretty)
-       (php +lsp +tree-sitter)
-       (purescript +lsp)
        (python +lsp +pyright +tree-sitter)
        (rust +lsp +tree-sitter)
        (sh +tree-sitter)
        (web +lsp +tree-sitter)
        yaml
-       (zig +lsp +tree-sitter)
+       org
 
        :config
        (default +bindings +smartparens))
