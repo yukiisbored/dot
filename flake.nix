@@ -4,7 +4,6 @@
   inputs = {
     utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-22.11";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,13 +35,10 @@
         config.allowUnfree = true;
       };
 
-      pkgsStable = import inputs.nixpkgs-stable pkgsCommon;
-
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           inputs.emacs-overlay.overlay
           (self: super: {
-            inherit pkgsStable;
             gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
             konfig = self.callPackage ./packages/konfig {};
           })
@@ -65,16 +61,6 @@
           common
           ./modules/core.nix
           ./modules/generic.nix
-        ];
-      };
-
-      homeConfigurations.desktop = homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          common
-          ./modules/core.nix
-          ./modules/desktop.nix
         ];
       };
     };
