@@ -1,16 +1,16 @@
 { pkgs, config, lib, ... }:
 {
   imports = [
-    ./base.nix
+    ../modules/base.nix
 
-    ./zsh.nix
-    ./git.nix
-    ./nix.nix
+    ../modules/zsh
+    ../modules/git.nix
+    ../modules/nix.nix
 
-    ./neovim.nix 
-    ./emacs.nix 
+    ../modules/neovim.nix
+    ../modules/emacs
 
-    ./prog.nix
+    ../modules/prog.nix
   ];
 
   home.packages = with pkgs; [

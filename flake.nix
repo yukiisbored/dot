@@ -21,10 +21,16 @@
 
       system = "x86_64-linux";
 
-      common.home = {
-        username = "yuki";
-        homeDirectory = "/home/yuki";
-        stateVersion = "22.11";
+      common = {
+        imports = [
+          inputs.nix-doom-emacs.hmModule
+        ];
+
+        home = {
+          username = "yuki";
+          homeDirectory = "/home/yuki";
+          stateVersion = "22.11";
+        };
       };
 
       pkgsCommon = {
@@ -40,26 +46,17 @@
           })
         ];
       });
+
+      mkConfiguration = config: homeManagerConfiguration {
+        inherit pkgs;
+
+        modules = [
+          common
+          config
+        ];
+      };
     in {
-      homeConfigurations.core = homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          inputs.nix-doom-emacs.hmModule
-          common
-          ./modules/core.nix
-        ];
-      };
-
-      homeConfigurations.generic = homeManagerConfiguration {
-        inherit pkgs;
-
-        modules = [
-          inputs.nix-doom-emacs.hmModule
-          common
-          ./modules/core.nix
-          ./modules/generic.nix
-        ];
-      };
+      homeConfigurations.core = mkConfiguration ./configurations/core.nix;
+      homeConfigurations.generic = mkConfiguration ./configurations/generic.nix;
     };
 }

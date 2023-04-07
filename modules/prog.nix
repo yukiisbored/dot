@@ -6,21 +6,9 @@
     poetry
     nodePackages.pyright
 
-    # JavaScript / Node.js
+    # JavaScript
     nodejs-18_x
-    nodePackages.typescript-language-server
-    nodePackages.node2nix
-    nodePackages.gatsby-cli
     deno
-
-    # OCaml / Reason
-    nodePackages.esy
-
-    # Dhall
-    dhall
-    dhall-lsp-server
-
-    # Coq
-    coq
+    nodePackages.typescript-language-server
   ];
 }

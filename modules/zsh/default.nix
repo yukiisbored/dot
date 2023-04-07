@@ -42,8 +42,8 @@
       }
     ];
 
-    initExtra = builtins.readFile ./../zsh/.zshrc;
-    envExtra = builtins.readFile ./../zsh/.zshenv;
+    initExtra = builtins.readFile ./zshrc;
+    envExtra = builtins.readFile ./zshenv;
   };
 
   programs.fzf = {

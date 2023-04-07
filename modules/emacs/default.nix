@@ -2,7 +2,7 @@
 {
   programs.doom-emacs = {
     enable = true;
-    doomPrivateDir = ../doom/.doom.d;
+    doomPrivateDir = ./doom.d;
     emacsPackagesOverlay = self: super: {
       copilot = self.trivialBuild {
         pname = "copilot";
