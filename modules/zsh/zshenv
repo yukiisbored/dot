@@ -16,6 +16,11 @@ fi
 if [ -d "$HOME/bin" ]; then
     export PATH="$HOME/bin:$PATH"
 fi
+
+if [ -d "$XDG_CONFIG_HOME/emacs" ]; then
+    export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
+fi
+
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
 

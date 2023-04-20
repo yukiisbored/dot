@@ -8,7 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-doom-emacs.url = "github:nix-community/nix-doom-emacs";
     gke-gcloud-auth-plugin = {
       url = "github:talzion12/gke-gcloud-auth-plugin-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,10 +21,6 @@
       system = "x86_64-linux";
 
       common = {
-        imports = [
-          inputs.nix-doom-emacs.hmModule
-        ];
-
         home = {
           username = "yuki";
           homeDirectory = "/home/yuki";

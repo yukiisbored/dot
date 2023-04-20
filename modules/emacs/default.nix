@@ -1,38 +1,41 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  programs.doom-emacs = {
+  programs.emacs = {
     enable = true;
-    doomPrivateDir = ./doom.d;
-    emacsPackagesOverlay = self: super: {
-      copilot = self.trivialBuild {
-        pname = "copilot";
-        ename = "copilot";
-        version = "unstable-2023-04-06";
-        buildInputs = [ self.s self.dash self.editorconfig self.jsonrpc ];
-        src = pkgs.fetchFromGitHub {
-          owner = "zerolfx";
-          repo = "copilot.el";
-          rev = "8256377a77b1268a9ea5d470c59a05d26ff5b432";
-          sha256 = "sha256-KkKTN67IDfkmkYUo0M3aBbwI89LL9eAJqfyaTwye9Zc=";
-        };
-
-        postInstall = ''
-           LISPDIR=$out/share/emacs/site-lisp
-           cp -r dist $LISPDIR
-        '';
-      };
-    };
+    extraPackages = epkgs: [
+      epkgs.vterm
+    ];
   };
 
   home.packages = with pkgs; [
-    wakatime
+    git
+    (ripgrep.override { withPCRE2 = true; })
+    gnutls
+
+    fd
+    imagemagick
+    zstd
 
     (aspellWithDicts (ds: with ds; [ en en-computers en-science fr ]))
     languagetool
 
-    fira
-    julia-mono
+    editorconfig-core-c
+
+    wakatime
+
+    fantasque-sans-mono
     emacs-all-the-icons-fonts
-    font-awesome_4
   ];
+
+  home.activation = {
+    installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone $VERBOSE_ARG --depth=1 --single-branch https://github.com/doomemacs/doomemacs "$XDG_CONFIG_HOME/emacs"
+      fi
+
+      if [ ! -d "$XDG_CONFIG_HOME/doom" ]; then
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone $VERBOSE_ARG https://git.yukiisbo.red/yuki/doom "$XDG_CONFIG_HOME/doom"
+      fi
+    '';
+  };
 }
