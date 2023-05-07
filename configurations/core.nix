@@ -25,6 +25,7 @@
     pwgen
     yt-dlp
     jq
+    tomb
 
     # Encryption
     trezor_agent
