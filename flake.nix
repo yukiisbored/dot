@@ -13,6 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv";
+    helix.url = "github:helix-editor/helix/23.05";
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -38,6 +39,7 @@
         overlays = [
           (self: super: {
             inherit (inputs.devenv.packages.${system}) devenv;
+            inherit (inputs.helix.packages.${system}) helix;
             gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
             konfig = self.callPackage ./packages/konfig {};
           })

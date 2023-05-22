@@ -9,6 +9,7 @@
 
     ../modules/neovim.nix
     ../modules/emacs
+    ../modules/helix.nix
 
     ../modules/prog.nix
   ];
