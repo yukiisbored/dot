@@ -27,6 +27,7 @@
     yt-dlp
     jq
     tomb
+    tmate
 
     # Encryption
     trezor_agent
