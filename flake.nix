@@ -12,6 +12,7 @@
       url = "github:talzion12/gke-gcloud-auth-plugin-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    devenv.url = "github:cachix/devenv";
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -36,6 +37,7 @@
       pkgs = import nixpkgs (pkgsCommon // {
         overlays = [
           (self: super: {
+            inherit (inputs.devenv.packages.${system}) devenv;
             gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
             konfig = self.callPackage ./packages/konfig {};
           })
