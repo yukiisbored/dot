@@ -13,6 +13,7 @@
   };
 
   home.packages = with pkgs; [
+    gitui
     git-crypt
   ];
 }
