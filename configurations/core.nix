@@ -29,6 +29,7 @@
     tomb
     tmate
     ngrok
+    gh
 
     # Encryption
     trezor_agent
