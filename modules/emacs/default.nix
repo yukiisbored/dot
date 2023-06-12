@@ -34,7 +34,7 @@
       fi
 
       if [ ! -d "$XDG_CONFIG_HOME/doom" ]; then
-        $DRY_RUN_CMD ${pkgs.git}/bin/git clone $VERBOSE_ARG https://git.yukiisbo.red/yuki/doom "$XDG_CONFIG_HOME/doom"
+        $DRY_RUN_CMD ${pkgs.git}/bin/git clone $VERBOSE_ARG https://github.com/yukiisbored/doom "$XDG_CONFIG_HOME/doom"
       fi
     '';
   };
