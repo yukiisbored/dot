@@ -28,6 +28,7 @@
     jq
     tomb
     tmate
+    ngrok
 
     # Encryption
     trezor_agent
