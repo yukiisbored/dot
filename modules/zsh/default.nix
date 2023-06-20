@@ -24,10 +24,6 @@
         };
       }
       {
-        name = "shrink-path";
-        src = pkgs.oh-my-zsh + /share/oh-my-zsh/plugins/shrink-path;
-      }
-      {
         name = "zsh-fzf-history-search";
         src = pkgs.fetchFromGitHub {
           owner = "joshskidmore";
@@ -59,6 +55,28 @@
   programs.scmpuff = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  programs.starship = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      format = "$directory$character";
+      right_format = "$all";
+      add_newline = false;
+
+      directory = {
+        truncate_to_repo = false;
+        truncation_symbol = "../";
+      };
+
+      character = {
+        success_symbol = "%";
+        error_symbol = "[%](red)";
+      };
+
+      gcloud.disabled = true;
+    };
   };
 
   programs.tmux = {
