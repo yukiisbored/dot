@@ -16,7 +16,6 @@
 
   home.packages = with pkgs; [
     # General utilities
-    tmux
     silver-searcher
     sqlite
     httpie
