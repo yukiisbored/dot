@@ -19,43 +19,51 @@
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
     let
       inherit (home-manager.lib) homeManagerConfiguration;
+      inherit (nixpkgs) lib;
 
-      system = "x86_64-linux";
+      mkConfiguration = system: config: 
+        let
+          inherit (lib.systems.elaborate { inherit system; }) isLinux isDarwin;
 
-      common = {
-        home = {
-          username = "yuki";
-          homeDirectory = "/home/yuki";
-          stateVersion = "22.11";
-        };
-      };
+          pkgs = import nixpkgs {
+            inherit system;
+            config.allowUnfree = true;
 
-      pkgsCommon = {
-        inherit system;
-        config.allowUnfree = true;
-      };
+            overlays = [
+              (self: super: {
+                inherit (inputs.devenv.packages.${system}) devenv;
+                inherit (inputs.helix.packages.${system}) helix;
+                konfig = self.callPackage ./packages/konfig {};
+              })
+            ] ++ lib.optionals isLinux [
+              (self: super: {
+                gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
+              })
+            ];
+          };
+        in
+          homeManagerConfiguration ({
+            inherit pkgs;
 
-      pkgs = import nixpkgs (pkgsCommon // {
-        overlays = [
-          (self: super: {
-            inherit (inputs.devenv.packages.${system}) devenv;
-            inherit (inputs.helix.packages.${system}) helix;
-            gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
-            konfig = self.callPackage ./packages/konfig {};
-          })
-        ];
-      });
+            modules = [
+             ({
+                home = {
+                  homeDirectory = if isDarwin then "/Users/yuki" else "/home/yuki";
+                  username = "yuki";
+                  stateVersion = "22.11";
+                };
+              })
 
-      mkConfiguration = config: homeManagerConfiguration {
-        inherit pkgs;
+              config
+            ];
 
-        modules = [
-          common
-          config
-        ];
-      };
+            extraSpecialArgs = {
+              inherit system isLinux isDarwin;
+            };
+          });
     in {
-      homeConfigurations.core = mkConfiguration ./configurations/core.nix;
-      homeConfigurations.generic = mkConfiguration ./configurations/generic.nix;
+      homeConfigurations.core = mkConfiguration "x86_64-linux" ./configurations/core.nix;
+      homeConfigurations.generic = mkConfiguration "x86_64-linux" ./configurations/generic.nix;
+      homeConfigurations.mac = mkConfiguration "aarch64-darwin" ./configurations/core.nix;
     };
 }

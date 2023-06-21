@@ -29,6 +29,7 @@
 
   home.activation = {
     installDoomEmacs = lib.hm.dag.entryAfter ["writeBoundary"] ''
+      export XDG_CONFIG_HOME=''${XDG_CONFIG_HOME:-$HOME/.config}
       if [ ! -d "$XDG_CONFIG_HOME/emacs" ]; then
         $DRY_RUN_CMD ${pkgs.git}/bin/git clone $VERBOSE_ARG --depth=1 --single-branch https://github.com/doomemacs/doomemacs "$XDG_CONFIG_HOME/emacs"
       fi

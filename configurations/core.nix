@@ -1,5 +1,6 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, isLinux, ... }:
 {
+
   imports = [
     ../modules/base.nix
 
@@ -25,7 +26,6 @@
     pwgen
     yt-dlp
     jq
-    tomb
     tmate
     ngrok
     gh
@@ -42,8 +42,10 @@
     kubernetes-helm
     helmfile
     google-cloud-sdk
-    gke-gcloud-auth-plugin
     scaleway-cli
     kind
+  ] ++ lib.optionals isLinux [
+    tomb
+    gke-gcloud-auth-plugin
   ];
 }

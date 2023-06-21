@@ -1,3 +1,5 @@
+export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
+
 if [ -n "$HOME/.ghcup" ]; then
     export PATH="$HOME/.ghcup/bin:$PATH"
 fi
