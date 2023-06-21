@@ -12,10 +12,10 @@ standalone flake] section from home-manager's documentation.
 
 | Function          | Software                    |
 |-------------------|-----------------------------|
-| Operating systems | Windows 11, openSUSE, NixOS |
-| Font              | Iosevka Term Slab           |
-| Editor            | GNU Emacs                   |
-| Web browser       | Vivaldi                     |
+| Operating systems | macOS, Fedora, Windows 11   |
+| Font              | Maple Mono                  |
+| Editor            | Helix                       |
+| Web browser       | Arc (on macOS), Vivaldi     |
 | Shell             | zsh                         |
 
 [home-manager]: https://rycee.gitlab.io/home-manager/index.html
