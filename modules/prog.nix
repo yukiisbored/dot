@@ -10,5 +10,8 @@
     nodejs-18_x
     deno
     nodePackages.typescript-language-server
+
+    # iOS
+    cocoapods
   ];
 }
