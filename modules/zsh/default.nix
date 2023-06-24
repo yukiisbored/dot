@@ -82,5 +82,9 @@
   programs.tmux = {
     enable = true;
     escapeTime = 0;
+    terminal = "tmux-256color";
+    extraConfig = ''
+      set -as terminal-features ",xterm-256color:RGB"
+    '';
   };
 }
