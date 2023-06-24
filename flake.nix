@@ -13,7 +13,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     devenv.url = "github:cachix/devenv";
-    helix.url = "github:helix-editor/helix/23.05";
+    helix.url = "github:helix-editor/helix";
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
