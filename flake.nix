@@ -14,6 +14,7 @@
     };
     devenv.url = "github:cachix/devenv";
     helix.url = "github:helix-editor/helix";
+    zig.url = "github:mitchellh/zig-overlay";
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -30,9 +31,10 @@
             config.allowUnfree = true;
 
             overlays = [
+              inputs.zig.overlays.default
               (self: super: {
-                inherit (inputs.devenv.packages.${system}) devenv;
-                inherit (inputs.helix.packages.${system}) helix;
+                inherit (inputs.devenv.packages.${self.system}) devenv;
+                inherit (inputs.helix.packages.${self.system}) helix;
                 konfig = self.callPackage ./packages/konfig {};
               })
             ] ++ lib.optionals isLinux [

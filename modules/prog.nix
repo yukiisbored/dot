@@ -13,5 +13,8 @@
 
     # iOS
     cocoapods
+
+    # Zig
+    zigpkgs.master
   ];
 }
