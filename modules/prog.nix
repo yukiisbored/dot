@@ -16,5 +16,8 @@
 
     # Zig
     zigpkgs.master
+
+    # C, C++, and friends!
+    cmake
   ];
 }
