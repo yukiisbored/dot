@@ -4,7 +4,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "onelight";
+      theme = "dark_high_contrast";
 
       editor.line-number = "relative";
 
