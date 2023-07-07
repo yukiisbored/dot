@@ -41,11 +41,11 @@
     konfig
     kubernetes-helm
     helmfile
-    google-cloud-sdk
     scaleway-cli
     kind
   ] ++ lib.optionals isLinux [
-    tomb
+    google-cloud-sdk
     gke-gcloud-auth-plugin
+    tomb
   ];
 }
