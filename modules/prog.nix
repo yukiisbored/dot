@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, isLinux, ... }:
 {
   home.packages = with pkgs; [
     # Python
@@ -16,8 +16,19 @@
 
     # Zig
     zigpkgs.master
+    zls
 
     # C, C++, and friends!
     cmake
-  ];
+
+    # Rust
+    rustc
+    cargo
+    rust-analyzer
+
+    # Benchmark
+    hyperfine
+  ] ++ lib.optionals isLinux (with pkgs; [
+    valgrind
+  ]);
 }
