@@ -15,6 +15,7 @@
     devenv.url = "github:cachix/devenv";
     helix.url = "github:helix-editor/helix";
     zig.url = "github:mitchellh/zig-overlay";
+    zls.url = "github:zigtools/zls";
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -35,6 +36,7 @@
               (self: super: {
                 inherit (inputs.devenv.packages.${self.system}) devenv;
                 inherit (inputs.helix.packages.${self.system}) helix;
+                inherit (inputs.zls.packages.${self.system}) zls;
                 konfig = self.callPackage ./packages/konfig {};
               })
             ] ++ lib.optionals isLinux [
