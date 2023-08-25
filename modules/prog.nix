@@ -10,13 +10,16 @@
     nodejs-18_x
     deno
     nodePackages.typescript-language-server
+    nodePackages.svelte-language-server
+    nodePackages.vscode-langservers-extracted
+    nodePackages.yaml-language-server
 
     # iOS
     cocoapods
 
     # Zig
-    zigpkgs.master
-    zls
+    # zigpkgs.master
+    # zls
 
     # C, C++, and friends!
     cmake
@@ -28,6 +31,9 @@
 
     # Benchmark
     hyperfine
+
+    # Java
+    temurin-bin
   ] ++ lib.optionals isLinux (with pkgs; [
     valgrind
   ]);
