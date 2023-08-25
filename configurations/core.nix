@@ -34,6 +34,7 @@
     trezor_agent
     gnupg
     age
+    cryfs
 
     # Cloud
     kubectl
@@ -43,6 +44,8 @@
     helmfile
     scaleway-cli
     kind
+    doctl
+    netlify-cli
   ] ++ lib.optionals isLinux [
     google-cloud-sdk
     gke-gcloud-auth-plugin
