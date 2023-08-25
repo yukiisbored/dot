@@ -15,7 +15,10 @@
     devenv.url = "github:cachix/devenv";
     helix.url = "github:helix-editor/helix";
     zig.url = "github:mitchellh/zig-overlay";
-    zls.url = "github:zigtools/zls";
+    zls = {
+      url = "github:zigtools/zls";
+      inputs.zig-overlay.follows = "zig";
+    };
   };
 
   outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
@@ -66,8 +69,9 @@
             };
           });
     in {
-      homeConfigurations.core = mkConfiguration "x86_64-linux" ./configurations/core.nix;
-      homeConfigurations.generic = mkConfiguration "x86_64-linux" ./configurations/generic.nix;
-      homeConfigurations.mac = mkConfiguration "aarch64-darwin" ./configurations/core.nix;
+      packages = {
+        aarch64-darwin.homeConfigurations.yuki = mkConfiguration "aarch64-darwin" ./configurations/core.nix;
+        x86_64-linux.homeConfigurations.yuki = mkConfiguration "x86_64-linux" ./configurations/generic.nix;
+      };
     };
 }
