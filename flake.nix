@@ -14,6 +14,7 @@
     };
     devenv.url = "github:cachix/devenv";
     helix.url = "github:helix-editor/helix";
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
     zig.url = "github:mitchellh/zig-overlay";
     zls = {
       url = "github:zigtools/zls";
@@ -35,6 +36,7 @@
             config.allowUnfree = true;
 
             overlays = [
+              inputs.emacs-overlay.overlays.default
               inputs.zig.overlays.default
               (self: super: {
                 inherit (inputs.devenv.packages.${self.system}) devenv;
