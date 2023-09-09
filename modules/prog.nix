@@ -34,6 +34,8 @@
 
     # Java
     temurin-bin
+
+    reviewdog
   ] ++ lib.optionals isLinux (with pkgs; [
     valgrind
   ]);
