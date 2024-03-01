@@ -13,8 +13,8 @@
     cocoapods
 
     # Zig
-    # zigpkgs.master
-    # zls
+    zigpkgs.master
+    zls
 
     # C, C++, and friends!
     cmake
