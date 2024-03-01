@@ -28,3 +28,5 @@ add-zsh-hook -Uz chpwd update_title
 update_title
 
 FZF_DEFAULT_OPTS="--layout=reverse"
+
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
