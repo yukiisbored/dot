@@ -6,6 +6,7 @@
     poetry
 
     # JavaScript
+    bun
     nodejs-18_x
     deno
 
