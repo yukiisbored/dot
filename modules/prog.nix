@@ -4,15 +4,10 @@
     # Python
     pipenv
     poetry
-    nodePackages.pyright
 
     # JavaScript
     nodejs-18_x
     deno
-    nodePackages.typescript-language-server
-    nodePackages.svelte-language-server
-    nodePackages.vscode-langservers-extracted
-    nodePackages.yaml-language-server
 
     # iOS
     cocoapods
