@@ -25,8 +25,8 @@
     yt-dlp
     jq
     tmate
-    ngrok
     gh
+    mosh
 
     # Encryption
     trezor_agent
