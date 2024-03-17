@@ -47,9 +47,9 @@
     enableZshIntegration = true;
   };
 
-  programs.exa = {
+  programs.eza = {
     enable = true;
-    enableAliases = true;
+    enableZshIntegration = true;
   };
 
   programs.scmpuff = {
