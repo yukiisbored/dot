@@ -1,4 +1,4 @@
-{ pkgs, lib, isLinux, ... }:
+{ pkgs, lib, isLinux, isDarwin, ... }:
 {
   home.packages = with pkgs; [
     # Python
@@ -9,9 +9,6 @@
     bun
     nodejs-18_x
     deno
-
-    # iOS
-    cocoapods
 
     # Zig
     zigpkgs.master
@@ -34,5 +31,7 @@
     reviewdog
   ] ++ lib.optionals isLinux (with pkgs; [
     valgrind
+  ]) ++ lib.optionals isDarwin (with pkgs; [
+    cocoapods
   ]);
 }
