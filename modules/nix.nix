@@ -7,6 +7,7 @@
   };
 
   home.packages = with pkgs; [
+    devbox
     devenv
     direnv
     niv
