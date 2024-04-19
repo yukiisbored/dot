@@ -8,7 +8,7 @@
     ../modules/git.nix
     ../modules/nix.nix
 
-    ../modules/neovim.nix
+    ../modules/neovim
 
     ../modules/prog.nix
   ];
