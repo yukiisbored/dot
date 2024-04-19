@@ -8,6 +8,16 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.formatting.prettier" },
     { import = "lazyvim.plugins.extras.lang.json" },
 
+    -- Python
+    { import = "lazyvim.plugins.extras.lang.python" },
+    { import = "lazyvim.plugins.extras.formatting.black" },
+
+    -- YAML
+    { import = "lazyvim.plugins.extras.lang.yaml" },
+
+    -- C/C++
+    { import = "lazyvim.plugins.extras.lang.clangd" },
+
     -- Show inlay hints
     {
       "neovim/nvim-lspconfig",

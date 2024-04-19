@@ -10,10 +10,22 @@ let
     lua-language-server
     stylua
 
+    # Typescript
     nodePackages.typescript-language-server
     nodePackages.eslint
     nodePackages.prettier
     vscode-langservers-extracted
+
+    # Python
+    nodePackages.pyright
+    ruff-lsp
+    black
+
+    # YAML
+    yaml-language-server
+
+    # C/C++
+    clang-tools
   ];
 
   plugins = with pkgs.vimPlugins; [
@@ -66,6 +78,9 @@ let
     { name = "mini.indentscope"; path = mini-nvim; }
     { name = "mini.pairs"; path = mini-nvim; }
     { name = "mini.surround"; path = mini-nvim; }
+
+    # C/C++
+    clangd_extensions-nvim
   ];
 
   mkEntryFromDrv = drv:
