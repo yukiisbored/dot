@@ -1,6 +1,21 @@
 { pkgs, lib, ... }:
 
 let
+  packages = with pkgs; [
+    git
+    lazygit
+
+    ripgrep
+
+    lua-language-server
+    stylua
+
+    nodePackages.typescript-language-server
+    nodePackages.eslint
+    nodePackages.prettier
+    vscode-langservers-extracted
+  ];
+
   plugins = with pkgs.vimPlugins; [
     # LazyVim
     LazyVim
@@ -74,15 +89,7 @@ in
     vimAlias = true;
     vimdiffAlias = true;
 
-    extraPackages = with pkgs; [
-      git
-      lazygit
-
-      ripgrep
-
-      lua-language-server
-      stylua
-    ];
+    extraPackages = packages; 
 
     plugins = with pkgs.vimPlugins; [
       lazy-nvim

@@ -1,11 +1,32 @@
 require("lazy").setup({
   spec = {
     { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+
+    -- Typescript
+    { import = "lazyvim.plugins.extras.lang.typescript" },
+    { import = "lazyvim.plugins.extras.linting.eslint" },
+    { import = "lazyvim.plugins.extras.formatting.prettier" },
+    { import = "lazyvim.plugins.extras.lang.json" },
+
+    -- Show inlay hints
+    {
+      "neovim/nvim-lspconfig",
+      opts = {
+        inlay_hints = {
+          enabled = true,
+        },
+      },
+    },
+
+    -- Use fzf provided by Nix
     { "nvim-telescope/telescope-fzf-native.nvim", enabled = true },
+
+    -- LSP is managed by Nix
     { "williamboman/mason-lspconfig.nvim", enabled = false },
     { "williamboman/mason.nvim", enabled = false },
     { "jaybaby/mason-nvim-dap.nvim", enabled = false },
-    { import = "plugins" },
+
+    -- Load Treesitter prepared by Nix
     {
       "nvim-treesitter/nvim-treesitter",
       init = function()
