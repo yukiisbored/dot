@@ -73,7 +73,7 @@
     in {
       packages = {
         aarch64-darwin.homeConfigurations.yuki = mkConfiguration "aarch64-darwin" ./configurations/core.nix;
-        x86_64-linux.homeConfigurations.yuki = mkConfiguration "x86_64-linux" ./configurations/generic.nix;
+        x86_64-linux.homeConfigurations.yuki = mkConfiguration "x86_64-linux" ./configurations/core.nix;
       };
     };
 }
