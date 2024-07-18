@@ -11,7 +11,6 @@
     deno
 
     # Zig
-    zigpkgs.master
     zls
 
     # C, C++, and friends!

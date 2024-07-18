@@ -1,16 +1,16 @@
-{ pkgs, config, lib, isLinux, ... }:
+{ pkgs, config, lib, isLinux, isDarwin, ... }:
 {
-
   imports = [
-    ../modules/base.nix
+    ./zsh
+    ./git.nix
+    ./nix.nix
 
-    ../modules/zsh
-    ../modules/git.nix
-    ../modules/nix.nix
-
-    ../modules/editors.nix
-    ../modules/prog.nix
+    ./editors.nix
+    ./prog.nix
   ];
+  
+  programs.home-manager.enable = true;
+  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
     # General utilities
@@ -28,7 +28,6 @@
     mosh
 
     # Encryption
-    trezor_agent
     gnupg
     age
     cryfs
@@ -36,16 +35,13 @@
     # Cloud
     kubectl
     kubectx
-    konfig
     kubernetes-helm
-    helmfile
     scaleway-cli
     kind
     doctl
     netlify-cli
   ] ++ lib.optionals isLinux [
     google-cloud-sdk
-    gke-gcloud-auth-plugin
     tomb
   ];
 }

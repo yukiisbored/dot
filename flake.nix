@@ -8,47 +8,41 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    gke-gcloud-auth-plugin = {
-      url = "github:talzion12/gke-gcloud-auth-plugin-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    devenv.url = "github:cachix/devenv";
     helix.url = "github:helix-editor/helix";
-    emacs-overlay.url = "github:nix-community/emacs-overlay";
     zig.url = "github:mitchellh/zig-overlay";
     zls = {
       url = "github:zigtools/zls";
       inputs.zig-overlay.follows = "zig";
     };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs @ { self, utils, nixpkgs, home-manager, ... }:
+  outputs = inputs @ { self, utils, nixpkgs, home-manager, nix-darwin, ... }:
     let
       inherit (home-manager.lib) homeManagerConfiguration;
       inherit (nixpkgs) lib;
+      inherit (nix-darwin.lib) darwinSystem;
+
+      overlays =
+        [
+         inputs.zig.overlays.default
+         (self: super: {
+           inherit (inputs.devenv.packages.${self.system}) devenv;
+           inherit (inputs.helix.packages.${self.system}) helix;
+           inherit (inputs.zls.packages.${self.system}) zls;
+         })
+        ];
 
       mkConfiguration = system: config: 
         let
           inherit (lib.systems.elaborate { inherit system; }) isLinux isDarwin;
 
           pkgs = import nixpkgs {
-            inherit system;
+            inherit system overlays;
             config.allowUnfree = true;
-
-            overlays = [
-              inputs.emacs-overlay.overlays.default
-              inputs.zig.overlays.default
-              (self: super: {
-                inherit (inputs.devenv.packages.${self.system}) devenv;
-                inherit (inputs.helix.packages.${self.system}) helix;
-                inherit (inputs.zls.packages.${self.system}) zls;
-                konfig = self.callPackage ./packages/konfig {};
-              })
-            ] ++ lib.optionals isLinux [
-              (self: super: {
-                gke-gcloud-auth-plugin = inputs.gke-gcloud-auth-plugin.defaultPackage.${system};
-              })
-            ];
           };
         in
           homeManagerConfiguration ({
@@ -72,8 +66,20 @@
           });
     in {
       packages = {
-        aarch64-darwin.homeConfigurations.yuki = mkConfiguration "aarch64-darwin" ./configurations/core.nix;
-        x86_64-linux.homeConfigurations.yuki = mkConfiguration "x86_64-linux" ./configurations/core.nix;
+        aarch64-darwin.homeConfigurations.yuki = mkConfiguration "aarch64-darwin" ./home;
+        x86_64-linux.homeConfigurations.yuki = mkConfiguration "x86_64-linux" ./home;
+      };
+
+      darwinConfigurations.leveilleur = darwinSystem {
+        modules = [ 
+          { nixpkgs.overlays = overlays; }
+          ./darwin.nix
+        ];
+
+        specialArgs = {
+          inherit inputs;
+          flake = self;
+        };
       };
     };
 }

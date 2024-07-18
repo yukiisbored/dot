@@ -8,9 +8,7 @@
 
   home.packages = with pkgs; [
     devbox
-    devenv
     direnv
-    niv
     cachix
     nix-prefetch-git
   ];
