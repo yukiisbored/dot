@@ -12,7 +12,6 @@
     direnv
     niv
     cachix
-    nixUnstable
     nix-prefetch-git
   ];
 }
