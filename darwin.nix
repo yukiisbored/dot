@@ -75,6 +75,8 @@
       "flameshot"
       "beeper"
       "karabiner-elements"
+      "soundsource"
+      "alt-tab"
     ];
   };
 
