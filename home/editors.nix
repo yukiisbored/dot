@@ -17,5 +17,6 @@
     jetbrains.phpstorm
     jetbrains.idea-ultimate
     jetbrains.datagrip
+    jetbrains.rust-rover
   ];
 }

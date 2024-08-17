@@ -6,9 +6,7 @@
     poetry
 
     # JavaScript
-    bun
-    nodejs-18_x
-    deno
+    fnm
 
     # Zig
     zls
@@ -17,9 +15,7 @@
     cmake
 
     # Rust
-    rustc
-    cargo
-    rust-analyzer
+    rustup
 
     # Benchmark
     hyperfine

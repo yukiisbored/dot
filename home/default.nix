@@ -26,6 +26,7 @@
     tmate
     gh
     mosh
+    lazygit
 
     # Encryption
     gnupg
@@ -40,6 +41,10 @@
     kind
     doctl
     netlify-cli
+    krew
+
+    # Fonts
+    jetbrains-mono
   ] ++ lib.optionals isLinux [
     google-cloud-sdk
     tomb

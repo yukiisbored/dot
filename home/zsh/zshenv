@@ -1,5 +1,9 @@
 export XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-$HOME/.config}
 
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 if [ -n "$HOME/.ghcup" ]; then
     export PATH="$HOME/.ghcup/bin:$PATH"
 fi
@@ -27,11 +31,14 @@ if [ -d "$XDG_CONFIG_HOME/emacs" ]; then
     export PATH="$XDG_CONFIG_HOME/emacs/bin:$PATH"
 fi
 
+if [ -d "$HOME/.bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    export PATH="$BUN_INSTALL/bin:$PATH"
+fi
+
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
 
-if command -v nvim >/dev/null; then
-   export ALTERNATE_EDITOR=""
-   export EDITOR="nvim"
-   export VISUAL="nvim"
-fi
+export ALTERNATE_EDITOR=""
+export EDITOR="nvim"
+export VISUAL="nvim"

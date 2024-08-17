@@ -3,11 +3,12 @@
   programs.zsh = {
     enable = true;
 
-    enableAutosuggestions = true;
+    autosuggestion.enable = true;
+
     enableCompletion = true;
     enableVteIntegration = true;
+
     autocd = true;
-    defaultKeymap = "emacs";
     history = {
       extended = true;
       path = "${config.home.homeDirectory}/.histfile";
@@ -36,6 +37,11 @@
         name = "fzf-tab";
         src = pkgs.zsh-fzf-tab + /share/fzf-tab;
       }
+      {
+          name = "vi-mode";
+          src = pkgs.zsh-vi-mode;
+          file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
     ];
 
     initExtra = builtins.readFile ./zshrc;
@@ -48,11 +54,6 @@
   };
 
   programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-  };
-
-  programs.scmpuff = {
     enable = true;
     enableZshIntegration = true;
   };
@@ -73,9 +74,132 @@
       character = {
         success_symbol = "%";
         error_symbol = "[%](red)";
+        vimcmd_symbol = "[%](green)";
       };
 
-      gcloud.disabled = true;
+      status.symbol = "[x](bold red) ";
+
+      git_branch.symbol = "git ";
+      git_commit.tag_symbol = " tag ";
+      git_status = {
+        ahead = ">";
+        behind = "<";
+        diverged = "<>";
+        renamed = "r";
+        deleted = "x";
+      };
+
+      fossil_branch.symbol = "fossil ";
+      hg_branch.symbol = "hg ";
+
+      directory.read_only = " ro";
+
+      docker_context.symbol = "docker ";
+      gcloud.symbol = "gcp ";
+
+      memory_usage.symbol = "memory ";
+
+      nix_shell.symbol = "nix ";
+      guix_shell.symbol = "guix ";
+
+      os.symbols = {
+        AIX = "aix ";
+        Alpaquita = "alq ";
+        AlmaLinux = "alma ";
+        Alpine = "alp ";
+        Amazon = "amz ";
+        Android = "andr ";
+        Arch = "rch ";
+        Artix = "atx ";
+        CentOS = "cent ";
+        Debian = "deb ";
+        DragonFly = "dfbsd ";
+        Emscripten = "emsc ";
+        EndeavourOS = "ndev ";
+        Fedora = "fed ";
+        FreeBSD = "fbsd ";
+        Garuda = "garu ";
+        Gentoo = "gent ";
+        HardenedBSD = "hbsd ";
+        Illumos = "lum ";
+        Kali = "kali ";
+        Linux = "lnx ";
+        Mabox = "mbox ";
+        Macos = "mac ";
+        Manjaro = "mjo ";
+        Mariner = "mrn ";
+        MidnightBSD = "mid ";
+        Mint = "mint ";
+        NetBSD = "nbsd ";
+        NixOS = "nix ";
+        OpenBSD = "obsd ";
+        OpenCloudOS = "ocos ";
+        openEuler = "oeul ";
+        openSUSE = "osuse ";
+        OracleLinux = "orac ";
+        Pop = "pop ";
+        Raspbian = "rasp ";
+        Redhat = "rhl ";
+        RedHatEnterprise = "rhel ";
+        RockyLinux = "rky ";
+        Redox = "redox ";
+        Solus = "sol ";
+        SUSE = "suse ";
+        Ubuntu = "ubnt ";
+        Ultramarine = "ultm ";
+        Unknown = "unk ";
+        Void = "void ";
+        Windows = "win ";
+      };
+
+      package.symbol = "pkg ";
+
+      aws.symbol = "aws ";
+      azure.symbol = "az ";
+      bun.symbol = "bun ";
+      c.symbol = "C ";
+      cobol.symbol = "cobol ";
+      conda.symbol = "conda ";
+      crystal.symbol = "cr ";
+      cmake.symbol = "cmake ";
+      daml.symbol = "daml ";
+      dart.symbol = "dart ";
+      deno.symbol = "deno ";
+      dotnet.symbol = ".NET ";
+      elixir.symbol = "exs ";
+      elm.symbol = "elm ";
+      fennel.symbol = "fnl ";
+      gleam.symbol = "gleam ";
+      golang.symbol = "go ";
+      gradle.symbol = "gradle ";
+      java.symbol = "java ";
+      julia.symbol = "jl ";
+      kotlin.symbol = "kt ";
+      lua.symbol = "lua ";
+      nodejs.symbol = "nodejs ";
+      meson.symbol = "meson ";
+      nats.symbol = "nats ";
+      nim.symbol = "nim ";
+      ocaml.symbol = "ml ";
+      opa.symbol = "opa ";
+      perl.symbol = "pl ";
+      php.symbol = "php ";
+      pijul_channel.symbol = "pijul ";
+      pulumi.symbol = "pulumi ";
+      purescript.symbol = "purs ";
+      python.symbol = "py ";
+      quarto.symbol = "quarto ";
+      raku.symbol = "raku ";
+      ruby.symbol = "rb ";
+      rust.symbol = "rs ";
+      scala.symbol = "scala ";
+      spack.symbol = "spack ";
+      solidity.symbol = "solidity ";
+      sudo.symbol = "sudo ";
+      swift.symbol = "swift ";
+      typst.symbol = "typst ";
+      terraform.symbol = "terraform ";
+      zig.symbol = "zig ";
     };
   };
 
