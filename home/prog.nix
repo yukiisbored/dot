@@ -1,4 +1,4 @@
-{ pkgs, lib, isLinux, isDarwin, ... }:
+{ pkgs, lib, isDarwin, ... }:
 {
   home.packages = with pkgs; [
     # Python
@@ -8,25 +8,9 @@
     # JavaScript
     fnm
 
-    # Zig
-    zls
-
-    # C, C++, and friends!
-    cmake
-
-    # Rust
-    rustup
-
     # Benchmark
     hyperfine
-
-    # Java
-    temurin-bin
-
-    reviewdog
-  ] ++ lib.optionals isLinux (with pkgs; [
-    valgrind
-  ]) ++ lib.optionals isDarwin (with pkgs; [
+  ] ++ lib.optionals isDarwin (with pkgs; [
     cocoapods
   ]);
 }
