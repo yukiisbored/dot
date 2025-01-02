@@ -81,5 +81,7 @@
           flake = self;
         };
       };
+
+      darwinConfigurations.xanathaea = self.darwinConfigurations.leveilleur;
     };
 }
