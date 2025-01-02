@@ -45,41 +45,6 @@
     };
   };
 
-  homebrew = {
-    enable = true;
-
-    onActivation = {
-      autoUpdate = false;
-      cleanup = "zap";
-    };
-
-    masApps = {
-      Xcode = 497799835;
-    };
-
-    taps = [
-      "homebrew/services"
-    ];
-    
-    casks = [
-      "arc"
-      "raycast"
-      "iterm2"
-      "iina"
-      "microsoft-office"
-      "google-cloud-sdk"
-      "discord"
-      "orbstack"
-      "hiddenbar"
-      "google-drive"
-      "flameshot"
-      "beeper"
-      "karabiner-elements"
-      "soundsource"
-      "alt-tab"
-    ];
-  };
-
   services.tailscale.enable = true;
   services.trezord.enable = true;
 
