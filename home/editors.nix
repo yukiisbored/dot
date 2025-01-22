@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, ... }:
 
 {
   programs.neovim = {
@@ -24,6 +24,4 @@
 
     ];
   };
-
-  programs.vscode.enable = true;
 }
