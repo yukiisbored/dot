@@ -27,6 +27,7 @@
     gh
     mosh
     lazygit
+    zellij
 
     # Encryption
     gnupg
