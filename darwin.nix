@@ -8,9 +8,8 @@
     hostPlatform = "aarch64-darwin";
   };
 
-  services.nix-daemon.enable = true;
-
   nix = {
+    enable = true;
     package = pkgs.nix;
 
     settings = {
@@ -48,7 +47,7 @@
   services.tailscale.enable = true;
   services.trezord.enable = true;
 
-  security.pam.enableSudoTouchIdAuth = true;
+  security.pam.services.sudo_local.touchIdAuth = true;
 
   system = {
     activationScripts.postUserActivation.text = ''
@@ -119,6 +118,8 @@
       remapCapsLockToEscape  = true;
     };
   };
+
+  ids.gids.nixbld = 350;
 
   system.configurationRevision = flake.rev or flake.dirtyRev or null;
   system.stateVersion = 4;
