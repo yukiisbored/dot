@@ -36,6 +36,10 @@ if [ -d "$HOME/.bun" ]; then
     export PATH="$BUN_INSTALL/bin:$PATH"
 fi
 
+if [ -d "$HOME/.config/composer/vendor/bin" ]; then
+    export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
+
 export GOPATH="$HOME"
 export KUBECONFIG="$HOME/.kube/config"
 
