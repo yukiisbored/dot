@@ -2,8 +2,8 @@
 {
   home.packages = with pkgs; [
     # Python
-    pipenv
     poetry
+    uv
 
     # JavaScript
     fnm
