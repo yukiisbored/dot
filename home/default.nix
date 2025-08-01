@@ -1,23 +1,14 @@
-{ pkgs, config, lib, isLinux, isDarwin, ... }:
+{ pkgs, config, lib, ... }:
 {
   imports = [
     ./zsh
-    ./git.nix
-    ./nix.nix
-
-    ./editors.nix
-    ./prog.nix
   ];
   
   programs.home-manager.enable = true;
-  fonts.fontconfig.enable = true;
 
   home.packages = with pkgs; [
-    # General utilities
     silver-searcher
     sqlite
-    httpie
-    asciinema
     graphviz
     croc
     pwgen
@@ -28,26 +19,46 @@
     mosh
     lazygit
     zellij
-
-    # Encryption
-    gnupg
-    age
-    cryfs
-
-    # Cloud
-    kubectl
-    kubectx
-    kubernetes-helm
-    scaleway-cli
-    kind
-    doctl
-    netlify-cli
-    krew
-
-    # Fonts
-    jetbrains-mono
-  ] ++ lib.optionals isLinux [
-    google-cloud-sdk
-    tomb
   ];
+
+  programs.git = {
+    enable = true;
+    userName = "Yuki Langley";
+    userEmail = "hi@yukiisbo.red";
+
+    extraConfig = {
+      init.defaultBranch = "main";
+    };
+
+    lfs.enable = true;
+  };
+
+  programs.neovim = {
+    enable = true;
+
+    viAlias = true;
+    vimAlias = true;
+    vimdiffAlias = true;
+
+    extraPackages = with pkgs; [
+      git
+      lazygit
+
+      findutils
+      fzf
+      ripgrep
+      fd
+
+      lua-language-server
+      stylua
+
+      nodejs_22
+    ];
+  };
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+    nix-direnv.enable = true;
+  };
 }

@@ -21,7 +21,6 @@
       stylua
 
       nodejs_22
-
     ];
   };
 }

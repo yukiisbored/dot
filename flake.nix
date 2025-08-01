@@ -8,12 +8,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    helix.url = "github:helix-editor/helix";
-    zig.url = "github:mitchellh/zig-overlay";
-    zls = {
-      url = "github:zigtools/zls";
-      inputs.zig-overlay.follows = "zig";
-    };
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -26,22 +20,12 @@
       inherit (nixpkgs) lib;
       inherit (nix-darwin.lib) darwinSystem;
 
-      overlays =
-        [
-         inputs.zig.overlays.default
-         (self: super: {
-           inherit (inputs.devenv.packages.${self.system}) devenv;
-           inherit (inputs.helix.packages.${self.system}) helix;
-           inherit (inputs.zls.packages.${self.system}) zls;
-         })
-        ];
-
       mkConfiguration = system: config: 
         let
           inherit (lib.systems.elaborate { inherit system; }) isLinux isDarwin;
 
           pkgs = import nixpkgs {
-            inherit system overlays;
+            inherit system;
             config.allowUnfree = true;
           };
         in
@@ -59,10 +43,6 @@
 
               config
             ];
-
-            extraSpecialArgs = {
-              inherit system isLinux isDarwin;
-            };
           });
     in {
       packages = {
@@ -72,7 +52,6 @@
 
       darwinConfigurations.leveilleur = darwinSystem {
         modules = [ 
-          { nixpkgs.overlays = overlays; }
           ./darwin.nix
         ];
 
