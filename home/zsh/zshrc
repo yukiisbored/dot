@@ -16,3 +16,7 @@ FZF_DEFAULT_OPTS="--layout=reverse"
 if command -v fnm >/dev/null; then
   eval "$(fnm env --use-on-cd --shell zsh)"
 fi
+
+if [ -d "$HOME/.sdkman" ]; then
+  source "$HOME/.sdkman/bin/sdkman-init.sh"
+fi
