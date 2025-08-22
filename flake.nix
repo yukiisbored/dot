@@ -22,7 +22,7 @@
 
       mkConfiguration = system: config: 
         let
-          inherit (lib.systems.elaborate { inherit system; }) isLinux isDarwin;
+          inherit (lib.systems.elaborate { inherit system; }) isDarwin;
 
           pkgs = import nixpkgs {
             inherit system;
