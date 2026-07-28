@@ -3,11 +3,11 @@
   imports = [
     ./zsh
   ];
-  
+
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
-    silver-searcher
+    silver-searcher-ng
     sqlite
     graphviz
     croc
@@ -22,8 +22,6 @@
   ];
 
   nix = {
-    package = pkgs.nix;
-
     settings = {
       substituters = [
         "https://nix-community.cachix.org"
