@@ -44,7 +44,7 @@
       }
     ];
 
-    initExtra = builtins.readFile ./zshrc;
+    initContent = builtins.readFile ./zshrc;
     envExtra = builtins.readFile ./zshenv;
   };
 

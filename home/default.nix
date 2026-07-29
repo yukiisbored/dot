@@ -19,6 +19,8 @@
     mosh
     lazygit
     zellij
+    nixd
+    nil
   ];
 
   nix = {
@@ -35,14 +37,13 @@
 
   programs.git = {
     enable = true;
-    userName = "Yuki Langley";
-    userEmail = "hi@yukiisbo.red";
-
-    extraConfig = {
-      init.defaultBranch = "main";
-    };
-
     lfs.enable = true;
+
+    settings = {
+      init.defaultBranch = "main";
+      user.name = "Yuki Langley";
+      user.email = "hi@yukiisbo.red";
+    };
   };
 
   programs.neovim = {
@@ -50,7 +51,6 @@
 
     viAlias = true;
     vimAlias = true;
-    vimdiffAlias = true;
 
     extraPackages = with pkgs; [
       git
@@ -66,6 +66,9 @@
 
       nodejs_22
     ];
+
+    withRuby = false;
+    withPython3 = false;
   };
 
   programs.direnv = {
