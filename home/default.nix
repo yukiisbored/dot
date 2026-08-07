@@ -46,31 +46,6 @@
     };
   };
 
-  programs.neovim = {
-    enable = true;
-
-    viAlias = true;
-    vimAlias = true;
-
-    extraPackages = with pkgs; [
-      git
-      lazygit
-
-      findutils
-      fzf
-      ripgrep
-      fd
-
-      lua-language-server
-      stylua
-
-      nodejs_22
-    ];
-
-    withRuby = false;
-    withPython3 = false;
-  };
-
   programs.direnv = {
     enable = true;
     enableZshIntegration = true;

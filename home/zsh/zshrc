@@ -20,3 +20,8 @@ fi
 if [ -d "$HOME/.sdkman" ]; then
   source "$HOME/.sdkman/bin/sdkman-init.sh"
 fi
+
+if command -v nvim >/dev/null; then
+  alias vi=nvim
+  alias vim=nvim
+fi
