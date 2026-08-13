@@ -1,3 +1,5 @@
+
+
 # yuki/dot
 
 [![NixOS Unstable](https://img.shields.io/badge/NixOS-Unstable-blue.svg?style=flat-square&logo=NixOS&logoColor=white)](https://nixos.org)
@@ -18,5 +20,5 @@ standalone flake] section from home-manager's documentation.
 | Web browser       | Arc (on macOS), Vivaldi     |
 | Shell             | zsh                         |
 
-[home-manager]: https://rycee.gitlab.io/home-manager/index.html
-[home-manager standalone flake]: https://rycee.gitlab.io/home-manager/index.html#sec-flakes-standalone
+[home-manager]: https://github.com/nix-community/home-manager
+[home-manager standalone flake]: https://nix-community.github.io/home-manager/#sec-flakes-standalone
